@@ -1,12 +1,24 @@
 {
   "configurations": [
     {
+      "name": "Storybook Debug",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "yarn storybook",
+      "internalConsoleOptions": "openOnFirstSessionStart",
+      "serverReadyAction": {
+        "pattern": "Local:.+(https?://[^:]+:[0-9]+)",
+        "uriFormat": "%s",
+        "action": "debugWithChrome"
+      }
+    },
+    {
       "type": "node",
       "name": "vscode-jest-tests",
       "request": "launch",
       "runtimeExecutable": "yarn",
       "runtimeArgs": ["run", "test"],
-      "args": [ "--runInBand"],
+      "args": ["--runInBand"],
       "cwd": "${workspaceFolder}",
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen"
@@ -17,7 +29,7 @@
       "request": "launch",
       "runtimeExecutable": "yarn",
       "runtimeArgs": ["run", "test"],
-      "args": [ "--runInBand", "${fileBasenameNoExtension}"],
+      "args": ["--runInBand", "${fileBasenameNoExtension}"],
       "cwd": "${fileDirname}",
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen"

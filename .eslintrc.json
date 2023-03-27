@@ -42,6 +42,7 @@
     "@typescript-eslint/ban-ts-ignore": "off",
     "@typescript-eslint/ban-types": "off",
     "@typescript-eslint/no-this-alias": "off",
+    "@typescript-eslint/ban-ts-comment": "warn",
     "import/no-extraneous-dependencies": "off"
   }
 }

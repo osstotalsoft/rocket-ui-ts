@@ -2,21 +2,26 @@
 // This source code is licensed under the MIT license.
 import { ButtonProps as MuiButtonProps } from '@mui/material'
 
-export type Size = 'tiny' | 'small' | 'medium' | 'large'
+export const sizes = ['tiny', 'small', 'medium', 'large']
 
-export type Color =
-  | 'primary'
-  | 'secondary'
-  | 'info'
-  | 'success'
-  | 'warning'
-  | 'error'
-  | 'rose'
-  | 'default'
-  | 'white'
-  | 'dark'
-  | 'transparent'
-  | 'inherit'
+export type Size = (typeof sizes)[number]
+
+export const colors = [
+  'primary',
+  'secondary',
+  'info',
+  'success',
+  'warning',
+  'error',
+  'rose',
+  'default',
+  'white',
+  'dark',
+  'transparent',
+  'inherit'
+]
+
+export type Color = (typeof colors)[number]
 
 export interface ButtonProps extends Omit<MuiButtonProps, 'color' | 'size'> {
   color?: Color

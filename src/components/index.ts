@@ -1,3 +1,4 @@
 import Button from './buttons/Button'
+import getTheme from './theme/index'
 
-export { Button }
+export { getTheme, Button }
