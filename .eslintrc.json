@@ -4,10 +4,21 @@
     "ecmaVersion": 2022,
     "sourceType": "module"
   },
-  "extends": ["plugin:@typescript-eslint/eslint-recommended", "plugin:@typescript-eslint/recommended", "prettier"],
+  "extends": [
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier",
+    "plugin:storybook/recommended"
+  ],
   "rules": {
-    "quotes": ["error", "single"],
-    "semi": ["error", "never"],
+    "quotes": [
+      "error",
+      "single"
+    ],
+    "semi": [
+      "error",
+      "never"
+    ],
     "no-unused-expressions": "warn",
     "no-empty": "off",
     "no-prototype-builtins": "off",
