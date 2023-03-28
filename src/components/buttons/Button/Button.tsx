@@ -9,7 +9,6 @@ const Button: React.FC<ButtonProps> = ({
   children,
   color = 'primary',
   size = 'medium',
-  variant = 'contained',
   tooltip,
   round,
   right,
@@ -46,7 +45,6 @@ const Button: React.FC<ButtonProps> = ({
       component={disabled ? 'div' : 'button'}
       capitalize={capitalize}
       {...(loading ? { loading } : {})}
-      variant={variant} // need to set the default like this in order not to break 'WithBackground' and 'NoBackground' styles
       {...buttonStyles}
       {...rest}
     >

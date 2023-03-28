@@ -2,8 +2,10 @@
 // This source code is licensed under the MIT license.
 import { ButtonProps as MuiButtonProps } from '@mui/material'
 
-export const sizes = ['tiny', 'small', 'medium', 'large']
+export const variants = ['outlined', 'text', 'contained']
+export type Variant = (typeof variants)[number]
 
+export const sizes = ['tiny', 'small', 'medium', 'large']
 export type Size = (typeof sizes)[number]
 
 export const colors = [
@@ -20,10 +22,10 @@ export const colors = [
   'transparent',
   'inherit'
 ]
-
 export type Color = (typeof colors)[number]
 
-export interface ButtonProps extends Omit<MuiButtonProps, 'color' | 'size'> {
+export interface ButtonProps extends Omit<MuiButtonProps, 'color' | 'size' | 'variant'> {
+  variant?: Variant
   color?: Color
   size?: Size
   tooltip?: string

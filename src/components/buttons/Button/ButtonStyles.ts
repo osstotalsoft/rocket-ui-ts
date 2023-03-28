@@ -2,14 +2,6 @@ import MuiButton from '@mui/material/Button'
 import { styled } from '@mui/material/styles'
 import { LoadingButton } from '@mui/lab'
 import { includes, replace } from 'ramda'
-// import { StyledComponent } from '@emotion/styled'
-// import { ButtonProps } from './types'
-// import { MUIStyledCommonProps } from '@mui/system'
-// import { ButtonClasses } from './types'
-
-// export const transformDeprecatedSizes = (size: Size) => {
-//   return SizeTransformations[size] || size
-// }
 
 export const basicColors = [
   'primary',
