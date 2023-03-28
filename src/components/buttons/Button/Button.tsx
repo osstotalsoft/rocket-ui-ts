@@ -7,7 +7,7 @@ import { ButtonProps } from './types'
 
 const Button: React.FC<ButtonProps> = ({
   children,
-  color = 'inherit',
+  color = 'primary',
   size = 'medium',
   variant = 'contained',
   tooltip,

@@ -4,7 +4,7 @@ const vividOrangeTheme = {
   ...orangeTheme,
   palette: {
     ...orangeTheme.palette,
-    BACKGROUND: {
+    background: {
       main: '#eee'
     }
   }

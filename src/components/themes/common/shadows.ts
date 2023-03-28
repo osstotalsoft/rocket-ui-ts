@@ -1,8 +1,9 @@
-import { alpha } from '@mui/material/styles'
+import { Shadows, alpha } from '@mui/material/styles'
+import { PaletteCustomOptions } from '../types'
 
-const LIGHT_MODE = palette => palette.grey[500]
+const LIGHT_MODE = (palette: PaletteCustomOptions) => palette?.grey?.[500]
 
-const createShadow = color => {
+const createShadow = (color = ''): Shadows | undefined => {
   const transparent1 = alpha(color, 0.2)
   const transparent2 = alpha(color, 0.14)
   const transparent3 = alpha(color, 0.12)
@@ -35,7 +36,7 @@ const createShadow = color => {
   ]
 }
 
-const createCustomShadow = (color, palette) => {
+const createCustomShadow = (color = '', palette?: PaletteCustomOptions) => {
   const transparent = alpha(color, 0.24)
 
   return {
@@ -45,16 +46,16 @@ const createCustomShadow = (color, palette) => {
     z16: `0 0 2px 0 ${transparent}, 0 16px 32px -4px ${transparent}`,
     z20: `0 0 2px 0 ${transparent}, 0 20px 40px -4px ${transparent}`,
     z24: `0 0 4px 0 ${transparent}, 0 24px 48px 0 ${transparent}`,
-    primary: `0 8px 16px 0 ${alpha(palette.primary.main, 0.24)}`,
-    secondary: `0 8px 16px 0 ${alpha(palette.secondary.main, 0.24)}`,
-    info: `0 8px 16px 0 ${alpha(palette.info.main, 0.24)}`,
-    success: `0 8px 16px 0 ${alpha(palette.success.main, 0.24)}`,
-    warning: `0 8px 16px 0 ${alpha(palette.warning.main, 0.24)}`,
-    error: `0 8px 16px 0 ${alpha(palette.error.main, 0.24)}`,
-    danger: `0 8px 16px 0 ${alpha(palette.error.main, 0.24)}`
+    primary: `0 8px 16px 0 ${alpha(palette?.primary?.main || '', 0.24)}`,
+    secondary: `0 8px 16px 0 ${alpha(palette?.secondary?.main || '', 0.24)}`,
+    info: `0 8px 16px 0 ${alpha(palette?.info?.main || '', 0.24)}`,
+    success: `0 8px 16px 0 ${alpha(palette?.success?.main || '', 0.24)}`,
+    warning: `0 8px 16px 0 ${alpha(palette?.warning?.main || '', 0.24)}`,
+    error: `0 8px 16px 0 ${alpha(palette?.error?.main || '', 0.24)}`,
+    danger: `0 8px 16px 0 ${alpha(palette?.error?.main || '', 0.24)}`
   }
 }
 
-export const generateCustomShadows = palette => createCustomShadow(LIGHT_MODE(palette), palette)
+export const generateCustomShadows = (palette: PaletteCustomOptions) => createCustomShadow(LIGHT_MODE(palette), palette)
 
-export const generateShadows = palette => createShadow(LIGHT_MODE(palette))
+export const generateShadows = (palette: PaletteCustomOptions): Shadows | undefined => createShadow(LIGHT_MODE(palette))

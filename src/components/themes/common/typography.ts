@@ -1,3 +1,5 @@
+import { TypographyCustomOptions } from '../types'
+
 export const defaultFont = {
   fontFamily: 'Source Sans Pro',
   fontSize: 14,
@@ -6,7 +8,7 @@ export const defaultFont = {
   letterSpacing: '0.02857em'
 }
 
-const typography = {
+const typography: TypographyCustomOptions = {
   ...defaultFont,
   defaultFont,
   useNextVariants: true,
@@ -18,10 +20,7 @@ const typography = {
     fontStretch: 'normal',
     fontStyle: 'normal'
   },
-  body: {
-    ...defaultFont,
-    fontSize: 14
-  }
+  body: defaultFont
 }
 
 export default typography

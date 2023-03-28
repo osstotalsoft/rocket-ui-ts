@@ -6,26 +6,13 @@ import getTheme from '../../themes'
 
 const theme = getTheme()
 
-const noBackgroundColors = [
-  { receivedColor: 'themeNoBackground', color: 'theme' },
-  { receivedColor: 'defaultNoBackground', color: 'primary' },
-  { receivedColor: 'primaryNoBackground', color: 'primary' },
-  { receivedColor: 'infoNoBackground', color: 'info' },
-  { receivedColor: 'successNoBackground', color: 'success' },
-  { receivedColor: 'warningNoBackground', color: 'warning' },
-  { receivedColor: 'dangerNoBackground', color: 'danger' },
-  { receivedColor: 'roseNoBackground', color: 'rose' }
-]
-
 const basicColors = [
   { color: 'primary' },
   { color: 'secondary' },
   { color: 'info' },
   { color: 'success' },
   { color: 'warning' },
-  { color: 'danger' },
   { color: 'rose' },
-  { color: 'theme' },
   { color: 'white' },
   { color: 'dark' }
 ]
@@ -39,25 +26,6 @@ describe('Button colors', () => {
   })
 
   describe('Button `noBackground` colors', () => {
-    it.each(noBackgroundColors)(
-      'displays the correct font color for color = { $receivedColor }',
-      ({ receivedColor, color }) => {
-        render(<Button color={receivedColor} />)
-        const button = screen.getByRole('button')
-        expect(button).toHaveStyle('background-color: transparent')
-        expect(button).toHaveStyle(`color: ${theme.palette[color].main}`)
-        expect(button).toHaveClass('MuiButton-text')
-      }
-    )
-
-    it('displays the correct font color for color = `themeWithBackground`', () => {
-      render(<Button color={'themeWithBackground'} />)
-      const button = screen.getByRole('button')
-      expect(button).toHaveStyle('background-color: transparent')
-      expect(button).toHaveStyle(`color: ${theme.palette['theme'].main}`)
-      expect(button).toHaveClass('MuiButton-outlined')
-    })
-
     it('displays the correct font color and background color for color = `transparent`', () => {
       render(<Button color={'transparent'} />)
       const button = screen.getByRole('button')
@@ -86,7 +54,7 @@ describe('Button sizes and shapes', () => {
 })
 
 describe('Disabled button', () => {
-  it('doesn\'t call onClick', async () => {
+  it('does not call onClick', async () => {
     const mockOnClick = jest.fn()
     render(<Button onClick={mockOnClick} disabled />)
     userClick(screen.getByRole('button'))

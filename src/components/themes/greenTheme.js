@@ -5,7 +5,7 @@ import typography from './common/typography'
 import { generateShadows, generateCustomShadows } from './common/shadows'
 
 const palette = generatePalette({
-  PRIMARY: {
+  primary: {
     lighter: '#9dffd4',
     light: '#67eaa2',
     main: '#2ab773',
@@ -14,7 +14,7 @@ const palette = generatePalette({
     contrastText: '#fff',
     rgba: 'rgba(38, 198, 218, 1)'
   },
-  SECONDARY: {
+  secondary: {
     lighter: '#6db45f',
     light: '#3d8433',
     main: '#005604',
@@ -23,7 +23,7 @@ const palette = generatePalette({
     contrastText: '#fff',
     rgba: 'rgba(0, 86, 4, 1)'
   },
-  BACKGROUND: {
+  background: {
     main: '#eff7f0'
   },
   SIDE_MENU: {

@@ -1,4 +1,4 @@
 import Button from './buttons/Button'
-import getTheme from './theme/index'
+import getTheme from './themes/index'
 
 export { getTheme, Button }

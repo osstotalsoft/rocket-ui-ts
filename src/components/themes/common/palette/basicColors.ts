@@ -2,7 +2,7 @@ import { alpha } from '@mui/material/styles'
 
 // shades picked using this Material tool: https://material.io/resources/color/#!/
 
-export const ROSE = {
+export const rose = {
   lighter: '#ff94c0',
   light: '#ff6090',
   main: '#e91e63',
@@ -11,7 +11,7 @@ export const ROSE = {
   contrastText: '#fff'
 }
 
-export const WARNING = {
+export const warning = {
   lighter: '#fffc79',
   light: '#ffc947',
   main: '#ff9800',
@@ -20,7 +20,7 @@ export const WARNING = {
   contrastText: '#fff'
 }
 
-export const ERROR = {
+export const error = {
   lighter: '#ffab8f',
   light: '#ff7961',
   main: '#f44336',
@@ -29,7 +29,7 @@ export const ERROR = {
   contrastText: '#fff'
 }
 
-export const INFO = {
+export const info = {
   lighter: '#97ffff',
   light: '#5ddef4',
   main: '#00acc1',
@@ -38,7 +38,7 @@ export const INFO = {
   contrastText: '#fff'
 }
 
-export const SUCCESS = {
+export const success = {
   lighter: '#b3ffae',
   light: '#80e27e',
   main: '#4caf50',
@@ -47,12 +47,12 @@ export const SUCCESS = {
   contrastText: '#fff'
 }
 
-export const WHITE = {
+export const white = {
   main: '#fff',
   contrastText: '#000000'
 }
 
-export const DARK = {
+export const dark = {
   lighter: '#848484',
   light: '#575757',
   main: '#2e2e2e',
@@ -61,7 +61,7 @@ export const DARK = {
   contrastText: '#fff'
 }
 
-export const DEFAULT = {
+export const defaultColor = {
   lighter: '#b0b0b0',
   light: '#818181',
   main: '#555555',
@@ -71,11 +71,11 @@ export const DEFAULT = {
   rgba: 'rgba(85, 85, 85, 1)'
 }
 
-export const BLACK = {
+export const black = {
   main: '#000000'
 }
 
-export const GREY = {
+export const grey = {
   0: '#FFFFFF',
   100: '#F9FAFB',
   200: '#F4F6F8',
@@ -97,6 +97,6 @@ export const GREY = {
   main: '#919EAB'
 }
 
-export const LINK = {
+export const link = {
   main: '#0074cc'
 }

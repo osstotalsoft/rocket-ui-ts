@@ -2,7 +2,7 @@ import React from 'react'
 import type { Preview } from '@storybook/react'
 
 import { ThemeProvider } from '@mui/material/styles'
-import getTheme from '../src/components/theme/index'
+import getTheme from '../src/components/themes/index'
 
 const withThemeProvider = (Story, context) => {
   const theme = getTheme(context)
