@@ -4,15 +4,12 @@ import type { Preview } from '@storybook/react'
 
 import { ThemeProvider } from '@mui/material/styles'
 import getTheme from '../src/components/themes/index'
-import { Box } from '@mui/material'
 
 const withThemeProvider = (Story, context) => {
   const theme = getTheme(context)
   return (
     <ThemeProvider theme={theme}>
-      <Box textAlign="center" m="auto">
-        <Story />
-      </Box>
+      <Story />
     </ThemeProvider>
   )
 }
@@ -22,7 +19,14 @@ const preview: Preview = {
     actions: { argTypesRegex: '^on[A-Z].*' },
     controls: {
       expanded: true
-    }
+    },
+    docs: {
+      source: {
+        language: 'tsx',
+        excludeDecorators: true
+      }
+    },
+    layout: 'centered'
   },
   globalTypes: {
     theme: {

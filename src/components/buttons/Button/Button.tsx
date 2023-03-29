@@ -5,6 +5,10 @@ import { Tooltip } from '@mui/material'
 import cx from 'classnames'
 import { ButtonProps } from './types'
 
+/**
+ * Buttons allow users to take actions, and make choices, with a single tap. 
+ * It triggers an action or event when activated.
+ */
 const Button: React.FC<ButtonProps> = ({
   children,
   color = 'primary',
