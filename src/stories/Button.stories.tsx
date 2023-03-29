@@ -6,24 +6,29 @@ import { Grid } from '@mui/material'
 
 // More on how to set up stories at: https://storybook.js.org/docs/7.0/react/writing-stories/introduction
 const meta: Meta<typeof ButtonComponent> = {
-  title: 'Example/Buttons',
+  title: 'Components/Buttons/Button',
   component: ButtonComponent,
-  // tags: ['autodocs'],
-  argTypes: {
-    color: { control: { type: 'select' }, options: colors },
-    size: { control: { type: 'select' }, options: sizes },
-    variant: { control: { type: 'select' }, options: variants }
-  }
+  tags: ['autodocs']
+  // argTypes: {
+  //   color: { control: { type: 'select' }, options: colors },
+  //   size: { control: { type: 'select' }, options: sizes },
+  //   variant: { control: { type: 'select' }, options: variants }
+  // }
 } satisfies Meta<typeof ButtonComponent>
 
 export default meta
 type Story = StoryObj<typeof meta>
 
 export const Button: Story = {
-  render: argTypes => (
+  args: { children: 'My button' },
+  render: () => <ButtonComponent />
+}
+
+export const VariantButton: Story = {
+  render: () => (
     <Grid container spacing={3}>
       <Grid item>
-        <ButtonComponent variant="contained" children="Variant contained" {...argTypes} color="primary" />
+        <ButtonComponent children="My button" /*variant="contained" children="Variant contained" color="primary"*/ />
       </Grid>
       <Grid item>
         <ButtonComponent variant="outlined" children="Variant outlined" />
@@ -36,25 +41,4 @@ export const Button: Story = {
       </Grid>
     </Grid>
   )
-}
-
-export const Secondary: Story = {
-  args: {
-    children: 'Button',
-    color: 'secondary'
-  }
-}
-
-export const Large: Story = {
-  args: {
-    size: 'large',
-    children: 'Button'
-  }
-}
-
-export const Small: Story = {
-  args: {
-    size: 'small',
-    children: 'Button'
-  }
 }

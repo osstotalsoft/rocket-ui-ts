@@ -1,5 +1,4 @@
 // import type { StorybookConfig } from '@storybook/react-webpack5'
-import * as dedent from 'dedent'
 import path from 'path'
 
 const config: any = {
@@ -7,7 +6,7 @@ const config: any = {
   addons: [
     '@storybook/addon-links',
     '@storybook/addon-essentials',
-    '@storybook/addon-interactions',
+    '@storybook/addon-interactions'
     // 'storybook-addon-export-to-codesandbox',
     // {
     //   name: '@storybook/addon-storysource',
@@ -24,16 +23,22 @@ const config: any = {
     //   }
     // }
   ],
+  // docs: {
+  //   source: {
+  //     autodocs: 'tag'
+  //     // language: 'tsx',
+  //     // excludeDecorators: true,
+  //     // type: 'source'
+  //   }
+  // },
   framework: {
     name: '@storybook/react-webpack5',
     options: {}
   },
-  // typescript: {
-  //   // Overrides the default Typescript configuration to allow multi-package components to be documented via Autodocs.
-  //   reactDocgen: 'react-docgen',
-  //   // skipBabel: true,
-  //   check: false
-  // },
+  typescript: {
+    reactDocgen: 'react-docgen',
+    check: false
+  }
   // exportToCodeSandbox: {
   //   // Dependencies that should be included with every story
   //   requiredDependencies: {

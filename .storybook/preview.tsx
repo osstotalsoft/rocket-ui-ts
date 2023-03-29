@@ -1,14 +1,18 @@
+// @ts-nocheck
 import React from 'react'
 import type { Preview } from '@storybook/react'
 
 import { ThemeProvider } from '@mui/material/styles'
 import getTheme from '../src/components/themes/index'
+import { Box } from '@mui/material'
 
 const withThemeProvider = (Story, context) => {
   const theme = getTheme(context)
   return (
     <ThemeProvider theme={theme}>
-      <Story />
+      <Box textAlign="center" m="auto">
+        <Story />
+      </Box>
     </ThemeProvider>
   )
 }
@@ -17,10 +21,7 @@ const preview: Preview = {
   parameters: {
     actions: { argTypesRegex: '^on[A-Z].*' },
     controls: {
-      matchers: {
-        color: /(background|color)$/i,
-        date: /Date$/
-      }
+      expanded: true
     }
   },
   globalTypes: {
