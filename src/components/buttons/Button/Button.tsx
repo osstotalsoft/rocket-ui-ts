@@ -8,6 +8,8 @@ import { ButtonProps } from './types'
 /**
  * Buttons allow users to take actions, and make choices, with a single tap. 
  * It triggers an action or event when activated.
+ * 
+ * Props of the [Material-UI Button](https://mui.com/material-ui/api/button/#props) component are also available.
  */
 const Button: React.FC<ButtonProps> = ({
   children,

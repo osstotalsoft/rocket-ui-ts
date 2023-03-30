@@ -49,28 +49,6 @@ export const ButtonColorsPreview: React.FunctionComponent = () => (
     </Grid>
     <Grid item xs={12} container rowSpacing={2} columnSpacing={4}>
       <Grid item xs={3} md={2}>
-        <Button color="secondary" disabled>
-          Secondary
-        </Button>
-      </Grid>
-      <Grid item xs={3} md={2}>
-        <Button color="secondary" gradient disabled>
-          Secondary
-        </Button>
-      </Grid>
-      <Grid item xs={3} md={2}>
-        <Button color="secondary" variant="outlined" disabled>
-          Secondary
-        </Button>
-      </Grid>
-      <Grid item xs={3} md={2}>
-        <Button color="secondary" variant="text" disabled>
-          Secondary
-        </Button>
-      </Grid>
-    </Grid>
-    <Grid item xs={12} container rowSpacing={2} columnSpacing={4}>
-      <Grid item xs={3} md={2}>
         <Button color="info">Info</Button>
       </Grid>
       <Grid item xs={3} md={2}>

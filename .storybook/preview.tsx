@@ -4,6 +4,8 @@ import type { Preview } from '@storybook/react'
 
 import { ThemeProvider } from '@mui/material/styles'
 import getTheme from '../src/components/themes/index'
+// import DocsPage from './DocsPage'
+// import { DocsContainer } from '@storybook/addon-docs'
 
 const withThemeProvider = (Story, context) => {
   const theme = getTheme(context)
@@ -21,6 +23,8 @@ const preview: Preview = {
       expanded: true
     },
     docs: {
+      // container: DocsContainer,
+      // page: DocsPage,
       source: {
         language: 'tsx',
         excludeDecorators: true
