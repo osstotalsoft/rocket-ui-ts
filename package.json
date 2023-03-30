@@ -6,7 +6,7 @@
   "types": "dist/src/index.d.ts",
   "scripts": {
     "build": "run clean && tsc -p tsconfig.build.json",
-    "build-storybook": "storybook build",
+    "build-storybook": "storybook build -o storybuild",
     "clean": "rimraf dist",
     "postinstall": "yarn dlx sort-package-json",
     "lint": "eslint src/*.ts",
