@@ -2,6 +2,7 @@ import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import ButtonComponent from '../../../components/buttons/Button/Button'
 import { Box } from '@mui/material'
+import { ButtonColorsPreview } from './ButtonColorsPreview'
 
 const meta: Meta<typeof ButtonComponent> = {
   title: 'Components/Buttons/Button',
@@ -38,4 +39,23 @@ export const ButtonVariants: Story = {
       <ButtonComponent {...args} variant="contained" gradient children="Gradient" />
     </Box>
   )
+}
+
+/**
+ * To pretify a Button, it comes with a large variaty of available colors that can be applied.
+ */
+export const ButtonColors: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `
+        <Button color="color-code-here">
+          Primary
+        </Button>
+        `,
+        format: true
+      }
+    }
+  },
+  render: args => <ButtonColorsPreview {...args} />
 }
