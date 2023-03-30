@@ -4,8 +4,7 @@ import type { Preview } from '@storybook/react'
 
 import { ThemeProvider } from '@mui/material/styles'
 import getTheme from '../src/components/themes/index'
-// import DocsPage from './DocsPage'
-// import { DocsContainer } from '@storybook/addon-docs'
+import { Title, Subtitle, Description, Primary, Controls, Stories } from '@storybook/blocks'
 
 const withThemeProvider = (Story, context) => {
   const theme = getTheme(context)
@@ -24,7 +23,16 @@ const preview: Preview = {
     },
     docs: {
       // container: DocsContainer,
-      // page: DocsPage,
+      page: () => (
+        <>
+          <Title />
+          <Subtitle />
+          <Description />
+          <Primary />
+          <Controls />
+          <Stories />
+        </>
+      ),
       source: {
         language: 'tsx',
         excludeDecorators: true
