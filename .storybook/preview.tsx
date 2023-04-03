@@ -1,10 +1,10 @@
 // @ts-nocheck
+import './doc-root.css'
 import React from 'react'
 import type { Preview } from '@storybook/react'
-
 import { ThemeProvider } from '@mui/material/styles'
 import getTheme from '../src/components/themes/index'
-import { Title, Subtitle, Description, Primary, Controls, Stories } from '@storybook/blocks'
+import { DocsPage } from './DocsPage'
 
 const withThemeProvider = (Story, context) => {
   const theme = getTheme(context)
@@ -22,17 +22,7 @@ const preview: Preview = {
       expanded: true
     },
     docs: {
-      // container: DocsContainer,
-      page: () => (
-        <>
-          <Title />
-          <Subtitle />
-          <Description />
-          <Primary />
-          <Controls />
-          <Stories />
-        </>
-      ),
+      page: DocsPage,
       source: {
         language: 'tsx',
         excludeDecorators: true
@@ -47,11 +37,8 @@ const preview: Preview = {
       defaultValue: 'default',
       toolbar: {
         icon: 'circlehollow',
-        // Array of plain string values or MenuItem shape (see below)
         items: ['default', 'green', 'blue', 'orange', 'red', 'vividOrange', 'lightBlue'],
-        // Property that specifies if the name of the item will be displayed
-        showName: true,
-        // Change title based on selected value
+        title: 'Theme',
         dynamicTitle: true
       }
     }
