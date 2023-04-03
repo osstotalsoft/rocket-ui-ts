@@ -48,6 +48,7 @@ export const DisabledButton: Story = {
 export const ButtonVariants: Story = {
   render: args => (
     <Box columnGap="15px" display="flex">
+      <ButtonComponent {...args} children="Default is contained" />
       <ButtonComponent {...args} variant="contained" children="Variant contained" />
       <ButtonComponent {...args} variant="outlined" children="Variant outlined" />
       <ButtonComponent {...args} variant="text" children="Variant text" />
