@@ -5,7 +5,7 @@ import React from 'react'
 import { Button } from '../../../components'
 import RocketIcon from '@mui/icons-material/Rocket'
 
-export const ButtonWithIconPreview: React.FunctionComponent = () => (
+export const WithIconPreview: React.FunctionComponent = () => (
   <>
     <Button size="small" startIcon={<RocketIcon />} sx={{ mr: '15px' }}>
       start icon

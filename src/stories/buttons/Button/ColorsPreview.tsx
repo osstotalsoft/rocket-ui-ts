@@ -5,7 +5,7 @@ import React from 'react'
 import { Grid } from '@mui/material'
 import { Button } from '../../../components'
 
-export const ButtonColorsPreview: React.FunctionComponent = () => (
+export const ColorsPreview: React.FunctionComponent = () => (
   <Grid container spacing={3} justifyContent="center">
     <Grid item xs={12} container rowSpacing={2} columnSpacing={4}>
       <Grid item xs={3} md={2}>

@@ -5,7 +5,7 @@ import React from 'react'
 import { Grid } from '@mui/material'
 import { Button } from '../../../components'
 
-export const ButtonSizesPreview: React.FunctionComponent = () => (
+export const SizesPreview: React.FunctionComponent = () => (
   <Grid container rowSpacing={2}>
     <Grid item xs={12} container spacing={3}>
       <Grid item>

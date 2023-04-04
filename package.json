@@ -29,7 +29,7 @@
   "jest": {
     "preset": "ts-jest",
     "setupFilesAfterEnv": [
-      "@testing-library/jest-dom/extend-expect"
+      "<rootDir>/src/setupTests.ts"
     ],
     "testEnvironment": "jsdom",
     "verbose": true
@@ -51,7 +51,6 @@
   "devDependencies": {
     "@babel/core": "^7.21.3",
     "@changesets/cli": "^2.26.1",
-    "@mui/styles": "^5.11.13",
     "@nrwl/js": "^15.8.9",
     "@storybook/addon-essentials": "7.0.0-rc.10",
     "@storybook/addon-interactions": "7.0.0-rc.10",
@@ -93,6 +92,7 @@
     "storybook-addon-export-to-codesandbox": "^0.8.4",
     "ts-jest": "^29.0.5",
     "ts-node": "^10.9.1",
+    "tss-react": "^4.8.2",
     "typescript": "^5.0.2"
   },
   "packageManager": "yarn@3.5.0",

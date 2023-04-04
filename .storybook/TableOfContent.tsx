@@ -2,13 +2,13 @@
 // This source code is licensed under the MIT license.
 import React, { useEffect, useRef } from 'react'
 import { Subheading } from '@storybook/blocks'
-import { makeStyles } from '@mui/styles'
+import { makeStyles } from 'tss-react/mui'
 import { addons } from '@storybook/addons'
 import { NAVIGATE_URL } from '@storybook/core-events'
 
 export const nameToHash = (id: string): string => id.toLowerCase().replace(/[^a-z0-9]/gi, '-')
 
-const useTocStyles = makeStyles({
+const useTocStyles = makeStyles()({
   root: {
     top: '64px',
     position: 'sticky',
@@ -99,15 +99,15 @@ export function TableOfContent({ stories }) {
   const tocItems = stories.map(item => {
     return { ...item, selected: nameToHash(item.name) === selected }
   })
-  const tocClasses = useTocStyles()
+  const { classes } = useTocStyles()
   return (
-    <nav className={tocClasses.root}>
+    <nav className={classes.root}>
       <Subheading>Content</Subheading>
-      <ol className={tocClasses.ol}>
+      <ol className={classes.ol}>
         {tocItems?.map(s => {
           const name = nameToHash(s.name)
           return (
-            <li key={s.id} className={s.selected ? tocClasses.selected : ''}>
+            <li key={s.id} className={s.selected ? classes.selected : ''}>
               <a
                 href={`#${name}`}
                 target="_self"
