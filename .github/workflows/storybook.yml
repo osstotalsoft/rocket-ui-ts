@@ -5,7 +5,7 @@ name: Build and Deploy Storybook
 on:
   push:
     branches:
-      - main
+      - master
     paths: ['src/stories/**', 'src/components/**'] # Trigger the action only when files change in the folders defined here
   workflow_dispatch:
 permissions:
