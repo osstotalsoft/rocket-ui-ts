@@ -6,9 +6,6 @@ name: run-tests
 on:
   pull_request:
     branches: [master]
-  push:
-    branches:
-      - master  
 
 concurrency:
   group: build-test-publish
