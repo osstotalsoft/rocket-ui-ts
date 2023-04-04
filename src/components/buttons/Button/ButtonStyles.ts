@@ -9,7 +9,6 @@ export const basicColors = [
   'info',
   'success',
   'warning',
-  'danger',
   'error',
   'rose',
   'theme',

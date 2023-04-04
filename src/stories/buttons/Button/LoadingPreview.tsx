@@ -1,14 +1,11 @@
 // Copyright (c) TotalSoft.
 // This source code is licensed under the MIT license.
 
-// Copyright (c) TotalSoft.
-// This source code is licensed under the MIT license.
-
 import React, { useCallback, useState } from 'react'
 import { Button } from '../../../components'
 import { Box, FormControlLabel, Switch } from '@mui/material'
 
-export const ButtonLoadingPreview: React.FunctionComponent = () => {
+export const LoadingPreview: React.FunctionComponent = () => {
   const [loading, setLoading] = useState(false)
   const toggleLoading = useCallback(() => setLoading(current => !current), [])
 

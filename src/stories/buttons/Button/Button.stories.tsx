@@ -2,10 +2,10 @@ import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import ButtonComponent from '../../../components/buttons/Button/Button'
 import { Box } from '@mui/material'
-import { ButtonColorsPreview } from './ButtonColorsPreview'
-import { ButtonSizesPreview } from './ButtonSizesPreview'
-import { ButtonLoadingPreview } from './ButtonLoadingPreview'
-import { ButtonWithIconPreview } from './ButtonWithIconPreview'
+import { ColorsPreview } from './ColorsPreview'
+import { SizesPreview } from './SizesPreview'
+import { LoadingPreview } from './LoadingPreview'
+import { WithIconPreview } from './WithIconPreview'
 
 const meta: Meta<typeof ButtonComponent> = {
   title: 'Components/Buttons/Button',
@@ -26,7 +26,7 @@ export const Button: Story = {
 /**
  * Disabling a Button component.
  */
-export const DisabledButton: Story = {
+export const Disabled: Story = {
   args: { children: 'My button', disabled: true, tooltip: 'I have a tooltip' },
   render: args => (
     <Box columnGap="15px" display="flex">
@@ -45,10 +45,9 @@ export const DisabledButton: Story = {
  * - `outlined`: removes background styling
  * - `text`: removes background and border styling
  */
-export const ButtonVariants: Story = {
+export const Variants: Story = {
   render: args => (
     <Box columnGap="15px" display="flex">
-      <ButtonComponent {...args} children="Default is contained" />
       <ButtonComponent {...args} variant="contained" children="Variant contained" />
       <ButtonComponent {...args} variant="outlined" children="Variant outlined" />
       <ButtonComponent {...args} variant="text" children="Variant text" />
@@ -57,11 +56,11 @@ export const ButtonVariants: Story = {
 }
 
 /**
- * To pretify a Button, it comes with a large variaty of available colors that can be applied.
+ * To prettify a Button, it comes with a large variety of available colors that can be applied.
  *
- * If the Button has `variant="contained"`, there is an aditional property `gradient`, that can be associated with each color.
+ * If the Button has `variant="contained"`, there is an additional property `gradient`, that can be associated with each color.
  */
-export const ButtonColors: Story = {
+export const Colors: Story = {
   parameters: {
     controls: { hideNoControlsWarning: true },
     docs: {
@@ -75,13 +74,13 @@ export const ButtonColors: Story = {
       }
     }
   },
-  render: () => <ButtonColorsPreview />
+  render: () => <ColorsPreview />
 }
 
 /**
  * A button supports `tiny`, `small`, `medium` and `large` size. Default size is `medium`.
  */
-export const ButtonSizes: Story = {
+export const Sizes: Story = {
   parameters: {
     controls: { hideNoControlsWarning: true },
     docs: {
@@ -95,7 +94,7 @@ export const ButtonSizes: Story = {
       }
     }
   },
-  render: () => <ButtonSizesPreview />
+  render: () => <SizesPreview />
 }
 
 /**
@@ -103,7 +102,7 @@ export const ButtonSizes: Story = {
  *
  * Toggle the loading switch to see the transition between the different states.
  */
-export const LoadingButton: Story = {
+export const Loading: Story = {
   parameters: {
     controls: { hideNoControlsWarning: true },
     docs: {
@@ -117,13 +116,13 @@ export const LoadingButton: Story = {
       }
     }
   },
-  render: () => <ButtonLoadingPreview />
+  render: () => <LoadingPreview />
 }
 
 /**
  * Sometimes you might want to have icons for certain buttons to enhance the UX of the application as we recognize logos more easily than plain text. For example, if you have a delete button you can label it with a dustbin icon.
  */
-export const ButtonWithIcon: Story = {
+export const WithIcon: Story = {
   parameters: {
     controls: { hideNoControlsWarning: true },
     docs: {
@@ -137,5 +136,5 @@ export const ButtonWithIcon: Story = {
       }
     }
   },
-  render: () => <ButtonWithIconPreview />
+  render: () => <WithIconPreview />
 }
