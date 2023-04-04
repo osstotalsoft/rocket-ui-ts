@@ -2,10 +2,10 @@
 // This source code is licensed under the MIT license.
 import * as React from 'react'
 import { Controls, Description, DocsContext, Primary, Stories, Subtitle, Title } from '@storybook/blocks'
-import { makeStyles } from '@mui/styles'
+import { makeStyles } from 'tss-react/mui'
 import { TableOfContent } from './TableOfContent'
 
-const useStyles = makeStyles({
+const useStyles = makeStyles()({
   wrapper: {
     display: 'flex'
   },
@@ -25,20 +25,20 @@ const useStyles = makeStyles({
 export const DocsPage = () => {
   const context = React.useContext(DocsContext)
   const stories = context.componentStories()
-  const styles = useStyles()
+  const { classes } = useStyles()
 
   return (
     <>
       <Title />
-      <div className={styles.wrapper}>
-        <div className={styles.container}>
+      <div className={classes.wrapper}>
+        <div className={classes.container}>
           <Subtitle />
           <Description />
           <Primary />
           <Controls />
           <Stories />
         </div>
-        <div className={styles.toc}>
+        <div className={classes.toc}>
           <TableOfContent stories={stories} />
         </div>
       </div>
