@@ -12,11 +12,9 @@ import VisibilityIcon from '@mui/icons-material/Visibility'
 import SaveIcon from '@mui/icons-material/Save'
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward'
 
-export const fontSize = ['inherit', 'small', 'medium', 'large']
-export type FontSize = (typeof fontSize)[number]
+export type FontSize = 'inherit' | 'small' | 'medium' | 'large'
 
-export const buttonType = ['add', 'cancel', 'delete', 'download', 'downward', 'edit', 'view', 'save', 'upward']
-export type ButtonType = (typeof buttonType)[number]
+export type ButtonType = 'add' | 'cancel' | 'delete' | 'download' | 'downward' | 'edit' | 'view' | 'save' | 'upward'
 
 export const iconType = {
   add: AddIcon,

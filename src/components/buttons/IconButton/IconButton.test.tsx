@@ -3,6 +3,7 @@
 import React from 'react'
 import { render, screen, userClick, waitFor, fireEvent } from '../../../testingUtils'
 import IconButton from './IconButton'
+import { ButtonType } from './types'
 
 const customButtonTypes = [
   {
@@ -38,7 +39,7 @@ const customButtonTypes = [
     type: 'upward',
     testId: 'ArrowUpwardIcon'
   }
-]
+] satisfies { type: ButtonType; testId: string }[]
 
 describe('Custom icon buttons', () => {
   it.each(customButtonTypes)('displays the correct icon for type = { \'$type\' }', ({ type, testId }) => {
