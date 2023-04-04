@@ -1,8 +1,8 @@
 import defaultTheme from './defaultTheme'
-import blueTheme from './blueTheme.js'
-import greenTheme from './greenTheme.js'
-import lightBlueTheme from './lightBlueTheme.js'
-import orangeTheme from './orangeTheme.js'
+import blueTheme from './blueTheme'
+import greenTheme from './greenTheme'
+import lightBlueTheme from './lightBlueTheme'
+import orangeTheme from './orangeTheme'
 import redTheme from './redTheme'
 import vividOrangeTheme from './vividOrangeTheme'
 

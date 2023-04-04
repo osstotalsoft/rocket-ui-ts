@@ -1,4 +1,4 @@
-import { createTheme } from '@mui/material'
+import { ThemeOptions, createTheme } from '@mui/material'
 import componentsOverride from './common/overrides'
 import generatePalette from './common/palette'
 import typography from './common/typography'
@@ -33,15 +33,15 @@ const palette = generatePalette({
     hoverTextColor: '#00385F',
     bgOpacity: '1'
   }
-})
+} as any)
 
-const blueTheme = createTheme({
+const blueTheme: any = createTheme({
   palette,
   shape: { borderRadius: 8 },
   typography,
   shadows: generateShadows(palette),
   customShadows: generateCustomShadows(palette)
-})
+} as ThemeOptions)
 
 blueTheme.components = componentsOverride(blueTheme)
 

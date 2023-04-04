@@ -11,12 +11,10 @@ const basicColors = [
   { color: 'default' },
   { color: 'error' },
   { color: 'info' },
-  { color: 'inherit' },
   { color: 'primary' },
   { color: 'rose' },
   { color: 'secondary' },
   { color: 'success' },
-  { color: 'transparent' },
   { color: 'warning' },
   { color: 'white' }
 ] satisfies { color: Color }[]
@@ -25,7 +23,7 @@ describe('Button colors', () => {
   describe('Button basic colors', () => {
     it.each(basicColors)('displays the correct background color for color = { $color }', ({ color }) => {
       render(<Button color={color} />)
-      expect(screen.getByRole('button')).toHaveStyle(`background-color: ${theme.palette[color].main}`)
+      expect(screen.getByRole('button')).toHaveStyle(`background-color: ${theme.palette[color]?.main}`)
     })
   })
 

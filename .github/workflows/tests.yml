@@ -5,10 +5,10 @@ name: run-tests
 
 on:
   pull_request:
-    branches: [main]
+    branches: [master]
   push:
     branches:
-      - main  
+      - master  
 
 concurrency:
   group: build-test-publish
