@@ -5,7 +5,7 @@
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
   "scripts": {
-    "build": "run clean && tsc -p tsconfig.build.json",
+    "build": "run clean && tsc --p tsconfig.build.json",
     "build-storybook": "storybook build -o storybuild",
     "clean": "rimraf dist",
     "postinstall": "yarn dlx sort-package-json",
