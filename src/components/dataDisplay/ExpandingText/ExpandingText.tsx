@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react'
 import PropTypes from 'prop-types'
-import ShowButton from './ExpandingTextStyles'
+import ExpandAction from './ExpandingTextStyles'
 import Typography from '../Typography'
 import { ExpandingTextProps } from './types'
 
@@ -14,7 +14,7 @@ const ExpandingText: React.FC<ExpandingTextProps> = ({
   showMoreText = 'Show more',
   display = 'block',
   textProps,
-  buttonProps,
+  expandingActionProps,
   expanded = false,
   ...rest
 }) => {
@@ -30,9 +30,9 @@ const ExpandingText: React.FC<ExpandingTextProps> = ({
         {displayedText + ' '}
       </Typography>
       {shouldCollapse && (
-        <ShowButton display={display} onClick={toggleExpanded} {...buttonProps} {...rest}>
+        <ExpandAction display={display} onClick={toggleExpanded} {...expandingActionProps} {...rest}>
           {localExpanded ? showLessText : showMoreText}
-        </ShowButton>
+        </ExpandAction>
       )}
     </>
   )
@@ -67,9 +67,9 @@ ExpandingText.propTypes = {
    */
   textProps: PropTypes.object,
   /**
-   * Props applied to the button.
+   * Props applied to the ShowLess/ShowMore component.
    */
-  buttonProps: PropTypes.object,
+  expandingActionProps: PropTypes.object,
   /**
    * @default false
    * Expanded state of the text.

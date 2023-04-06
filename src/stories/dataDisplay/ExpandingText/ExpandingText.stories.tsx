@@ -32,8 +32,9 @@ export const ExpandingText: Story = {
 }
 
 /**
- * In order to render the `Show more` button, a `minLength` prop must be provided that is less than length of the text displayed.
- * When the `Show more` component is rendered, different `display` options can be used.
+ * In order to render the `ExpandAction` component (ShowMore/ShowLess functionality), a `minLength` prop must be provided that is less than length of the text displayed.
+ * When the `ExpandAction` component is rendered, different `display` options can be used.
+ * Also, by providing `expandingActionProps` property, the `ExpandAction` component can be customized with `Typography` props.
  */
 export const Display: Story = {
   parameters: {

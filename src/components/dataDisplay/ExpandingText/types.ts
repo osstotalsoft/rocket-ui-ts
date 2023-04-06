@@ -12,6 +12,6 @@ export interface ExpandingTextProps extends TypographyProps {
   showMoreText?: React.ReactNode
   display?: DisplayType
   textProps?: TypographyProps
-  buttonProps?: TypographyProps
+  expandingActionProps?: TypographyProps
   expanded?: boolean
 }

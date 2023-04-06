@@ -7,9 +7,9 @@ declare module '@mui/material/styles' {
   }
 }
 
-const ShowButton = styled(Typography)(({ theme }) => ({
+const ExpandAction = styled(Typography)(({ theme }) => ({
   color: theme?.palette.link.main,
   cursor: 'pointer'
 }))
 
-export default ShowButton
+export default ExpandAction

@@ -64,7 +64,7 @@ describe('ExpandingText', () => {
         text={text}
         minLength={250}
         showMoreText={showMoreText}
-        buttonProps={{ variant: 'overline', emphasis: 'bold' }}
+        expandingActionProps={{ variant: 'overline', emphasis: 'bold' }}
       />
     )
 
