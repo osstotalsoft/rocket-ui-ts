@@ -119,6 +119,7 @@ export const Loading: Story = {
  */
 
 export const Types: Story = {
+  args: { size: 'small', fontSize: 'medium' },
   parameters: {
     controls: { hideNoControlsWarning: true },
     docs: {
