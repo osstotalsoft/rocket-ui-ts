@@ -5,7 +5,7 @@
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
   "scripts": {
-    "build": "run clean && tsc -p tsconfig.build.json",
+    "build": "run clean && tsc --p tsconfig.build.json",
     "build-storybook": "storybook build -o storybuild",
     "clean": "rimraf dist",
     "postinstall": "yarn dlx sort-package-json",
@@ -43,6 +43,7 @@
     "@mui/material": "^5.11.15",
     "@mui/system": "^5.11.15",
     "@mui/types": "^7.2.3",
+    "attr-accept": "^2.2.2",
     "classnames": "^2.3.2",
     "ramda": "^0.29.0",
     "react": "^18.2.0",

@@ -20,21 +20,9 @@ type Story = StoryObj<typeof meta>
  * The BackToButton component.
  */
 export const BackToButton: Story = {
-  parameters: {
-    docs: {
-      source: {
-        code: `
-        <BackToButton>
-          Medium
-        </BackToButton>
-        `,
-        format: true
-      }
-    }
-  },
   render: args => (
     <BrowserRouter>
-      <BackToButtonComponent tooltip="medium" path="/buttons/icon-button" {...args} />
+      <BackToButtonComponent tooltip="Go back!" path="/buttons/icon-button" {...args} />
     </BrowserRouter>
   )
 }

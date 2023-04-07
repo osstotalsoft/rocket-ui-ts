@@ -1,8 +1,9 @@
 import React from 'react'
 import { Grid } from '@mui/material'
 import { IconButton } from '../../../components'
+import { IconButtonProps } from '../../../components/buttons/IconButton/types'
 
-const sizeProps = { size: 'small', fontSize: 'medium' }
+const sizeProps = { size: 'small', fontSize: 'medium' } satisfies IconButtonProps
 
 export const TypesPreview: React.FunctionComponent = () => (
   <Grid container spacing={3}>

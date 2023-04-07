@@ -4,5 +4,8 @@
 import { IconButtonProps } from '../IconButton/types'
 
 export interface BackToButtonProps extends IconButtonProps {
+  /**
+   * Path where browser will be directed to when the button is clicked.
+   */
   path?: string
 }
