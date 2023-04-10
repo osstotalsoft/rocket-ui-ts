@@ -1,3 +1,4 @@
+import { Color, SimplePaletteColorOptions } from '@mui/material'
 import { alpha } from '@mui/material/styles'
 
 // shades picked using this Material tool: https://material.io/resources/color/#!/
@@ -11,7 +12,7 @@ export const rose = {
   contrastText: '#fff'
 }
 
-export const warning = {
+export const warning: SimplePaletteColorOptions = {
   lighter: '#fffc79',
   light: '#ffc947',
   main: '#ff9800',
@@ -20,7 +21,7 @@ export const warning = {
   contrastText: '#fff'
 }
 
-export const error = {
+export const error: SimplePaletteColorOptions = {
   lighter: '#ffab8f',
   light: '#ff7961',
   main: '#f44336',
@@ -29,7 +30,7 @@ export const error = {
   contrastText: '#fff'
 }
 
-export const info = {
+export const info: SimplePaletteColorOptions = {
   lighter: '#97ffff',
   light: '#5ddef4',
   main: '#00acc1',
@@ -38,7 +39,7 @@ export const info = {
   contrastText: '#fff'
 }
 
-export const success = {
+export const success: SimplePaletteColorOptions = {
   lighter: '#b3ffae',
   light: '#80e27e',
   main: '#4caf50',
@@ -47,12 +48,12 @@ export const success = {
   contrastText: '#fff'
 }
 
-export const white = {
+export const white: SimplePaletteColorOptions = {
   main: '#fff',
   contrastText: '#000000'
 }
 
-export const dark = {
+export const dark: SimplePaletteColorOptions = {
   lighter: '#848484',
   light: '#575757',
   main: '#2e2e2e',
@@ -61,7 +62,7 @@ export const dark = {
   contrastText: '#fff'
 }
 
-export const defaultColor = {
+export const defaultColor: SimplePaletteColorOptions = {
   lighter: '#b0b0b0',
   light: '#818181',
   main: '#555555',
@@ -71,11 +72,11 @@ export const defaultColor = {
   rgba: 'rgba(85, 85, 85, 1)'
 }
 
-export const black = {
+export const black: Partial<SimplePaletteColorOptions> = {
   main: '#000000'
 }
 
-export const grey = {
+export const grey: Partial<Color> = {
   0: '#FFFFFF',
   100: '#F9FAFB',
   200: '#F4F6F8',
@@ -97,6 +98,6 @@ export const grey = {
   main: '#919EAB'
 }
 
-export const link = {
+export const link: Partial<SimplePaletteColorOptions> = {
   main: '#0074cc'
 }

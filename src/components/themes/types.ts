@@ -1,14 +1,92 @@
 // Copyright (c) TotalSoft.
 // This source code is licensed under the MIT license.
 
-import { Palette, PaletteColor, PaletteOptions, SimplePaletteColorOptions, ThemeOptions } from '@mui/material'
+import {
+  Components,
+  ComponentsOverrides,
+  ComponentsProps,
+  ComponentsVariants,
+  Palette,
+  PaletteColorOptions,
+  ThemeOptions
+} from '@mui/material'
 import { TypographyOptions } from '@mui/material/styles/createTypography'
 import { CSSProperties } from 'react'
 
-export interface TypographyCustomOptions {}
+declare module '@mui/material' {
+  export interface Theme {
+    customShadows: CustomShadows
+  }
 
-export interface CreateThemeOptions extends Omit<ThemeOptions, 'typography'> {
-  typography: TypographyCustomOptions | TypographyOptions | ((palette: Palette) => TypographyOptions)
+  export interface Palette {
+    link: { main?: string }
+  }
+
+  export interface PaletteOptions {
+    sideMenu: SideMenuOptions
+    rose?: PaletteColorOptions
+    white?: PaletteColorOptions
+    dark?: PaletteColorOptions
+    black?: Partial<SimplePaletteColorOptions>
+    link?: Partial<SimplePaletteColorOptions>
+    default?: PaletteColorOptions
+    createGradient?: (colorsArray: string[]) => string
+    gradients?: ColorGradients
+    darkGradients?: ColorGradients
+  }
+
+  export interface SimplePaletteColorOptions {
+    lighter?: string
+    darker?: string
+    rgba?: string
+  }
+
+  export interface Color {
+    500_8: string
+    500_12: string
+    500_16: string
+    500_24: string
+    500_32: string
+    500_48: string
+    500_56: string
+    500_80: string
+    main: string
+  }
+}
+
+export interface CustomComponents extends Components {
+  MuiButton?: {
+    defaultProps?: ComponentsProps['MuiButton']
+    styleOverrides?: ComponentsOverrides['MuiButton'] & { sizeTiny: unknown }
+    variants?: ComponentsVariants['MuiButton']
+  }
+}
+
+export type CustomShadows = {
+  z1: string
+  z8: string
+  z12: string
+  z16: string
+  z20: string
+  z24: string
+  primary: string
+  secondary: string
+  info: string
+  success: string
+  warning: string
+  error: string
+}
+
+export type ColorGradients = {
+  primary: string
+  secondary: string
+  rose: string
+  error: string
+  warning: string
+  info: string
+  success: string
+  dark: string
+  default: string
 }
 
 export interface TypographyCustomOptions extends TypographyOptions {
@@ -17,8 +95,8 @@ export interface TypographyCustomOptions extends TypographyOptions {
   body: CSSProperties
 }
 
-export interface TypeCustomBackground {
-  main?: string
+export interface CreateThemeOptions extends Omit<ThemeOptions, 'typography'> {
+  typography: TypographyCustomOptions | TypographyOptions | ((palette: Palette) => TypographyOptions)
 }
 
 export type SideMenuOptions = CSSProperties & {
@@ -26,39 +104,4 @@ export type SideMenuOptions = CSSProperties & {
   hoverBgColor?: string
   hoverTextColor?: string
   bgOpacity?: string
-}
-
-export interface PaletteColorCustomOptions extends SimplePaletteColorOptions {
-  lighter: string
-  light: string
-  dark: string
-  darker: string
-  rgba: string
-  contrastText: string
-}
-
-export interface PaletteThemeOptions {
-  primary: PaletteColorCustomOptions
-  secondary: PaletteColorCustomOptions
-  sideMenu: SideMenuOptions
-  background: TypeCustomBackground
-}
-
-export interface PaletteCustomOptions
-  extends Omit<PaletteOptions, 'background' | 'primary' | 'secondary'>,
-    PaletteThemeOptions {
-  info: PaletteColorCustomOptions
-  success: PaletteColorCustomOptions
-  warning: PaletteColorCustomOptions
-  error: PaletteColorCustomOptions
-  danger: PaletteColorCustomOptions
-}
-
-export interface PaletteCustomColor extends PaletteColor {
-  lighter: string
-  light: string
-  dark: string
-  darker: string
-  rgba: string
-  contrastText: string
 }

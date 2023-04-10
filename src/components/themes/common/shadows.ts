@@ -1,7 +1,8 @@
 import { Shadows, alpha } from '@mui/material/styles'
-import { PaletteCustomOptions } from '../types'
+import { CustomShadows } from '../types'
+import { PaletteOptions, SimplePaletteColorOptions as SPCO } from '@mui/material'
 
-const LIGHT_MODE = (palette: PaletteCustomOptions) => palette?.grey?.[500]
+const LIGHT_MODE = (palette: PaletteOptions) => palette?.grey?.[500]
 
 const createShadow = (color = ''): Shadows | undefined => {
   const transparent1 = alpha(color, 0.2)
@@ -33,11 +34,14 @@ const createShadow = (color = ''): Shadows | undefined => {
     `0px 10px 14px -6px ${transparent1},0px 22px 35px 3px ${transparent2},0px 8px 42px 7px ${transparent3}`,
     `0px 11px 14px -7px ${transparent1},0px 23px 36px 3px ${transparent2},0px 9px 44px 8px ${transparent3}`,
     `0px 11px 15px -7px ${transparent1},0px 24px 38px 3px ${transparent2},0px 9px 46px 8px ${transparent3}`
-  ]
+  ] as Shadows
 }
 
-const createCustomShadow = (color = '', palette?: PaletteCustomOptions) => {
+const createCustomShadow = (color = '', palette?: PaletteOptions): CustomShadows | undefined => {
+  if (!palette) return
+
   const transparent = alpha(color, 0.24)
+  const { primary, secondary, info, success, warning, error } = palette
 
   return {
     z1: `0 1px 2px 0 ${transparent}`,
@@ -46,16 +50,17 @@ const createCustomShadow = (color = '', palette?: PaletteCustomOptions) => {
     z16: `0 0 2px 0 ${transparent}, 0 16px 32px -4px ${transparent}`,
     z20: `0 0 2px 0 ${transparent}, 0 20px 40px -4px ${transparent}`,
     z24: `0 0 4px 0 ${transparent}, 0 24px 48px 0 ${transparent}`,
-    primary: `0 8px 16px 0 ${alpha(palette?.primary?.main || '', 0.24)}`,
-    secondary: `0 8px 16px 0 ${alpha(palette?.secondary?.main || '', 0.24)}`,
-    info: `0 8px 16px 0 ${alpha(palette?.info?.main || '', 0.24)}`,
-    success: `0 8px 16px 0 ${alpha(palette?.success?.main || '', 0.24)}`,
-    warning: `0 8px 16px 0 ${alpha(palette?.warning?.main || '', 0.24)}`,
-    error: `0 8px 16px 0 ${alpha(palette?.error?.main || '', 0.24)}`,
-    danger: `0 8px 16px 0 ${alpha(palette?.error?.main || '', 0.24)}`
-  }
+    primary: `0 8px 16px 0 ${alpha((primary as SPCO)?.main || '', 0.24)}`,
+    secondary: `0 8px 16px 0 ${alpha((secondary as SPCO)?.main || '', 0.24)}`,
+    info: `0 8px 16px 0 ${alpha((info as SPCO)?.main || '', 0.24)}`,
+    success: `0 8px 16px 0 ${alpha((success as SPCO)?.main || '', 0.24)}`,
+    warning: `0 8px 16px 0 ${alpha((warning as SPCO)?.main || '', 0.24)}`,
+    error: `0 8px 16px 0 ${alpha((error as SPCO)?.main || '', 0.24)}`,
+    danger: `0 8px 16px 0 ${alpha((error as SPCO)?.main || '', 0.24)}`
+  } as CustomShadows
 }
 
-export const generateCustomShadows = (palette: PaletteCustomOptions) => createCustomShadow(LIGHT_MODE(palette), palette)
+export const generateCustomShadows = (palette: PaletteOptions): CustomShadows | undefined =>
+  createCustomShadow(LIGHT_MODE(palette), palette)
 
-export const generateShadows = (palette: PaletteCustomOptions): Shadows | undefined => createShadow(LIGHT_MODE(palette))
+export const generateShadows = (palette: PaletteOptions): Shadows | undefined => createShadow(LIGHT_MODE(palette))

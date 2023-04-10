@@ -1,4 +1,6 @@
-export default function Divider() {
+import { CustomComponents } from '../../types'
+
+export default function Divider(): CustomComponents {
   return {
     MuiDivider: {
       styleOverrides: {
