@@ -7,6 +7,7 @@ import {
   ComponentsProps,
   ComponentsVariants,
   Palette,
+  PaletteColor,
   PaletteColorOptions,
   ThemeOptions
 } from '@mui/material'
@@ -19,7 +20,13 @@ declare module '@mui/material' {
   }
 
   export interface Palette {
-    link: { main?: string }
+    sideMenu: SideMenu
+    rose: PaletteColor
+    white: PaletteColor
+    dark: PaletteColor
+    black: Partial<PaletteColor>
+    link: Partial<PaletteColor>
+    default: PaletteColor
   }
 
   export interface PaletteOptions {
@@ -104,4 +111,11 @@ export type SideMenuOptions = CSSProperties & {
   hoverBgColor?: string
   hoverTextColor?: string
   bgOpacity?: string
+}
+
+export type SideMenu = CSSProperties & {
+  bgColor: string
+  hoverBgColor: string
+  hoverTextColor: string
+  bgOpacity: string
 }
