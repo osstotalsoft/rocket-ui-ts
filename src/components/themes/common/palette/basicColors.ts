@@ -77,7 +77,6 @@ export const black: Partial<SimplePaletteColorOptions> = {
 }
 
 export const grey: Partial<Color> = {
-  0: '#FFFFFF',
   100: '#F9FAFB',
   200: '#F4F6F8',
   300: '#DFE3E8',
