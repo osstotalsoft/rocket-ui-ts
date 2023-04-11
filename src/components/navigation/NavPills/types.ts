@@ -20,8 +20,8 @@ export type Color =
 
 export interface TabPanelProps extends BoxProps {
   children?: React.ReactNode
-  active: Number
-  index: Number
+  active: number
+  index: number
 }
 
 export interface OrientationWrapperProps {
@@ -39,7 +39,7 @@ export interface TabsWrapperProps {
 }
 
 export interface NavPillsProps {
-  active?: Number
+  active?: number
   onChange?: any
   tabs: Array<any>
   tabProps?: Object
