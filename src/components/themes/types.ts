@@ -17,6 +17,7 @@ import { CSSProperties } from 'react'
 declare module '@mui/material' {
   export interface Theme {
     customShadows: CustomShadows
+    palette: Palette
   }
 
   export interface Palette {
@@ -27,6 +28,7 @@ declare module '@mui/material' {
     black: Partial<PaletteColor>
     link: Partial<PaletteColor>
     default: PaletteColor
+    grey: Color
   }
 
   export interface PaletteOptions {
