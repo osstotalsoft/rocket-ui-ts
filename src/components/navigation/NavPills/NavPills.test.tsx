@@ -17,7 +17,7 @@ const tabs = [
   }
 ]
 
-const theme = getTheme()
+const theme = getTheme() as any
 
 const basicColors = [
   { color: 'primary' },
