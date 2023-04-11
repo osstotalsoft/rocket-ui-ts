@@ -1,10 +1,14 @@
+import { Palette, Theme } from '@mui/material'
 import MuiCardHeader from '@mui/material/CardHeader'
 import { styled } from '@mui/material/styles'
 import { includes } from 'ramda'
+import { Color, Variant } from '../types'
+
+type StyledProps = { theme: Theme; variant: Variant; hasIcon: boolean; iconColor: Color }
 
 const CardHeader = styled(MuiCardHeader, {
   shouldForwardProp: prop => !includes(prop, ['variant', 'hasIcon', 'iconColor'])
-})(({ theme, variant = 'standard', hasIcon, iconColor = 'secondary' }: any) => ({
+})(({ theme, variant = 'standard', hasIcon, iconColor = 'secondary' as Color & keyof Palette }: Partial<StyledProps>) => ({
   ['&.MuiCardHeader-root']: {
     ...(variant === 'filled' && { backgroundColor: theme?.palette.grey[200], minHeight: '48px' })
   },

@@ -29,6 +29,9 @@ declare module '@mui/material' {
     link: Partial<PaletteColor>
     default: PaletteColor
     grey: Color
+    createGradient?: (colorsArray: string[]) => string
+    gradients: ColorGradients
+    darkGradients: ColorGradients
   }
 
   export interface PaletteOptions {

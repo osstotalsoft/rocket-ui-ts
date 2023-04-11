@@ -57,7 +57,7 @@ CardHeader.propTypes = {
    * @default 'secondary'
    * Icon color.
    */
-  iconColor: PropTypes.oneOf(['primary', 'secondary', 'info', 'success', 'warning', 'danger', 'rose'])
+  iconColor: PropTypes.oneOf(['primary', 'secondary', 'info', 'success', 'warning', 'error', 'rose'])
 }
 
 export default CardHeader

@@ -2,15 +2,14 @@
 // This source code is licensed under the MIT license.
 
 import { CardHeaderProps as MuiCardHeaderProps } from '@mui/material'
-
-export type Color = 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'danger' | 'rose'
+import { Color, Variant } from '../types'
 
 export interface CardHeaderProps extends MuiCardHeaderProps {
   /**
    * @default 'standard'
    * Variant to use.
    */
-  variant?: 'standard' | 'filled'
+  variant?: Variant
   /**
    * Indicates if the parent Card component contains an icon element or not
    */
