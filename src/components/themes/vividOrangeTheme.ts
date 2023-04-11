@@ -1,11 +1,13 @@
+import { Theme } from '@mui/material'
 import orangeTheme from './orangeTheme'
 
-const vividOrangeTheme = {
+const vividOrangeTheme: Theme = {
   ...orangeTheme,
   palette: {
     ...orangeTheme.palette,
     background: {
-      main: '#eee'
+      default: '#eee',
+      paper: '#fff'
     }
   }
 }
