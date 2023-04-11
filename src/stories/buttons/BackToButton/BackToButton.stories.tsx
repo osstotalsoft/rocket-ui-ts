@@ -24,9 +24,7 @@ export const BackToButton: Story = {
     docs: {
       source: {
         code: `
-        <BackToButton>
-          Medium
-        </BackToButton>
+        <BackToButton path={path}/>
         `,
         format: true
       }
@@ -34,7 +32,7 @@ export const BackToButton: Story = {
   },
   render: args => (
     <BrowserRouter>
-      <BackToButtonComponent tooltip="medium" path="/buttons/icon-button" {...args} />
+      <BackToButtonComponent tooltip="redirect to provided path" path="/buttons/icon-button" {...args} />
     </BrowserRouter>
   )
 }
@@ -48,9 +46,7 @@ export const Sizes: Story = {
     docs: {
       source: {
         code: `
-        <BackToButton size="size-code-here">
-          Medium
-        </BackToButton>
+        <BackToButton size="size-code-here"/>
         `,
         format: true
       }
@@ -76,9 +72,7 @@ export const FontSizes: Story = {
     docs: {
       source: {
         code: `
-        <BackToButton fontSize="size-code-here">
-          FontSize
-        </BackToButton>
+        <BackToButton fontSize="size-code-here"/>
         `,
         format: true
       }

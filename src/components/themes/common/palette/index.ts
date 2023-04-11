@@ -1,13 +1,16 @@
-import { PaletteCustomOptions } from '../../types'
+import { PaletteOptions } from '@mui/material'
 import { black, error, dark, defaultColor, grey, info, link, rose, success, warning, white } from './basicColors'
+import { SimplePaletteColorOptions } from '@mui/material/styles'
 
-export const createGradient = (colorsArray: string[]): string => {
+export const createGradient = (colorsArray: (string | undefined)[]): string => {
   const colors = colorsArray.join(', ')
   return `linear-gradient(60deg, ${colors})`
 }
 
-const generatePalette = (themePalette: PaletteCustomOptions): any => {
-  const { primary, secondary, background, sideMenu } = themePalette
+const generatePalette = (themePalette: PaletteOptions): PaletteOptions => {
+  const { background, sideMenu } = themePalette as PaletteOptions
+  const primary = themePalette?.primary as SimplePaletteColorOptions
+  const secondary = themePalette?.secondary as SimplePaletteColorOptions
 
   return {
     primary,

@@ -1,4 +1,4 @@
-import { ThemeOptions, createTheme } from '@mui/material'
+import { PaletteOptions, Theme, ThemeOptions, createTheme } from '@mui/material'
 import componentsOverride from './common/overrides'
 import generatePalette from './common/palette'
 import typography from './common/typography'
@@ -24,18 +24,19 @@ const palette = generatePalette({
     rgba: 'rgba(0, 91, 148, 1)'
   },
   background: {
-    main: '#efeff8'
+    default: '#efeff8',
+    paper: '#fff'
   },
-  SIDE_MENU: {
+  sideMenu: {
     bgColor: '#fff',
     color: '#00529f',
     hoverBgColor: '#DFF2FD',
     hoverTextColor: '#00529f',
     bgOpacity: '1'
   }
-} as any)
+} as PaletteOptions)
 
-const lightBlueTheme: any = createTheme({
+const lightBlueTheme: Theme = createTheme({
   palette,
   shape: { borderRadius: 8 },
   typography,
