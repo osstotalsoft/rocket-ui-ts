@@ -28,6 +28,9 @@
   },
   "jest": {
     "preset": "ts-jest",
+    "moduleDirectories": [
+      "src"
+    ],
     "setupFilesAfterEnv": [
       "<rootDir>/src/setupTests.ts"
     ],
