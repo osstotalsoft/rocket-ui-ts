@@ -7,9 +7,9 @@
   "scripts": {
     "build": "run clean && tsc --p tsconfig.build.json",
     "build-storybook": "storybook build -o storybuild",
+    "build-test": "tsc --p tsconfig.build.json --noEmit ",
     "clean": "rimraf dist",
     "postinstall": "yarn dlx sort-package-json",
-    "build-test": "tsc --p tsconfig.build.json --noEmit ",
     "lint": "eslint src/*.{ts,tsx} && run build-test",
     "linter": "eslint . --fix --ext .ts,.tsx",
     "storybook": "storybook dev -p 6006",
