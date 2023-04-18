@@ -1,19 +1,14 @@
 // Copyright (c) TotalSoft.
 // This source code is licensed under the MIT license.
 
-import { OverridableComponent } from '@mui/types'
 import { IconButtonProps } from '../IconButton/types'
-import { SvgIconTypeMap } from '@mui/material'
-
-export type IconType = OverridableComponent<SvgIconTypeMap<{}, 'svg'>> & {
-  muiName: string
-}
+import { SvgIconComponent } from '@mui/icons-material'
 export interface UploadButtonProps extends IconButtonProps {
   /**
    * @default BackupIcon
    * The Icon to display.
    */
-  Icon?: IconType
+  Icon?: SvgIconComponent
   /**
    * The accept attribute takes as its value a comma-separated list of one or more file types,
    * or unique file type specifiers, describing which file types to allow.

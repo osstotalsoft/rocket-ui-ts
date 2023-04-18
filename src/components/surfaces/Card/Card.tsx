@@ -1,9 +1,10 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import React from 'react'
 import PropTypes from 'prop-types'
 import MuiCard, { iconStyle, CardContent } from './CardStyles'
 import CardMedia from '@mui/material/CardMedia'
 import { any, isNil } from 'ramda'
-import { CardProps } from './types'
+import { CardProps, Color } from './types'
 import CardHeader from './CardHeader'
 import CardActions from './CardActions'
 
@@ -43,7 +44,8 @@ const Card: React.FC<CardProps> = ({
   const cardHeaderProps = {
     title,
     subheader,
-    avatar: Icon ? <Icon style={iconStyle} /> : undefined,
+    // @ts-ignore
+    avatar: Icon && <Icon style={iconStyle} />,
     actions,
     ...headerProps
   }
@@ -53,8 +55,15 @@ const Card: React.FC<CardProps> = ({
 
   return (
     <MuiCard color={color} hasIcon={hasIcon} {...props}>
-      {hasHeader && <CardHeader variant={variant} hasIcon={hasIcon} iconColor={hasIcon && iconColor} {...cardHeaderProps} />}
-      {mediaProps && <CardMedia {...sizes[size]} {...standardMediaProps} />}
+      {hasHeader && (
+        <CardHeader
+          variant={variant}
+          hasIcon={hasIcon}
+          iconColor={hasIcon ? (iconColor as Color) : undefined}
+          {...cardHeaderProps}
+        />
+      )}
+      {mediaProps && <CardMedia {...sizes[size || 's']} {...standardMediaProps} />}
       {disablePadding ? children : <CardContent variant={variant}>{children}</CardContent>}
       {footer && (
         <CardActions variant={variant} {...footerProps}>
@@ -111,7 +120,8 @@ Card.propTypes = {
   /**
    * Icon to be displayed.
    */
-  icon: PropTypes.object,
+  // @ts-ignore
+  icon: PropTypes.element,
   /**
    * @default 'secondary'
    * Icon color.

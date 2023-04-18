@@ -27,10 +27,10 @@
     ]
   },
   "jest": {
-    "preset": "ts-jest",
     "moduleDirectories": [
       "src"
     ],
+    "preset": "ts-jest",
     "setupFilesAfterEnv": [
       "<rootDir>/src/setupTests.ts"
     ],
@@ -46,6 +46,7 @@
     "@mui/material": "^5.11.15",
     "@mui/system": "^5.11.15",
     "@mui/types": "^7.2.3",
+    "@yarnpkg/pnpify": "^4.0.0-rc.42",
     "attr-accept": "^2.2.2",
     "classnames": "^2.3.2",
     "ramda": "^0.29.0",
@@ -57,15 +58,15 @@
     "@babel/core": "^7.21.4",
     "@changesets/cli": "^2.26.1",
     "@nrwl/js": "^15.9.2",
-    "@storybook/addon-essentials": "7.0.2",
-    "@storybook/addon-interactions": "7.0.2",
-    "@storybook/addon-links": "7.0.2",
-    "@storybook/addon-styling": "^0.3.2",
-    "@storybook/addons": "7.0.2",
-    "@storybook/blocks": "7.0.2",
-    "@storybook/core-events": "7.0.2",
-    "@storybook/react": "7.0.2",
-    "@storybook/react-webpack5": "7.0.2",
+    "@storybook/addon-essentials": "7.0.4",
+    "@storybook/addon-interactions": "7.0.4",
+    "@storybook/addon-links": "7.0.4",
+    "@storybook/addon-styling": "^1.0.0",
+    "@storybook/addons": "7.0.4",
+    "@storybook/blocks": "7.0.4",
+    "@storybook/core-events": "7.0.4",
+    "@storybook/react": "7.0.4",
+    "@storybook/react-webpack5": "7.0.4",
     "@storybook/testing-library": "0.1.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
@@ -93,10 +94,11 @@
     "prop-types": "15.8.1",
     "rimraf": "^4.4.1",
     "sort-package-json": "^2.4.1",
-    "storybook": "7.0.2",
+    "storybook": "7.0.4",
     "storybook-addon-export-to-codesandbox": "^0.8.4",
     "ts-jest": "^29.1.0",
     "ts-node": "^10.9.1",
+    "tsconfig-paths-webpack-plugin": "^4.0.1",
     "tss-react": "^4.8.2",
     "typescript": "^5.0.3"
   },

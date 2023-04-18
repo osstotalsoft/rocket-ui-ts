@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import MuiCardActions from './CardActionsStyles'
-import { CardActionsProps } from './types'
+import { CardActionsProps } from '../types'
 
 const CardActions: React.FC<CardActionsProps> = props => {
   return <MuiCardActions {...props} />
