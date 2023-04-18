@@ -4,8 +4,9 @@
 import { OverridableComponent } from '@mui/types'
 import { IconButtonProps } from '../IconButton/types'
 import { SvgIconTypeMap } from '@mui/material'
+import { F } from 'ts-toolbelt'
 
-export type IconType = OverridableComponent<SvgIconTypeMap<{}, 'svg'>> & {
+export type IconType = OverridableComponent<SvgIconTypeMap<object, 'svg'>> & {
   muiName: string
 }
 export interface UploadButtonProps extends IconButtonProps {
@@ -53,5 +54,15 @@ export interface UploadButtonProps extends IconButtonProps {
   /**
    * Function to be called when a error is detected in the selected files
    */
-  onError?: (errorObject: any) => void
+  onError?: (errorObject: object) => void
+}
+
+export type Validator = (arg1: string | number, arg2: FileList, arg3?: (err: object) => void) => boolean
+
+export type FilesValidator = {
+  validFileTypes: F.Curry<(arg1: string | number) => boolean>
+  validMaxItemSize: F.Curry<(arg1: string | number) => boolean>
+  validMaxTotalSize: F.Curry<(arg1: string | number) => boolean>
+  validMinItemSize: F.Curry<(arg1: string | number) => boolean>
+  validMinTotalSize: F.Curry<(arg1: string | number) => boolean>
 }
