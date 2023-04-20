@@ -136,7 +136,7 @@ Pagination.propTypes = {
         label: PropTypes.string.isRequired,
         value: PropTypes.number.isRequired
       })
-    ])
+    ]).isRequired
   )
 }
 
