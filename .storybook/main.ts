@@ -17,9 +17,4 @@ export default {
     config.resolve.plugins = [new TsconfigPathsPlugin()]
     return config
   }
-  // webpackFinal: config => {
-  //   config.resolve.modules = [...(config?.resolve?.modules || []), path.resolve(__dirname, '../src')]
-
-  //   return config
-  // }
 } as StorybookConfig

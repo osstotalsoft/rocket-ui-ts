@@ -2,7 +2,7 @@ import { Palette, Theme } from '@mui/material'
 import MuiCardHeader from '@mui/material/CardHeader'
 import { styled } from '@mui/material/styles'
 import { includes } from 'ramda'
-import { CardColor, CardVariant } from '../types'
+import { CardColor } from '../types'
 
 type StyledProps = { theme: Theme; filled: boolean; hasIcon: boolean; iconColor: CardColor }
 

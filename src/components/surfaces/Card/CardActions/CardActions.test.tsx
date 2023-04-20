@@ -7,9 +7,9 @@ import Button from 'components/buttons/Button'
 const theme = getTheme()
 
 describe('CardActions', () => {
-  it('when variant is `filled`, has a grey background color', () => {
+  it('when `filled` property is set, teh card has a grey background color', () => {
     render(
-      <CardActions variant="filled">
+      <CardActions filled>
         <Button>ok</Button>
       </CardActions>
     )

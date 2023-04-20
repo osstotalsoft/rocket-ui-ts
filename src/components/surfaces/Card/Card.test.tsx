@@ -19,7 +19,7 @@ describe('Card', () => {
     const title = 'Card title'
     const subheader = 'Card subtitle'
 
-    render(<Card title={title} subheader={subheader} actions={<Button />} />)
+    render(<Card title={title} subheader={subheader} action={<Button />} />)
 
     expect(screen.getByText(title)).toBeInTheDocument()
     expect(screen.getByText(subheader)).toBeInTheDocument()

@@ -1,6 +1,5 @@
 import { Theme } from '@mui/material'
 import BaseCard from '@mui/material/Card'
-// import MuiCardContent from '@mui/material/CardContent'
 import { styled } from '@mui/material/styles'
 import { includes } from 'ramda'
 import { CardColor } from './types'
@@ -44,19 +43,10 @@ const Card = styled(BaseCard, {
       display: 'inline-block',
       position: 'relative',
       width: '100%',
-      // margin: '25px 0',
       background: '#fff',
       overflow: 'visible'
     })
   }
 })
-
-// export const CardContent = styled(MuiCardContent, { shouldForwardProp: prop => !includes(prop, ['variant']) })(
-//   ({ variant }: { variant: Variant }) => ({
-//     ...(variant === 'standard' && {
-//       paddingTop: '8px'
-//     })
-//   })
-// )
 
 export default Card
