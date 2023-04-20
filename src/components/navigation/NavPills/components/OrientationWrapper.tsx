@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Box from '@mui/material/Box'
-import { OrientationWrapperProps } from '../types'
+import type { OrientationWrapperProps } from '../types'
 
 const OrientationWrapper: React.FC<OrientationWrapperProps> = ({ children, actions, orientation }): any => {
   return orientation == 'vertical' ? (
@@ -22,7 +22,7 @@ const OrientationWrapper: React.FC<OrientationWrapperProps> = ({ children, actio
   )
 }
 OrientationWrapper.propTypes = {
-  children: PropTypes.array,
+  children: PropTypes.node,
   actions: PropTypes.array,
   orientation: PropTypes.oneOf(['horizontal', 'vertical'])
 }

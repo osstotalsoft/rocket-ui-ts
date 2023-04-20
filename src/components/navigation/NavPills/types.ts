@@ -41,7 +41,12 @@ export interface TabsWrapperProps {
 export interface NavPillsProps {
   active?: number
   onChange?: any
-  tabs: Array<any>
+  tabs: {
+    label?: string | React.ReactNode
+    icon?: any
+    content?: string | null
+    props?: object | null
+  }[]
   tabProps?: Object
   actions?: Array<React.ReactNode>
   selectedColor?: Color

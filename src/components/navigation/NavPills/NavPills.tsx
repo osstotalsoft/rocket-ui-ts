@@ -1,13 +1,13 @@
 import React, { useCallback, useState } from 'react'
 import PropTypes from 'prop-types'
 import { Tab } from './NavPillsStyles'
-import { NavPillsProps } from './types'
+import type { NavPillsProps } from './types'
 import TabPanel from './components/TabPanel'
 import OrientationWrapper from './components/OrientationWrapper'
 import TabsWrapper from './components/TabsWrapper'
 
 /**
- * Nav pills component
+ * Nav pills  organize and allow navigation between groups of content that are related and at the same level of hierarchy.
  */
 const NavPills: React.FC<NavPillsProps> = ({
   active = 0,
@@ -26,8 +26,8 @@ const NavPills: React.FC<NavPillsProps> = ({
 }) => {
   const [selfActive, setSelfActive] = useState(0)
 
-  const handleChange = useCallback((_: any, newValue: any) => {
-    setSelfActive(newValue)
+  const handleChange = useCallback((_event: React.SyntheticEvent, newValue: string) => {
+    setSelfActive(+newValue)
   }, [])
 
   return (
@@ -43,7 +43,7 @@ const NavPills: React.FC<NavPillsProps> = ({
         orientation={orientation}
         {...other}
       >
-        {tabs.map((tab, index) => (
+        {tabs.map((tab, index: number) => (
           <Tab
             key={`simple-tab-${index}`}
             color={color}
@@ -51,11 +51,13 @@ const NavPills: React.FC<NavPillsProps> = ({
             capitalize={capitalize}
             gradient={gradient}
             {...tabProps}
-            {...tab}
+            label={tab.label}
+            icon={tab.icon}
+            {...tab.props}
           />
         ))}
       </TabsWrapper>
-      {tabs.map(({ content }, index) => (
+      {tabs.map(({ content }, index: number) => (
         <TabPanel key={`tab-panel-${index}`} index={index} active={onChange ? active : selfActive}>
           {content}
         </TabPanel>
@@ -71,7 +73,7 @@ NavPills.propTypes = {
   active: PropTypes.number,
   /**
    * Handle tab change event manually
-   * 
+   *
    * Overrides the default onChange implementation
    * @param {object} event The event source of the callback.
    * @param {number} value We default to the index of the child (number)
@@ -83,10 +85,10 @@ NavPills.propTypes = {
   tabs: PropTypes.arrayOf(
     PropTypes.shape({
       label: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
-      icon: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
-      content: PropTypes.node,
+      icon: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
+      content: PropTypes.string,
       props: PropTypes.object
-    })
+    }).isRequired
   ).isRequired,
   /**
    * Custom tab properties that apply to all the Tab elements

@@ -17,7 +17,7 @@ const tabs = [
   }
 ]
 
-const theme = getTheme() as any
+const theme = getTheme()
 
 const basicColors = [
   { color: 'primary' },
@@ -103,7 +103,6 @@ describe('NavPills', () => {
       async ({ color }) => {
         render(<NavPills tabs={tabs} selectedColor={color as Color} />)
         const tabElements = await screen.findAllByRole('tab')
-
         expect(tabElements?.[0]).toHaveStyle(`color: ${theme.palette[color].main}`)
       }
     )
