@@ -8,15 +8,14 @@ import type { Theme } from '@mui/material'
 
 const localTabsOverriddenProps = ['indicatorColor', 'color', 'selectedColor']
 export const Tabs = styled(MuiTabs, { shouldForwardProp: prop => !includes(prop, localTabsOverriddenProps) })(
-  ({ theme, color, indicatorColor }: { theme: Theme; color?: Color; indicatorColor?: Color }) => {
-    const defaultFont = theme.typography.defaultFont
-    type PaletteCollor = keyof Palette
+  ({ theme, color = 'secondary', indicatorColor= 'secondary' }: { theme?: Theme; color: Color & keyof Palette; indicatorColor: Color & keyof Palette }) => {
+    const defaultFont = theme?.typography.defaultFont
 
     return {
       ...defaultFont,
       '& .MuiTabs-indicator': {
         borderRadius: '0.5rem',
-        backgroundColor: color ? theme?.palette[color as PaletteCollor].main : theme?.palette[indicatorColor as PaletteCollor].main
+        backgroundColor: color ? theme?.palette[color].main : theme?.palette[indicatorColor].main
       }
     }
   }
@@ -26,21 +25,18 @@ const localTabOverriddenProps = ['color', 'capitalize', 'selectedColor', 'gradie
 export const Tab = styled(MuiTab, { shouldForwardProp: prop => !includes(prop, localTabOverriddenProps) })(
   ({
     theme,
-    selectedColor,
-    color,
+    selectedColor = 'secondary',
+    color = 'secondary',
     capitalize,
     gradient
   }: {
     theme?: Theme
-    selectedColor: Color
-    color?: Color
+    selectedColor: Color & keyof Palette
+    color: Color & keyof Palette
     capitalize?: boolean
     gradient?: boolean
   }) => {
     const defaultFont = theme?.typography.defaultFont
-    const defaultTheme = theme ?? {} as Theme
-    type GradientColor = keyof typeof defaultTheme.palette.gradients
-    type PaletteCollor = keyof typeof defaultTheme.palette
     return {
       ...defaultFont,
       maxWidth: 'unset',
@@ -52,17 +48,17 @@ export const Tab = styled(MuiTab, { shouldForwardProp: prop => !includes(prop, l
         textTransform: 'none'
       }),
       '&.MuiTab-root': {
-        color: theme?.palette[color as PaletteCollor]?.main
+        color: theme?.palette[color].main
       },
       '&.Mui-selected': {
         transition: 'all 500ms linear 1ms',
         marginBottom: 5,
         borderRadius: Number(theme?.shape.borderRadius) * 1.5,
 
-        backgroundColor: color ? theme?.palette[color as PaletteCollor]?.main : 'transparent',
-        color: color ? theme?.palette[color as PaletteCollor]?.contrastText : theme?.palette[selectedColor as PaletteCollor]?.main,
+        backgroundColor: color ? theme?.palette[color]?.main : 'transparent',
+        color: color ? theme?.palette[color]?.contrastText : theme?.palette[selectedColor]?.main,
         ...(gradient && {
-          background: theme?.palette.gradients[color as GradientColor]
+          background: theme?.palette.gradients[color]
         })
       }
     }
