@@ -1,6 +1,8 @@
 export { default as Button } from './buttons/Button'
 export * from './buttons/Button'
-import Pagination from './navigation/Pagination'
+
+export { default as Pagination } from './navigation/Pagination'
+export * from './navigation/Pagination'
 
 export { default as IconButton } from './buttons/IconButton'
 export * from './buttons/IconButton'
