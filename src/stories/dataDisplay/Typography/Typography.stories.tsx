@@ -1,6 +1,6 @@
 import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
-import TypographyComponent from '../../../components/dataDisplay/Typography/Typography'
+import { Typography as TypographyComponent } from 'components'
 import { VariantsPreview } from './VariantsPreview'
 import { ColorsPreview } from './ColorsPreview'
 import { ExtraStylingPreview } from './ExtraStylingPreview'

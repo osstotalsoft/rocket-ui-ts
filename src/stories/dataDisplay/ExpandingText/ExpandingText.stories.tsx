@@ -3,7 +3,7 @@
 
 import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
-import ExpandingTextComponent from '../../../components/dataDisplay/ExpandingText'
+import { ExpandingText as ExpandingTextComponent } from 'components'
 import { DisplayPreview } from './DisplayPreview'
 
 const meta: Meta<typeof ExpandingTextComponent> = {

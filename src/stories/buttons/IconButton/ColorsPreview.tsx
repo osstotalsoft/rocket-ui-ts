@@ -4,8 +4,7 @@
 import React from 'react'
 import { Grid } from '@mui/material'
 import RocketIcon from '@mui/icons-material/Rocket'
-import { IconButton } from '../../../components'
-import { ButtonSize } from 'components/buttons/Button/types'
+import { ButtonSize, IconButton } from 'components'
 
 const buttonProps = {
   size: 'small' as ButtonSize
