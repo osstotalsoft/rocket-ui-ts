@@ -2,8 +2,8 @@ import React, { useCallback } from 'react'
 import PropTypes from 'prop-types'
 import { useNavigate } from 'react-router-dom'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
-import IconButton from '../IconButton'
 import { BackToButtonProps } from './types'
+import IconButton from '../IconButton'
 
 /**
  * BackToButton allow users to navigate to a provided path.

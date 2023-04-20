@@ -3,7 +3,7 @@
 
 import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
-import UploadButtonComponent from '../../../components/buttons/UploadButton'
+import { UploadButton as UploadButtonComponent } from 'components'
 import { InputTypesPreview } from './InputTypesPreview'
 import { MobileCapturePreview } from './MobileCapturePreview'
 import { FontSizePreview } from './FontSizePreview'

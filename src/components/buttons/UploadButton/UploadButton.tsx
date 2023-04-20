@@ -5,7 +5,7 @@ import Input from '@mui/material/Input'
 import validators from './uploadButtonValidators'
 import { map, __ } from 'ramda'
 import IconButton from '../IconButton'
-import { UploadButtonProps } from './types'
+import { FilesValidator, UploadButtonProps } from './types'
 
 /**
  * UploadButton allow users to implement file uploading.
@@ -31,8 +31,9 @@ const UploadButton: React.FC<UploadButtonProps> = ({
   const handleFileSelected = useCallback(
     ({ target: { files } }: React.ChangeEvent<HTMLInputElement>) => {
       if (!files) return
-      const filesValidator = map(v => v(onError, __, files as any), validators) as any
-      const { validFileTypes, validMaxItemSize, validMaxTotalSize, validMinItemSize, validMinTotalSize } = filesValidator
+      const filesValidator = map(v => v(__ as any, files, onError), validators) as any
+      const { validFileTypes, validMaxItemSize, validMaxTotalSize, validMinItemSize, validMinTotalSize } =
+        filesValidator as FilesValidator
 
       if (accept && !validFileTypes(accept)) return
       if (maxTotalSize && !validMaxTotalSize(maxTotalSize)) return
@@ -66,7 +67,7 @@ UploadButton.propTypes = {
    */
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
-  Icon: PropTypes.elementType,
+  Icon: PropTypes.object,
   /**
    * @default 'small'
    * Size of the icon.

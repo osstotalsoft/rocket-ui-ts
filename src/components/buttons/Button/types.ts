@@ -2,11 +2,11 @@
 // This source code is licensed under the MIT license.
 import { ButtonProps as MuiButtonProps } from '@mui/material'
 
-export type Variant = 'outlined' | 'text' | 'contained'
+export type ButtonVariant = 'outlined' | 'text' | 'contained'
 
-export type Size = 'tiny' | 'small' | 'medium' | 'large'
+export type ButtonSize = 'tiny' | 'small' | 'medium' | 'large'
 
-export type Color =
+export type ButtonColor =
   | 'primary'
   | 'secondary'
   | 'info'
@@ -21,15 +21,15 @@ export type Color =
   | 'inherit'
 
 export interface ButtonProps extends Omit<MuiButtonProps, 'color' | 'size' | 'variant'> {
-  variant?: Variant
+  variant?: ButtonVariant
   /**
    * The color of the button.
    */
-  color?: Color
+  color?: ButtonColor
   /**
    * The size of the button.
    */
-  size?: Size
+  size?: ButtonSize
   /**
    * The tooltip of the button.
    */

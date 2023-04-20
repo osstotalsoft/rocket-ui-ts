@@ -3,7 +3,7 @@ import BrowserUpdatedIcon from '@mui/icons-material/BrowserUpdated'
 import ImageSearchIcon from '@mui/icons-material/ImageSearch'
 import DriveFolderUploadIcon from '@mui/icons-material/DriveFolderUpload'
 import { Box } from '@mui/system'
-import UploadButton from '../../../components/buttons/UploadButton'
+import { UploadButton } from 'components'
 
 export const CustomIconsPreview = () => {
   return (

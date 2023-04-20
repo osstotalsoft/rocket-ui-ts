@@ -1,7 +1,6 @@
 import React, { useCallback, useState } from 'react'
-import UploadButton from '../../../components/buttons/UploadButton'
-import { Typography } from '../../../components'
 import { Box } from '@mui/material'
+import { Typography, UploadButton } from 'components'
 
 export const InputTypesPreview: React.FC = () => {
   const [error, setError] = useState<any>()
