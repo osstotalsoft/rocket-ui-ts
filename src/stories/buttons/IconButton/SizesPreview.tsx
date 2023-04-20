@@ -1,7 +1,7 @@
 import React from 'react'
 import { Grid } from '@mui/material'
 import RocketIcon from '@mui/icons-material/Rocket'
-import { IconButton } from '../../../components'
+import { IconButton } from 'components'
 
 export const SizesPreview: React.FunctionComponent = () => (
   <Grid container rowSpacing={2}>

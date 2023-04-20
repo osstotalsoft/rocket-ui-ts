@@ -3,8 +3,7 @@
 
 import React from 'react'
 import { Grid } from '@mui/material'
-import Typography from '../../../components/dataDisplay/Typography'
-import { ExpandingText } from '../../../components'
+import { ExpandingText, Typography } from 'components'
 
 const text =
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris viverra in neque non euismod. Nunc convallis ornare sem vel iaculis. Sed in condimentum sapien. Morbi viverra, dolor sed sollicitudin tristique, dui sem pretium odio, nec bibendum nibh velit vel turpis. Maecenas elit velit, molestie quis cursus eu, dignissim a elit. Etiam accumsan cursus ipsum, sit amet semper arcu faucibus sed. Donec aliquam fermentum ligula, a cursus lacus finibus non. Fusce id sollicitudin dui. Suspendisse malesuada lorem enim, at euismod neque tincidunt pellentesque.'

@@ -35,7 +35,7 @@ export default function Card(theme: Theme): CustomComponents {
     MuiCardContent: {
       styleOverrides: {
         root: {
-          padding: theme.spacing(3)
+          padding: theme.spacing(1, 3, 3, 3)
         }
       }
     },

@@ -1,6 +1,6 @@
 import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
-import ButtonComponent from '../../../components/buttons/Button/Button'
+import { Button as ButtonComponent } from 'components'
 import { Box } from '@mui/material'
 import { ColorsPreview } from './ColorsPreview'
 import { SizesPreview } from './SizesPreview'

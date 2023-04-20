@@ -1,19 +1,15 @@
 // Copyright (c) TotalSoft.
 // This source code is licensed under the MIT license.
 
-import { OverridableComponent } from '@mui/types'
 import { IconButtonProps } from '../IconButton/types'
-import { SvgIconTypeMap } from '@mui/material'
-
-export type IconType = OverridableComponent<SvgIconTypeMap<{}, 'svg'>> & {
-  muiName: string
-}
+import { SvgIconComponent } from '@mui/icons-material'
+import { F } from 'ts-toolbelt'
 export interface UploadButtonProps extends IconButtonProps {
   /**
    * @default BackupIcon
    * The Icon to display.
    */
-  Icon?: IconType
+  Icon?: SvgIconComponent
   /**
    * The accept attribute takes as its value a comma-separated list of one or more file types,
    * or unique file type specifiers, describing which file types to allow.
@@ -53,5 +49,15 @@ export interface UploadButtonProps extends IconButtonProps {
   /**
    * Function to be called when a error is detected in the selected files
    */
-  onError?: (errorObject: any) => void
+  onError?: (errorObject: object) => void
+}
+
+export type Validator = (arg1: string | number, arg2: FileList, arg3?: (err: object) => void) => boolean
+
+export type FilesValidator = {
+  validFileTypes: F.Curry<(arg1: string | number) => boolean>
+  validMaxItemSize: F.Curry<(arg1: string | number) => boolean>
+  validMaxTotalSize: F.Curry<(arg1: string | number) => boolean>
+  validMinItemSize: F.Curry<(arg1: string | number) => boolean>
+  validMinTotalSize: F.Curry<(arg1: string | number) => boolean>
 }

@@ -5,7 +5,7 @@ import { TypographyProps as MuiTypographyProps } from '@mui/material'
 /**
  * The color of the text.
  */
-export type Color = 'initial' | 'inherit' | 'primary' | 'secondary' | 'textPrimary' | 'textSecondary' | 'error'
+export type TypographyColor = 'initial' | 'inherit' | 'primary' | 'secondary' | 'textPrimary' | 'textSecondary' | 'error'
 
 /**
  * Controls the text emphasis. Different font styles can be used individually or in combination.
@@ -16,7 +16,7 @@ export interface TypographyProps extends MuiTypographyProps {
   /**
    * The color of the text
    */
-  color?: Color
+  color?: TypographyColor
   /**
    * If provided, a text will appear on hover.
    */

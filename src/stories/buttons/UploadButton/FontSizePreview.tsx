@@ -1,6 +1,6 @@
 import React from 'react'
 import { Box } from '@mui/system'
-import UploadButton from '../../../components/buttons/UploadButton'
+import { UploadButton } from 'components'
 
 export const FontSizePreview = () => {
   return (

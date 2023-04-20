@@ -76,7 +76,7 @@ export const black: Partial<SimplePaletteColorOptions> = {
   main: '#000000'
 }
 
-export const grey: Partial<Color> = {
+export const grey = {
   100: '#F9FAFB',
   200: '#F4F6F8',
   300: '#DFE3E8',
@@ -95,7 +95,7 @@ export const grey: Partial<Color> = {
   500_56: alpha('#919EAB', 0.56),
   500_80: alpha('#919EAB', 0.8),
   main: '#919EAB'
-}
+} as Partial<Color>
 
 export const link: Partial<SimplePaletteColorOptions> = {
   main: '#0074cc'

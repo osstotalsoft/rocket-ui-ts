@@ -1,8 +1,7 @@
 import React, { useState, useCallback } from 'react'
 import { head, join, prop, map } from 'ramda'
-import UploadButton from '../../../components/buttons/UploadButton'
-import { Typography } from '../../../components'
 import { Box } from '@mui/system'
+import { Typography, UploadButton } from 'components'
 
 export const MultipleSelectionPreview = () => {
   const [file, setFile] = useState('')

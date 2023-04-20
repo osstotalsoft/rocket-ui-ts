@@ -1,8 +1,7 @@
 import React, { useState, useCallback } from 'react'
 import { join, map, prop } from 'ramda'
-import UploadButton from '../../../components/buttons/UploadButton'
 import { Box } from '@mui/system'
-import { Typography } from '../../../components'
+import { Typography, UploadButton } from 'components'
 
 export const SizesPreview = () => {
   const [error, setError] = useState<any>()
