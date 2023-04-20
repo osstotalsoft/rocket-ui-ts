@@ -8,6 +8,7 @@ import BasicCardsPreview from './BasicCardsPreview'
 import People from '@mui/icons-material/People'
 import QuestionMark from '@mui/icons-material/QuestionMark'
 import FilledPreview from './FilledPreview'
+import MediaPreview from './MediaPreview'
 
 const meta: Meta<typeof CardComponent> = {
   title: 'Components/Surfaces/Card',
@@ -41,6 +42,10 @@ const action = (
   </IconButton>
 )
 
+/**
+ * Although cards can support multiple actions, UI controls, and an overflow menu,
+ * use restraint and remember that cards are entry points to more complex and detailed information.
+ */
 export const Card: Story = {
   args: { title, subheader, children, icon: People, footer, action },
 
@@ -68,6 +73,7 @@ export const Card: Story = {
 }
 
 /**
+ * Cards can be composed with other components to build rich elements for a page.
  */
 export const VariousContents: Story = {
   parameters: {
@@ -87,6 +93,7 @@ export const VariousContents: Story = {
 }
 
 /**
+ * Using `filled` property, the card header 
  */
 export const Filled: Story = {
   parameters: {
@@ -103,4 +110,27 @@ export const Filled: Story = {
     }
   },
   render: () => <FilledPreview />
+}
+
+/**
+ * Examples of cards using images, video or audio files to reinforce the content.
+ * 
+ * By default, we use the combination of a `<div>` element and a background image to display the media. 
+ * It can be problematic in some situations, for example, you might want to display a video or a responsive image. Use the component prop for these use cases:
+ */
+export const Media: Story = {
+  parameters: {
+    controls: { hideNoControlsWarning: true },
+    docs: {
+      source: {
+        code: `
+        <Card>
+          -- Your content here --
+        </Card>
+        `,
+        format: true
+      }
+    }
+  },
+  render: () => <MediaPreview />
 }
