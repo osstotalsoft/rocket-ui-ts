@@ -1,11 +1,18 @@
 import {
   CardMediaProps as MuiCardMediaProps,
   CardHeaderProps as MuiCardHeaderProps,
-  CardProps as MuiCardProps
+  CardActionsProps as MuiCardActionsProps,
+  CardProps as MuiCardProps,
+  CardContentProps as MuiCardContentProps
 } from '@mui/material'
-import { CardActionsProps as MuiCardActionsProps } from '@mui/material'
 import { ElementType } from 'react'
 import { SvgIconComponent } from '@mui/icons-material'
+
+export type CardVariant = 'elevation' | 'outlined'
+
+export type CardColor = 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'error' | 'rose'
+
+export type ActionAlign = 'left' | 'right'
 
 export type CardMediaProps = MuiCardMediaProps & {
   /**
@@ -21,31 +28,23 @@ export type CardMediaProps = MuiCardMediaProps & {
   component?: ElementType
 }
 
-export type Variant = 'standard' | 'filled'
-
-export type Color = 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'error' | 'rose'
-
-export type Align = 'left' | 'right'
-
 export interface CardActionsProps extends MuiCardActionsProps {
   /**
-   * @default 'standard'
-   * Variant to use.
+   * If 'true', the card footer will be filled with a grayish color
    */
-  variant?: Variant
+  filled?: boolean
   /**
    * Align actions to left or right.
    * @default 'left'
    */
-  align?: Align
+  align?: ActionAlign
 }
 
 export interface CardHeaderProps extends MuiCardHeaderProps {
   /**
-   * @default 'standard'
-   * Variant to use.
+   * If 'true', the card header will be filled with a grayish color
    */
-  variant?: Variant
+  filled?: boolean
   /**
    * Indicates if the parent Card component contains an icon element or not
    */
@@ -54,27 +53,37 @@ export interface CardHeaderProps extends MuiCardHeaderProps {
    * @default 'secondary'
    * Icon color.
    */
-  iconColor?: Color
+  iconColor?: CardColor
 }
 
-export interface CardProps extends Omit<MuiCardProps, 'title' | 'variant'> {
+export interface CardProps extends Omit<MuiCardProps, 'title'> {
   /**
-   * @default 'standard'
+   * @default 'elevation'
    * Variant to use.
    */
-  variant?: Variant
+  variant?: CardVariant
+  /**
+   * Shadow depth, corresponds to `dp` in the spec.
+   * It accepts values between 0 and 24 inclusive.
+   * @default 1
+   */
+  elevation?: number
   /**
    * Color of card.
    */
-  color?: Color
+  color?: CardColor
+  /**
+   * If 'true', the card header and footer will be filled with a grayish color
+   */
+  filled?: boolean
   /**
    * If true, the content padding is disabled.
    */
   disablePadding?: boolean
   /**
-   * Actions to be displayed at the bottom of the card.
+   * Actions to be displayed in the upper right corner of the card. If an array, will display all items with spacing between them.
    */
-  actions?: React.ReactNode
+  action?: React.ReactNode
   /**
    * Props applied to the CardActions component.
    */
@@ -113,4 +122,8 @@ export interface CardProps extends Omit<MuiCardProps, 'title' | 'variant'> {
    * Props applied to the CardActions component.
    */
   footerProps?: CardActionsProps
+  /**
+   * Props applied to the CardContent component
+   */
+  contentProps?: MuiCardContentProps
 }

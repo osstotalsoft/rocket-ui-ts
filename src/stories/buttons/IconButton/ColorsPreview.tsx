@@ -5,10 +5,10 @@ import React from 'react'
 import { Grid } from '@mui/material'
 import RocketIcon from '@mui/icons-material/Rocket'
 import { IconButton } from '../../../components'
-import { Size } from 'components/buttons/Button/types'
+import { ButtonSize } from 'components/buttons/Button/types'
 
 const buttonProps = {
-  size: 'small' as Size
+  size: 'small' as ButtonSize
 }
 
 export const ColorsPreview: React.FunctionComponent = () => (

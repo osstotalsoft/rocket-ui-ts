@@ -18,7 +18,6 @@ const CardHeader: React.FC<CardHeaderProps> = ({ action, title, ...rest }) => {
             ))
           : action
       }
-      disableTypography
       title={
         title ? (
           isValidElement(title) ? (
@@ -37,11 +36,6 @@ const CardHeader: React.FC<CardHeaderProps> = ({ action, title, ...rest }) => {
 
 CardHeader.propTypes = {
   /**
-   * @default 'standard'
-   * Variant to use.
-   */
-  variant: PropTypes.oneOf(['standard', 'filled']),
-  /**
    * Actions to be displayed in the right corner of the card. If an array, will display all items with spacing between them.
    */
   action: PropTypes.node,
@@ -57,7 +51,12 @@ CardHeader.propTypes = {
    * @default 'secondary'
    * Icon color.
    */
-  iconColor: PropTypes.oneOf(['primary', 'secondary', 'info', 'success', 'warning', 'error', 'rose'])
+  iconColor: PropTypes.oneOf(['primary', 'secondary', 'info', 'success', 'warning', 'error', 'rose']),
+  /**
+   * If 'true', the card header will be filled with a grayish color
+   * @default false
+   */
+  filled: PropTypes.bool
 }
 
 export default CardHeader

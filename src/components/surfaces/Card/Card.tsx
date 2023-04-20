@@ -1,12 +1,13 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import React from 'react'
 import PropTypes from 'prop-types'
-import MuiCard, { iconStyle, CardContent } from './CardStyles'
+import MuiCard, { iconStyle } from './CardStyles'
 import CardMedia from '@mui/material/CardMedia'
 import { any, isNil } from 'ramda'
-import { CardProps, Color } from './types'
+import { CardProps, CardColor } from './types'
 import CardHeader from './CardHeader'
 import CardActions from './CardActions'
+import { CardContent } from '@mui/material'
 
 const sizes = {
   s: {
@@ -23,16 +24,24 @@ const sizes = {
   }
 }
 
+/**
+ * Cards are surfaces that display content and actions on a single topic.
+ * They should be easy to scan for relevant and actionable information. Elements, like text and images, should be placed on them in a way that clearly indicates hierarchy.
+ *
+ * Props of the [Material-UI Card](https://mui.com/material-ui/api/card/) and [Paper](https://mui.com/material-ui/api/paper/) components are also available.
+ */
 const Card: React.FC<CardProps> = ({
-  variant = 'standard',
+  variant = 'elevation',
+  filled,
   color,
   children,
   disablePadding,
-  actions,
+  action,
   footer,
   title,
   subheader,
-  headerProps = {},
+  headerProps,
+  contentProps,
   footerProps,
   icon: Icon,
   iconColor = 'secondary',
@@ -44,9 +53,9 @@ const Card: React.FC<CardProps> = ({
   const cardHeaderProps = {
     title,
     subheader,
-    // @ts-ignore
     avatar: Icon && <Icon style={iconStyle} />,
-    actions,
+    action,
+    filled,
     ...headerProps
   }
   const hasHeader = any(x => !isNil(x), Object.values(cardHeaderProps))
@@ -54,19 +63,14 @@ const Card: React.FC<CardProps> = ({
   const { size, ...standardMediaProps } = mediaProps || {}
 
   return (
-    <MuiCard color={color} hasIcon={hasIcon} {...props}>
+    <MuiCard color={color} hasIcon={hasIcon} variant={variant} {...props}>
       {hasHeader && (
-        <CardHeader
-          variant={variant}
-          hasIcon={hasIcon}
-          iconColor={hasIcon ? (iconColor as Color) : undefined}
-          {...cardHeaderProps}
-        />
+        <CardHeader hasIcon={hasIcon} iconColor={hasIcon ? (iconColor as CardColor) : undefined} {...cardHeaderProps} />
       )}
       {mediaProps && <CardMedia {...sizes[size || 's']} {...standardMediaProps} />}
-      {disablePadding ? children : <CardContent variant={variant}>{children}</CardContent>}
+      {disablePadding ? children : <CardContent children={children} {...contentProps} />}
       {footer && (
-        <CardActions variant={variant} {...footerProps}>
+        <CardActions filled={filled} {...footerProps}>
           {footer}
         </CardActions>
       )}
@@ -76,11 +80,6 @@ const Card: React.FC<CardProps> = ({
 
 Card.propTypes = {
   /**
-   * @default 'standard'
-   * Variant to use.
-   */
-  variant: PropTypes.oneOf(['standard', 'filled']),
-  /**
    * Color of card.
    */
   color: PropTypes.oneOf(['primary', 'secondary', 'info', 'success', 'warning', 'error', 'rose']),
@@ -89,13 +88,33 @@ Card.propTypes = {
    */
   children: PropTypes.node,
   /**
+   * @default 'elevation'
+   * Variant to use.
+   */
+  variant: PropTypes.oneOf(['elevation', 'outlined']),
+  /**
+   * Shadow depth, corresponds to `dp` in the spec.
+   * It accepts values between 0 and 24 inclusive.
+   * @default 1
+   */
+  elevation: PropTypes.number,
+  /**
+   * If 'true', the card header and footer will be filled with a grayish color
+   * @default false
+   */
+  filled: PropTypes.bool,
+  /**
+   * Props applied to the CardContent component
+   */
+  contentProps: PropTypes.object,
+  /**
    * If true, the content padding is disabled.
    */
   disablePadding: PropTypes.bool,
   /**
-   * Actions to be displayed in the right corner of the card. If an array, will display all items with spacing between them.
+   * Actions to be displayed in the upper right corner of the card. If an array, will display all items with spacing between them.
    */
-  actions: PropTypes.node,
+  action: PropTypes.node,
   /**
    * Footer to be displayed at the bottom of the card.
    */
@@ -121,12 +140,12 @@ Card.propTypes = {
    * Icon to be displayed.
    */
   // @ts-ignore
-  icon: PropTypes.element,
+  icon: PropTypes.object,
   /**
    * @default 'secondary'
    * Icon color.
    */
-  iconColor: PropTypes.string,
+  iconColor: PropTypes.oneOf(['primary', 'secondary', 'info', 'success', 'warning', 'error', 'rose']),
   /*
    * Props applied to the CardMedia component.
    */

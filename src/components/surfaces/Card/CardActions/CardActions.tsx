@@ -9,10 +9,10 @@ const CardActions: React.FC<CardActionsProps> = props => {
 
 CardActions.propTypes = {
   /**
-   * @default 'standard'
-   * Variant to use.
+   * If 'true', the card footer will be filled with a grayish color
+   * @default false
    */
-  variant: PropTypes.oneOf(['standard', 'filled']),
+  filled: PropTypes.bool,
   /**
    * Align actions to left or right.
    * @default 'left'

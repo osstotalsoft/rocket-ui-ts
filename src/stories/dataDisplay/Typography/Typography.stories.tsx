@@ -61,7 +61,7 @@ export const Colors: Story = {
 }
 
 /**
- *  Extra stylying can be applied using either `emphasis` or `style` properties.
+ *  Extra styling can be applied using either `emphasis` or `style` properties.
  */
 export const ExtraStyling: Story = {
   args: { gutterBottom: true },

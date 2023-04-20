@@ -5,7 +5,7 @@ import Card from './Card'
 import Button from 'components/buttons/Button'
 import { text } from 'testingUtils/mocks'
 import getTheme from 'components/themes'
-import { Color } from './types'
+import { CardColor } from './types'
 
 const theme = getTheme()
 
@@ -76,7 +76,7 @@ describe('Card', () => {
       background: theme.palette.gradients.warning
     }
   ])('applies the correct gradient background for $color color', ({ color, background }) => {
-    render(<Card color={color as Color}>{text}</Card>)
+    render(<Card color={color as CardColor}>{text}</Card>)
     expect(screen.getByText(text)).toHaveStyle(`background: ${background}`)
   })
 
