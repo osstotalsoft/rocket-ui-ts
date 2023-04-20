@@ -1,8 +1,8 @@
 // Copyright (c) TotalSoft.
 // This source code is licensed under the MIT license.
 
+import { Typography } from 'components'
 import React from 'react'
-import Typography from '../../../components/dataDisplay/Typography'
 
 export const ColorsPreview: React.FunctionComponent = () => (
   <>

@@ -7,9 +7,9 @@
   "scripts": {
     "build": "run clean && tsc --p tsconfig.build.json",
     "build-storybook": "storybook build -o storybuild",
+    "build-test": "tsc --p tsconfig.build.json --noEmit ",
     "clean": "rimraf dist",
     "postinstall": "yarn dlx sort-package-json",
-    "build-test": "tsc --p tsconfig.build.json --noEmit ",
     "lint": "eslint src/*.{ts,tsx} && run build-test",
     "linter": "eslint . --fix --ext .ts,.tsx",
     "storybook": "storybook dev -p 6006",
@@ -99,6 +99,7 @@
     "storybook-addon-export-to-codesandbox": "^0.8.4",
     "ts-jest": "^29.1.0",
     "ts-node": "^10.9.1",
+    "tsconfig-paths-webpack-plugin": "^4.0.1",
     "tss-react": "^4.8.2",
     "typescript": "^5.0.4"
   },

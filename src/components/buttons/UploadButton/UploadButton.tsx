@@ -67,7 +67,7 @@ UploadButton.propTypes = {
    */
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
-  Icon: PropTypes.elementType,
+  Icon: PropTypes.object,
   /**
    * @default 'small'
    * Size of the icon.

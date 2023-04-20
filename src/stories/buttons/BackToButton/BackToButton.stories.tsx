@@ -3,7 +3,7 @@
 
 import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
-import BackToButtonComponent from '../../../components/buttons/BackToButton'
+import { BackToButton as BackToButtonComponent } from 'components'
 import { Box } from '@mui/material'
 import { BrowserRouter } from 'react-router-dom'
 

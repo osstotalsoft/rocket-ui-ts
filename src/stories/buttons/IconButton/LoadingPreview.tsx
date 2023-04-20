@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react'
 import { Box, FormControlLabel, Switch } from '@mui/material'
 import RocketIcon from '@mui/icons-material/Rocket'
-import { IconButton } from '../../../components'
+import { IconButton } from 'components'
 
 export const LoadingPreview: React.FunctionComponent = () => {
   const [loading, setLoading] = useState(false)

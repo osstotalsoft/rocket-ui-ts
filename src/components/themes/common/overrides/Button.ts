@@ -1,7 +1,7 @@
 import { Theme } from '@mui/material'
 import { CustomComponents } from '../../types'
 
-export default function Button(theme: Theme): CustomComponents {
+export default function Button({ palette, customShadows }: Theme): CustomComponents {
   return {
     MuiButton: {
       styleOverrides: {
@@ -16,27 +16,27 @@ export default function Button(theme: Theme): CustomComponents {
           height: 48
         },
         containedInherit: {
-          color: theme.palette.grey[800],
-          boxShadow: theme.customShadows.z8,
+          color: palette.grey[800],
+          boxShadow: customShadows.z8,
           '&:hover': {
-            backgroundColor: theme.palette.grey[400]
+            backgroundColor: palette.grey[400]
           }
         },
         containedPrimary: {
-          boxShadow: theme.customShadows.primary
+          boxShadow: customShadows.primary
         },
         containedSecondary: {
-          boxShadow: theme.customShadows.secondary
+          boxShadow: customShadows.secondary
         },
         outlinedInherit: {
-          border: `1px solid ${theme.palette.grey[500_32]}`,
+          border: `1px solid ${palette.grey[500_32]}`,
           '&:hover': {
-            backgroundColor: theme.palette.action.hover
+            backgroundColor: palette.action.hover
           }
         },
         textInherit: {
           '&:hover': {
-            backgroundColor: theme.palette.action.hover
+            backgroundColor: palette.action.hover
           }
         }
       }
