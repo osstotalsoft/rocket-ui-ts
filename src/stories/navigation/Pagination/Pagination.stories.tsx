@@ -17,7 +17,7 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 /**
- * The NavPills component.
+ * The Pagination component enables the user to select a specific page from a range of pages.
  */
 export const Pagination: Story = {
   args: {
@@ -32,6 +32,9 @@ export const Pagination: Story = {
 
 /**
  * Table pagination
+ * The Pagination component was designed to paginate a list of arbitrary items when infinite loading isn't used. It's preferred in contexts where SEO is important, for instance, a blog.
+ * 
+ * For the pagination of a large set of tabular data, you should use the TablePagination component.
  *
  */
 export const TablePagination: Story = {
@@ -75,6 +78,7 @@ export const TablePagination: Story = {
 /**
  * Button pagination
  *
+ * You can optionally enable first-page and last-page buttons, or disable the previous-page and next-page buttons.
  */
 export const ButtonsPagination: Story = {
   parameters: {

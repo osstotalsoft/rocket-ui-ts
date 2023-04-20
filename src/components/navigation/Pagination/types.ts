@@ -14,6 +14,6 @@ export interface PaginationProps {
   rowsPerPageText?: React.ReactNode
   onRefresh?: () => void
   rowsOfText?: string
-  rowsPerPageOptions?: any
+  rowsPerPageOptions?: Array<number | { value: number; label: string }>;
   [x: string]: any
 }
