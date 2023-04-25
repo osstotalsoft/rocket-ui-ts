@@ -1,10 +1,12 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import React from 'react'
 import PropTypes from 'prop-types'
 import Box from '@mui/material/Box'
 import { Tabs } from '../NavPillsStyles'
 import { TabsWrapperProps } from '../types'
 
-const TabsWrapper: React.FC<TabsWrapperProps> = ({ children, actions, orientation, fullWidth, ...other }): any => {
+const TabsWrapper: React.FC<TabsWrapperProps> = ({ children, actions, orientation, fullWidth, ...other }) => {
+  debugger
   return orientation == 'vertical' ? (
     <Tabs role="vertical-tabs" orientation={orientation} sx={{ borderRight: 1, borderColor: 'divider' }} {...other}>
       {children}

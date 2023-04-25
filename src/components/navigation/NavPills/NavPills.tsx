@@ -15,19 +15,19 @@ const NavPills: React.FC<NavPillsProps> = ({
   tabs,
   tabProps,
   actions,
-  selectedColor = 'secondary',
   capitalize,
-  gradient,
-  indicatorColor = 'secondary',
   variant = 'scrollable',
   orientation = 'horizontal',
-  color,
+  color = 'transparent',
+  colorGradient,
+  indicatorColor = 'secondary',
+  selectedColor = 'secondary',
   ...other
 }) => {
   const [selfActive, setSelfActive] = useState(0)
 
-  const handleChange = useCallback((_event: React.SyntheticEvent, newValue: string) => {
-    setSelfActive(+newValue)
+  const handleChange = useCallback((_event: React.SyntheticEvent, newValue: number) => {
+    setSelfActive(newValue)
   }, [])
 
   return (
@@ -37,9 +37,9 @@ const NavPills: React.FC<NavPillsProps> = ({
         onChange={onChange ?? handleChange}
         actions={actions}
         aria-label="tabs"
+        color={color}
         indicatorColor={indicatorColor}
         variant={variant}
-        color={color}
         orientation={orientation}
         {...other}
       >
@@ -47,9 +47,9 @@ const NavPills: React.FC<NavPillsProps> = ({
           <Tab
             key={`simple-tab-${index}`}
             color={color}
+            colorGradient={colorGradient}
             selectedColor={selectedColor}
             capitalize={capitalize}
-            gradient={gradient}
             {...tabProps}
             label={tab.label}
             icon={tab.icon}
@@ -110,22 +110,58 @@ NavPills.propTypes = {
    * @default "primary"
    * Determines the color of the indicator.
    */
-  indicatorColor: PropTypes.oneOf(['primary', 'secondary', 'info', 'success', 'warning', 'error', 'rose', 'white', 'dark']),
+  indicatorColor: PropTypes.oneOf([
+    'primary',
+    'secondary',
+    'info',
+    'success',
+    'warning',
+    'error',
+    'rose',
+    'default',
+    'white',
+    'dark',
+    'transparent'
+  ]),
   /**
    * @default "primary"
    * Determines the color of the Tab.
    */
-  selectedColor: PropTypes.oneOf(['primary', 'secondary', 'info', 'success', 'warning', 'error', 'rose', 'white', 'dark']),
+  selectedColor: PropTypes.oneOf([
+    'primary',
+    'secondary',
+    'info',
+    'success',
+    'warning',
+    'error',
+    'rose',
+    'default',
+    'white',
+    'dark',
+    'transparent'
+  ]),
   /**
    * Indicates the background color of the selected Tab and the indicator color
    * Precedes 'indicatorColor' and 'selectedColor' properties
+   * @default "secondary"
    */
-  color: PropTypes.oneOf(['primary', 'secondary', 'info', 'success', 'warning', 'error', 'rose', 'white', 'dark']),
+  color: PropTypes.oneOf([
+    'primary',
+    'secondary',
+    'info',
+    'success',
+    'warning',
+    'error',
+    'rose',
+    'default',
+    'white',
+    'dark',
+    'transparent'
+  ]),
   /**
-   * @default false
    * If true, a gradient background is applied.
    */
-  gradient: PropTypes.bool,
+  colorGradient: PropTypes.oneOf(['primary', 'secondary', 'info', 'success', 'warning', 'error', 'rose', 'default', 'dark']),
   /**
    * @default false
    * If true, it maximize width to 100%

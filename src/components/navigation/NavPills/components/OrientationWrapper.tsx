@@ -3,7 +3,8 @@ import PropTypes from 'prop-types'
 import Box from '@mui/material/Box'
 import type { OrientationWrapperProps } from '../types'
 
-const OrientationWrapper: React.FC<OrientationWrapperProps> = ({ children, actions, orientation }): any => {
+//@ts-ignore
+const OrientationWrapper: React.FC<OrientationWrapperProps> = ({ children, actions, orientation }) => {
   return orientation == 'vertical' ? (
     <Box role="vertical-tab-wrapper" sx={{ display: 'flex' }}>
       <Box sx={{ flexGrow: 1, display: 'flex' }}>{children}</Box>
@@ -23,7 +24,7 @@ const OrientationWrapper: React.FC<OrientationWrapperProps> = ({ children, actio
 }
 OrientationWrapper.propTypes = {
   children: PropTypes.node,
-  actions: PropTypes.array,
+  actions: PropTypes.arrayOf(PropTypes.node),
   orientation: PropTypes.oneOf(['horizontal', 'vertical'])
 }
 

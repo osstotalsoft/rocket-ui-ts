@@ -1,41 +1,45 @@
-import MuiTab from '@mui/material/Tab'
-import MuiTabs from '@mui/material/Tabs'
 import { styled } from '@mui/material/styles'
 import { includes } from 'ramda'
-import type { Color } from './types'
-import type { Palette } from '@mui/material'
-import type { Theme } from '@mui/material'
+import type { Color, Gradient } from 'components'
+import type { Palette, Theme } from '@mui/material'
+import { Tabs as MuiTabs, Tab as MuiTab } from '@mui/material'
+import { ColorGradients } from 'components/themes/types'
 
-const localTabsOverriddenProps = ['indicatorColor', 'color', 'selectedColor']
+type StyledTabsProps = {
+  theme?: Theme
+  color?: Color & keyof Palette
+  indicatorColor?: Color & keyof Palette
+}
+
+const localTabsOverriddenProps = ['indicatorColor', 'color']
 export const Tabs = styled(MuiTabs, { shouldForwardProp: prop => !includes(prop, localTabsOverriddenProps) })(
-  ({ theme, color = 'secondary', indicatorColor= 'secondary' }: { theme?: Theme; color: Color & keyof Palette; indicatorColor: Color & keyof Palette }) => {
+  ({ theme, color, indicatorColor }: StyledTabsProps) => {
     const defaultFont = theme?.typography.defaultFont
+    debugger
 
     return {
       ...defaultFont,
       '& .MuiTabs-indicator': {
         borderRadius: '0.5rem',
-        backgroundColor: color ? theme?.palette[color].main : theme?.palette[indicatorColor].main
+        backgroundColor: color ? theme?.palette[color]?.main : theme?.palette[indicatorColor as Color & keyof Palette]?.main
       }
     }
   }
 )
 
-const localTabOverriddenProps = ['color', 'capitalize', 'selectedColor', 'gradient']
+type StyledTabProps = {
+  theme?: Theme
+  color: Color
+  colorGradient?: Gradient
+  selectedColor: Color
+  capitalize?: boolean
+}
+
+type ColorIndex = Color & keyof Palette
+
+const localTabOverriddenProps = ['color', 'capitalize', 'selectedColor', 'colorGradient']
 export const Tab = styled(MuiTab, { shouldForwardProp: prop => !includes(prop, localTabOverriddenProps) })(
-  ({
-    theme,
-    selectedColor = 'secondary',
-    color = 'secondary',
-    capitalize,
-    gradient
-  }: {
-    theme?: Theme
-    selectedColor: Color & keyof Palette
-    color: Color & keyof Palette
-    capitalize?: boolean
-    gradient?: boolean
-  }) => {
+  ({ theme, color, colorGradient, selectedColor, capitalize }: Partial<StyledTabProps>) => {
     const defaultFont = theme?.typography.defaultFont
     return {
       ...defaultFont,
@@ -48,17 +52,17 @@ export const Tab = styled(MuiTab, { shouldForwardProp: prop => !includes(prop, l
         textTransform: 'none'
       }),
       '&.MuiTab-root': {
-        color: theme?.palette[color].main
+        color: theme?.palette[color as ColorIndex]?.main
       },
       '&.Mui-selected': {
         transition: 'all 500ms linear 1ms',
         marginBottom: 5,
         borderRadius: Number(theme?.shape.borderRadius) * 1.5,
 
-        backgroundColor: color ? theme?.palette[color]?.main : 'transparent',
-        color: color ? theme?.palette[color]?.contrastText : theme?.palette[selectedColor]?.main,
-        ...(gradient && {
-          background: theme?.palette.gradients[color]
+        backgroundColor: color ? theme?.palette[color as ColorIndex]?.main : 'transparent',
+        color: color ? theme?.palette[color as ColorIndex]?.contrastText : theme?.palette[selectedColor as ColorIndex]?.main,
+        ...(colorGradient && {
+          background: theme?.palette.gradients[colorGradient as keyof ColorGradients]
         })
       }
     }

@@ -2,7 +2,7 @@ import React from 'react'
 import { render } from '../../../testingUtils'
 import NavPills from '../../../components/navigation/NavPills'
 import IconButton from '../../../components/buttons/IconButton'
-import { Color } from '../../../components/navigation/NavPills/types'
+import { NavPillsColor } from '../../../components/navigation/NavPills/types'
 import getTheme from '../../themes'
 import { fireEvent, screen } from '@testing-library/react'
 
@@ -101,7 +101,7 @@ describe('NavPills', () => {
     it.each(basicColors)(
       'displays the correct color for the indicator component when selectedColor = { $color }',
       async ({ color }) => {
-        render(<NavPills tabs={tabs} selectedColor={color as Color} />)
+        render(<NavPills tabs={tabs} selectedColor={color as NavPillsColor} />)
         const tabElements = await screen.findAllByRole('tab')
         expect(tabElements?.[0]).toHaveStyle(`color: ${theme.palette[color].main}`)
       }
@@ -123,7 +123,7 @@ describe('NavPills', () => {
     })
 
     it.each(gradients)('applies the correct gradient background for $color color', async ({ color, background }) => {
-      render(<NavPills tabs={tabs} color={color as Color} gradient />)
+      render(<NavPills tabs={tabs} color={color as NavPillsColor} gradient />)
       const tabElements = await screen.findAllByRole('tab')
       expect(tabElements?.[0]).toHaveStyle(`background: ${background}`)
     })

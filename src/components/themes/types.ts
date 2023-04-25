@@ -14,6 +14,19 @@ import {
 import { TypographyOptions } from '@mui/material/styles/createTypography'
 import { CSSProperties } from 'react'
 
+declare module '@mui/material/styles/createTypography' {
+  export interface TypographyOptions {
+    defaultFont: CSSProperties
+    useNextVariants: boolean
+    body: CSSProperties
+  }
+  export interface Typography {
+    defaultFont: CSSProperties
+    useNextVariants: boolean
+    body: CSSProperties
+  }
+}
+
 declare module '@mui/material' {
   export interface Theme {
     customShadows: CustomShadows
@@ -101,14 +114,8 @@ export type ColorGradients = {
   default: string
 }
 
-export interface TypographyCustomOptions extends TypographyOptions {
-  defaultFont: CSSProperties
-  useNextVariants: boolean
-  body: CSSProperties
-}
-
 export interface CreateThemeOptions extends Omit<ThemeOptions, 'typography'> {
-  typography: TypographyCustomOptions | TypographyOptions | ((palette: Palette) => TypographyOptions)
+  typography: TypographyOptions | ((palette: Palette) => TypographyOptions)
 }
 
 export type SideMenuOptions = CSSProperties & {

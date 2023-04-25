@@ -1,29 +1,28 @@
 import React from 'react'
 import { Grid } from '@mui/material'
-import NavPills from '../../../components/navigation/NavPills'
 import { tabs } from './options'
+import { Color, NavPills, Orientation } from 'components'
 
-const NavPillsDefault = () => {
+const DefaultPreview = () => {
   const orientation = 'horizontal'
   const iconPosition = 'start'
   const withIcons = false
   const withText = true
   const color = 'secondary'
-  const gradient = false
 
   return (
     <Grid container columnSpacing={4}>
       <Grid item>
         <NavPills
           tabs={tabs(withIcons, withText)}
-          tabProps={{ iconPosition: iconPosition }}
-          orientation={orientation}
-          gradient={gradient}
-          color={color}
+          tabProps={{ iconPosition }}
+          orientation={orientation as Orientation}
+          indicatorColor={color as Color}
+          selectedColor={color as Color}
         />
       </Grid>
     </Grid>
   )
 }
 
-export default NavPillsDefault
+export default DefaultPreview
