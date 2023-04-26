@@ -14,6 +14,6 @@ export type Color =
   | 'dark'
   | 'transparent'
 
-export type Gradient = 'primary' | 'secondary' | 'rose' | 'error' | 'warning' | 'info' | 'success' | 'dark' | 'default'
+export type Gradient = Exclude<Color, 'transparent' | 'white'>
 
 export type Size = 'tiny' | 'small' | 'medium' | 'large'

@@ -1,10 +1,9 @@
 import React from 'react'
 import { render } from '../../../testingUtils'
-import NavPills from '../../../components/navigation/NavPills'
-import IconButton from '../../../components/buttons/IconButton'
-import { NavPillsColor } from '../../../components/navigation/NavPills/types'
-import getTheme from '../../themes'
 import { fireEvent, screen } from '@testing-library/react'
+import NavPills from './NavPills'
+import { IconButton, getTheme, Color, Gradient } from 'components'
+import { Palette } from '@mui/material'
 
 const tabs = [
   {
@@ -54,7 +53,7 @@ const gradients = [
   },
   {
     color: 'error',
-    background: theme.palette.gradients.danger
+    background: theme.palette.gradients.error
   },
   {
     color: 'warning',
@@ -100,8 +99,9 @@ describe('NavPills', () => {
 
     it.each(basicColors)(
       'displays the correct color for the indicator component when selectedColor = { $color }',
-      async ({ color }) => {
-        render(<NavPills tabs={tabs} selectedColor={color as NavPillsColor} />)
+      async args => {
+        const color = args.color as Color & keyof Palette
+        render(<NavPills tabs={tabs} selectedColor={color as Color} />)
         const tabElements = await screen.findAllByRole('tab')
         expect(tabElements?.[0]).toHaveStyle(`color: ${theme.palette[color].main}`)
       }
@@ -123,7 +123,7 @@ describe('NavPills', () => {
     })
 
     it.each(gradients)('applies the correct gradient background for $color color', async ({ color, background }) => {
-      render(<NavPills tabs={tabs} color={color as NavPillsColor} gradient />)
+      render(<NavPills tabs={tabs} colorGradient={color as Gradient} />)
       const tabElements = await screen.findAllByRole('tab')
       expect(tabElements?.[0]).toHaveStyle(`background: ${background}`)
     })
