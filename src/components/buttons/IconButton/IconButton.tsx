@@ -55,7 +55,6 @@ IconButton.propTypes = {
     'dark',
     'transparent',
     'default',
-    'inherit'
   ]),
   /**
    * @default 'medium'
