@@ -13,7 +13,7 @@ const FilledPreview = () => {
           SUBMIT
         </Button>
       }
-      action={
+      actions={
         <IconButton color="info" variant="text" size="small">
           <QuestionMark fontSize="small" />
         </IconButton>

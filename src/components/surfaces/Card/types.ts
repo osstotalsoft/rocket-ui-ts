@@ -43,7 +43,11 @@ export interface CardActionsProps extends MuiCardActionsProps {
   align?: ActionAlign
 }
 
-export interface CardHeaderProps extends MuiCardHeaderProps {
+export interface CardHeaderProps extends Omit<MuiCardHeaderProps, 'action'> {
+  /**
+   * Actions to be displayed in the upper right corner of the card. If an array, will display all items with spacing between them.
+   */
+  actions?: React.ReactNode
   /**
    * If 'true', the card header will be filled with a grayish color
    */
@@ -86,7 +90,7 @@ export interface CardProps extends Omit<MuiCardProps, 'title'> {
   /**
    * Actions to be displayed in the upper right corner of the card. If an array, will display all items with spacing between them.
    */
-  action?: React.ReactNode
+  actions?: React.ReactNode
   /**
    * Props applied to the CardActions component.
    */
