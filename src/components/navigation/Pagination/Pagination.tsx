@@ -5,7 +5,6 @@ import { PaginationContainer, RefreshButtonContainer } from './PaginationStyles'
 import RefreshIcon from '@mui/icons-material/Refresh'
 import { PaginationProps, DisplayedRows } from './types'
 import IconButton from 'components/buttons/IconButton'
-import { LinearProgress } from '@mui/material'
 
 const displayedRows =
   (rowsOfText: string) =>
@@ -51,9 +50,7 @@ const Pagination: React.FC<PaginationProps> = ({
 
   return (
     <>
-      {loading ? (
-        <LinearProgress />
-      ) : (
+      {loading && (
         <PaginationContainer>
           <TablePagination
             component="div"
