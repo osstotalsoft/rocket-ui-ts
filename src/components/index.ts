@@ -27,5 +27,8 @@ export * from './dataDisplay/ExpandingText'
 export { Card, CardActions, CardHeader } from './surfaces/Card'
 export * from './surfaces/Card'
 
+export { default as CollapseCard } from './surfaces/CollapseCard'
+export * from './surfaces/CollapseCard'
+
 export { default as getTheme } from './themes/index'
 export * from './themes/index'

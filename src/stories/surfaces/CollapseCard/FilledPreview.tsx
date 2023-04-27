@@ -1,11 +1,11 @@
 import React from 'react'
-import { Card, Button, IconButton, Typography } from 'components'
+import { Button, IconButton, Typography, CollapseCard } from 'components'
 import QuestionMark from '@mui/icons-material/QuestionMark'
 import { Grid, TextField } from '@mui/material'
 
 const FilledPreview = () => {
   return (
-    <Card
+    <CollapseCard
       filled
       title="Delivery information"
       footer={
@@ -36,7 +36,7 @@ const FilledPreview = () => {
           <TextField label="Address line 2" variant="filled" fullWidth value={''} />
         </Grid>
       </Grid>
-    </Card>
+    </CollapseCard>
   )
 }
 
