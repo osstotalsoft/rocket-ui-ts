@@ -1,4 +1,4 @@
-import { TypographyCustomOptions } from '../types'
+import { TypographyOptions } from '@mui/material/styles/createTypography'
 
 export const defaultFont = {
   fontFamily: 'Source Sans Pro',
@@ -8,7 +8,7 @@ export const defaultFont = {
   letterSpacing: '0.02857em'
 }
 
-const typography: TypographyCustomOptions = {
+const typography = {
   ...defaultFont,
   defaultFont,
   useNextVariants: true,
@@ -21,6 +21,6 @@ const typography: TypographyCustomOptions = {
     fontStyle: 'normal'
   },
   body: defaultFont
-}
+} as TypographyOptions
 
 export default typography

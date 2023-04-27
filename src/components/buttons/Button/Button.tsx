@@ -6,9 +6,9 @@ import cx from 'classnames'
 import { ButtonProps } from './types'
 
 /**
- * Buttons allow users to take actions, and make choices, with a single tap. 
+ * Buttons allow users to take actions, and make choices, with a single tap.
  * It triggers an action or event when activated.
- * 
+ *
  * Props of the [Material-UI Button](https://mui.com/material-ui/api/button/#props) component are also available.
  */
 const Button: React.FC<ButtonProps> = ({
@@ -76,8 +76,7 @@ Button.propTypes = {
     'default',
     'white',
     'dark',
-    'transparent',
-    'inherit'
+    'transparent'
   ]),
   /**
    * If true, button is in loading state.
