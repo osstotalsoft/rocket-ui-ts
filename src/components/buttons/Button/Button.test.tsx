@@ -2,7 +2,7 @@ import React from 'react'
 import { render, screen, userClick, waitFor, fireEvent } from '../../../testingUtils'
 import Button from './Button'
 import getTheme from '../../themes'
-import { ButtonColor } from './types'
+import { Color } from 'components'
 
 const theme = getTheme()
 
@@ -17,7 +17,7 @@ const basicColors = [
   { color: 'success' },
   { color: 'warning' },
   { color: 'white' }
-] satisfies { color: ButtonColor }[]
+] satisfies { color: Color }[]
 
 describe('Button colors', () => {
   describe('Button basic colors', () => {

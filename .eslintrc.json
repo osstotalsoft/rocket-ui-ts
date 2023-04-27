@@ -11,14 +11,9 @@
     "plugin:storybook/recommended"
   ],
   "rules": {
-    "quotes": [
-      "error",
-      "single"
-    ],
-    "semi": [
-      "error",
-      "never"
-    ],
+    "quotes": ["error", "single"],
+    "semi": ["error", "never"],
+    "no-debugger": "warn",
     "no-unused-expressions": "warn",
     "no-empty": "off",
     "no-prototype-builtins": "off",

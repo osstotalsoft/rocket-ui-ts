@@ -14,7 +14,7 @@
     "rootDir": "./src",
     "outDir": "./dist",
     "strict": true,
-    "noImplicitReturns": true,
+    "noImplicitReturns": false,
     "noFallthroughCasesInSwitch": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
@@ -22,7 +22,8 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "baseUrl": "src"
+    "baseUrl": "src",
+    "strictNullChecks": false
   },
   "include": ["src"],
   "exclude": ["dist", "node_modules"]

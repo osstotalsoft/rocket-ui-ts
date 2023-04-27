@@ -4,10 +4,10 @@
 import React from 'react'
 import { Grid } from '@mui/material'
 import RocketIcon from '@mui/icons-material/Rocket'
-import { ButtonSize, IconButton } from 'components'
+import { Size, IconButton } from 'components'
 
 const buttonProps = {
-  size: 'small' as ButtonSize
+  size: 'small' as Size
 }
 
 export const ColorsPreview: React.FunctionComponent = () => (
@@ -231,26 +231,6 @@ export const ColorsPreview: React.FunctionComponent = () => (
           <RocketIcon />
         </IconButton>
       </Grid>
-    </Grid>
-    <Grid item xs={12} container rowSpacing={2} columnSpacing={4}></Grid>
-    <Grid item xs={12} container rowSpacing={2} columnSpacing={4}>
-      <Grid item xs={3} md={1}>
-        <IconButton color="inherit" variant="contained" tooltip="inherit" {...buttonProps}>
-          <RocketIcon />
-        </IconButton>
-      </Grid>
-      <Grid item xs={3} md={1} />
-      <Grid item xs={3} md={1}>
-        <IconButton color="inherit" variant="outlined" tooltip="inherit" {...buttonProps}>
-          <RocketIcon />
-        </IconButton>
-      </Grid>
-      <Grid item xs={3} md={1}>
-        <IconButton color="inherit" variant="text" tooltip="inherit" {...buttonProps}>
-          <RocketIcon />
-        </IconButton>
-      </Grid>
-      <Grid item xs={3} md={1} />
     </Grid>
     <Grid item xs={12} container spacing={2}>
       <Grid item xs={3} md={1}>

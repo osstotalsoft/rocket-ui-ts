@@ -1,35 +1,20 @@
 // Copyright (c) TotalSoft.
 // This source code is licensed under the MIT license.
 import { ButtonProps as MuiButtonProps } from '@mui/material'
+import { Color, Size } from 'components'
 
 export type ButtonVariant = 'outlined' | 'text' | 'contained'
-
-export type ButtonSize = 'tiny' | 'small' | 'medium' | 'large'
-
-export type ButtonColor =
-  | 'primary'
-  | 'secondary'
-  | 'info'
-  | 'success'
-  | 'warning'
-  | 'error'
-  | 'rose'
-  | 'default'
-  | 'white'
-  | 'dark'
-  | 'transparent'
-  | 'inherit'
 
 export interface ButtonProps extends Omit<MuiButtonProps, 'color' | 'size' | 'variant'> {
   variant?: ButtonVariant
   /**
    * The color of the button.
    */
-  color?: ButtonColor
+  color?: Color
   /**
    * The size of the button.
    */
-  size?: ButtonSize
+  size?: Size
   /**
    * The tooltip of the button.
    */
@@ -64,7 +49,7 @@ export interface ButtonProps extends Omit<MuiButtonProps, 'color' | 'size' | 'va
    */
   capitalize?: boolean
   /**
-   *  Used for upload 
+   *  Used for upload
    */
   component?: string
 }

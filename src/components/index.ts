@@ -1,3 +1,5 @@
+export * from './types'
+
 export { default as Button } from './buttons/Button'
 export * from './buttons/Button'
 
@@ -15,6 +17,9 @@ export * from './buttons/UploadButton'
 
 export { default as Typography } from './dataDisplay/Typography'
 export * from './dataDisplay/Typography'
+
+export { default as NavPills } from './navigation/NavPills'
+export * from './navigation/NavPills'
 
 export { default as ExpandingText } from './dataDisplay/ExpandingText'
 export * from './dataDisplay/ExpandingText'

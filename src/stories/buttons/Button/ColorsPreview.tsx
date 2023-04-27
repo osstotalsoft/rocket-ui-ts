@@ -188,25 +188,6 @@ export const ColorsPreview: React.FunctionComponent = () => (
       </Grid>
     </Grid>
     <Grid item xs={12} container rowSpacing={2} columnSpacing={4}></Grid>
-    <Grid item xs={12} container rowSpacing={2} columnSpacing={4}>
-      <Grid item xs={3} md={2}>
-        <Button color="inherit" variant="contained">
-          Inherit
-        </Button>
-      </Grid>
-      <Grid item xs={3} md={2} />
-      <Grid item xs={3} md={2}>
-        <Button color="inherit" variant="outlined">
-          Inherit
-        </Button>
-      </Grid>
-      <Grid item xs={3} md={2}>
-        <Button color="inherit" variant="text">
-          Inherit
-        </Button>
-      </Grid>
-      <Grid item xs={3} md={2} />
-    </Grid>
     <Grid item xs={12} container spacing={2}>
       <Grid item xs={3} md={2}>
         <Button color="white">White</Button>
