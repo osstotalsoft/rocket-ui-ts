@@ -85,26 +85,26 @@ TabsWrapper.propTypes = {
   actions: PropTypes.array,
   fullWidth: PropTypes.bool
 }
+
 /**
  *  Nav Pills component make it easy to explore and switch between different views.
  *  The component, organizes and allows navigation between groups of content that are related and at the same level of hierarchy.
  *
  *  At its core, it uses [Material-UI Tabs](https://mui.com/base/react-tabs/components-api/#tabs) and [Material-UI Tab](https://mui.com/material-ui/api/tab/).
  */
-const NavPills: React.FC<NavPillsProps> = props => {
-  const {
-    active = 0,
-    onChange,
-    tabs,
-    tabProps,
-    actions,
-    selectedColor = 'secondary',
-    capitalize,
-    indicatorColor = 'secondary',
-    variant = 'scrollable',
-    orientation = 'horizontal',
-    ...other
-  } = props
+const NavPills: React.FC<NavPillsProps> = ({
+  active = 0,
+  onChange,
+  tabs,
+  tabProps,
+  actions,
+  selectedColor = 'secondary',
+  capitalize,
+  indicatorColor = 'secondary',
+  variant = 'scrollable',
+  orientation = 'horizontal',
+  ...other
+}) => {
   const [selfActive, setSelfActive] = useState(0)
 
   const handleChange = useCallback((_event: React.SyntheticEvent, newValue: number) => {
@@ -126,8 +126,8 @@ const NavPills: React.FC<NavPillsProps> = props => {
         {tabs.map(({ content: _content, ...tab }, index) => (
           <Tab
             key={`simple-tab-${index}`}
-            color={props?.color}
-            colorGradient={props?.colorGradient}
+            color={other?.color}
+            colorGradient={other?.colorGradient}
             selectedColor={selectedColor}
             capitalize={capitalize}
             {...tabProps}
