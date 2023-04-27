@@ -145,7 +145,7 @@ Card.propTypes = {
    * @default 'secondary'
    * Icon color.
    */
-  iconColor: PropTypes.oneOf(['primary', 'secondary', 'info', 'success', 'warning', 'error', 'rose']),
+  iconColor: PropTypes.oneOf(['primary', 'secondary', 'info', 'success', 'warning', 'error', 'rose', 'dark']),
   /*
    * Props applied to the CardMedia component.
    */
