@@ -168,7 +168,7 @@ export const WithActions: Story = {
  *  - `indicatorColor`: Determines the color of the indicator. The indicator is either the this line underneath the selected tab or it's background color.
  *  - `colorGradient`: applies a gradient color style on the selected tab. Precedes `color` property.
  */
-export const FilledColor: Story = {
+export const Filled: Story = {
   parameters: {
     controls: { hideNoControlsWarning: true },
     docs: {
