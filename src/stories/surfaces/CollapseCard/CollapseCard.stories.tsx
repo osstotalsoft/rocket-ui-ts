@@ -52,7 +52,6 @@ const actions = (
  */
 export const Default: Story = {
   args: { title, subheader, content, footer, onToggle: undefined },
-
   parameters: {
     docs: {
       source: {
@@ -77,7 +76,6 @@ export const Default: Story = {
  */
 export const WithActions: Story = {
   args: { title, subheader, content, footer, actions, onToggle: undefined },
-
   parameters: {
     docs: {
       source: {
@@ -110,7 +108,6 @@ export const WithActions: Story = {
  */
 export const WithIcon: Story = {
   args: { title, subheader, content, icon: People, footer, onToggle: undefined },
-
   parameters: {
     docs: {
       source: {

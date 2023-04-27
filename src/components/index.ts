@@ -30,5 +30,8 @@ export * from './surfaces/Card'
 export { default as CollapseCard } from './surfaces/CollapseCard'
 export * from './surfaces/CollapseCard'
 
+export { default as StatsCard } from './surfaces/StatsCard'
+export * from './surfaces/StatsCard'
+
 export { default as getTheme } from './themes/index'
 export * from './themes/index'

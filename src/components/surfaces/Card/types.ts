@@ -7,10 +7,11 @@ import {
 } from '@mui/material'
 import { ElementType } from 'react'
 import { SvgIconComponent } from '@mui/icons-material'
+import { Color } from 'components'
 
 export type CardVariant = 'elevation' | 'outlined'
 
-export type CardColor = 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'error' | 'rose'
+export type CardColor = Exclude<Color, 'default' | 'white' | 'transparent'>
 
 export type ActionAlign = 'left' | 'right'
 
@@ -60,7 +61,7 @@ export interface CardHeaderProps extends Omit<MuiCardHeaderProps, 'action'> {
    * @default 'secondary'
    * Icon color.
    */
-  iconColor?: CardColor
+  iconColor?: Color
 }
 
 export interface CardProps extends Omit<MuiCardProps, 'title'> {
@@ -116,7 +117,7 @@ export interface CardProps extends Omit<MuiCardProps, 'title'> {
    * @default 'secondary'
    * Icon color.
    */
-  iconColor?: string
+  iconColor?: Color
   /*
    * Props applied to the CardMedia component.
    */
