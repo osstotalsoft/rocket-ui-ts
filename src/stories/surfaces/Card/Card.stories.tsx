@@ -93,7 +93,7 @@ export const VariousContents: Story = {
 }
 
 /**
- * Using `filled` property, the card header 
+ * Using `filled` property, the card header and footer will be filled with a grayish color
  */
 export const Filled: Story = {
   parameters: {

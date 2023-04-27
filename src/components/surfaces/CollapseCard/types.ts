@@ -27,5 +27,5 @@ export interface CollapseCardProps extends Omit<CardProps, 'content'> {
   /**
    * Callback fired on toggle.
    */
-  onToggle?: (event: React.SyntheticEvent, eventExpanded: boolean) => void
+  onToggle?: (event: React.SyntheticEvent, expanded: boolean) => void
 }

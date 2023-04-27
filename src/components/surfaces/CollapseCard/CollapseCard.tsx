@@ -7,6 +7,9 @@ import { Card, IconButton } from 'components'
 import { CollapseCardProps } from './types'
 import { CardContent } from '@mui/material'
 
+/**
+ * A Collapse Card is basically a 'smarter' Card component that allows users to toggle the display of content by expanding or collapsing the card.
+ */
 const CollapseCard: React.FC<CollapseCardProps> = ({
   content,
   children,
@@ -23,8 +26,8 @@ const CollapseCard: React.FC<CollapseCardProps> = ({
 
   const toggleCard = useCallback(
     (event: React.SyntheticEvent<Element, Event>) =>
-      onToggle ? onToggle(event, localExpanded) : setLocalExpanded(current => !current),
-    [localExpanded, onToggle]
+      onToggle ? onToggle(event, expanded) : setLocalExpanded(current => !current),
+    [expanded, onToggle]
   )
 
   const iconButton = (
