@@ -50,7 +50,7 @@ const Pagination: React.FC<PaginationProps> = ({
 
   return (
     <>
-      {loading && (
+      {!loading && (
         <PaginationContainer>
           <TablePagination
             component="div"
