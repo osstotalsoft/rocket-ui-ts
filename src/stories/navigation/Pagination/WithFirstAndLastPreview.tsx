@@ -1,10 +1,9 @@
+import { Pagination } from 'components'
 import React, { useCallback, useState } from 'react'
-import Pagination from '../../../components/navigation/Pagination'
-import { Grid } from '@mui/material'
 
-const TablePagination = () => {
+const WithFirstAndLastPreview = () => {
   const [page, setPage] = useState<number>(0)
-  const [pageSize, setPageSize] = useState<number>(25)
+  const [pageSize, setPageSize] = useState<number>(10)
 
   const handleChangePage = useCallback((value: number) => {
     setPage(value)
@@ -17,15 +16,15 @@ const TablePagination = () => {
 
   return (
     <Pagination
-      component="div"
       count={100}
       page={page}
       onPageChange={handleChangePage}
       pageSize={pageSize}
       onRowsPerPageChange={handleChangeRowsPerPage}
-      rowsPerPageOptions={[25, 50, 75, 100]}
+      showFirstButton={true}
+      showLastButton={true}
     />
   )
 }
 
-export default TablePagination
+export default WithFirstAndLastPreview

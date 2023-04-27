@@ -1,90 +1,9 @@
-import React, { ReactNode, useCallback, useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import PropTypes from 'prop-types'
-import Box from '@mui/material/Box'
-import { Tabs, Tab } from './NavPillsStyles'
-import { NavPillsProps, TabPanelProps, OrientationWrapperProps, TabsWrapperProps } from './types'
+import { Tab } from './NavPillsStyles'
+import { NavPillsProps } from './types'
+import { OrientationWrapper, TabPanel, TabsWrapper } from './NavPillsWrappers'
 
-const TabPanel: React.FC<TabPanelProps> = ({ children, active, index, ...other }) => {
-  return (
-    <Box
-      role="tab-panel"
-      hidden={active !== index}
-      id={`full-width-tabpanel-${index}`}
-      aria-labelledby={`full-width-tab-${index}`}
-      {...other}
-    >
-      {active === index && <Box sx={{ p: 3 }}>{children}</Box>}
-    </Box>
-  )
-}
-TabPanel.propTypes = {
-  children: PropTypes.node,
-  index: PropTypes.number.isRequired,
-  active: PropTypes.number.isRequired
-}
-
-const OrientationWrapper: React.FC<OrientationWrapperProps> = ({ children, actions, orientation }) => {
-  return orientation == 'vertical' ? (
-    <Box role="vertical-tab-wrapper" sx={{ display: 'flex' }}>
-      <Box sx={{ flexGrow: 1, display: 'flex' }}>{children}</Box>
-      {actions && (
-        <Box sx={{ flexGrow: 1, borderLeft: 1, borderColor: 'divider', p: 1, maxWidth: 'fit-content' }}>
-          {actions?.map((action: ReactNode, index: number) => (
-            <Box key={index} role="action" m="4px">
-              {action}
-            </Box>
-          ))}
-        </Box>
-      )}
-    </Box>
-  ) : (
-    <>{children}</>
-  )
-}
-OrientationWrapper.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
-  actions: PropTypes.arrayOf(PropTypes.node),
-  orientation: PropTypes.oneOf(['horizontal', 'vertical'])
-}
-
-const TabsWrapper: React.FC<TabsWrapperProps> = ({
-  children,
-  actions,
-  orientation,
-  fullWidth,
-  indicatorColor,
-  ...other
-}) => {
-  return orientation == 'vertical' ? (
-    <Tabs
-      role="vertical-tabs"
-      orientation={orientation}
-      indicatorColor={indicatorColor}
-      sx={{ borderRight: 1, borderColor: 'divider' }}
-      {...other}
-    >
-      {children}
-    </Tabs>
-  ) : (
-    <Box sx={{ maxWidth: fullWidth ? 'unset' : 'fit-content', borderBottom: 1, borderColor: 'divider', display: 'flex' }}>
-      <Tabs role="horizontal-tabs" orientation={orientation} indicatorColor={indicatorColor} {...other}>
-        {children}
-      </Tabs>
-      {actions &&
-        actions?.map((action, index) => (
-          <Box key={index} role="action" m="4px" mt="auto" mb="auto">
-            {action}
-          </Box>
-        ))}
-    </Box>
-  )
-}
-TabsWrapper.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
-  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
-  actions: PropTypes.array,
-  fullWidth: PropTypes.bool
-}
 /**
  *  Nav Pills component make it easy to explore and switch between different views.
  *  The component, organizes and allows navigation between groups of content that are related and at the same level of hierarchy.

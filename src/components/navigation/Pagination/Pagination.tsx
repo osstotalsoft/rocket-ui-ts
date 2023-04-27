@@ -1,11 +1,11 @@
-import React, { useCallback, useMemo } from 'react'
+import React, { useCallback } from 'react'
 import PropTypes from 'prop-types'
 import TablePagination from '@mui/material/TablePagination'
 import { PaginationContainer, RefreshButtonContainer } from './PaginationStyles'
 import RefreshIcon from '@mui/icons-material/Refresh'
-import { pipe, uniq, sortBy, identity } from 'ramda'
 import { PaginationProps, DisplayedRows } from './types'
-import IconButton from '../../buttons/IconButton'
+import IconButton from 'components/buttons/IconButton'
+import { LinearProgress } from '@mui/material'
 
 const displayedRows =
   (rowsOfText: string) =>
@@ -13,6 +13,11 @@ const displayedRows =
     return `${from}-${to} ${rowsOfText} ${count}`
   }
 
+/**
+ * The Pagination component was designed to paginate a list of arbitrary items when infinite loading isn't used. It's preferred in contexts where SEO is important, for instance, a blog.
+ *
+ * At its core, the Pagination component uses [Material-UI TablePagination](https://mui.com/material-ui/react-pagination/#table-pagination).
+ */
 const Pagination: React.FC<PaginationProps> = ({
   loading,
   count = 1,
@@ -36,21 +41,19 @@ const Pagination: React.FC<PaginationProps> = ({
 
   const handleRowsPerPageChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
-      onRowsPerPageChange(+event.target.value)
+      const value = Number(event?.target?.value)
+      onRowsPerPageChange(value)
     },
     [onRowsPerPageChange]
   )
 
   const handleRefresh = useCallback(() => onRefresh && onRefresh(), [onRefresh])
 
-  const sortedRowsPerPageOptions = useMemo(
-    () => pipe(uniq, sortBy(identity))([pageSize, ...rowsPerPageOptions]),
-    [pageSize, rowsPerPageOptions]
-  )
-
   return (
     <>
-      {!loading && (
+      {loading ? (
+        <LinearProgress />
+      ) : (
         <PaginationContainer>
           <TablePagination
             component="div"
@@ -61,14 +64,14 @@ const Pagination: React.FC<PaginationProps> = ({
             onRowsPerPageChange={handleRowsPerPageChange}
             labelRowsPerPage={rowsPerPageText}
             labelDisplayedRows={displayedRows(rowsOfText)}
-            rowsPerPageOptions={sortedRowsPerPageOptions}
+            rowsPerPageOptions={rowsPerPageOptions}
             {...rest}
           />
         </PaginationContainer>
       )}
       {onRefresh && (
         <RefreshButtonContainer>
-          <IconButton onClick={handleRefresh} color="default" variant="text">
+          <IconButton onClick={handleRefresh} color="default" variant="text" disabled={loading}>
             <RefreshIcon />
           </IconButton>
         </RefreshButtonContainer>
@@ -98,7 +101,6 @@ Pagination.propTypes = {
   /**
    * Callback fired when the page is changed.
    *
-   * @param {React.MouseEvent<HTMLButtonElement> | null} event The event source of the callback.
    * @param {number} page The page selected.
    * @param {boolean} direction Direction for previous/next page (false for previous, true for next).
    */
@@ -106,7 +108,7 @@ Pagination.propTypes = {
   /**
    * Callback fired when the number of rows per page is changed.
    *
-   * @param {React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>} event The event source of the callback.
+   * @param {number} value The selected rows per page value
    */
   onRowsPerPageChange: PropTypes.func.isRequired,
   /**
@@ -132,7 +134,7 @@ Pagination.propTypes = {
   rowsPerPageOptions: PropTypes.arrayOf(
     PropTypes.oneOfType([
       PropTypes.number,
-      PropTypes.shape({
+      PropTypes.exact({
         label: PropTypes.string.isRequired,
         value: PropTypes.number.isRequired
       })
