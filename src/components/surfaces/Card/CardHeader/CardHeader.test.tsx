@@ -24,13 +24,13 @@ describe('CardHeader', () => {
   })
 
   it('when `actions` is array, renders the item with spacing between them', () => {
-    render(<CardHeader action={[<Button key={1}>one</Button>, <Button key={2}>two</Button>]} />)
+    render(<CardHeader actions={[<Button key={1}>one</Button>, <Button key={2}>two</Button>]} />)
     expect(screen.getAllByRole('button').length).toBe(2)
     expect(screen.getByText('two').parentElement).toHaveStyle('margin-left: 8px')
   })
 
   it('when `actions` is not an array, renders the node as it is', () => {
-    render(<CardHeader action={<Button key={1}>one</Button>} />)
+    render(<CardHeader actions={<Button key={1}>one</Button>} />)
     expect(screen.getByRole('button')).toBeInTheDocument()
   })
 })

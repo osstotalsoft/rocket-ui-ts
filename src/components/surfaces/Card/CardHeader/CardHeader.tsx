@@ -6,17 +6,17 @@ import { isValidElement } from 'react'
 import Typography from 'components/dataDisplay/Typography'
 import { CardHeaderProps } from '../types'
 
-const CardHeader: React.FC<CardHeaderProps> = ({ action, title, ...rest }) => {
+const CardHeader: React.FC<CardHeaderProps> = ({ actions, title, ...rest }) => {
   return (
     <MuiCardHeader
       action={
-        Array.isArray(action)
-          ? action.map((a, index) => (
+        Array.isArray(actions)
+          ? actions.map((a, index) => (
               <Box key={index} ml={1}>
                 {a}
               </Box>
             ))
-          : action
+          : actions
       }
       title={
         title ? (
@@ -38,7 +38,7 @@ CardHeader.propTypes = {
   /**
    * Actions to be displayed in the right corner of the card. If an array, will display all items with spacing between them.
    */
-  action: PropTypes.node,
+  actions: PropTypes.node,
   /**
    * Card title
    */

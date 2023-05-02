@@ -36,7 +36,7 @@ const Card: React.FC<CardProps> = ({
   color,
   children,
   disablePadding,
-  action,
+  actions,
   footer,
   title,
   subheader,
@@ -54,7 +54,7 @@ const Card: React.FC<CardProps> = ({
     title,
     subheader,
     avatar: Icon && <Icon style={iconStyle} />,
-    action,
+    actions,
     filled,
     ...headerProps
   }
@@ -114,7 +114,7 @@ Card.propTypes = {
   /**
    * Actions to be displayed in the upper right corner of the card. If an array, will display all items with spacing between them.
    */
-  action: PropTypes.node,
+  actions: PropTypes.node,
   /**
    * Footer to be displayed at the bottom of the card.
    */
@@ -145,7 +145,7 @@ Card.propTypes = {
    * @default 'secondary'
    * Icon color.
    */
-  iconColor: PropTypes.oneOf(['primary', 'secondary', 'info', 'success', 'warning', 'error', 'rose']),
+  iconColor: PropTypes.oneOf(['primary', 'secondary', 'info', 'success', 'warning', 'error', 'rose', 'dark']),
   /*
    * Props applied to the CardMedia component.
    */

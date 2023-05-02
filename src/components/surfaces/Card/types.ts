@@ -7,10 +7,11 @@ import {
 } from '@mui/material'
 import { ElementType } from 'react'
 import { SvgIconComponent } from '@mui/icons-material'
+import { Color } from 'components'
 
 export type CardVariant = 'elevation' | 'outlined'
 
-export type CardColor = 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'error' | 'rose'
+export type CardColor = Exclude<Color, 'default' | 'white' | 'transparent'>
 
 export type ActionAlign = 'left' | 'right'
 
@@ -43,7 +44,11 @@ export interface CardActionsProps extends MuiCardActionsProps {
   align?: ActionAlign
 }
 
-export interface CardHeaderProps extends MuiCardHeaderProps {
+export interface CardHeaderProps extends Omit<MuiCardHeaderProps, 'action'> {
+  /**
+   * Actions to be displayed in the upper right corner of the card. If an array, will display all items with spacing between them.
+   */
+  actions?: React.ReactNode
   /**
    * If 'true', the card header will be filled with a grayish color
    */
@@ -56,7 +61,7 @@ export interface CardHeaderProps extends MuiCardHeaderProps {
    * @default 'secondary'
    * Icon color.
    */
-  iconColor?: CardColor
+  iconColor?: Color
 }
 
 export interface CardProps extends Omit<MuiCardProps, 'title'> {
@@ -86,7 +91,7 @@ export interface CardProps extends Omit<MuiCardProps, 'title'> {
   /**
    * Actions to be displayed in the upper right corner of the card. If an array, will display all items with spacing between them.
    */
-  action?: React.ReactNode
+  actions?: React.ReactNode
   /**
    * Props applied to the CardActions component.
    */
@@ -112,7 +117,7 @@ export interface CardProps extends Omit<MuiCardProps, 'title'> {
    * @default 'secondary'
    * Icon color.
    */
-  iconColor?: string
+  iconColor?: Color
   /*
    * Props applied to the CardMedia component.
    */
