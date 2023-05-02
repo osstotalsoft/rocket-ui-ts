@@ -11,17 +11,12 @@ import { debounce } from 'lodash'
 import {
   AddButtonProps,
   ClearButtonProps,
-  InputCustomProps,
-  InputPropsVariant,
-  NumberFormatProps,
+  NumberTextFieldProps,
   SubtractButtonProps,
   TextFieldProps
 } from './types'
 
-const NumberFormatCustom: React.FC<NumberFormatProps> = React.forwardRef(function NumberFormatCustom(
-  props,
-  ref
-) {
+const NumberTextField = React.forwardRef<HTMLElement, NumberTextFieldProps>(function NumberFormatCustom(props, ref) {
   const {
     value,
     onChange,
@@ -103,7 +98,7 @@ const NumberFormatCustom: React.FC<NumberFormatProps> = React.forwardRef(functio
   )
 })
 
-NumberFormatCustom.propTypes = {
+NumberTextField.propTypes = {
   value: PropTypes.any,
   onChange: PropTypes.func.isRequired,
   decimalScale: PropTypes.number.isRequired,
@@ -187,16 +182,16 @@ const TextField: React.FC<TextFieldProps> = ({
   const debouncedOnChange = useCallback(disabled ? onChange : debounce(onChange, debounceBy), [debounceBy, onChange]) //eslint-disable-line react-hooks/exhaustive-deps
 
   const handleSubtract = useCallback(() => {
-    const nextValue = !value ? -step : (value as number) - step
-    nextValue >= minValue && onChange(nextValue)
+    const nextValue = !value ? -step : Number(value) - Number(step)
+    if (nextValue >= minValue) onChange(nextValue)
   }, [minValue, onChange, step, value])
 
   const handleAdd = useCallback(() => {
-    const nextValue = !value ? step : (value as number) + step
-    nextValue <= maxValue && onChange(nextValue)
+    const nextValue = !value ? Number(step) : Number(value) + Number(step)
+    if (nextValue <= maxValue) onChange(nextValue)
   }, [maxValue, onChange, step, value])
 
-  const muiInputProps: InputPropsVariant = {
+  const muiInputProps = {
     startAdornment: isStepper ? <SubtractButton onSubtract={handleSubtract} /> : startAdornment,
     endAdornment: isStepper ? (
       <AddButton onAdd={handleAdd} />
@@ -211,10 +206,13 @@ const TextField: React.FC<TextFieldProps> = ({
   }
 
   // props applied to the Input element
-  const customMuiInputProps: InputCustomProps = isNumeric
+  const customMuiInputProps = isNumeric
     ? {
         ...muiInputProps,
-        inputComponent: NumberFormatCustom
+        inputComponent: NumberTextField,
+        inputProps: {
+          component: inputProps?.format ? PatternFormat : NumericFormat
+        }
       }
     : muiInputProps
 
@@ -237,8 +235,10 @@ const TextField: React.FC<TextFieldProps> = ({
   }
 
   const handleChange = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-      const value = isNumeric ? event : event.target?.value
+    (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | (string | number)) => {
+      const value = isNumeric
+        ? (event as string | number)
+        : (event as React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>)?.target?.value
       setLiveValue(value)
       debouncedOnChange(value)
     },
@@ -301,8 +301,7 @@ TextField.propTypes = {
   /**
    * @default '() => {}'
    * Callback fired when the value is changed.
-   * @param {object} event The event source of the callback.
-   * You can pull out the new value by accessing `event.target.value` (string).
+   * @param {unknown} value The target value from the event source of the callback.
    */
   onChange: PropTypes.func,
   /**
