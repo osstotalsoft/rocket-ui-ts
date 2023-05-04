@@ -4,6 +4,7 @@ import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin'
 export default {
   stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: ['@storybook/addon-essentials', '@storybook/addon-links', '@storybook/addon-interactions'],
+  staticDirs: ['../public'],
   framework: {
     name: '@storybook/react-webpack5',
     options: {}
