@@ -35,7 +35,7 @@ type Story = StoryObj<typeof meta>
  * The TextField wrapper component is a complete form control including a label, input, and help text.
  */
 export const Default: Story = {
-  args: { label: 'Standard (default)', onChange: undefined }
+  args: { label: 'Standard (default)', value: '', onChange: undefined }
 }
 
 /**
@@ -126,7 +126,7 @@ export const Stepper: Story = {
 }
 
 /**
- * isClearable option add a clear button used to clear the input value.
+ * `isClearable` option add a clear button used to clear the input value.
  */
 
 export const Clearable: Story = {
@@ -149,6 +149,10 @@ export const Clearable: Story = {
   },
   render: () => <ClearablePreview />
 }
+
+/**
+ * `isNumeric` allow users to use an input formatter. At its core, it uses [React number format](https://s-yadav.github.io/react-number-format/docs/intro)
+ */
 
 export const Numeric: Story = {
   parameters: {

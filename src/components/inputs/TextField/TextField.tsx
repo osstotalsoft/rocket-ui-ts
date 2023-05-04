@@ -1,6 +1,6 @@
 import React, { useCallback, useLayoutEffect, useState } from 'react'
 import PropTypes from 'prop-types'
-import { NumberFormatValues, NumericFormat, PatternFormat } from 'react-number-format'
+import NumberFormat, { NumberFormatValues } from 'react-number-format'
 import { TextField as MuiTextField, StepButton, classes } from './TextFieldStyles'
 import InputAdornment from '@mui/material/InputAdornment'
 import IconButton from '@mui/material/IconButton'
@@ -24,8 +24,6 @@ const NumberTextField = React.forwardRef<HTMLElement, NumberTextFieldProps>(func
     minValue,
     maxValue,
     format,
-    mask,
-    allowEmptyFormatting,
     ...other
   } = props
 
@@ -51,33 +49,16 @@ const NumberTextField = React.forwardRef<HTMLElement, NumberTextFieldProps>(func
 
   const valueIsNumericString = is(String, value) && is(Number, Number(value))
 
-  const handleValueFormatChange = useCallback(
-    ({ value }: NumberFormatValues) => {
-      onChange(value)
-    },
-    [onChange]
-  )
-
   const handleValueChange = useCallback(
-    ({ floatValue }: NumberFormatValues) => {
-      onChange(floatValue)
+    (values: NumberFormatValues) => {
+      // eslint-disable-next-line no-unused-expressions
+      format ? onChange(values.value) : onChange(values.floatValue)
     },
-    [onChange]
+    [onChange, format]
   )
 
-  return format ? (
-    <PatternFormat
-      format={format}
-      mask={mask}
-      getInputRef={ref}
-      value={value}
-      allowEmptyFormatting={allowEmptyFormatting}
-      onValueChange={handleValueFormatChange}
-      isAllowed={isAllowed}
-      valueIsNumericString={valueIsNumericString}
-    />
-  ) : (
-    <NumericFormat
+  return (
+    <NumberFormat
       style={{ textAlign: isStepper ? 'center' : 'right' }}
       value={value}
       getInputRef={ref}
@@ -88,7 +69,8 @@ const NumberTextField = React.forwardRef<HTMLElement, NumberTextFieldProps>(func
       thousandSeparator={thousandSep}
       decimalSeparator={decimalSep}
       prefix={currencySymbol}
-      valueIsNumericString={valueIsNumericString}
+      isNumericString={valueIsNumericString}
+      format={format}
       {...other}
     />
   )
@@ -181,7 +163,7 @@ const TextField: React.FC<TextFieldProps> = ({
   const debouncedOnChange = useCallback(disabled ? onChange : debounce(onChange, debounceBy), [debounceBy, onChange]) //eslint-disable-line react-hooks/exhaustive-deps
 
   const handleClearInput = useCallback(() => {
-    onChange(null)
+    onChange('')
   }, [onChange])
 
   const handleSubtract = useCallback(() => {
@@ -217,22 +199,21 @@ const TextField: React.FC<TextFieldProps> = ({
     currency,
     isStepper,
     minValue,
-    maxValue,
-    ...inputProps
+    maxValue
   }
 
   // props applied to the Input element
   const customMuiInputProps = isNumeric
     ? {
         ...muiInputProps,
-        inputComponent: NumberTextField,
-        inputProps: numericProps
+        inputComponent: NumberTextField
       }
     : muiInputProps
 
   // attributes applied to the input element
   const customReactInputProps = {
     ...(isNumeric && numericProps),
+    ...inputProps,
     className: `${classes.input} ${inputProps?.className ? inputProps.className : ''}`
   }
 
@@ -250,7 +231,7 @@ const TextField: React.FC<TextFieldProps> = ({
   return (
     <MuiTextField
       onChange={handleChange}
-      value={liveValue ?? ''}
+      value={liveValue}
       fullWidth={fullWidth}
       disabled={disabled}
       variant={variant}

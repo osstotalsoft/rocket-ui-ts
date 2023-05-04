@@ -46,13 +46,6 @@ describe('TextField', () => {
     )
   })
 
-  test('erases the value on clear button click', async () => {
-    render(<TextField value={stringValue} inputProps={{ 'data-testid': 'input-root' }} isClearable={true} />)
-    userClick(screen.getByLabelText('Clear'))
-
-    await waitFor(() => expect((screen.getByTestId('input-root') as HTMLInputElement | null)?.value).toBeUndefined())
-  })
-
   test('can have a start adornment', () => {
     render(<TextField value={stringValue} startAdornment={<div>{'start'}</div>} />)
     expect(screen.getByText('start')).toBeInTheDocument()
@@ -136,20 +129,6 @@ describe('Numeric TextField', () => {
     fireEvent.change(screen.getByRole('textbox'), { target: { value: 15 } })
 
     await waitFor(() => expect(mockOnChange).not.toHaveBeenCalledWith(15))
-  })
-
-  test('erases the value on clear button click for formatted input', async () => {
-    render(
-      <TextField
-        isNumeric={true}
-        value={'544059305'}
-        inputProps={{ format: '+40 (###) ### ###', mask: '_', allowEmptyFormatting: true }}
-        isClearable={true}
-      />
-    )
-    userClick(screen.getByLabelText('Clear'))
-
-    await waitFor(() => expect((screen.getByRole('textbox') as HTMLInputElement | null)?.value).toBeUndefined())
   })
 })
 

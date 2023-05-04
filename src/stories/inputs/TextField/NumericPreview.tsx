@@ -24,23 +24,23 @@ const NumericPreview = () => {
 
   return (
     <Grid container spacing={4} justifyItems={'flex-start'}>
-      <Grid item xs={12}>
+      <Grid item xs={3}>
         <TextField
           isNumeric
           label="Basic number field"
-          value={numberValue}
+          value={numberValue || ''}
           onChange={handleValue}
           debounceBy={500}
           fullWidth
           isClearable
         />
       </Grid>
-      {/* <Grid item xs={3}>
+      <Grid item xs={3}>
         <TextField
           isNumeric
           language="de-DE"
           label="Internationalized number field"
-          value={internationalValue || ''}
+          value={internationalValue}
           onChange={handleInternationalValue}
           fullWidth
         />
@@ -50,13 +50,13 @@ const NumericPreview = () => {
           isNumeric
           language="de-DE"
           label="Internationalized currency field"
-          value={internationalValue || ''}
+          value={internationalValue}
           onChange={handleInternationalValue}
           currency="EUR"
           fullWidth
         />
-      </Grid> */}
-      <Grid item xs={10}>
+      </Grid>
+      <Grid item xs={3}>
         <TextField
           label="Custom phone number format"
           value={phoneNumberValue}

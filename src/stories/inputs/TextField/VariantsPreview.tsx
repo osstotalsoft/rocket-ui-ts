@@ -6,13 +6,33 @@ const VariantsPreview = () => {
   return (
     <Grid container spacing={4} justifyItems={'flex-start'}>
       <Grid item xs={4}>
-        <TextField label="Standard (default)" fullWidth />
+        <TextField
+          label="Standard (default)"
+          fullWidth
+          InputProps={{
+            readOnly: true
+          }}
+        />
       </Grid>
       <Grid item xs={4}>
-        <TextField label="Outlined" variant="outlined" fullWidth />
+        <TextField
+          label="Outlined"
+          variant="outlined"
+          fullWidth
+          InputProps={{
+            readOnly: true
+          }}
+        />
       </Grid>
       <Grid item xs={4}>
-        <TextField label="Filled" variant="filled" fullWidth />
+        <TextField
+          label="Filled"
+          variant="filled"
+          fullWidth
+          InputProps={{
+            readOnly: true
+          }}
+        />
       </Grid>
     </Grid>
   )
