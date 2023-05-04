@@ -18,7 +18,7 @@ export interface SubtractButtonProps {
 }
 
 export type NumberTextFieldProps = InputBaseComponentProps &
-  Omit<NumericFormatProps & PatternFormatProps, 'onChange'> & {
+  Omit<NumericFormatProps | PatternFormatProps, 'onChange'> & {
     //InputPropsVariant & NumericFormatCustomProps & PatternFormatProps
     /**
      * Callback fired when the value is changed.
@@ -63,7 +63,7 @@ export type NumberTextFieldProps = InputBaseComponentProps &
     thousandSeparator?: string | boolean
   }
 
-export type TextFieldProps = Omit<MuiTextFieldProps, 'onChange' | 'variant' /* | 'InputProps' | 'inputComponent' */> &
+export type TextFieldProps = Omit<MuiTextFieldProps, 'onChange' | 'variant'> &
   NumberTextFieldProps & {
     /**
      * Callback fired when the value is changed.

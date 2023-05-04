@@ -8,13 +8,7 @@ import CloseIcon from '@mui/icons-material/Close'
 import { is, isNil } from 'ramda'
 import i18n from 'i18next'
 import { debounce } from 'lodash'
-import {
-  AddButtonProps,
-  ClearButtonProps,
-  NumberTextFieldProps,
-  SubtractButtonProps,
-  TextFieldProps
-} from './types'
+import { AddButtonProps, ClearButtonProps, NumberTextFieldProps, SubtractButtonProps, TextFieldProps } from './types'
 
 const NumberTextField = React.forwardRef<HTMLElement, NumberTextFieldProps>(function NumberFormatCustom(props, ref) {
   const {
@@ -76,9 +70,12 @@ const NumberTextField = React.forwardRef<HTMLElement, NumberTextFieldProps>(func
     <PatternFormat
       format={format}
       mask={mask}
+      getInputRef={ref}
       value={value}
       allowEmptyFormatting={allowEmptyFormatting}
       onValueChange={handleValueFormatChange}
+      isAllowed={isAllowed}
+      valueIsNumericString={valueIsNumericString}
     />
   ) : (
     <NumericFormat
@@ -101,7 +98,7 @@ const NumberTextField = React.forwardRef<HTMLElement, NumberTextFieldProps>(func
 NumberTextField.propTypes = {
   value: PropTypes.any,
   onChange: PropTypes.func.isRequired,
-  decimalScale: PropTypes.number.isRequired,
+  decimalScale: PropTypes.number,
   fixedDecimalScale: PropTypes.bool,
   thousandSeparator: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
   decimalSeparator: PropTypes.string,
@@ -143,6 +140,11 @@ const SubtractButton: React.FC<SubtractButtonProps> = ({ onSubtract }) => (
 SubtractButton.propTypes = {
   onSubtract: PropTypes.func
 }
+
+/**
+ * Text Fields let users enter and edit text.
+ * At its core, it uses [Material-UI TextField](https://mui.com/material-ui/react-text-field/#basic-textfield).
+ */
 
 const TextField: React.FC<TextFieldProps> = ({
   isNumeric: receivedIsNumeric,
@@ -205,17 +207,6 @@ const TextField: React.FC<TextFieldProps> = ({
     style: InputProps?.style
   }
 
-  // props applied to the Input element
-  const customMuiInputProps = isNumeric
-    ? {
-        ...muiInputProps,
-        inputComponent: NumberTextField,
-        inputProps: {
-          component: inputProps?.format ? PatternFormat : NumericFormat
-        }
-      }
-    : muiInputProps
-
   const numericProps = {
     decimalScale,
     fixedDecimalScale,
@@ -225,12 +216,25 @@ const TextField: React.FC<TextFieldProps> = ({
     currency,
     isStepper,
     minValue,
-    maxValue
+    maxValue,
+    ...inputProps
   }
+
+  // props applied to the Input element
+  const customMuiInputProps = isNumeric
+    ? {
+        ...muiInputProps,
+        inputComponent: NumberTextField,
+        inputProps: {
+          ...numericProps,
+          component: inputProps?.format ? PatternFormat : NumericFormat
+        }
+      }
+    : muiInputProps
+
   // attributes applied to the input element
   const customReactInputProps = {
     ...(isNumeric && numericProps),
-    ...inputProps,
     className: `${classes.input} ${inputProps?.className ? inputProps.className : ''}`
   }
 
