@@ -28,9 +28,9 @@ const NumericPreview = () => {
         <TextField
           isNumeric
           label="Basic number field"
-          value={numberValue || ''}
+          value={numberValue}
           onChange={handleValue}
-          debounceBy={2000}
+          debounceBy={500}
           fullWidth
           isClearable
         />
@@ -55,8 +55,8 @@ const NumericPreview = () => {
           currency="EUR"
           fullWidth
         />
-      </Grid>
-      <Grid item xs={3}>
+      </Grid> */}
+      <Grid item xs={10}>
         <TextField
           label="Custom phone number format"
           value={phoneNumberValue}
@@ -65,7 +65,7 @@ const NumericPreview = () => {
           inputProps={{ format: '+40 (###) ### ###', mask: '_', allowEmptyFormatting: true }}
           fullWidth
         />
-      </Grid> */}
+      </Grid>
     </Grid>
   )
 }

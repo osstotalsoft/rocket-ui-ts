@@ -18,7 +18,7 @@ const NumberTextField = React.forwardRef<HTMLElement, NumberTextFieldProps>(func
     fixedDecimalScale = true,
     thousandSeparator = true,
     decimalSeparator,
-    language: receivedLanguage,
+    language = i18n.language,
     currency,
     isStepper,
     minValue,
@@ -28,7 +28,6 @@ const NumberTextField = React.forwardRef<HTMLElement, NumberTextFieldProps>(func
     allowEmptyFormatting,
     ...other
   } = props
-  const language = receivedLanguage || i18n.language
 
   const isAllowed = useCallback(
     ({ formattedValue, floatValue, value }: NumberFormatValues) => {
@@ -145,7 +144,6 @@ SubtractButton.propTypes = {
  * Text Fields let users enter and edit text.
  * At its core, it uses [Material-UI TextField](https://mui.com/material-ui/react-text-field/#basic-textfield).
  */
-
 const TextField: React.FC<TextFieldProps> = ({
   isNumeric: receivedIsNumeric,
   inputProps,
@@ -173,7 +171,6 @@ const TextField: React.FC<TextFieldProps> = ({
   ...rest
 }) => {
   const isNumeric = receivedIsNumeric || isStepper
-  const handleClearInput = useCallback(() => onChange(''), [onChange])
 
   const [liveValue, setLiveValue] = useState(value)
   useLayoutEffect(() => {
@@ -182,6 +179,10 @@ const TextField: React.FC<TextFieldProps> = ({
 
   // we need to disable this warning since the useCallback hook is not sure about the dependencies of debounce
   const debouncedOnChange = useCallback(disabled ? onChange : debounce(onChange, debounceBy), [debounceBy, onChange]) //eslint-disable-line react-hooks/exhaustive-deps
+
+  const handleClearInput = useCallback(() => {
+    onChange(null)
+  }, [onChange])
 
   const handleSubtract = useCallback(() => {
     const nextValue = !value ? -step : Number(value) - Number(step)
@@ -225,10 +226,7 @@ const TextField: React.FC<TextFieldProps> = ({
     ? {
         ...muiInputProps,
         inputComponent: NumberTextField,
-        inputProps: {
-          ...numericProps,
-          component: inputProps?.format ? PatternFormat : NumericFormat
-        }
+        inputProps: numericProps
       }
     : muiInputProps
 
@@ -252,7 +250,7 @@ const TextField: React.FC<TextFieldProps> = ({
   return (
     <MuiTextField
       onChange={handleChange}
-      value={liveValue}
+      value={liveValue ?? ''}
       fullWidth={fullWidth}
       disabled={disabled}
       variant={variant}
