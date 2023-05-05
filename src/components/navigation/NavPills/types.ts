@@ -6,7 +6,7 @@ import { BoxProps } from '@mui/system'
 import { ReactNode } from 'react'
 
 export type Orientation = 'horizontal' | 'vertical'
-export type Variant = 'scrollable' | 'fullWidth' | 'standard'
+export type TabsVariant = 'scrollable' | 'fullWidth' | 'standard'
 
 export interface TabsWrapperProps extends Omit<MuiTabsProps, 'textColor' | 'color' | 'indicatorColor'> {
   children?: ReactNode

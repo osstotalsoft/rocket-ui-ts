@@ -3,9 +3,10 @@ import { render, screen } from 'testingUtils'
 import DeliveryDiningIcon from '@mui/icons-material/DeliveryDining'
 import Card from './Card'
 import Button from 'components/buttons/Button'
-import { text } from 'testingUtils/mocks'
 import getTheme from 'components/themes'
 import { CardColor } from './types'
+
+const text = 'Cards are surfaces that display content and actions on a single topic.'
 
 const theme = getTheme()
 

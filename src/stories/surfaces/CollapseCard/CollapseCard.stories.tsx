@@ -151,7 +151,7 @@ export const Filled: Story = {
  * - `onToggle`: Callback fired on toggle.
  *    - `@param { React.SyntheticEvent} event` : The event source of the callback
  *    - `@param { boolean } expanded` : The expanded state boolean
- * - `expanded`: Indicated if the Card is collapsed or extended
+ * - `expanded`: Indicated if the Card is collapsed or expanded
  */
 export const Controlled: Story = {
   parameters: {

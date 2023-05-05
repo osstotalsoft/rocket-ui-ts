@@ -1,7 +1,8 @@
 import React from 'react'
 import { render, screen, userClick, waitFor } from 'testingUtils'
 import { Button, CollapseCard } from 'components'
-import { text } from 'testingUtils/mocks'
+
+const text = 'Cards are surfaces that display content and actions on a single topic.'
 
 describe('CollapseCard', () => {
   test('is collapsed by default', () => {
