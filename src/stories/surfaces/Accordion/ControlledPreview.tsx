@@ -2,30 +2,32 @@ import React, { useCallback, useState } from 'react'
 import { Grid } from '@mui/material'
 import SyntaxHighlighter from 'react-syntax-highlighter'
 import { github } from 'react-syntax-highlighter/dist/esm/styles/hljs'
-import { Button, CollapseCard, IconButton } from 'components'
-import QuestionMark from '@mui/icons-material/QuestionMark'
+import { Accordion } from 'components'
+import { mockedAccordionContent } from './mocks'
+
+const { title, content } = mockedAccordionContent
 
 const controlled = `
-  function ControlledCollapseCard({tabs}) {
+  function ControlledAccordion({tabs}) {
     const [expanded, setExpanded] = useState(false)
 
     const handleToggle = useCallback(() => setExpanded(current => !current), [])
 
     return(
-      <CollapseCard
-      expanded={expanded}
-      onToggle={handleToggle}
-      title="Title"
-      content={--Text content here--} 
-    />
+      <Accordion 
+        title="Title"
+        content={--Text content here--}  
+        expanded={expanded} 
+        onChange={handleToggle} 
+      />
     )
   }
 `
 
 const uncontrolled = `
-  function UncontrolledCollapseCard({tabs}) {
+  function UncontrolledAccordion({tabs}) {
     return(
-      <CollapseCard
+      <Accordion
         title="Title"
         content={--Text content here--} 
       />
@@ -40,22 +42,7 @@ const ControlledPreview = () => {
   return (
     <Grid container spacing={4}>
       <Grid item xs={4}>
-        <CollapseCard
-          expanded={expanded}
-          onToggle={handleToggle}
-          title="Title"
-          content='--Text content here--'
-          footer={
-            <Button variant="contained" size="small" color="info">
-              SUBMIT
-            </Button>
-          }
-          actions={
-            <IconButton color="info" variant="text" size="small">
-              <QuestionMark fontSize="small" />
-            </IconButton>
-          }
-        />
+        <Accordion title={title} content={content} expanded={expanded} onChange={handleToggle} />
       </Grid>
       <Grid item xs={4}>
         <SyntaxHighlighter language="javascript" wrapLongLines style={github}>

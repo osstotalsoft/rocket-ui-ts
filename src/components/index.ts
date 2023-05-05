@@ -36,5 +36,8 @@ export * from './surfaces/CollapseCard'
 export { default as StatsCard } from './surfaces/StatsCard'
 export * from './surfaces/StatsCard'
 
+export { default as Accordion } from './surfaces/Accordion'
+export * from './surfaces/Accordion'
+
 export { default as getTheme } from './themes/index'
 export * from './themes/index'
