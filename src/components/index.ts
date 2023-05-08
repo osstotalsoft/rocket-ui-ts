@@ -21,6 +21,9 @@ export * from './dataDisplay/ExpandingText'
 export { default as TextField } from './inputs/TextField'
 export * from './inputs/TextField'
 
+export { default as PasswordField } from './inputs/PasswordField'
+export * from './inputs/PasswordField'
+
 export { default as NavPills } from './navigation/NavPills'
 export * from './navigation/NavPills'
 
