@@ -3,9 +3,8 @@ import PropTypes from 'prop-types'
 import { InputAdornment } from '@mui/material'
 import VisibilityIcon from '@mui/icons-material/Visibility'
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
-import TextField from '../TextField'
+import TextField, { TextFieldProps } from '../TextField'
 import IconButton from 'components/buttons/IconButton'
-import { PasswordFieldProps } from './types'
 
 const getIcon = (showPassword: boolean) => (showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />)
 
@@ -13,7 +12,7 @@ const getIcon = (showPassword: boolean) => (showPassword ? <VisibilityIcon /> : 
  * Password Fields let users enter passwords that can be hidden/displayed.
  * At its core, it uses [TextField](https://github.com/osstotalsoft/rocket-ui-ts/tree/master/src/components/inputs/TextField).
  */
-const PasswordField: React.FC<PasswordFieldProps> = ({ disabled, error, ...rest }) => {
+const PasswordField: React.FC<TextFieldProps> = ({ disabled, error, ...rest }) => {
   const [showPassword, setShowPassword] = useState(false)
 
   const handleClickShowPassword = useCallback(() => {
