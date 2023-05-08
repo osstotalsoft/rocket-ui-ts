@@ -20,3 +20,20 @@ describe('Accordion', () => {
     expect(screen.getByTestId('ExpandMoreIcon')).toBeInTheDocument()
   })
 })
+
+const mockedArrayContent = [{ title: 'Title', content: 'Details of the content' }] as {
+  title?: string
+  content?: string
+}[]
+
+describe('Accordion List', () => {
+  it('renders title content', () => {
+    render(<Accordion content={mockedArrayContent} canExpandAll />)
+    expect(screen.getByText(mockedArrayContent[0].title)).toBeInTheDocument()
+  })
+
+  it('renders details content', () => {
+    render(<Accordion content={mockedArrayContent} defaultExpanded={0} />)
+    expect(screen.getByText(mockedArrayContent[0].content)).toBeInTheDocument()
+  })
+})

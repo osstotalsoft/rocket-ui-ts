@@ -4,7 +4,12 @@
 import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import { Accordion as AccordionComponent } from 'components'
-import { mockedAccordionContent, mockedAccordionContentSquare } from './mocks'
+import {
+  mockedAccordionContent,
+  mockedAccordionContentListSquare,
+  mockedAccordionContentList,
+  mockedAccordionContentListExpandAll
+} from './mocks'
 import ControlledPreview from './ControlledPreview'
 
 const meta: Meta<typeof AccordionComponent> = {
@@ -24,11 +29,37 @@ export const Default: Story = {
 }
 
 /**
- * Using `filled` property, the Accordion header will be filled with a grayish color
+ * To draw multiple Accordion components, just pass an array of elements to the `component` property.
+ *
+ * The array elements must have the following structure:
+ * ```
+ * {
+ *  title?: string
+ *  content?: React.ReactNode
+ * }[]
+ * ```
+ */
+export const AccordionList: Story = {
+  args: { content: mockedAccordionContentList }
+}
+
+/**
+ * When drawing multiple Accordion components, by default it can only be expanded one accordion at a time.
+ *
+ * If one if already opened and the user clicks to open another accordion, it first automatically closes the one that is open before opening the desired one.
+ *
+ * If `canExpandAll: true` property is set, then all the Accordion components can pe opened at the same time.
+ */
+export const CanExpandAll: Story = {
+  args: { canExpandAll: true, content: mockedAccordionContentListExpandAll }
+}
+
+/**
+ * Passing  `summaryProps: { variant: 'filled' }`, the Accordion header will be filled with a grayish color
  * and with square margins.
  */
 export const Filled: Story = {
-  args: { ...mockedAccordionContentSquare, summaryProps: { variant: 'filled' } }
+  args: { content: mockedAccordionContentListSquare, summaryProps: { variant: 'filled' } }
 }
 
 /**
