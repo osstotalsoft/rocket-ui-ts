@@ -90,7 +90,7 @@ Accordion.propTypes = {
    * @defaultExpanded property must be a number indicating the index of the item to be set expanded by default.
    * @default undefined
    */
-  defaultExpanded: PropTypes.number,
+  defaultExpanded: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
   /**
    * Only applies if the content of the Accordion contains a list of elements.
    * @default false
