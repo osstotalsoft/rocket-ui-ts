@@ -127,7 +127,8 @@
   },
   "packageManager": "yarn@3.5.0",
   "engines": {
-    "node": ">=18.x"
+    "node": ">=18.x",
+    "yarn": ">=3.x"
   },
   "publishConfig": {
     "access": "public"

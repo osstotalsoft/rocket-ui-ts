@@ -24,7 +24,7 @@ jobs:
           registry-url: https://registry.npmjs.org/
           scope: '@totalsoft'
       - name: Install Dependencies
-        run: yarn install --immutable
+        run: yarn install
       - name: Build
         run: yarn build
       - name: Run tests
@@ -33,4 +33,4 @@ jobs:
         run: yarn run version
       - run: yarn npm publish
         env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
