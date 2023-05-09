@@ -12,7 +12,6 @@ concurrency:
 
 jobs:
   build-n-publish:
-    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
