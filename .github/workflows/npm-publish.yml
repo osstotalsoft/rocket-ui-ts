@@ -11,27 +11,7 @@ concurrency:
   group: build-test-publish
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repo
-        uses: actions/checkout@master
-        with:
-          fetch-depth: 0
-      - name: Set Node.js 18.x
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18.x
-          registry-url: 'https://registry.npmjs.org'
-      - name: Install Dependencies
-        run: yarn install --immutable
-      - name: Build
-        run: yarn build
-      - name: Run tests
-        run: yarn test
-
-  bump-version:
-    needs: build
+  build-n-publish:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
@@ -45,9 +25,12 @@ jobs:
           scope: '@totalsoft'
       - name: Install Dependencies
         run: yarn install --immutable
+      - name: Build
+        run: yarn build
+      - name: Run tests
+        run: yarn test
       - name: Bump version
         run: yarn run version
       - run: yarn npm publish
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN }}
