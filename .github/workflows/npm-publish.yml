@@ -6,7 +6,7 @@ name: npm-publish
 on:
   release:
     types: [published]
-    
+
 concurrency:
   group: build-test-publish
 
@@ -43,6 +43,8 @@ jobs:
           node-version: 18.x
           registry-url: https://registry.npmjs.org/
           scope: '@totalsoft'
+      - name: Install Dependencies
+        run: yarn install --immutable
       - name: Bump version
         run: yarn run version
       - run: yarn npm publish
