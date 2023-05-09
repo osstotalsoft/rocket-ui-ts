@@ -24,7 +24,6 @@ jobs:
           registry-url: https://registry.npmjs.org/
           scope: '@totalsoft'
       - run: yarn -v
-      - run: yarn set version berry 
       - name: Install Dependencies
         run: yarn install
       - name: Build
