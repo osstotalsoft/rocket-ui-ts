@@ -11,7 +11,21 @@ concurrency:
   group: build-test-publish
 
 jobs:
-  build-n-publish:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+      - name: Install Dependencies
+        run: yarn install
+      - name: Build
+        run: yarn build
+      - name: Run tests
+        run: yarn test
+  publish:
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
@@ -24,14 +38,12 @@ jobs:
           registry-url: https://registry.npmjs.org/
           scope: '@totalsoft'
       - run: yarn -v
-      - name: Install Dependencies
-        run: yarn install
-      - name: Build
-        run: yarn build
-      - name: Run tests
-        run: yarn test
       - name: Bump version
         run: yarn run version
-      - run: yarn publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - uses: borales/actions-yarn@v2.0.0
+        with:
+          auth-token: ${{ secrets.NPM_TOKEN }}
+          cmd: publish
+      # - run: yarn publish
+      #   env:
+      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
