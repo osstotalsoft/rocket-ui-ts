@@ -13,7 +13,6 @@
     "name": "Totalsoft",
     "url": "https://github.com/osstotalsoft"
   },
-  "type": "module",
   "main": "dist/components/index.js",
   "types": "dist/components/index.d.ts",
   "files": [
