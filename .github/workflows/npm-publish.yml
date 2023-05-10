@@ -23,6 +23,7 @@ jobs:
           node-version: 16.x
           registry-url: https://registry.npmjs.org/
           scope: '@totalsoft'
+          always-auth: true
       - run: yarn -v
       - name: Install Dependencies
         run: yarn install
