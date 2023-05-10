@@ -37,7 +37,8 @@ jobs:
       - shell: Set npm authToken from env
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: yarn config
+        run: |
+          yarn config
           yarn config set npmScopes.company.npmRegistryServer "https://registry.npmjs.org/"
           yarn config set npmScopes.company.npmAlwaysAuth true
           yarn config set npmScopes.company.npmAuthToken $NODE_AUTH_TOKEN
