@@ -30,7 +30,7 @@
     "storybook": "storybook dev -p 6006",
     "test": "jest --collectCoverage --passWithNoTests--silent=false --runInBand && run build-test",
     "version": "yarn version -i $(git describe --abbrev=0 --tags)",
-    "publish": "npm publish ./dist"
+    "publish": "yarn npm publish"
   },
   "browserslist": {
     "production": [
