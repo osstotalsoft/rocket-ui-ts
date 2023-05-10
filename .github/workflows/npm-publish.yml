@@ -32,10 +32,6 @@ jobs:
         run: yarn test
       - name: Bump version
         run: yarn run version
-      - uses: borales/actions-yarn@v2.0.0
-        with:
-          auth-token: ${{ secrets.NPM_TOKEN }}
-          cmd: publish
-      # - run: yarn publish
-      #   env:
-      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - run: yarn publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

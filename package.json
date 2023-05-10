@@ -29,7 +29,8 @@
     "linter": "eslint . --fix --ext .ts,.tsx",
     "storybook": "storybook dev -p 6006",
     "test": "jest --collectCoverage --passWithNoTests--silent=false --runInBand && run build-test",
-    "version": "yarn version -i $(git describe --abbrev=0 --tags)"
+    "version": "yarn version -i $(git describe --abbrev=0 --tags)",
+    "publish": "npm publish ./dist"
   },
   "browserslist": {
     "production": [
