@@ -14,8 +14,8 @@
     "url": "https://github.com/osstotalsoft"
   },
   "type": "module",
-  "main": "dist/src/index.js",
-  "types": "dist/src/index.d.ts",
+  "main": "dist/components/index.js",
+  "types": "dist/components/index.d.ts",
   "files": [
     "dist/*/**"
   ],
