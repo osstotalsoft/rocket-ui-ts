@@ -1,7 +1,7 @@
 {
   "name": "@totalsoft/rocket-ui",
-  "description": " A set of reusable and composable React components built on top of Material UI core for developing fast and friendly web applications interfaces.",
   "version": "0.0.0",
+  "description": " A set of reusable and composable React components built on top of Material UI core for developing fast and friendly web applications interfaces.",
   "keywords": [
     "Material-UI",
     "Reusable components",
@@ -20,17 +20,17 @@
     "dist/*/**"
   ],
   "scripts": {
-    "build": "run clean && tsc --p tsconfig.build.json",
+    "build": "run clean && tsc --p tsconfig.build.json && fix-tsc-es-imports -y -V",
     "build-storybook": "storybook build -o storybuild",
     "build-test": "tsc --p tsconfig.build.json --noEmit ",
     "clean": "rimraf dist",
     "postinstall": "yarn dlx sort-package-json",
     "lint": "eslint src/*.{ts,tsx} && run build-test",
     "linter": "eslint . --fix --ext .ts,.tsx",
+    "publish": "yarn npm publish",
     "storybook": "storybook dev -p 6006",
     "test": "jest --collectCoverage --passWithNoTests--silent=false --runInBand && run build-test",
-    "version": "yarn version -i $(git describe --abbrev=0 --tags)",
-    "publish": "yarn npm publish"
+    "version": "yarn version -i $(git describe --abbrev=0 --tags)"
   },
   "browserslist": {
     "production": [
@@ -111,6 +111,7 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-storybook": "^0.6.11",
+    "fix-tsc-es-imports": "^0.1.6",
     "jest": "^29.5.0",
     "jest-environment-jsdom": "^29.5.0",
     "prettier": "^2.8.7",
