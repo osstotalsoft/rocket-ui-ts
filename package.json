@@ -1,7 +1,7 @@
 {
   "name": "@totalsoft/rocket-ui",
-  "description": " A set of reusable and composable React components built on top of Material UI core for developing fast and friendly web applications interfaces.",
   "version": "0.0.0",
+  "description": " A set of reusable and composable React components built on top of Material UI core for developing fast and friendly web applications interfaces.",
   "keywords": [
     "Material-UI",
     "Reusable components",
@@ -27,10 +27,10 @@
     "postinstall": "yarn dlx sort-package-json",
     "lint": "eslint src/*.{ts,tsx} && run build-test",
     "linter": "eslint . --fix --ext .ts,.tsx",
+    "publish": "yarn npm publish",
     "storybook": "storybook dev -p 6006",
     "test": "jest --collectCoverage --passWithNoTests--silent=false --runInBand && run build-test",
-    "version": "yarn version -i $(git describe --abbrev=0 --tags)",
-    "publish": "yarn npm publish"
+    "version": "yarn version -i $(git describe --abbrev=0 --tags)"
   },
   "browserslist": {
     "production": [
