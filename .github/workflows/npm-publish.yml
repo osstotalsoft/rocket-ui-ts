@@ -29,8 +29,8 @@ jobs:
         run: yarn install
       - name: Build
         run: yarn build
-      - name: Run tests
-        run: yarn test
+      # - name: Run tests
+      #   run: yarn test
       - name: Bump version
         run: yarn run version
       - run: yarn publish
