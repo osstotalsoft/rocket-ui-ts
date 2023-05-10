@@ -61,7 +61,7 @@ export interface CardHeaderProps extends Omit<MuiCardHeaderProps, 'action'> {
    * @default 'secondary'
    * Icon color.
    */
-  iconColor?: Color
+  iconColor?: CardColor
 }
 
 export interface CardProps extends Omit<MuiCardProps, 'title'> {
