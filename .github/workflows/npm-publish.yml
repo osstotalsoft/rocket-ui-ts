@@ -35,15 +35,15 @@ jobs:
       - name: Bump version
         run: yarn run version
       # - name: Authenticate yarn berry to npm
-      # run: yarn config set npmPublishRegistry 'https://registry.npmjs.org/'
-      # - shell: Set npm authToken from env
-      #   env:
-      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      #   run: |
-      #     yarn config
-      #     yarn config set npmScopes.company.npmRegistryServer "https://registry.npmjs.org/"
-      #     yarn config set npmScopes.company.npmAlwaysAuth true
-      #     yarn config set npmScopes.company.npmAuthToken $NODE_AUTH_TOKEN
+      #   run: yarn config set npmScopes.company.npmAuthToken $NODE_AUTH_TOKEN
+      - name: Set npm authToken from env
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          yarn config \
+          yarn config set npmScopes.company.npmRegistryServer "https://registry.npmjs.org/" \
+          yarn config set npmScopes.company.npmAlwaysAuth true \
+          yarn config set npmScopes.company.npmAuthToken $NODE_AUTH_TOKEN 
       - run: yarn publish
         # env:
         #   NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
