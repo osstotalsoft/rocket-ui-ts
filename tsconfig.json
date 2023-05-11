@@ -25,7 +25,7 @@
     "baseUrl": "src",
     "strictNullChecks": false,
     "paths": {
-      "components": ["src/components/*"]
+      "components": ["components/*"]
     }
   },
   "include": ["src"],
