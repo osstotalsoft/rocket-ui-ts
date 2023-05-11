@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Accordion as MuiAccordion, AccordionDetails } from '@mui/material/'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import { AccordionSummary } from './AccordionStyles'
-import Typography from 'components/dataDisplay/Typography'
+import Typography from '../../dataDisplay/Typography'
 import { AccordionProps, AccordionVariant } from './types'
 import { isArray, isBoolean } from 'lodash'
 

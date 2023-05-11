@@ -1,7 +1,7 @@
 // Copyright (c) TotalSoft.
 // This source code is licensed under the MIT license.
 import { TabProps as MuiTabProps, TabsProps as MuiTabsProps } from '@mui/material'
-import { Color, Gradient } from 'components/types'
+import { Color, Gradient } from '../../types'
 import { BoxProps } from '@mui/system'
 import { ReactNode } from 'react'
 

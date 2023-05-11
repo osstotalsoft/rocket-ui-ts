@@ -3,7 +3,7 @@ import BaseCard from '@mui/material/Card'
 import { styled } from '@mui/material/styles'
 import { includes } from 'ramda'
 import { CardColor } from './types'
-import defaultTheme from 'components/themes/defaultTheme'
+import defaultTheme from '../../themes/defaultTheme'
 
 export const iconStyle = {
   color: '#FFFFFF',

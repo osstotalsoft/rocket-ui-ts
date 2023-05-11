@@ -7,7 +7,7 @@ import {
 } from '@mui/material'
 import { ElementType } from 'react'
 import { SvgIconComponent } from '@mui/icons-material'
-import { Color } from 'components'
+import { Color } from '../../types'
 
 export type CardVariant = 'elevation' | 'outlined'
 

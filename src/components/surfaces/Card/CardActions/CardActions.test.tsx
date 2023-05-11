@@ -1,8 +1,8 @@
-import getTheme from 'components/themes'
+import getTheme from '../../../themes'
 import React from 'react'
 import { render, screen } from 'testingUtils'
 import CardActions from './CardActions'
-import Button from 'components/buttons/Button'
+import Button from '../../../buttons/Button'
 
 const theme = getTheme()
 

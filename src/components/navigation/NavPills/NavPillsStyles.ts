@@ -1,6 +1,6 @@
 import { styled } from '@mui/material/styles'
 import { includes } from 'ramda'
-import type { Color, Gradient, TabsWrapperProps } from 'components'
+import type { Color, Gradient, TabsWrapperProps } from '../../index'
 import type { Palette, Theme } from '@mui/material'
 import { Tabs as MuiTabs, Tab as MuiTab } from '@mui/material'
 

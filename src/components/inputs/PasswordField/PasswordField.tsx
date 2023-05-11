@@ -4,7 +4,7 @@ import { InputAdornment } from '@mui/material'
 import VisibilityIcon from '@mui/icons-material/Visibility'
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
 import TextField, { TextFieldProps } from '../TextField'
-import IconButton from 'components/buttons/IconButton'
+import IconButton from '../../buttons/IconButton'
 
 const getIcon = (showPassword: boolean) => (showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />)
 
