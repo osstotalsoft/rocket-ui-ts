@@ -23,10 +23,7 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "baseUrl": "src",
-    "strictNullChecks": false,
-    "paths": {
-      "components": ["components/*"]
-    }
+    "strictNullChecks": false
   },
   "include": ["src"],
   "exclude": ["dist", "node_modules"]
