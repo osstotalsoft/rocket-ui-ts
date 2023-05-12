@@ -27,7 +27,10 @@ export const StyledCardHeader = styled(CardHeader)(({ theme, color }) => ({
   zIndex: 3,
   transition: 'all 300ms cubic-bezier(0.34, 1.61, 0.7, 1)',
   transform: 'translate3d(0, -10px, 0)',
-  background: theme.palette.gradients[color as Gradient]
+  background: theme.palette.gradients[color as Gradient],
+  ['& .MuiCardHeader-content']: {
+    maxWidth: '100%'
+  }
 }))
 
 export const CardContent = styled(MuiCardContent)(() => ({
