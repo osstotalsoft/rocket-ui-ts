@@ -3,7 +3,7 @@ import { Grid } from '@mui/material'
 import SyntaxHighlighter from 'react-syntax-highlighter'
 import { github } from 'react-syntax-highlighter/dist/esm/styles/hljs'
 import { Accordion } from 'components'
-import { mockedAccordionContent } from './mocks'
+import { mockedAccordionContent } from './_mocks'
 
 const { title, content } = mockedAccordionContent
 
