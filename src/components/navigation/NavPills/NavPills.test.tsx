@@ -2,7 +2,7 @@ import React from 'react'
 import { render } from '../../../testingUtils'
 import { fireEvent, screen } from '@testing-library/react'
 import NavPills from './NavPills'
-import { IconButton, getTheme, Color, Gradient } from 'components'
+import { IconButton, getTheme, Color, Gradient } from '../../index'
 import { Palette } from '@mui/material'
 
 const tabs = [

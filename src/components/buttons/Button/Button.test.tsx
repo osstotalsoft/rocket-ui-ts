@@ -2,7 +2,7 @@ import React from 'react'
 import { render, screen, userClick, waitFor, fireEvent } from '../../../testingUtils'
 import Button from './Button'
 import getTheme from '../../themes'
-import { Color } from 'components'
+import { Color } from '../../types'
 
 const theme = getTheme()
 

@@ -11,7 +11,7 @@ on:
 permissions:
   contents: write
 jobs:
-  build-and-deploy:
+  storybook-build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️

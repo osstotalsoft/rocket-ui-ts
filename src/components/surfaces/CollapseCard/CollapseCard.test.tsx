@@ -1,6 +1,6 @@
 import React from 'react'
 import { render, screen, userClick, waitFor } from 'testingUtils'
-import { Button, CollapseCard } from 'components'
+import { Button, CollapseCard } from '../../index'
 
 const text = 'Cards are surfaces that display content and actions on a single topic.'
 

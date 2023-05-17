@@ -1,8 +1,8 @@
 import React from 'react'
 import { render, screen } from 'testingUtils'
 import CardHeader from './CardHeader'
-import getTheme from 'components/themes'
-import Button from 'components/buttons/Button'
+import getTheme from '../../../themes'
+import Button from '../../../buttons/Button'
 
 const theme = getTheme()
 

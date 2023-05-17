@@ -1,4 +1,4 @@
-import { Button, StatsCard, getTheme } from 'components'
+import { Button, StatsCard, getTheme } from '../../index'
 import React from 'react'
 import { render, screen } from 'testingUtils'
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney'

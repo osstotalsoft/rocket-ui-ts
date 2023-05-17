@@ -1,6 +1,6 @@
 import MuiCardContent from '@mui/material/CardContent'
 import { styled } from '@mui/material/styles'
-import { Card, CardActions, CardHeader, Typography } from 'components'
+import { Card, CardActions, CardHeader, Typography } from '../../index'
 
 export const StyledCard = styled(Card)(({ theme }) => ({
   display: 'inline-block',

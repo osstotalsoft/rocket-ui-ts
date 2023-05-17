@@ -3,7 +3,7 @@ import Collapse from '@mui/material/Collapse'
 import PropTypes from 'prop-types'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import ExpandLessIcon from '@mui/icons-material/ExpandLess'
-import { Card, IconButton } from 'components'
+import { Card, IconButton } from '../../index'
 import { CollapseCardProps } from './types'
 import { CardContent } from '@mui/material'
 

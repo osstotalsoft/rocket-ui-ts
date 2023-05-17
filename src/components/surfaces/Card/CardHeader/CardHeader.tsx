@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import MuiCardHeader from './CardHeaderStyles'
 import Box from '@mui/material/Box'
 import { isValidElement } from 'react'
-import Typography from 'components/dataDisplay/Typography'
+import Typography from '../../../dataDisplay/Typography'
 import { CardHeaderProps } from '../types'
 
 const CardHeader: React.FC<CardHeaderProps> = ({ actions, title, ...rest }) => {

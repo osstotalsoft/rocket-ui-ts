@@ -4,7 +4,7 @@ import TablePagination from '@mui/material/TablePagination'
 import { PaginationContainer, RefreshButtonContainer } from './PaginationStyles'
 import RefreshIcon from '@mui/icons-material/Refresh'
 import { PaginationProps, DisplayedRows } from './types'
-import IconButton from 'components/buttons/IconButton'
+import IconButton from '../../buttons/IconButton'
 
 const displayedRows =
   (rowsOfText: string) =>

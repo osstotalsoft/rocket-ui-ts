@@ -1,7 +1,7 @@
 // Copyright (c) TotalSoft.
 // This source code is licensed under the MIT license.
 import { ButtonProps as MuiButtonProps } from '@mui/material'
-import { Color, Size } from 'components'
+import { Color, Size } from '../../types'
 
 export type ButtonVariant = 'outlined' | 'text' | 'contained'
 

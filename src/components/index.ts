@@ -21,6 +21,9 @@ export * from './dataDisplay/Typography'
 export { default as ExpandingText } from './dataDisplay/ExpandingText'
 export * from './dataDisplay/ExpandingText'
 
+export { default as Autocomplete } from './inputs/Autocomplete'
+export * from './inputs/Autocomplete'
+
 export { default as TextField } from './inputs/TextField'
 export * from './inputs/TextField'
 

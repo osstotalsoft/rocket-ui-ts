@@ -1,5 +1,5 @@
 import { SvgIconComponent } from '@mui/icons-material'
-import type { CardActionsProps, CardColor, CardHeaderProps, CardVariant } from 'components'
+import type { CardActionsProps, CardColor, CardHeaderProps, CardVariant } from '../../index'
 
 export interface StatsCardProps {
   /**
