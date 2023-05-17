@@ -18,6 +18,10 @@ import { IconColor, StatsChartProps } from './types'
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, BarElement, Tooltip)
 
+/**
+ * The StatsChart component provides a set of frequently and customizable used chart types (`line` and `bar`).
+ */
+
 const StatsChart: React.FC<StatsChartProps> = ({
   chartColor = 'info',
   iconColor = 'grey',

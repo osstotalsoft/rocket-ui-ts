@@ -7,35 +7,35 @@ import { AccessTime } from '@mui/icons-material'
 import { Grid } from '@mui/material'
 import { statsChartData, statsChartOptions } from './_mocks'
 
-const BarPreview = () => {
+const LinePreview = () => {
   return (
     <Grid container spacing={2}>
       <Grid item xs={6}>
         <StatsChart
-          type="bar"
+          type="line"
           data={statsChartData}
           chartColor={'info'}
           StatIcon={AccessTime}
-          statText={'Bar chart infos'}
-          title={'Bar Chart'}
+          statText={'Line chart'}
+          title={'Line Chart with warning icon color'}
           options={statsChartOptions}
+          iconColor="error"
         />
       </Grid>
       <Grid item xs={6}>
         <StatsChart
-          type="bar"
+          type="line"
           data={statsChartData}
           chartColor={'info'}
           StatIcon={AccessTime}
-          statText={'Bar chart infos'}
-          title={'Bar chart with action button'}
+          statText={'Line chart infos'}
+          title={'Line Chart with action button'}
           options={statsChartOptions}
           statAction={<Button size="tiny">Ok</Button>}
-          iconColor="info"
         />
       </Grid>
     </Grid>
   )
 }
 
-export default BarPreview
+export default LinePreview

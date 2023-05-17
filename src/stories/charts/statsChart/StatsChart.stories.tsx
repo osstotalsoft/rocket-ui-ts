@@ -4,17 +4,14 @@
 import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import { StatsChart as StatsChartComponent } from 'components'
-import { statsChartData, statsChartOptions } from './mocks'
-import { AccessTime } from '@mui/icons-material'
+import { statsChartData, statsChartOptions } from './_mocks'
 import BarPreview from './BarPreview'
+import LinePreview from './LinePreview'
 
 const meta: Meta<typeof StatsChartComponent> = {
   title: 'Components/Charts/StatsChart',
   component: StatsChartComponent,
   tags: ['autodocs'],
-  parameters: {
-    layout: 'centered'
-  },
   args: {
     width: 500,
     height: 200
@@ -25,10 +22,10 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 /**
- * The StatsChart component provides a set of frequently and customizable used chart types (`line` and `bar`).
+ * The default StatsChart component.
  */
 export const Default: Story = {
-  args: { data: statsChartData, options: statsChartOptions, StatIcon: AccessTime },
+  args: { data: statsChartData, options: statsChartOptions },
   parameters: {
     docs: {
       source: {
@@ -54,6 +51,54 @@ export const Default: Story = {
   }
 }
 
+/**
+ * `Bar` chart type can be used beside `Line` (which is the default).
+ */
 export const Bar: Story = {
+  parameters: {
+    controls: { hideNoControlsWarning: true },
+    docs: {
+      source: {
+        code: `
+        <StatsChart
+          type="bar"
+          title={'Bar Chart'}
+          chartColor={'info'}
+          StatIcon={AccessTime}
+          statText={'Bar chart infos'}
+          data={DataToBeDisplayed}
+          options={statsChartOptions}
+        />
+        `,
+        format: true
+      }
+    }
+  },
   render: args => <BarPreview {...args} />
+}
+
+/**
+ * Besides showing chart data, the content of the component can be improved using properties like `chartColor`, `StatIcon` and many more.
+ */
+export const Line: Story = {
+  parameters: {
+    controls: { hideNoControlsWarning: true },
+    docs: {
+      source: {
+        code: `
+        <StatsChart
+          type="line"
+          title={'Line Chart'}
+          chartColor={'info'}
+          StatIcon={AccessTime}
+          statText={'Line chart infos'}
+          data={DataToBeDisplayed}
+          options={statsChartOptions}
+        />
+        `,
+        format: true
+      }
+    }
+  },
+  render: () => <LinePreview />
 }
