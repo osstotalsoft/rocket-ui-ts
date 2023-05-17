@@ -10,18 +10,7 @@ import StatesPreview from './StatesPreview'
 const meta: Meta<typeof PasswordFieldComponent> = {
   title: 'Components/Inputs/PasswordField',
   component: PasswordFieldComponent,
-  tags: ['autodocs'],
-  argTypes: {
-    icon: {
-      control: false
-    },
-    footer: {
-      control: false
-    },
-    actions: {
-      control: false
-    }
-  }
+  tags: ['autodocs']
 } satisfies Meta<typeof PasswordFieldComponent>
 
 export default meta

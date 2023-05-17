@@ -14,18 +14,7 @@ import NumericPreview from './NumericPreview'
 const meta: Meta<typeof TextFieldComponent> = {
   title: 'Components/Inputs/TextField',
   component: TextFieldComponent,
-  tags: ['autodocs'],
-  argTypes: {
-    icon: {
-      control: false
-    },
-    footer: {
-      control: false
-    },
-    actions: {
-      control: false
-    }
-  }
+  tags: ['autodocs']
 } satisfies Meta<typeof TextFieldComponent>
 
 export default meta
