@@ -9,7 +9,7 @@ import {
   mockedAccordionContentListSquare,
   mockedAccordionContentList,
   mockedAccordionContentListExpandAll
-} from './mocks'
+} from './_mocks'
 import ControlledPreview from './ControlledPreview'
 
 const meta: Meta<typeof AccordionComponent> = {
