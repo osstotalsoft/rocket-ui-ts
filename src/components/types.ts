@@ -1,6 +1,7 @@
 // Copyright (c) TotalSoft.
 // This source code is licensed under the MIT license.
 
+// Available theme color options.
 export type Color =
   | 'primary'
   | 'secondary'
@@ -14,6 +15,8 @@ export type Color =
   | 'dark'
   | 'transparent'
 
+// Available gradient color options.
 export type Gradient = Exclude<Color, 'transparent' | 'white'>
 
+// Available size options.
 export type Size = 'tiny' | 'small' | 'medium' | 'large'
