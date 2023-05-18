@@ -45,5 +45,8 @@ export * from './surfaces/StatsCard'
 export { default as Accordion } from './surfaces/Accordion'
 export * from './surfaces/Accordion'
 
+export { default as Dialog } from './feedback/Dialog'
+export * from './feedback/Dialog'
+
 export { default as getTheme } from './themes/index'
 export * from './themes/index'
