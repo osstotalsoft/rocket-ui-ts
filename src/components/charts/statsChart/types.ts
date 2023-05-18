@@ -12,7 +12,7 @@ export interface DataSetsChart {
   borderColor: string
 }
 
-export type IconColor = Exclude<Color, 'default' | 'white' | 'transparent' | 'dark' | 'rose'>
+export type StatsIconColor = Exclude<Color, 'default' | 'white' | 'transparent' | 'dark' | 'rose'>
 
 export interface StatsChartProps extends Omit<ChartProps, 'type' | 'data'> {
   /**
@@ -31,7 +31,7 @@ export interface StatsChartProps extends Omit<ChartProps, 'type' | 'data'> {
    * @default 'grey'
    * Chart icon color.
    */
-  iconColor?: IconColor
+  iconColor?: StatsIconColor
   /**
    * @default 'info'
    * Chart color.
