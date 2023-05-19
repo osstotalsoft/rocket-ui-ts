@@ -51,5 +51,8 @@ export * from './surfaces/Accordion'
 export { default as Dialog } from './feedback/Dialog'
 export * from './feedback/Dialog'
 
+export { default as LinearProgress } from './feedback/LinearProgress'
+export * from './feedback/LinearProgress'
+
 export { default as getTheme } from './themes/index'
 export * from './themes/index'
