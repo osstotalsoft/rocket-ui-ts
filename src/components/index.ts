@@ -30,6 +30,9 @@ export * from './inputs/TextField'
 export { default as PasswordField } from './inputs/PasswordField'
 export * from './inputs/PasswordField'
 
+export { default as DateTime } from './inputs/DateTime'
+export * from './inputs/DateTime'
+
 export { default as NavPills } from './navigation/NavPills'
 export * from './navigation/NavPills'
 
