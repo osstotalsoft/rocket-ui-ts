@@ -14,7 +14,7 @@ import {
 import { Chart } from 'react-chartjs-2'
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, BarElement, Tooltip } from 'chart.js'
 import Divider from '@mui/material/Divider'
-import { IconColor, StatsChartProps } from './types'
+import { StatsIconColor, StatsChartProps } from './types'
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, BarElement, Tooltip)
 
@@ -46,7 +46,7 @@ const StatsChart: React.FC<StatsChartProps> = ({
           <Divider />
           <CardActions>
             <CardStatContainer>
-              {StatIcon && <StatIcon style={statIconStyle} color={iconColor as IconColor} />}
+              {StatIcon && <StatIcon style={statIconStyle} color={iconColor as StatsIconColor} />}
               {statText}
             </CardStatContainer>
             <StatAction>{statAction}</StatAction>

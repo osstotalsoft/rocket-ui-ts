@@ -3,7 +3,7 @@
 
 import React from 'react'
 import { Button, StatsChart } from 'components'
-import { AccessTime } from '@mui/icons-material'
+import AccessTime from '@mui/icons-material/AccessTime'
 import { Grid } from '@mui/material'
 import { statsChartData, statsChartOptions } from './_mocks'
 

@@ -39,6 +39,9 @@ export * from './navigation/NavPills'
 export { default as Pagination } from './navigation/Pagination'
 export * from './navigation/Pagination'
 
+export { default as SideMenu } from './navigation/SideMenu'
+export * from './navigation/SideMenu'
+
 export { Card, CardActions, CardHeader } from './surfaces/Card'
 export * from './surfaces/Card'
 
@@ -50,6 +53,12 @@ export * from './surfaces/StatsCard'
 
 export { default as Accordion } from './surfaces/Accordion'
 export * from './surfaces/Accordion'
+
+export { default as Dialog } from './feedback/Dialog'
+export * from './feedback/Dialog'
+
+export { default as LinearProgress } from './feedback/LinearProgress'
+export * from './feedback/LinearProgress'
 
 export { default as getTheme } from './themes/index'
 export * from './themes/index'
