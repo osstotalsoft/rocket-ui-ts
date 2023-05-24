@@ -19,7 +19,7 @@ import de from 'date-fns/locale/de'
 import enUS from 'date-fns/locale/en-US'
 import DateTimeEndAdornment from './DateTimeEndAdornment'
 import TextField, { TextFieldProps } from '../TextField'
-import { DateTimeProps, CustomSlotsComponent } from './types'
+import { T, DateTimeProps, CustomSlotsComponent } from './types'
 import { SvgIconComponent } from '@mui/icons-material'
 import { DateTimePickerSlotsComponent } from '@mui/x-date-pickers/DateTimePicker/DateTimePicker'
 import { TimePickerSlotsComponent } from '@mui/x-date-pickers/TimePicker/TimePicker'
@@ -75,7 +75,7 @@ const DateTime: React.FC<DateTimeProps> = ({
     setValue(origValue)
   }, [origValue])
   const handleChange = useCallback(
-    (value: Date) => {
+    (value: T) => {
       const changeValue = origOnChange ?? setValue
       changeValue(value)
     },
@@ -126,7 +126,7 @@ const DateTime: React.FC<DateTimeProps> = ({
           <DateTimePicker
             components={mergedComponents as Partial<DateTimePickerSlotsComponent & CustomSlotsComponent>}
             {...commonProps}
-            {...(rest as DateTimePickerProps<Date, Date>)}
+            {...(rest as DateTimePickerProps<T, T>)}
           />
         )
       case 'time':
@@ -134,7 +134,7 @@ const DateTime: React.FC<DateTimeProps> = ({
           <TimePicker
             components={mergedComponents as Partial<TimePickerSlotsComponent & CustomSlotsComponent>}
             {...commonProps}
-            {...(rest as TimePickerProps<Date, Date>)}
+            {...(rest as TimePickerProps<T, T>)}
           />
         )
 
@@ -143,7 +143,7 @@ const DateTime: React.FC<DateTimeProps> = ({
           <DatePicker
             components={mergedComponents as Partial<DatePickerSlotsComponent & CustomSlotsComponent>}
             {...commonProps}
-            {...(rest as DatePickerProps<Date, Date>)}
+            {...(rest as DatePickerProps<T, T>)}
           />
         )
     }

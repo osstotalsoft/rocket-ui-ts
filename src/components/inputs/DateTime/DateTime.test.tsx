@@ -3,7 +3,7 @@ import { fireEvent, screen, waitFor } from '@testing-library/react'
 import DateTime from './DateTime'
 import { render, userClick } from 'testingUtils'
 
-const value = new Date('2022-03-14 16:35:25.123 GMT+0200')
+const value = '2022-03-14 16:35:25.123'
 
 describe('Standard Date Picker', () => {
   it('renders a Date component by default', () => {

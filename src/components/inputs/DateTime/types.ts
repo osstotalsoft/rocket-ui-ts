@@ -6,6 +6,8 @@ import { Locale } from 'date-fns'
 import { TextFieldProps } from '../TextField'
 import { MuiPickersAdapter } from '@mui/x-date-pickers/internals'
 
+export type T = Date | string
+
 export type LocaleMapType = {
   de: Locale
   ['en-US']: Locale
@@ -27,18 +29,18 @@ export type CustomSlotsComponent = {
 }
 
 export type DateTimeProps = (
-  | Omit<DateTimePickerProps<Date, Date>, 'onChange' | 'renderInput'>
-  | Omit<DatePickerProps<Date, Date>, 'onChange' | 'renderInput'>
-  | Omit<TimePickerProps<Date, Date>, 'onChange' | 'renderInput'>
+  | Omit<DateTimePickerProps<T, T>, 'onChange' | 'renderInput'>
+  | Omit<DatePickerProps<T, T>, 'onChange' | 'renderInput'>
+  | Omit<TimePickerProps<T, T>, 'onChange' | 'renderInput'>
 ) &
   Omit<LocalizationProviderProps, 'dateAdapter'> & {
     /**
      * Callback fired when the value (the selected date) changes @DateIOType.
      * @template TValue
-     * @param {Date} value The new parsed value.
+     * @param {T} value The new parsed value.
      * @param {string} keyboardInputValue The current value of the keyboard input.
      */
-    onChange?: (value: Date, keyboardInputValue?: string) => void
+    onChange?: (value: T, keyboardInputValue?: string) => void
     /**
      * The `renderInput` prop allows you to customize the rendered input.
      * The `props` argument of this render prop contains props of [TextField](https://mui.com/material-ui/api/text-field/#props) that you need to forward.
