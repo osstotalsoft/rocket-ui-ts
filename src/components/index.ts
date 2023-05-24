@@ -39,6 +39,9 @@ export * from './navigation/NavPills'
 export { default as Pagination } from './navigation/Pagination'
 export * from './navigation/Pagination'
 
+export { default as SideMenu } from './navigation/SideMenu'
+export * from './navigation/SideMenu'
+
 export { Card, CardActions, CardHeader } from './surfaces/Card'
 export * from './surfaces/Card'
 
