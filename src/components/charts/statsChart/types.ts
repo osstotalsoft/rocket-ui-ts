@@ -2,8 +2,8 @@
 // This source code is licensed under the MIT license.
 
 import { SvgIconComponent } from '@mui/icons-material'
-import { Color } from 'components'
 import { ChartProps } from 'react-chartjs-2'
+import { Color } from '../../types'
 
 export interface DataSetsChart {
   data: number[]

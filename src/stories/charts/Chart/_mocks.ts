@@ -1,18 +1,18 @@
 // Copyright (c) TotalSoft.
 // This source code is licensed under the MIT license.
 
-export const statsChartOptions = {
-  responsive: true,
+import { LayoutPosition } from 'chart.js'
+
+export const chartOptions = {
   maintainAspectRatio: false,
   barPercentage: 0.2,
-  tooltip: true,
   plugins: {
     title: {
       display: false,
       text: ''
     },
     legend: {
-      display: false
+      position: 'bottom' as LayoutPosition
     }
   },
   layout: {
@@ -28,7 +28,6 @@ export const statsChartOptions = {
       offset: false,
       grid: {
         display: true,
-        color: 'white',
         borderDash: [1, 5],
         zeroLineColor: 'rgb(255,255,255)',
         drawBorder: false,
@@ -36,18 +35,15 @@ export const statsChartOptions = {
       },
       scaleLabel: {
         display: false,
-        labelString: '',
-        fontColor: 'black'
+        labelString: ''
       },
       ticks: {
-        color: 'white',
         autoSkip: false
       }
     },
     y: {
       grid: {
         display: true,
-        color: 'white',
         borderDash: [1, 5],
         zeroLineColor: 'rgb(255,255,255)',
         drawBorder: false,
@@ -55,31 +51,46 @@ export const statsChartOptions = {
       },
       scaleLabel: {
         display: false,
-        labelString: '',
-        fontColor: 'black'
-      },
-      ticks: {
-        color: 'white'
+        labelString: ''
       }
     }
   }
 }
 
 const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July']
-export const statsChartData = {
+
+export const lineChartData = {
+  labels,
+  datasets: [
+    {
+      data: labels.map(() => Math.floor(Math.random() * 101)),
+      label: 'Line',
+      borderColor: 'rgb(255, 99, 132)',
+      backgroundColor: 'rgba(255, 99, 132, 0.5)'
+    },
+    {
+      data: labels.map(() => Math.floor(Math.random() * 101)),
+      label: 'Line2',
+      borderColor: 'rgb(53, 162, 235)',
+      backgroundColor: 'rgba(53, 162, 235, 0.5)'
+    }
+  ]
+}
+
+export const barChartData = {
   labels,
   datasets: [
     {
       data: labels.map(() => Math.floor(Math.random() * 101)),
       label: 'Dataset 1',
-      backgroundColor: 'white',
-      borderColor: 'white'
+      borderColor: 'rgb(255, 99, 132)',
+      backgroundColor: 'rgba(255, 99, 132, 0.5)'
     },
     {
       data: labels.map(() => Math.floor(Math.random() * 101)),
       label: 'Dataset 2',
-      backgroundColor: 'white',
-      borderColor: 'white'
+      borderColor: 'rgb(53, 162, 235)',
+      backgroundColor: 'rgba(53, 162, 235, 0.5)'
     }
   ]
 }
