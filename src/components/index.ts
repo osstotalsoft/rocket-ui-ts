@@ -12,8 +12,8 @@ export * from './buttons/BackToButton'
 export { default as UploadButton } from './buttons/UploadButton'
 export * from './buttons/UploadButton'
 
-export { default as StatsChart } from './charts/StatsChart'
-export * from './charts/StatsChart'
+export { default as StatsChart } from './charts/statsChart'
+export * from './charts/statsChart'
 
 export { default as Chart } from './charts/Chart'
 export * from './charts/Chart'

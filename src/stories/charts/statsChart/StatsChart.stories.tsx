@@ -3,20 +3,20 @@
 
 import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
-import { StatsChart as StatsChartComponent } from 'components'
 import { statsChartData, statsChartOptions } from './_mocks'
 import BarPreview from './BarPreview'
 import LinePreview from './LinePreview'
+import { StatsChart } from 'components'
 
-const meta: Meta<typeof StatsChartComponent> = {
+const meta: Meta<typeof StatsChart> = {
   title: 'Components/Charts/StatsChart',
-  component: StatsChartComponent,
+  component: StatsChart,
   tags: ['autodocs'],
   args: {
     width: 500,
     height: 200
   }
-} satisfies Meta<typeof StatsChartComponent>
+} satisfies Meta<typeof StatsChart>
 
 export default meta
 type Story = StoryObj<typeof meta>
