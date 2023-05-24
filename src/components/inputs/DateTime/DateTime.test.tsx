@@ -1,4 +1,3 @@
-/* eslint-disable jest-dom/prefer-in-document */
 import React from 'react'
 import { fireEvent, screen, waitFor } from '@testing-library/react'
 import DateTime from './DateTime'

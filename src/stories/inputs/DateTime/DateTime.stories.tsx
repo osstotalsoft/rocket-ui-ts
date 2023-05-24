@@ -8,6 +8,9 @@ import FormatPreview from './FormatPreview'
 import ErrorHelperTextPreview from './ErrorHelperTextPreview'
 import DisabledPreview from './DisabledPreview'
 import ClearablePreview from './ClearablePreview'
+import HeartBroken from '@mui/icons-material/HeartBroken'
+import SwipeLeftAlt from '@mui/icons-material/SwipeLeftAlt'
+import SwipeRightAlt from '@mui/icons-material/SwipeRightAlt'
 
 const meta: Meta<typeof DateTime> = {
   title: 'Components/Inputs/DateTime',
@@ -22,24 +25,49 @@ type Story = StoryObj<typeof meta>
  * The default DateTime component.
  */
 export const Default: Story = {
-  args: { showPicker: 'date', label: 'Date Picker', mask: '__.__.____' }
+  args: { label: 'Default Picker' }
+}
+
+/**
+ * The component can be deeply customized using the `components` property. It allows customizing the following elements:
+ *
+ * - OpenPickerIcon
+ * - ActionBar
+ * - LeftArrowButton
+ * - RightArrowButton
+ * - LeftArrowIcon
+ * - RightArrowIcon
+ * - SwitchViewButton
+ * - SwitchViewIcon
+ */
+export const Customized: Story = {
+  args: {
+    label: 'Customized Picker',
+    components: { OpenPickerIcon: HeartBroken, LeftArrowIcon: SwipeLeftAlt, RightArrowIcon: SwipeRightAlt }
+  }
+}
+
+/**
+ * Date picker selection can be limited using the `minDate` and `maxDate` properties.
+ */
+export const LimitOptions: Story = {
+  args: { label: 'Default Picker', minDate: new Date() }
 }
 
 /**
  * Different formats can be used. You can choose from `fr`, `en-us`, `ru`, `ro`, `de`. Default set to `ro`.
  */
-
 export const Format: Story = {
   parameters: {
     controls: { hideNoControlsWarning: true },
     docs: {
       source: {
         code: `
-            <DateTime 
-                showPicker='date' 
-                label='Date Picker' 
-                format={'your format'} 
-                mask={maskMap[format].date} 
+            <DateTime
+                showPicker='date'
+                label='Date Picker'
+                format={'your format'}
+                mask={maskMap[format].date}
             />
                 `,
         format: true
@@ -59,12 +87,12 @@ export const ErrorHelperText: Story = {
     docs: {
       source: {
         code: `
-            <DateTime 
-                showPicker="time" 
-                label="Time Picker" 
-                mask="__:__" 
-                error={true} 
-                helperText="This is a helper text!" 
+            <DateTime
+                showPicker="time"
+                label="Time Picker"
+                mask="__:__"
+                error={true}
+                helperText="This is a helper text!"
             />
                 `,
         format: true
