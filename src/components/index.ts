@@ -12,8 +12,8 @@ export * from './buttons/BackToButton'
 export { default as UploadButton } from './buttons/UploadButton'
 export * from './buttons/UploadButton'
 
-export { default as StatsChart } from './charts/statsChart'
-export * from './charts/statsChart'
+export { default as StatsChart } from './charts/StatChart'
+export * from './charts/StatChart'
 
 export { default as Chart } from './charts/Chart'
 export * from './charts/Chart'
@@ -32,6 +32,9 @@ export * from './inputs/TextField'
 
 export { default as PasswordField } from './inputs/PasswordField'
 export * from './inputs/PasswordField'
+
+export { default as DateTime } from './inputs/DateTime'
+export * from './inputs/DateTime'
 
 export { default as NavPills } from './navigation/NavPills'
 export * from './navigation/NavPills'
