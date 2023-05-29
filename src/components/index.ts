@@ -69,5 +69,8 @@ export * from './feedback/LinearProgress'
 export { default as Forbidden } from './feedback/Forbidden'
 export * from './feedback/Forbidden'
 
+export { default as NotFound } from './feedback/NotFound'
+export * from './feedback/NotFound'
+
 export { default as getTheme } from './themes/index'
 export * from './themes/index'
