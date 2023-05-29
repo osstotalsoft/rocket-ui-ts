@@ -72,5 +72,8 @@ export * from './feedback/Forbidden'
 export { default as NotFound } from './feedback/NotFound'
 export * from './feedback/NotFound'
 
+export { default as FakeText } from './feedback/FakeText'
+export * from './feedback/FakeText'
+
 export { default as getTheme } from './themes/index'
 export * from './themes/index'
