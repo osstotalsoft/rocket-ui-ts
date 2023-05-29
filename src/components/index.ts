@@ -39,6 +39,9 @@ export * from './inputs/PasswordField'
 export { default as DateTime } from './inputs/DateTime'
 export * from './inputs/DateTime'
 
+export { default as Slider } from './inputs/Slider'
+export * from './inputs/Slider'
+
 export { default as NavPills } from './navigation/NavPills'
 export * from './navigation/NavPills'
 
@@ -65,6 +68,15 @@ export * from './feedback/Dialog'
 
 export { default as LinearProgress } from './feedback/LinearProgress'
 export * from './feedback/LinearProgress'
+
+export { default as Forbidden } from './feedback/Forbidden'
+export * from './feedback/Forbidden'
+
+export { default as NotFound } from './feedback/NotFound'
+export * from './feedback/NotFound'
+
+export { default as FakeText } from './feedback/FakeText'
+export * from './feedback/FakeText'
 
 export { default as getTheme } from './themes/index'
 export * from './themes/index'
