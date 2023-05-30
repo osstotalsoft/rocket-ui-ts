@@ -17,7 +17,7 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
-  args: { lines: 4, onPaper: false }
+  args: { lines: 4, onPaper: false, width: '400px' }
 }
 
 /**

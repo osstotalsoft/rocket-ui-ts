@@ -3,6 +3,7 @@ import './doc-root.css'
 import React from 'react'
 import type { Preview } from '@storybook/react'
 import { ThemeProvider } from '@mui/material/styles'
+import { ToastContainer } from '../src/components/feedback/Toast'
 import getTheme from '../src/components/themes/index'
 import { DocsPage } from './DocsPage'
 
@@ -10,6 +11,7 @@ const withThemeProvider = (Story, context) => {
   const theme = getTheme(context)
   return (
     <ThemeProvider theme={theme}>
+      <ToastContainer />
       <Story />
     </ThemeProvider>
   )
