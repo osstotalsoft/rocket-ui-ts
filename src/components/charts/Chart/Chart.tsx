@@ -12,7 +12,7 @@ import {
   Legend
 } from 'chart.js'
 import { ChartProps } from './types'
-import { Card, CardColor } from 'components/surfaces/Card'
+import { Card, CardColor } from '../../surfaces/Card'
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, BarElement, Tooltip, Legend)
 
