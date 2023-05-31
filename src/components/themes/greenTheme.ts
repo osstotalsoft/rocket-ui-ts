@@ -1,7 +1,7 @@
 import { PaletteOptions, Theme, ThemeOptions, createTheme } from '@mui/material'
 import componentsOverride from './common/overrides'
 import generatePalette from './common/palette'
-import typography from './common/typography'
+import { generateTypography } from './common/typography'
 import { generateShadows, generateCustomShadows } from './common/shadows'
 
 const palette = generatePalette({
@@ -39,7 +39,7 @@ const palette = generatePalette({
 const greenTheme: Theme = createTheme({
   palette,
   shape: { borderRadius: 8 },
-  typography,
+  typography: generateTypography(palette),
   shadows: generateShadows(palette),
   customShadows: generateCustomShadows(palette)
 } as ThemeOptions)

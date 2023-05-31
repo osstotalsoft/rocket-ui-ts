@@ -95,7 +95,7 @@ export interface DialogProps extends Omit<MuiDialogProps, 'onClose' | 'title' | 
    */
   transparentBackdrop?: boolean
   /**
-   * @default false
+   * @default true
    * If `true`, the close button is shown.
    */
   showX?: boolean

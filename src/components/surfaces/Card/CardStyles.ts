@@ -42,6 +42,7 @@ const Card = styled(BaseCard, {
     ...(hasIcon && {
       display: 'inline-block',
       position: 'relative',
+      margin: '25px 0',
       width: '100%',
       background: '#fff',
       overflow: 'visible'
