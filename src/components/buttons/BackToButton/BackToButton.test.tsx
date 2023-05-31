@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import BackToButton from './BackToButton'
-import { render, userClick, waitFor, screen } from '../../../testingUtils'
+import { render, userClick, waitFor, screen, act } from '../../../testingUtils'
 
 describe('BackToButton', () => {
   test('redirects to the path received', async () => {
@@ -13,7 +13,7 @@ describe('BackToButton', () => {
         </Routes>
       </BrowserRouter>
     )
-    userClick(screen.getByRole('button'))
+    act(() => userClick(screen.getByRole('button')))
     await waitFor(() => {
       expect(screen.getByText('redirected')).toBeInTheDocument()
     })

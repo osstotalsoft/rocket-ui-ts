@@ -93,7 +93,7 @@ describe('Single-value Autocomplete', () => {
         />
       )
       fireEvent.change(screen.getByRole('combobox'), { target: { value: 'new' } })
-      userClick(screen.getByText('Add "new"'))
+      act(() => userClick(screen.getByText('Add "new"')))
 
       await waitFor(() => {
         expect(mockOnChange).toBeCalledWith({ id: 'new', displayName: 'new' })
@@ -114,7 +114,7 @@ describe('Single-value Autocomplete', () => {
         />
       )
       fireEvent.change(screen.getByRole('combobox'), { target: { value: 'new' } })
-      userClick(screen.getByText('Add "new"'))
+      act(() => userClick(screen.getByText('Add "new"')))
 
       await waitFor(() => {
         expect(mockOnChange).toBeCalledWith('new')
@@ -159,7 +159,7 @@ describe('Single-value Autocomplete', () => {
       const mockOnChange = jest.fn()
       render(<Autocomplete open simpleValue valueKey="name" options={basicOptions} onChange={mockOnChange} />)
       const options = screen.getAllByRole('option')
-      userClick(options[0])
+      act(() => userClick(options[0]))
 
       expect(mockOnChange).toBeCalledWith('first option')
     })
@@ -168,7 +168,7 @@ describe('Single-value Autocomplete', () => {
       const mockOnChange = jest.fn()
       render(<Autocomplete open simpleValue options={basicOptions} onChange={mockOnChange} />)
       const options = screen.getAllByRole('option')
-      userClick(options[0])
+      act(() => userClick(options[0]))
 
       expect(mockOnChange).toBeCalledWith(1)
     })
@@ -189,7 +189,7 @@ describe('Single-value Autocomplete', () => {
       const mockOnChange = jest.fn()
       render(<Autocomplete open valueKey="name" options={basicOptions} onChange={mockOnChange} />)
       const options = screen.getAllByRole('option')
-      userClick(options[0])
+      act(() => userClick(options[0]))
 
       expect(mockOnChange).toBeCalledWith(basicOptions[0])
     })
@@ -205,7 +205,7 @@ describe('Single-value Autocomplete', () => {
       const mockOnChange = jest.fn()
       render(<Autocomplete open options={primitiveOptions} onChange={mockOnChange} />)
       const options = screen.getAllByRole('option')
-      userClick(options[0])
+      act(() => userClick(options[0]))
 
       expect(mockOnChange).toBeCalledWith('first option')
     })
@@ -219,7 +219,7 @@ describe('Single-value Autocomplete', () => {
       const mockOnChange = jest.fn()
       render(<Autocomplete open options={numericOptions} onChange={mockOnChange} />)
       const options = screen.getAllByRole('option')
-      userClick(options[0])
+      act(() => userClick(options[0]))
       expect(mockOnChange).toBeCalledWith(1)
     })
   })
@@ -263,7 +263,7 @@ describe('Multi-value Autocomplete', () => {
       />
     )
     expect(screen.queryByText('first option')).toBeInTheDocument()
-    userClick(screen.getByTitle('Clear'))
+    act(() => userClick(screen.getByTitle('Clear')))
 
     await waitFor(() => {
       expect(mockOnChange).toBeCalledWith([basicOptions[1].id])
@@ -333,7 +333,7 @@ describe('Multi-value Autocomplete', () => {
         <Autocomplete open isMultiSelection simpleValue valueKey="name" options={basicOptions} onChange={mockOnChange} />
       )
       const options = screen.getAllByRole('option')
-      userClick(options[0])
+      act(() => userClick(options[0]))
 
       expect(mockOnChange).toBeCalledWith(['first option'])
     })
@@ -375,7 +375,7 @@ describe('Multi-value Autocomplete', () => {
         />
       )
       const options = screen.getAllByRole('option')
-      userClick(options[0])
+      act(() => userClick(options[0]))
 
       expect(mockOnChange).toBeCalledWith([{ id: 1, name: 'first option', displayName: 'First Option' }])
     })
@@ -389,7 +389,7 @@ describe('Async Autocomplete', () => {
     render(<Autocomplete loadOptions={mockLoadOptions} onChange={jest.fn()} />)
 
     expect(mockLoadOptions).not.toBeCalled()
-    userClick(screen.getByTitle('Open'))
+    act(() => userClick(screen.getByTitle('Open')))
     expect(mockLoadOptions).toBeCalled()
     await act(() => promise)
   })

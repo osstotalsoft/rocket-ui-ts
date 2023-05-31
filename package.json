@@ -19,11 +19,11 @@
     "dist/*/**"
   ],
   "scripts": {
-    "build": "run clean && tsc --p tsconfig.build.json",
+    "build": "run clean && tsc --p tsconfig.build.json && run copy",
     "build-storybook": "storybook build -o storybuild",
     "build-test": "tsc --p tsconfig.build.json --noEmit ",
-    "copy": "copyfiles -u 4 src/components/assets/img/*.png dist/assets/img",
     "clean": "rimraf dist",
+    "copy": "copyfiles -u 4 src/components/assets/img/*.png dist/components/assets/img",
     "postinstall": "yarn dlx sort-package-json",
     "lint": "eslint src/*.{ts,tsx} && run build-test",
     "linter": "eslint . --fix --ext .ts,.tsx",
