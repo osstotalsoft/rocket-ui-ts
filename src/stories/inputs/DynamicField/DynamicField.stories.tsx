@@ -17,10 +17,37 @@ export default {
 
 type Story = StoryObj<typeof DynamicFieldComponent>
 
+export const Default: Story = {
+  parameters: {
+    controls: { hideNoControlsWarning: true },
+    docs: {
+      source: {
+        code: `
+          <DynamicField
+            id={name}
+            controlType={ControlType.Text}
+            label={label}
+            value={value}
+            onChange={handleChange}
+            options={[]}
+          />
+        `,
+        format: true
+      }
+    }
+  },
+  args: {
+    controlType: ControlType.Text,
+    label: 'Dynamic field',
+    value: '',
+    options: []
+  }
+}
+
 /**
  * It receives a dynamic controlType property (Text, Integer, Numeric, Date, Checkbox, Autocomplete, Custom) and renders the corresponding controls
  */
-export const Controls: Story = {
+export const Dynamic: Story = {
   parameters: {
     controls: { hideNoControlsWarning: true },
     docs: {
@@ -280,3 +307,28 @@ export const Custom: Story = {
 }
 
 //#endregion
+
+/**
+ * If the passed controlType is invalid, render a fallback TextField component that is disabled, with a minimum or properties forwarded (id, value, label, error, helperText)
+ */
+export const Fallback: Story = {
+  parameters: {
+    controls: { hideNoControlsWarning: true },
+    docs: {
+      source: {
+        code: `
+          <DynamicField
+            controlType={"Not a valid control type"}
+            ...
+          />
+        `,
+        format: true
+      }
+    }
+  },
+  args: {
+    controlType: 'Not a valid control type' as ControlType,
+    label: 'Dynamic (Fallback)',
+    value: 'Fallback'
+  }
+}

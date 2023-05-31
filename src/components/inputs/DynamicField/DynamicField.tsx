@@ -7,15 +7,15 @@ import { FormControlLabel } from '@mui/material'
 import { emptyString } from 'testingUtils/constants'
 
 /**
- * The DynamicField component is used for rendering controls dynamically 
+ * The DynamicField component is used for rendering controls dynamically
  * when the type (TextField, DateTime) isn't known beforehand
- * 
+ *
  * It requires a controlType property that can be passed explicitly or dynamically
  * Possible values: Text, Integer, Numeric, Date, Checkbox, Autocomplete, Custom
- * 
+ *
  * DynamicField also takes as parameters the most common properties for all of the
  * controls, such as value, onChange, disabled, options, etc, and passes them accordingly
- * For Custom rendering, CustomComponent must be defined, and only the properties in 
+ * For Custom rendering, CustomComponent must be defined, and only the properties in
  * customComponentProps will be forwarded
  */
 function DynamicField<TCustomComponentProps extends object = any, TAutocompleteOptions = any>(
@@ -158,7 +158,7 @@ DynamicField.propTypes = {
   /**
    * A text or other element indicating the error message
    */
-  helperText: PropTypes.node,
+  helperText: PropTypes.string,
   /**
    * Indicates whether the field is required
    */
