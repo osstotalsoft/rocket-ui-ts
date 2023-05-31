@@ -24,8 +24,10 @@
   "npm.packageManager": "yarn",
   "cSpell.words": [
     "autodocs",
+    "copyfiles",
     "storybuild",
     "Toastify",
+    "Totalsoft",
     "uuidv"
   ],
   "licenser.license": "Custom",
