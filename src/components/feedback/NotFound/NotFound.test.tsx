@@ -1,5 +1,5 @@
 import React from 'react'
-import getTheme from 'components/themes'
+import getTheme from '../../themes'
 import NotFound from './NotFound'
 import { render, screen } from 'testingUtils'
 

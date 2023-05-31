@@ -1,0 +1,27 @@
+name: Feature Request 🎇
+description: Suggest a new feature for Rocket-UI library.
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for contributing!
+  - type: checkboxes
+    attributes:
+      label: Latest version
+      description: We roll bug fixes, performance enhancements, and other improvements into new releases.
+      options:
+        - label: I have tested the latest version
+          required: true
+  - type: textarea
+    id: feature-description
+    attributes:
+      label: Description
+      description: Describe the new feature. How it should work.
+    validations:
+      required: true
+  - type: textarea
+    id: examples
+    attributes:
+      label: Examples
+      description: Provide screenshots, examples of the expected behavior.

@@ -1,0 +1,57 @@
+name: Bug Report 🐛
+description: Create a bug report
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report!
+  - type: checkboxes
+    attributes:
+      label: Latest version
+      description: We roll bug fixes, performance enhancements, and other improvements into new releases.
+      options:
+        - label: I have tested the latest version
+          required: true
+  - type: textarea
+    id: bug-description
+    attributes:
+      label: Current behavior
+      description: Describe the current behavior.
+    validations:
+      required: true
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected behavior
+      description: Describe what should happened.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction-steps
+    attributes:
+      label: Steps to reproduce
+      description: Describe to us as concisely as possible what is happening. Add screenshots or a live example if possible.
+  - type: textarea
+    id: versions
+    attributes:
+      label: Software Version
+      description: What is your environment?
+      value: |
+        1. Storybook:
+        2. Rocket-UI:
+        3. Material UI:
+        4. React:
+        5. NPM/YARN:
+    validations:
+      required: true
+  - type: dropdown
+    id: browsers
+    attributes:
+      label: What browsers are you seeing the problem on?
+      multiple: true
+      options:
+        - Firefox
+        - Chrome
+        - Safari
+        - Microsoft Edge
