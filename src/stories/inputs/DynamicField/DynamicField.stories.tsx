@@ -17,6 +17,9 @@ export default {
 
 type Story = StoryObj<typeof DynamicFieldComponent>
 
+/**
+ * It receives a dynamic controlType property (Text, Integer, Numeric, Date, Checkbox, Autocomplete, Custom) and renders the corresponding controls
+ */
 export const Controls: Story = {
   parameters: {
     controls: { hideNoControlsWarning: true },
@@ -44,6 +47,9 @@ export const Controls: Story = {
   render: () => <ControlsPreview />
 }
 
+/**
+ * It receives an explicit Text controlType and renders a TextField
+ */
 export const Text: Story = {
   parameters: {
     controls: { hideNoControlsWarning: true },
@@ -70,6 +76,9 @@ export const Text: Story = {
   render: args => <ControlPreview {...args} />
 }
 
+/**
+ * It receives an explicit Integer controlType and renders an integer TextField
+ */
 export const Integer: Story = {
   parameters: {
     controls: { hideNoControlsWarning: true },
@@ -97,6 +106,9 @@ export const Integer: Story = {
   render: args => <ControlPreview {...args} />
 }
 
+/**
+ * It receives an explicit Numeric controlType and renders a numeric TextField
+ */
 export const Numeric: Story = {
   parameters: {
     controls: { hideNoControlsWarning: true },
@@ -125,6 +137,9 @@ export const Numeric: Story = {
   render: args => <ControlPreview {...args} />
 }
 
+/**
+ * It receives an explicit Date controlType and renders a DateTime
+ */
 export const Date: Story = {
   parameters: {
     controls: { hideNoControlsWarning: true },
@@ -152,6 +167,9 @@ export const Date: Story = {
   render: args => <ControlPreview {...args} />
 }
 
+/**
+ * It receives an explicit Checkbox controlType and renders a Checkbox
+ */
 export const Checkbox: Story = {
   parameters: {
     controls: { hideNoControlsWarning: true },
@@ -177,6 +195,9 @@ export const Checkbox: Story = {
   render: args => <ControlPreview {...args} />
 }
 
+/**
+ * It receives an explicit Autocomplete controlType and renders an Autocomplete
+ */
 export const Autocomplete: Story = {
   parameters: {
     controls: { hideNoControlsWarning: true },
@@ -221,6 +242,9 @@ function CustomComponent({ id, label }: CustomComponentProps) {
   )
 }
 
+/**
+ * It receives an explicit Custom controlType and renders a custom component, passed through the CustomComponent property, and forwards all properties passed through customComponentProps
+ */
 export const Custom: Story = {
   parameters: {
     controls: { hideNoControlsWarning: true },

@@ -8,23 +8,18 @@ import { ControlType } from 'components/inputs/DynamicField/types'
 import { SwitchProps } from '@mui/material'
 import { controlTypes } from './_mocks'
 import { options } from '../Autocomplete/_mocks'
-import { useDynamicProps } from './_hooks'
-import { controlsStyles } from './_styles'
-import { makeStyles } from '@mui/styles'
+import { useContainerSizing, useDynamicProps } from './_hooks'
 import { InfoLink } from './ControlPreview'
 
-const useStyles = makeStyles(controlsStyles)
-
 const DefaultPreview = () => {
-  const classes = useStyles()
-
   const [value, setValue] = useState<unknown>()
   const [type, setType] = useState<ControlType>(ControlType.Text)
 
   const { controlValues, props, currentControlData, handlePropsChange } = useDynamicProps(type)
+  const width = useContainerSizing()
 
   return (
-    <Grid container spacing={2} className={classes.controlContainer}>
+    <Grid container spacing={2} sx={{ width }}>
       <Grid item container justifyContent={'center'} alignItems={'center'} sx={{ gap: '.5rem', marginBottom: '1rem' }}>
         <Typography fontWeight={700}>Control type:</Typography>
         <Autocomplete

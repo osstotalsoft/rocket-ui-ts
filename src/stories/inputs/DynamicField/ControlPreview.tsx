@@ -3,16 +3,12 @@
 
 import React, { useState } from 'react'
 import { Grid } from '@mui/material'
-import { makeStyles } from '@mui/styles'
 import { DynamicField, Typography } from 'components'
 import { ControlType } from 'components/inputs/DynamicField/types'
 import LinkTo from '@storybook/addon-links/react'
 import { options } from '../Autocomplete/_mocks'
-import { useDynamicProps } from './_hooks'
-import { controlsStyles } from './_styles'
+import { useContainerSizing, useDynamicProps } from './_hooks'
 import { ControlData } from './_mocks'
-
-const useStyles = makeStyles(controlsStyles)
 
 type ControlPreviewProps = {
   controlType: ControlType
@@ -20,22 +16,21 @@ type ControlPreviewProps = {
 }
 
 const ControlPreview = ({ controlType, ...rest }: ControlPreviewProps) => {
-  const classes = useStyles()
-
   const [value, setValue] = useState<unknown>()
 
   const { controlValues, props, currentControlData, handlePropsChange } = useDynamicProps(controlType)
+  const width = useContainerSizing()
 
   return (
-    <Grid container alignItems={'center'} spacing={5} className={classes.controlContainer}>
+    <Grid container alignItems={'center'} spacing={5} sx={{ width }}>
       <Grid item container justifyContent={'center'} xs={12} sm={currentControlData.props.length > 0 ? 6 : 12}>
         <DynamicField
           controlType={controlType}
           value={value}
-          onChange={newValue => setValue(newValue)}
           options={options}
           {...rest}
           {...props}
+          onChange={newValue => setValue(newValue)}
         />
       </Grid>
       {currentControlData.props.length > 0 && (
