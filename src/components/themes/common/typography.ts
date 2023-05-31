@@ -1,3 +1,4 @@
+import { PaletteOptions } from '@mui/material'
 import { TypographyOptions } from '@mui/material/styles/createTypography'
 
 export const defaultFont = {
@@ -8,19 +9,29 @@ export const defaultFont = {
   letterSpacing: '0.02857em'
 }
 
-const typography = {
-  ...defaultFont,
-  defaultFont,
-  useNextVariants: true,
-  htmlFontSize: 14,
-  fontWeightMedium: 300,
-  button: {
+export const generateTypography = (palette: PaletteOptions) =>
+  ({
     ...defaultFont,
-    textAlign: 'center',
-    fontStretch: 'normal',
-    fontStyle: 'normal'
-  },
-  body: defaultFont
-} as TypographyOptions
-
-export default typography
+    defaultFont,
+    useNextVariants: true,
+    htmlFontSize: 14,
+    fontWeightMedium: 300,
+    button: {
+      ...defaultFont,
+      textAlign: 'center',
+      fontStretch: 'normal',
+      fontStyle: 'normal'
+    },
+    body: defaultFont,
+    header: {
+      title: {
+        borderRadius: '3px',
+        textTransform: 'none',
+        fontWeight: 'bold',
+        color: palette.primary.main,
+        '&:hover,&:focus': {
+          background: 'transparent'
+        }
+      }
+    }
+  } as TypographyOptions)
