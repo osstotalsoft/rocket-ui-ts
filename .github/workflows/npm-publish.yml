@@ -28,14 +28,10 @@ jobs:
         run: yarn install
       - name: Build
         run: yarn build
-      - name: Copy assets
-        run: yarn copy
       # - name: Run tests
       #   run: yarn test
       - name: Bump version
         run: yarn run version
-      # - name: Authenticate yarn berry to npm
-      #   run: yarn config set npmScopes.totalsoft.npmAuthToken $NODE_AUTH_TOKEN
       - name: Set npm authToken from env
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -45,5 +41,3 @@ jobs:
           yarn config set npmScopes.totalsoft.npmAlwaysAuth true &&
           yarn config set npmScopes.totalsoft.npmAuthToken $NODE_AUTH_TOKEN
       - run: yarn publish
-        # env:
-        #   NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

@@ -1,4 +1,11 @@
 {
   "extends": "./tsconfig",
-  "exclude": ["**/*.test.*", "**/__mocks__/*", "**/src/stories/*", "**/.storybook/*", "**/src/setupTests.ts", "**/src/testingUtils/*"]
+  "exclude": [
+    "**/*.test.*",
+    "**/__mocks__/*",
+    "**/src/stories/*",
+    "**/.storybook/*",
+    "**/src/setupTests.ts",
+    "**/src/testingUtils/*"
+  ]
 }

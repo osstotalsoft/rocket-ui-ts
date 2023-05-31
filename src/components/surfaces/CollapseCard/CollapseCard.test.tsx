@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, screen, userClick, waitFor } from 'testingUtils'
+import { act, render, screen, userClick, waitFor } from 'testingUtils'
 import { Button, CollapseCard } from '../../index'
 
 const text = 'Cards are surfaces that display content and actions on a single topic.'
@@ -36,7 +36,7 @@ describe('CollapseCard', () => {
     const { container } = render(<CollapseCard />)
     expect(container.getElementsByClassName('MuiCollapse-hidden').length).toBe(1)
 
-    userClick(screen.getByTestId('ExpandMoreIcon').parentElement)
+    act(() => userClick(screen.getByTestId('ExpandMoreIcon').parentElement))
 
     await waitFor(() => {
       expect(container.getElementsByClassName('MuiCollapse-hidden').length).toBe(0)
@@ -46,7 +46,7 @@ describe('CollapseCard', () => {
   test('calls onToggle when the button is pressed', async () => {
     const mockOnToggle = jest.fn()
     render(<CollapseCard onToggle={mockOnToggle} />)
-    userClick(screen.getByTestId('ExpandMoreIcon').parentElement)
+    act(() => userClick(screen.getByTestId('ExpandMoreIcon').parentElement))
     await waitFor(() => {
       expect(mockOnToggle).toHaveBeenCalled()
     })

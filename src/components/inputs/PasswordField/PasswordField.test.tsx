@@ -3,13 +3,13 @@
 
 import React from 'react'
 import PasswordField from './PasswordField'
-import { render, userClick, waitFor, screen } from '../../../testingUtils'
+import { render, userClick, waitFor, screen, act } from '../../../testingUtils'
 
 describe('PasswordField', () => {
   test('toggles show/hide icons', async () => {
     render(<PasswordField />)
     expect(screen.getByTestId('VisibilityOffIcon')).toBeInTheDocument()
-    userClick(screen.getByRole('button'))
+    act(() => userClick(screen.getByRole('button')))
     await waitFor(() => expect(screen.getByTestId('VisibilityIcon')).toBeInTheDocument())
   })
 
@@ -18,7 +18,7 @@ describe('PasswordField', () => {
     render(<PasswordField value={text} />)
     const input = screen.getByDisplayValue(text)
     expect(input).toHaveAttribute('type', 'password')
-    userClick(screen.getByRole('button'))
+    act(() => userClick(screen.getByRole('button')))
     await waitFor(() => expect(input).toHaveAttribute('type', 'text'))
   })
 })
