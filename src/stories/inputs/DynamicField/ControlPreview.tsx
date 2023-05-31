@@ -2,7 +2,7 @@
 // This source code is licensed under the MIT license.
 
 import React, { useState } from 'react'
-import { Grid } from '@mui/material'
+import { Grid, Stack } from '@mui/material'
 import { DynamicField, Typography } from 'components'
 import { ControlType } from 'components/inputs/DynamicField/types'
 import LinkTo from '@storybook/addon-links/react'
@@ -22,10 +22,11 @@ const ControlPreview = ({ controlType, ...rest }: ControlPreviewProps) => {
   const width = useContainerSizing()
 
   return (
-    <Grid container alignItems={'center'} spacing={5} sx={{ width }}>
-      <Grid item container justifyContent={'center'} xs={12} sm={currentControlData.props.length > 0 ? 6 : 12}>
+    <Grid container alignItems={'center'} spacing={2} minWidth={width}>
+      <Grid item xs={12} sm={6}>
         <DynamicField
           controlType={controlType}
+          label={`Dynamic (${controlType})`}
           value={value}
           options={options}
           {...rest}
@@ -33,30 +34,28 @@ const ControlPreview = ({ controlType, ...rest }: ControlPreviewProps) => {
           onChange={newValue => setValue(newValue)}
         />
       </Grid>
-      {currentControlData.props.length > 0 && (
-        <Grid item container xs={12} sm={6} sx={{ gap: '.75rem', flexDirection: 'column' }}>
-          <Typography fontWeight={700}>
-            Options{' '}
-            {currentControlData.link && (
-              <>
-                (for more, see <InfoLink link={currentControlData.link} />){' '}
-              </>
-            )}
-            :
-          </Typography>
-          {currentControlData.props.map(({ name, type, label, options }) => (
-            <DynamicField
-              id={name}
-              key={name}
-              controlType={type}
-              onChange={value => handlePropsChange(name, value)}
-              label={label}
-              options={options}
-              value={controlValues[name]}
-            />
-          ))}
-        </Grid>
-      )}
+      <Grid item xs={12} sm={6}>
+        {currentControlData.props.length > 0 && (
+          <Stack gap={2}>
+            <Typography fontWeight={700}>
+              Options
+              {currentControlData.link && ' - for more, see '}
+              {currentControlData.link && <InfoLink link={currentControlData.link} />}:
+            </Typography>
+            {currentControlData.props.map(({ name, type, label, options }) => (
+              <DynamicField
+                id={name}
+                key={name}
+                controlType={type}
+                onChange={value => handlePropsChange(name, value)}
+                label={label}
+                options={options}
+                value={controlValues[name]}
+              />
+            ))}
+          </Stack>
+        )}
+      </Grid>
     </Grid>
   )
 }

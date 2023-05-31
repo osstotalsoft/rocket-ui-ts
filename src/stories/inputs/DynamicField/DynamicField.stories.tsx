@@ -4,7 +4,7 @@
 import React, { ComponentType } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import { DynamicField as DynamicFieldComponent, Typography, ControlType, DynamicFieldProps } from 'components'
-import ControlsPreview from './ControlsPreview'
+import DynamicControlPreview from './DynamicControlPreview'
 import ControlPreview from './ControlPreview'
 import { options } from '../Autocomplete/_mocks'
 import { Rating, Stack } from '@mui/material'
@@ -74,7 +74,7 @@ export const Dynamic: Story = {
       }
     }
   },
-  render: () => <ControlsPreview />
+  render: () => <DynamicControlPreview />
 }
 
 /**

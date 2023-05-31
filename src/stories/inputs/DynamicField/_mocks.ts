@@ -31,10 +31,16 @@ export const controlData: ControlData[] = [
     },
     props: [
       {
-        name: 'label',
-        label: 'Label',
-        value: 'Dynamic (Text)',
+        name: 'helperText',
+        label: 'Helper text',
+        value: '',
         type: ControlType.Text
+      },
+      {
+        name: 'error',
+        label: 'Has errors',
+        value: false,
+        type: ControlType.Checkbox
       },
       {
         name: 'isClearable',
@@ -53,9 +59,9 @@ export const controlData: ControlData[] = [
     },
     props: [
       {
-        name: 'label',
-        label: 'Label',
-        value: 'Dynamic (Integer)',
+        name: 'helperText',
+        label: 'Helper text',
+        value: '',
         type: ControlType.Text
       },
       {
@@ -69,6 +75,12 @@ export const controlData: ControlData[] = [
         label: 'Maximum value',
         value: 100,
         type: ControlType.Numeric
+      },
+      {
+        name: 'error',
+        label: 'Has errors',
+        value: false,
+        type: ControlType.Checkbox
       },
       {
         name: 'isClearable',
@@ -87,9 +99,9 @@ export const controlData: ControlData[] = [
     },
     props: [
       {
-        name: 'label',
-        label: 'Label',
-        value: 'Dynamic (Numeric)',
+        name: 'helperText',
+        label: 'Helper text',
+        value: '',
         type: ControlType.Text
       },
       {
@@ -117,6 +129,12 @@ export const controlData: ControlData[] = [
         type: ControlType.Text
       },
       {
+        name: 'error',
+        label: 'Has errors',
+        value: false,
+        type: ControlType.Checkbox
+      },
+      {
         name: 'isClearable',
         label: 'Is clearable',
         value: false,
@@ -133,9 +151,9 @@ export const controlData: ControlData[] = [
     },
     props: [
       {
-        name: 'label',
-        label: 'Label',
-        value: 'Dynamic (Date)',
+        name: 'helperText',
+        label: 'Helper text',
+        value: '',
         type: ControlType.Text
       },
       {
@@ -144,6 +162,12 @@ export const controlData: ControlData[] = [
         value: 'date',
         type: ControlType.Autocomplete,
         options: ['date', 'time', 'dateTime']
+      },
+      {
+        name: 'error',
+        label: 'Has errors',
+        value: false,
+        type: ControlType.Checkbox
       },
       {
         name: 'clearable',
@@ -161,10 +185,10 @@ export const controlData: ControlData[] = [
     },
     props: [
       {
-        name: 'label',
-        label: 'Label',
-        value: 'Dynamic (Checkbox)',
-        type: ControlType.Text
+        name: 'disabled',
+        label: 'Is disabled',
+        value: false,
+        type: ControlType.Checkbox
       },
       {
         name: 'indeterminate',
@@ -183,10 +207,16 @@ export const controlData: ControlData[] = [
     },
     props: [
       {
-        name: 'label',
-        label: 'Label',
-        value: 'Dynamic (Autocomplete)',
+        name: 'helperText',
+        label: 'Helper text',
+        value: '',
         type: ControlType.Text
+      },
+      {
+        name: 'error',
+        label: 'Has errors',
+        value: false,
+        type: ControlType.Checkbox
       },
       {
         name: 'isClearable',

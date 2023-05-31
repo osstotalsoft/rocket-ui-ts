@@ -10,7 +10,7 @@ import { options } from '../Autocomplete/_mocks'
 import { useContainerSizing, useDynamicProps } from './_hooks'
 import { InfoLink } from './ControlPreview'
 
-const ControlsPreview = () => {
+const DynamicControlPreview = () => {
   const [value, setValue] = useState<unknown>()
   const [type, setType] = useState<ControlType>(ControlType.Text)
 
@@ -19,9 +19,10 @@ const ControlsPreview = () => {
 
   return (
     <Grid container alignItems={'center'} spacing={2} minWidth={width}>
-      <Grid item xs={6}>
+      <Grid item xs={12} sm={6}>
         <DynamicField<SwitchProps>
           controlType={type}
+          label={`Dynamic (${type})`}
           value={value}
           onChange={newValue => setValue(newValue)}
           options={options}
@@ -34,13 +35,13 @@ const ControlsPreview = () => {
           }}
         />
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={12} sm={6}>
         <Stack gap={2}>
-          <Typography emphasis="bold" children="Control type:" />
           <Autocomplete
             options={controlTypes}
             simpleValue
             value={type}
+            label="Control type"
             onChange={value => {
               setValue(null)
               setType(value)
@@ -49,10 +50,9 @@ const ControlsPreview = () => {
           {currentControlData.props.length > 0 && (
             <>
               <Typography emphasis="bold" noWrap>
-                {`Options
-            ${currentControlData.link ? ' for more, see: ' : ': '}
-            `}
-                {currentControlData.link && <InfoLink link={currentControlData.link} />}
+                Options
+                {currentControlData.link && ' - for more, see '}
+                {currentControlData.link && <InfoLink link={currentControlData.link} />}:
               </Typography>
               {currentControlData.props.map(({ name, type, label, options }) => (
                 <DynamicField
@@ -73,4 +73,4 @@ const ControlsPreview = () => {
   )
 }
 
-export default ControlsPreview
+export default DynamicControlPreview
