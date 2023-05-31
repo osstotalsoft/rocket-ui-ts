@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Grid from '@mui/material/Grid'
-import forbidden from './forbidden.png'
+import forbidden from '../../assets/img/forbidden.png'
 import Typography from '../../dataDisplay/Typography'
 import Button from '../../buttons/Button'
 import { ForbiddenProps } from './types'

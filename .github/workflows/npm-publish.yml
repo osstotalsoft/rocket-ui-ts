@@ -28,6 +28,8 @@ jobs:
         run: yarn install
       - name: Build
         run: yarn build
+      - name: Copy assets
+        run: yarn copy
       # - name: Run tests
       #   run: yarn test
       - name: Bump version
