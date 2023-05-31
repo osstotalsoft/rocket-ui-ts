@@ -17,6 +17,9 @@ export default {
 
 type Story = StoryObj<typeof DynamicFieldComponent>
 
+/**
+ * It renders a dynamic control from minimal props (controlType - Text and a label)
+ */
 export const Default: Story = {
   parameters: {
     controls: { hideNoControlsWarning: true },
