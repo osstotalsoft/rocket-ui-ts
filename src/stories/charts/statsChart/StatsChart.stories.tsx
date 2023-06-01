@@ -52,32 +52,6 @@ export const Default: Story = {
 }
 
 /**
- * `Bar` chart type can be used beside `Line` (which is the default).
- */
-export const Bar: Story = {
-  parameters: {
-    controls: { hideNoControlsWarning: true },
-    docs: {
-      source: {
-        code: `
-        <StatsChart
-          type="bar"
-          title={'Bar Chart'}
-          chartColor={'info'}
-          StatIcon={AccessTime}
-          statText={'Bar chart infos'}
-          data={DataToBeDisplayed}
-          options={statsChartOptions}
-        />
-        `,
-        format: true
-      }
-    }
-  },
-  render: args => <BarPreview {...args} />
-}
-
-/**
  * Besides showing chart data, the content of the component can be improved using properties like `chartColor`, `StatIcon` and many more.
  */
 export const Line: Story = {
@@ -101,4 +75,30 @@ export const Line: Story = {
     }
   },
   render: () => <LinePreview />
+}
+
+/**
+ * `Bar` chart type can be used beside `Line` (which is the default).
+ */
+export const Bar: Story = {
+  parameters: {
+    controls: { hideNoControlsWarning: true },
+    docs: {
+      source: {
+        code: `
+        <StatsChart
+          type="bar"
+          title={'Bar Chart'}
+          chartColor={'info'}
+          StatIcon={AccessTime}
+          statText={'Bar chart infos'}
+          data={DataToBeDisplayed}
+          options={statsChartOptions}
+        />
+        `,
+        format: true
+      }
+    }
+  },
+  render: args => <BarPreview {...args} />
 }
