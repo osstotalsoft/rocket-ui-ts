@@ -60,7 +60,6 @@
     "verbose": true
   },
   "dependencies": {
-    "@emotion/css": "^11.10.6",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "@mui/icons-material": "^5.11.16",
@@ -86,6 +85,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.21.4",
+    "@emotion/css": "^11.10.6",
     "@nrwl/js": "^15.9.2",
     "@storybook/addon-essentials": "7.0.11",
     "@storybook/addon-interactions": "7.0.11",
@@ -131,7 +131,6 @@
     "rimraf": "^5.0.0",
     "sort-package-json": "^2.4.1",
     "storybook": "7.0.11",
-    "storybook-addon-export-to-codesandbox": "^0.8.4",
     "ts-jest": "^29.1.0",
     "ts-node": "^10.9.1",
     "tsconfig-paths-webpack-plugin": "^4.0.1",
