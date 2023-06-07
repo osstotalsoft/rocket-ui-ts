@@ -37,7 +37,7 @@ const Dialog: React.FC<DialogProps> = ({
   showX = true,
   transparentBackdrop,
   dividers = false,
-  maxWidth = 'xl',
+  fullWidth = true,
   open = false,
   ...rest
 }) => {
@@ -72,7 +72,7 @@ const Dialog: React.FC<DialogProps> = ({
       aria-labelledby={dialogTitleId}
       fullScreen={fullScreen || smallScreen}
       BackdropComponent={transparentBackdrop && TransparentBackdrop}
-      maxWidth={maxWidth}
+      fullWidth={fullWidth}
       open={open}
       {...rest}
     >
@@ -192,7 +192,14 @@ Dialog.propTypes = {
    */
   dividers: PropTypes.bool,
   /**
-   * @default 'xl'
+   * If `true`, the dialog stretches to `maxWidth`.
+   *
+   * Notice that the dialog width grow is limited by the default margin.
+   * @default true
+   */
+  fullWidth: PropTypes.bool,
+  /**
+   * @default 'sm'
    * Determine the max-width of the dialog. The dialog width grows with the size of the screen. Set to false to disable maxWidth.
    */
   maxWidth: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl', false])

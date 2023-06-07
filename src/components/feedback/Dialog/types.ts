@@ -22,7 +22,7 @@ export interface DefaultActionsProps extends ButtonProps {
   textDialogNo?: string
 }
 
-export interface DialogProps extends Omit<MuiDialogProps, 'onClose' | 'title' | 'content'> {
+export interface DialogProps extends Omit<MuiDialogProps, 'onClose' | 'title' | 'content' | 'fullWidth'> {
   /**
    * Callback fired when the component requests to be closed.
    * The `reason` parameter can optionally be used to control the response to `onClose`.
@@ -99,6 +99,13 @@ export interface DialogProps extends Omit<MuiDialogProps, 'onClose' | 'title' | 
    * If `true`, the close button is shown.
    */
   showX?: boolean
+  /**
+   * If `true`, the dialog stretches to `maxWidth`.
+   *
+   * Notice that the dialog width grow is limited by the default margin.
+   * @default true
+   */
+  fullWidth?: boolean
   /**
    * @default false
    * Display dividers at the top and bottom of DialogContent.

@@ -48,14 +48,14 @@ export const TextContent: Story = {
     docs: {
       source: {
         code: `
-        <Button children="basic dialog" variant="outlined" onClick={toggle} />
+        <Button children="basic dialog" maxWidth="lg" variant="outlined" onClick={toggle} />
         <Dialog id="default-dialog" title="Title" textContent="Some text content" open={open} onClose={toggle} />
         `,
         format: true
       }
     }
   },
-  args: { title, textContent: longText },
+  args: { title, textContent: longText, maxWidth: 'lg' },
   render: args => <DefaultPreview button="Open Dialog" {...args} />
 }
 
