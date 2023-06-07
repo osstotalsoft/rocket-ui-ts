@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo } from 'react'
 import PropTypes from 'prop-types'
-import { Autocomplete, DateTime, TextField } from 'components'
+import { Autocomplete, DateTime, TextField } from '../../index'
 import { ControlType, DynamicFieldProps } from './types'
 import { Checkbox } from '@mui/material'
 import { FormControlLabel } from '@mui/material'
