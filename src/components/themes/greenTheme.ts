@@ -8,7 +8,7 @@ const palette = generatePalette({
   primary: {
     lighter: '#9dffd4',
     light: '#67eaa2',
-    main: '#2ab773',
+    main: '#005604',
     dark: '#008647',
     darker: '#00581e',
     contrastText: '#fff',
@@ -17,11 +17,11 @@ const palette = generatePalette({
   secondary: {
     lighter: '#6db45f',
     light: '#3d8433',
-    main: '#005604',
+    main: '#2ab773',
     dark: '#002c00',
     darker: '#003000',
     contrastText: '#fff',
-    rgba: 'rgba(0, 86, 4, 1)'
+    rgba: 'rgb(39 108 37)'
   },
   background: {
     default: '#eff7f0',
@@ -32,7 +32,9 @@ const palette = generatePalette({
     color: '#005604',
     hoverBgColor: 'rgb(239,247,240, 0.5)',
     hoverTextColor: '#005604',
-    bgOpacity: '0.8'
+    bgOpacity: '0.8',
+    focusBgColor: '#2a912f',
+    activeBgColor: '#005604'
   }
 } as PaletteOptions)
 
