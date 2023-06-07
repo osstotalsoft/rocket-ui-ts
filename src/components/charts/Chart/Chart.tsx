@@ -5,16 +5,28 @@ import {
   Chart as ChartJS,
   CategoryScale,
   LinearScale,
+  LineController,
   PointElement,
   LineElement,
   BarElement,
+  BarController,
   Tooltip,
   Legend
 } from 'chart.js'
 import { ChartProps } from './types'
 import { Card, CardColor } from '../../surfaces/Card'
 
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, BarElement, Tooltip, Legend)
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  LineController,
+  PointElement,
+  LineElement,
+  BarElement,
+  BarController,
+  Tooltip,
+  Legend
+)
 
 /**
  * The Chart component provides a set of frequently and customizable used chart types (`line` and `bar`).

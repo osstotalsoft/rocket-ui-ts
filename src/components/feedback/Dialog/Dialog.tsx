@@ -182,7 +182,7 @@ Dialog.propTypes = {
    */
   fullScreen: PropTypes.bool,
   /**
-   * @default false
+   * @default true
    * If true, the close button is shown.
    */
   showX: PropTypes.bool,

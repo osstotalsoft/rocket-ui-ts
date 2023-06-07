@@ -12,11 +12,21 @@ import {
   StatAction
 } from './StatsChartStyles'
 import { Chart } from 'react-chartjs-2'
-import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, BarElement, Tooltip } from 'chart.js'
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  LineController,
+  PointElement,
+  LineElement,
+  BarElement,
+  BarController,
+  Tooltip
+} from 'chart.js'
 import Divider from '@mui/material/Divider'
 import { StatsIconColor, StatsChartProps } from './types'
 
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, BarElement, Tooltip)
+ChartJS.register(CategoryScale, LinearScale, LineController, PointElement, LineElement, BarElement, BarController, Tooltip)
 
 /**
  * The StatsChart component provides a set of frequently and customizable used chart types (`line` and `bar`).

@@ -28,3 +28,4 @@ const getTheme = (context = defaultCtx): Theme => {
 }
 
 export default getTheme
+export { defaultTheme, blueTheme, greenTheme, lightBlueTheme, orangeTheme, redTheme, vividOrangeTheme }

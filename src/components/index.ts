@@ -27,6 +27,9 @@ export * from './dataDisplay/ExpandingText'
 export { default as Autocomplete } from './inputs/Autocomplete'
 export * from './inputs/Autocomplete'
 
+export { default as DynamicField } from './inputs/DynamicField'
+export * from './inputs/DynamicField'
+
 export { default as TextField } from './inputs/TextField'
 export * from './inputs/TextField'
 
