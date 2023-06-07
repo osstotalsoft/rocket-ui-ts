@@ -105,7 +105,7 @@ export interface DialogProps extends Omit<MuiDialogProps, 'onClose' | 'title' | 
    * Notice that the dialog width grow is limited by the default margin.
    * @default true
    */
-  fullWidth: boolean
+  fullWidth?: boolean
   /**
    * @default false
    * Display dividers at the top and bottom of DialogContent.
