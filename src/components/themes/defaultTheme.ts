@@ -32,7 +32,8 @@ const palette = generatePalette({
     color: '#fff',
     hoverBgColor: 'rgba(200, 200, 200, 0.2)',
     hoverTextColor: '#fff',
-    bgOpacity: '0.8'
+    bgOpacity: '0.8',
+    activeBgColor: '#26C6DA'
   }
 } as PaletteOptions)
 

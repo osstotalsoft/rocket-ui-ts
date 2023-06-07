@@ -21,7 +21,7 @@ const palette = generatePalette({
     dark: '#c43e00',
     darker: '#8c0000',
     contrastText: '#fff',
-    rgba: 'rgba(255, 111, 0, 1)'
+    rgba: 'rgba(255, 111, 0)'
   },
   background: {
     default: '#fff',
@@ -32,7 +32,8 @@ const palette = generatePalette({
     color: '#fff',
     hoverBgColor: 'rgba(200, 200, 200, 0.2)',
     hoverTextColor: '#fff',
-    bgOpacity: '0.8'
+    bgOpacity: '0.8',
+    activeBgColor: '#FF6F00'
   }
 } as PaletteOptions)
 

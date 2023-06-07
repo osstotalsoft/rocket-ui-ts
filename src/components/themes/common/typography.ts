@@ -22,9 +22,21 @@ export const generateTypography = (palette: PaletteOptions) =>
       fontStretch: 'normal',
       fontStyle: 'normal'
     },
-    body: defaultFont,
+    body: {
+      ...defaultFont,
+      fontSize: 14
+    },
     header: {
       title: {
+        borderRadius: '3px',
+        textTransform: 'none',
+        fontWeight: 'bold',
+        color: palette.primary.main,
+        '&:hover,&:focus': {
+          background: 'transparent'
+        }
+      },
+      titleMobile: {
         borderRadius: '3px',
         textTransform: 'none',
         fontWeight: 'bold',
