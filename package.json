@@ -24,7 +24,7 @@
     "build-test": "tsc --p tsconfig.build.json --noEmit ",
     "clean": "rimraf dist",
     "copy": "copyfiles -u 4 src/components/assets/img/*.png dist/components/assets/img",
-    "postinstall": "yarn dlx sort-package-json",
+    "postinstall": "npx sort-package-json --yarn",
     "lint": "eslint src/*.{ts,tsx} && run build-test",
     "linter": "eslint . --fix --ext .ts,.tsx",
     "publish": "yarn npm publish",
