@@ -8,7 +8,10 @@
   },
   "files.eol": "\n",
   "eslint.enable": true,
-  "eslint.validate": ["typescript", "javascript"],
+  "eslint.validate": [
+    "typescript",
+    "javascript"
+  ],
   "prettier.prettierPath": ".yarn/sdks/prettier/index.js",
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "[typescript]": {
