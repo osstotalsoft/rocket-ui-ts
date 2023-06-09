@@ -1,6 +1,6 @@
 import { Shadows, alpha } from '@mui/material/styles'
 import { CustomShadows } from '../types'
-import { PaletteOptions, SimplePaletteColorOptions as SPCO } from '@mui/material'
+import { PaletteOptions } from '@mui/material'
 
 const LIGHT_MODE = (palette: PaletteOptions) => palette?.grey?.[500]
 
@@ -50,13 +50,13 @@ const createCustomShadow = (color = '', palette?: PaletteOptions): CustomShadows
     z16: `0 0 2px 0 ${transparent}, 0 16px 32px -4px ${transparent}`,
     z20: `0 0 2px 0 ${transparent}, 0 20px 40px -4px ${transparent}`,
     z24: `0 0 4px 0 ${transparent}, 0 24px 48px 0 ${transparent}`,
-    primary: `0 8px 16px 0 ${alpha((primary as SPCO)?.main || '', 0.24)}`,
-    secondary: `0 8px 16px 0 ${alpha((secondary as SPCO)?.main || '', 0.24)}`,
-    info: `0 8px 16px 0 ${alpha((info as SPCO)?.main || '', 0.24)}`,
-    success: `0 8px 16px 0 ${alpha((success as SPCO)?.main || '', 0.24)}`,
-    warning: `0 8px 16px 0 ${alpha((warning as SPCO)?.main || '', 0.24)}`,
-    error: `0 8px 16px 0 ${alpha((error as SPCO)?.main || '', 0.24)}`,
-    danger: `0 8px 16px 0 ${alpha((error as SPCO)?.main || '', 0.24)}`
+    primary: `0 8px 16px 0 ${alpha(primary.main, 0.24)}`,
+    secondary: `0 8px 16px 0 ${alpha(secondary.main, 0.24)}`,
+    info: `0 8px 16px 0 ${alpha(info.main, 0.24)}`,
+    success: `0 8px 16px 0 ${alpha(success.main, 0.24)}`,
+    warning: `0 8px 16px 0 ${alpha(warning.main, 0.24)}`,
+    error: `0 8px 16px 0 ${alpha(error.main, 0.24)}`,
+    danger: `0 8px 16px 0 ${alpha(error.main, 0.24)}`
   } as CustomShadows
 }
 
