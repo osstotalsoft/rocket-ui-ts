@@ -3,6 +3,7 @@ import componentsOverride from './common/overrides'
 import generatePalette from './common/palette'
 import { generateTypography } from './common/typography'
 import { generateShadows, generateCustomShadows } from './common/shadows'
+import table from './common/table'
 
 const palette = generatePalette({
   primary: {
@@ -41,6 +42,7 @@ const defaultTheme: Theme = createTheme({
   palette,
   shape: { borderRadius: 8 },
   typography: generateTypography(palette),
+  table,
   shadows: generateShadows(palette),
   customShadows: generateCustomShadows(palette)
 } as ThemeOptions)
