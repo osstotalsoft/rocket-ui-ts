@@ -7,5 +7,6 @@
 }
 
 .docs-story div:first-of-type div:first-of-type {
+  transform: unset;
   -moz-transform: unset;
 }
