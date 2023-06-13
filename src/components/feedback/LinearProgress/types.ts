@@ -18,4 +18,8 @@ export interface LinearProgressProps extends Omit<MuiLinearProgressProps, 'color
    * If true it shows the progress indicator value (%).
    */
   showLabel?: boolean
+  /**
+   * If true, the bar is shown at the top of the page, spanning the entire width
+   */
+  global?: boolean
 }
