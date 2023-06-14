@@ -1,33 +1,41 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
 import Box from '@mui/material/Box'
-import { LinearProgress as MuiLinearProgress, Label } from './LinearProgressStyles'
+import {
+  ComponentContainer,
+  LinearProgressContainer,
+  LinearProgress as MuiLinearProgress,
+  Label
+} from './LinearProgressStyles'
 import { isNil } from 'ramda'
-import { LinearProgressProps, ProgressColor } from './types'
+import { LinearProgressProps } from './types'
 
 /**
  * Progress indicators inform users about the status of ongoing processes, such as loading an app, submitting a form, or saving updates.
  */
 const LinearProgress: React.FC<LinearProgressProps> = ({
-  color = 'grey' as ProgressColor,
+  color = 'grey',
   variant,
   value,
   valueBuffer,
   showLabel,
   labelProps,
+  global,
   ...rest
 }) => {
+  const hasLabel = useMemo(() => !global && showLabel && !isNil(value), [global, showLabel, value])
+
   return (
-    <Box sx={{ display: 'flex', alignItems: 'center' }}>
-      <Box sx={{ width: '100%', mr: 1 }}>
+    <ComponentContainer global={global}>
+      <LinearProgressContainer hasLabel={hasLabel}>
         <MuiLinearProgress value={value} valueBuffer={valueBuffer} variant={variant} color={color} {...rest} />
-      </Box>
-      {showLabel && !isNil(value) && (
+      </LinearProgressContainer>
+      {hasLabel && (
         <Box sx={{ minWidth: 35 }}>
           <Label color="textSecondary" variant="body2" {...labelProps}>{`${Math.round(value)}%`}</Label>
         </Box>
       )}
-    </Box>
+    </ComponentContainer>
   )
 }
 
@@ -41,6 +49,10 @@ LinearProgress.propTypes = {
    * If true it shows the progress indicator value (%).
    */
   showLabel: PropTypes.bool,
+  /**
+   * If true, the bar is shown at the top of the page, spanning the entire width
+   */
+  global: PropTypes.bool,
   /**
    * Props applied to the label.
    */

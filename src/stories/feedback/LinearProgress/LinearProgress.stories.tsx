@@ -3,9 +3,11 @@
 
 import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
+import { Box } from '@mui/material'
 import { LinearProgress } from 'components'
 import ColorsPreview from './ColorsPreview'
 import VariantsPreview from './VariantsPreview'
+import GlobalPreview from './GlobalPreview'
 
 const meta: Meta<typeof LinearProgress> = {
   title: 'Components/Feedback/LinearProgress',
@@ -22,8 +24,11 @@ type Story = StoryObj<typeof meta>
  * The animations of the components rely on CSS as much as possible to work even before the JavaScript is loaded.
  */
 export const Default: Story = {
-  args: { sx: { width: '400px' } },
-  render: args => <LinearProgress {...args} />
+  render: args => (
+    <Box sx={{ width: '400px' }}>
+      <LinearProgress {...args} />
+    </Box>
+  )
 }
 
 export const Colors: Story = {
@@ -105,4 +110,19 @@ export const Variants: Story = {
     }
   },
   render: () => <VariantsPreview />
+}
+
+export const Global: Story = {
+  parameters: {
+    controls: { hideNoControlsWarning: true },
+    docs: {
+      source: {
+        code: `
+          <LinearProgress global />
+        `,
+        format: true
+      }
+    }
+  },
+  render: () => <GlobalPreview />
 }

@@ -3,8 +3,7 @@
 
 import React, { useState } from 'react'
 import { Grid, Stack } from '@mui/material'
-import { DynamicField, Typography } from 'components'
-import { ControlType } from 'components/inputs/DynamicField/types'
+import { DynamicField, Typography, ControlType } from 'components'
 import LinkTo from '@storybook/addon-links/react'
 import { options } from '../Autocomplete/_mocks'
 import { useContainerSizing, useDynamicProps } from './_hooks'
