@@ -2,7 +2,7 @@ import { LinearProgressProps as MuiLinearProgressProps } from '@mui/material'
 import { TypographyProps } from '../../dataDisplay/Typography'
 import { Color } from '../../types'
 
-export type ProgressColor = Exclude<Color, 'default' | 'white' | 'transparent' | 'inherit'> | 'grey'
+type ProgressColor = Exclude<Color, 'default' | 'white' | 'transparent' | 'inherit'> | 'grey'
 
 export interface LinearProgressProps extends Omit<MuiLinearProgressProps, 'color'> {
   /**
