@@ -1,46 +1,14 @@
 import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
 import Box from '@mui/material/Box'
-import { styled } from '@mui/material/styles'
-import { LinearProgress as MuiLinearProgress, Label } from './LinearProgressStyles'
+import {
+  ComponentContainer,
+  LinearProgressContainer,
+  LinearProgress as MuiLinearProgress,
+  Label
+} from './LinearProgressStyles'
 import { isNil } from 'ramda'
 import { LinearProgressProps } from './types'
-
-//#region ContainerComponent
-
-type ContainerComponentProps = {
-  global?: boolean
-}
-
-const ComponentContainer = styled(Box)<ContainerComponentProps>(({ global }) => ({
-  display: 'flex',
-  alignItems: 'center',
-  ...(global && {
-    position: 'fixed',
-    zIndex: 9999,
-    top: 0,
-    left: 0,
-    right: 0,
-    overflow: 'hidden'
-  })
-}))
-
-//#endregion
-
-//#region LinearProgressContainer
-
-type LinearProgressContainerProps = {
-  hasLabel?: boolean
-}
-
-const LinearProgressContainer = styled(Box)<LinearProgressContainerProps>(({ hasLabel, theme }) => ({
-  width: '100%',
-  ...(hasLabel && {
-    marginRight: theme.spacing(1)
-  })
-}))
-
-//#endregion
 
 /**
  * Progress indicators inform users about the status of ongoing processes, such as loading an app, submitting a form, or saving updates.
