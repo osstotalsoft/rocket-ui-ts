@@ -21,8 +21,13 @@ const fileType = {
 /**
  * The ListFilter component provides a user interface for filtering and sorting lists. It can display
  * additional filter components passed in as children, it can customize which of these filters are 
- * visible, it can control the visibility of the list data and save/apply predetermined configurations
- */
+ * visible, it can control the visibility of the list data and save/apply predetermined configurations.
+ * When given additional filters as child components the search field has an expand button that reveals them.
+ * The component can display a download button for exporting the contents of the list to Excel or CSV.
+ * Which child filters are visible can be customized using the visibleFilters prop.
+ * The data displayed within the list can be customized using the visibleFields prop.
+ * Predetermined filter configurations can be saved and applied using the userPreferences prop.
+*/
 const ListFilter: React.FC<ListFilterProps> = ({
   sortableColumns,
   filters,
@@ -46,7 +51,7 @@ const ListFilter: React.FC<ListFilterProps> = ({
   onListDeleteChanged,
   onAddUserPreference,
   userPreferences
-}: ListFilterProps) => {
+}) => {
   const [expanded, setExpanded] = useState(false)
   const [anchorElCustomize, setAnchorElCustomize] = useState(null)
   const [anchorElFieldsFilter, setAnchorElFieldsFilter] = useState(null)

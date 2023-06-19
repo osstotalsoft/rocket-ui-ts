@@ -25,6 +25,19 @@ export interface UserPreference {
   }
 }
 
+export interface VisibleFilter {
+  defaultValue: unknown;
+  label: string
+  isVisible: boolean
+  fieldName: string
+}
+
+export interface VisibleField {
+  label: string
+  isVisible: boolean
+  fieldName: string
+}
+
 export interface LocalizedStrings {
   OrderAscending: string,
   OrderDescending: string,
@@ -51,8 +64,8 @@ export type ListFilterProps = {
   sortableColumns: Array<SortableColumn>
   filters: Filters
   localizedStrings: LocalizedStrings,
-  visibleFilters?: Array<{ defaultValue: unknown; label: string; isVisible: boolean; fieldName: string }>
-  visibleFields?: Array<{ label: string; isVisible: boolean; fieldName: string }>
+  visibleFilters?: Array<VisibleFilter>
+  visibleFields?: Array<VisibleField>
   onChangeFilterValue: (filterName: string, value?: unknown) => void
   onDownload?: (filetype: string) => void
   downloadEnabled?: boolean
