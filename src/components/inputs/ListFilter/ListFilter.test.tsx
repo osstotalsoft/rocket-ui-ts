@@ -49,7 +49,8 @@ describe('ListFilter', () => {
     render(<ListFilter 
       filters={filters}
       onChangeFilterValue={() => {}} 
-      sortableColumns={sortableColumns} localizedStrings={localizedStrings} 
+      sortableColumns={sortableColumns}
+      localizedStrings={localizedStrings} 
     />)
     expect(screen.getByRole('textbox')).toBeInTheDocument()
   })

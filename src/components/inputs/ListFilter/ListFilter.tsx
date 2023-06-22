@@ -1,17 +1,15 @@
 import React, { useCallback, useMemo, useState } from 'react'
 import PropTypes from 'prop-types'
-import { Toolbar, Tooltip, Collapse, Menu, MenuItem, FormControlLabel, Checkbox } from '@mui/material/'
-import { Grid } from '@mui/material'
-import TextField from '../TextField'
-import InputAdornment from '@mui/material/InputAdornment'
-import IconButton from '@mui/material/IconButton'
-import CustomIconButton from 'components/buttons/IconButton'
+import { TextField, Autocomplete } from 'components'
+import { Toolbar, Collapse, Menu, MenuItem, InputAdornment, Grid } from '@mui/material/'
+import { Search } from '@mui/icons-material'
 import { ListFilterProps, UserPreference } from './types'
-import { Close, CloudDownload, ExpandLess, ExpandMore, FilterList, PostAdd, Search } from '@mui/icons-material'
-import Autocomplete from '../Autocomplete'
 import UserPreferencesPopUp from './UserPreferencesPopUp'
-import { useTheme } from '@mui/material/styles'
-import useMediaQuery from '@mui/material/useMediaQuery'
+import FullTextFilterEndAdornment from './FullTextFilterEndAdornment'
+import ListFilterButtons from './ListFilterButtons'
+import { map } from 'ramda'
+import VisibleFiltersMenu from './VisibleFiltersMenu'
+import VisibleFieldsMenu from './VisibleFieldsMenu'
 
 const fileType = {
   excel: 'Excel',
@@ -25,7 +23,7 @@ const fileType = {
  * When given additional filters as child components the search field has an expand button that reveals them.
  * The component can display a download button for exporting the contents of the list to Excel or CSV.
  * Which child filters are visible can be customized using the visibleFilters prop.
- * The data displayed within the list can be customized using the visibleFields prop.
+ * The data displayed within the list can be customized using the visibleFields prop. 
  * Predetermined filter configurations can be saved and applied using the userPreferences prop.
 */
 const ListFilter: React.FC<ListFilterProps> = ({
@@ -58,8 +56,7 @@ const ListFilter: React.FC<ListFilterProps> = ({
   const [anchorElDownload, setAnchorElDownload] = useState(null)
   const [showUserPreferencesModal, setShowUserPreferencesModal] = useState(false)
   const [popUpUserPreference, setPopUpUserPreference] = useState(null)
-  const theme = useTheme()
-  const smallScreen = useMediaQuery(theme.breakpoints.down('md'))
+  const [userPreferencesIsDirty, setUserPreferencesIsDirty] = useState(false)
 
   const isDescendingOptions = useMemo(() => [
     { id: false, name: localizedStrings.OrderAscending },
@@ -68,22 +65,23 @@ const ListFilter: React.FC<ListFilterProps> = ({
 
   const userPreferencesOptions = useMemo(
     () =>
-      userPreferences?.map(item => {
+      map(item => {
         return {
           id: item.filterName,
           name: item.filterName
         }
-      }),
+      }, userPreferences || [])
+      ,
     [userPreferences]
   )
 
-  const mdLengthButtons = () => {
+  const mdLengthButtons = useMemo(() => {
     let mdLength = 0
     if (visibleFields) mdLength++
     if (visibleUserPreferences) mdLength++
     if (downloadButtonVisible) mdLength++
     return mdLength === 3 ? 2 : mdLength
-  }
+  }, [downloadButtonVisible, visibleFields, visibleUserPreferences])
 
   const expandFilters = useCallback(() => setExpanded(!expanded), [expanded])
 
@@ -107,7 +105,6 @@ const ListFilter: React.FC<ListFilterProps> = ({
     [onChangeFilterValue]
   )
 
-  //Visible Filters
   const openVisibleFiltersMenu = useCallback((event: React.MouseEvent) => {
     setAnchorElCustomize(event.target)
   },[])
@@ -115,8 +112,7 @@ const ListFilter: React.FC<ListFilterProps> = ({
   const closeVisibleFiltersMenu = useCallback(() => {
     setAnchorElCustomize(null)
   },[])
- 
-  //Visible Fields
+
   const openVisibleFieldsMenu = useCallback((event: React.MouseEvent) => {
     setAnchorElFieldsFilter(event.target)
   },[])
@@ -124,8 +120,7 @@ const ListFilter: React.FC<ListFilterProps> = ({
   const closeVisibleFieldsMenu = useCallback(() => {
     setAnchorElFieldsFilter(null)
   },[])
-  
-  //Downloads
+
   const openExportMenu = useCallback((event: React.MouseEvent) => {
     setAnchorElDownload(event.target)
   },[])
@@ -139,7 +134,6 @@ const ListFilter: React.FC<ListFilterProps> = ({
     setAnchorElDownload(null)
   }), [onDownload])
 
-  //User Preferences
   const onShowUserPreferencesModal = useCallback(() => {
     setShowUserPreferencesModal(true)
     if (selectedUserPreference.isDefault)
@@ -154,22 +148,25 @@ const ListFilter: React.FC<ListFilterProps> = ({
   },[selectedUserPreference])
 
   const onCloseUserPreferencesModal = useCallback(() => {
+    setUserPreferencesIsDirty(false)
     setShowUserPreferencesModal(false)
   },[])
 
-  const onUserPreferencesPropertyChanged = useCallback((e: React.ChangeEvent<HTMLInputElement>, propertyName: string) => {
+  const onUserPreferencesPropertyChanged = useCallback((value: unknown) => {
+    setUserPreferencesIsDirty(true)
     setPopUpUserPreference({
       ...popUpUserPreference,
-      [propertyName]: propertyName === 'implicit' ? e.target.checked : e.target.value
+      filterName: value as string
     })
   },[popUpUserPreference])
 
   const onAddUserPreferenceLocal = useCallback(() => {
     onAddUserPreference(popUpUserPreference)
+    setUserPreferencesIsDirty(false)
   },[onAddUserPreference, popUpUserPreference])
 
   const onListDeleteChangedLocal = useCallback((item: UserPreference) => {
-    if (item.filterName.toLowerCase() === selectedUserPreference.filterName.toLowerCase()) {
+    if (confirm(localizedStrings.DeleteUserPreference) && item.filterName.toLowerCase() === selectedUserPreference.filterName.toLowerCase()) {
       setPopUpUserPreference({
         ...selectedUserPreference,
         isDefault: false,
@@ -178,7 +175,7 @@ const ListFilter: React.FC<ListFilterProps> = ({
       })
     }
     onListDeleteChanged(item)
-  },[onListDeleteChanged, selectedUserPreference])
+  },[localizedStrings.DeleteUserPreference, onListDeleteChanged, selectedUserPreference])
 
   const onListImplicitChangedLocal = useCallback((item: UserPreference) => {
     const newImplicitValue = selectedUserPreference.filterName.toLowerCase() === item.filterName.toLowerCase() ? !selectedUserPreference.implicit : false
@@ -188,6 +185,10 @@ const ListFilter: React.FC<ListFilterProps> = ({
     })
     onListImplicitChanged(item)
   },[onListImplicitChanged, selectedUserPreference])
+
+  const hasChildren= useMemo(() => Boolean(children), [children])
+  const hasVisibleFilters= useMemo(() => Boolean(visibleFilters), [visibleFilters])
+  const hasVisibleFields= useMemo(() => Boolean(visibleFields), [visibleFields])
 
   return (
     <>
@@ -210,32 +211,21 @@ const ListFilter: React.FC<ListFilterProps> = ({
                       <Search />
                     </InputAdornment>
                   ),
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <Tooltip title={localizedStrings.ResetFilters}>
-                        <IconButton onClick={resetTextFilter}>
-                          <Close />
-                        </IconButton>
-                      </Tooltip>
-                      {children && (
-                        <Tooltip title={localizedStrings.ShowFilters}>
-                          <IconButton onClick={expandFilters}>{expanded ? <ExpandLess /> : <ExpandMore />}</IconButton>
-                        </Tooltip>
-                      )}
-                      {children && expanded && visibleFilters && (
-                        <Tooltip title={localizedStrings.ChooseFilters}>
-                          <IconButton onClick={openVisibleFiltersMenu}>
-                            <FilterList />
-                          </IconButton>
-                        </Tooltip>
-                      )}
-                    </InputAdornment>
-                  )
+                  endAdornment:
+                  <FullTextFilterEndAdornment
+                    localizedStrings={localizedStrings}
+                    resetTextFilter={resetTextFilter}
+                    expandFilters={expandFilters}
+                    expanded={expanded}
+                    openVisibleFiltersMenu={openVisibleFiltersMenu}
+                    hasChildren={hasChildren}
+                    hasVisibleFilters={hasVisibleFilters}
+                  />
                 }}
               />
             </Grid>
           )}
-          <Grid item xs={6} sm={visibleUserPreferences ? 4 : 6} md={visibleUserPreferences || (mdLengthButtons() > 1) ? 2 : 3}>
+          <Grid item xs={6} sm={visibleUserPreferences ? 4 : 6} md={visibleUserPreferences || (mdLengthButtons > 1) ? 2 : 3}>
             <Autocomplete
               label={localizedStrings.OrderBy}
               value={filters.orderByColumnName}
@@ -247,7 +237,7 @@ const ListFilter: React.FC<ListFilterProps> = ({
               labelKey="displayName"
             />
           </Grid>
-          <Grid item xs={6} sm={visibleUserPreferences ? 4 : 6} md={visibleUserPreferences || (mdLengthButtons() > 1)  ? 2 : 3}>
+          <Grid item xs={6} sm={visibleUserPreferences ? 4 : 6} md={visibleUserPreferences || (mdLengthButtons > 1)  ? 2 : 3}>
             <Autocomplete
               label={localizedStrings.InOrder}
               value={filters.orderByDescending}
@@ -268,87 +258,39 @@ const ListFilter: React.FC<ListFilterProps> = ({
               />
             </Grid>
           )}
-          <Grid container item xs={6} sm={12} md={mdLengthButtons()} spacing={1} wrap='nowrap' justifyContent={smallScreen ? 'flex-start' : 'flex-end'}>
-            {visibleUserPreferences && (
-              <Grid item>
-                <Tooltip title={localizedStrings.EditUserPreferences}>
-                  <div>
-                    <CustomIconButton
-                      onClick={onShowUserPreferencesModal}
-                      color="primary"
-                    >
-                      <PostAdd />
-                    </CustomIconButton>
-                  </div>
-                </Tooltip>
-              </Grid>
-            )}
-            {downloadButtonVisible && (
-              <Grid item>
-                <Tooltip title={localizedStrings.Download}>
-                  <div>
-                    {(downloadButtonVisible === true || downloadButtonVisible === undefined) && (
-                      <CustomIconButton color='primary' onClick={openExportMenu} disabled={!downloadEnabled}>
-                        <CloudDownload />
-                      </CustomIconButton>
-                    )}
-                  </div>
-                </Tooltip>
-              </Grid>
-            )}
-            {visibleFields && (
-              <Grid item>
-                <Tooltip title={localizedStrings.ChooseFields}>
-                  <div>
-                    <CustomIconButton color='primary' onClick={openVisibleFieldsMenu}>
-                      <FilterList />
-                    </CustomIconButton>
-                  </div>
-                </Tooltip>
-              </Grid>
-            )}
-          </Grid>
-          {/* VisibleFiltersMenu */}
-          {visibleFilters && (
-            <Menu anchorEl={anchorElCustomize} open={Boolean(anchorElCustomize)} onClose={closeVisibleFiltersMenu}>
-              {visibleFilters
-                .sort((a, b) => a.label > b.label ? 1 : -1)
-                .map((item, key) => {
-                  return (
-                    <MenuItem key={key}>
-                      <FormControlLabel
-                        control={<Checkbox checked={item.isVisible} onChange={handleVisibleFilterChange(item.fieldName)} />}
-                        label={item.label}
-                      />
-                    </MenuItem>
-                  )
-                })}
-            </Menu>
-          )}
-          {/* DownloadMenu */}
+          <ListFilterButtons
+              localizedStrings={localizedStrings}
+              visibleUserPreferences={visibleUserPreferences}
+              downloadButtonVisible={downloadButtonVisible}
+              downloadEnabled={downloadEnabled}
+              hasVisibleFields={hasVisibleFields}
+              mdLengthButtons={mdLengthButtons}
+              onShowUserPreferencesModal={onShowUserPreferencesModal}
+              openExportMenu={openExportMenu}
+              openVisibleFieldsMenu={openVisibleFieldsMenu}
+          />
+          {visibleFilters && 
+            <VisibleFiltersMenu
+              visibleFilters={visibleFilters}
+              anchorElCustomize={anchorElCustomize}
+              closeVisibleFiltersMenu={closeVisibleFiltersMenu}
+              handleVisibleFilterChange={handleVisibleFilterChange}
+            />
+          }
           {downloadButtonVisible && (
               <Menu anchorEl={anchorElDownload} open={Boolean(anchorElDownload)} onClose={closeExportMenu}>
                 <MenuItem onClick={handleDownload(fileType.excel)}>{fileType.excel}</MenuItem>
                 <MenuItem onClick={handleDownload(fileType.csv)}>{fileType.csv}</MenuItem>
               </Menu>
             )}
-          {/* VisibleFieldsMenu */}
-          {visibleFields && (
-            <Menu anchorEl={anchorElFieldsFilter} open={Boolean(anchorElFieldsFilter)} onClose={closeVisibleFieldsMenu}>
-              {visibleFields
-                .sort((a, b) => a.label > b.label ? 1 : -1)
-                .map((item, key) => {
-                  return (
-                    <MenuItem key={key}>
-                      <FormControlLabel
-                        control={<Checkbox checked={item.isVisible} onChange={handleVisibleFieldsChange(item.fieldName)} />}
-                        label={item.label}
-                      />
-                    </MenuItem>
-                  )
-                })}
-            </Menu>
-          )}
+          {visibleFields && 
+            <VisibleFieldsMenu
+              visibleFields={visibleFields}
+              anchorElFieldsFilter={anchorElFieldsFilter}
+              closeVisibleFieldsMenu={closeVisibleFieldsMenu}
+              handleVisibleFieldsChange={handleVisibleFieldsChange}
+            />
+          }
         </Grid>
       </Toolbar>
       <Collapse in={expanded}>
@@ -365,6 +307,7 @@ const ListFilter: React.FC<ListFilterProps> = ({
           onUserPreferencesPropertyChanged={onUserPreferencesPropertyChanged}
           onListDeleteChanged={onListDeleteChangedLocal}
           localizedStrings={localizedStrings}
+          isDirty={userPreferencesIsDirty}
         />
       }
     </>

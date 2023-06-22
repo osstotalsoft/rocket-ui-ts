@@ -1,13 +1,13 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useMemo, useState } from 'react'
 import { Filters, TextField, UserPreference, VisibleField, VisibleFilter } from 'components'
-import { filtersWithChildren} from './_mocks'
+import { filtersWithChildren } from './_mocks'
 import { Table, TableHead, TableBody, TableRow, TableCell, Grid, Divider } from '@mui/material'
 import ControlledCheckbox from '../Autocomplete/components/ControlledCheckBox'
 import { useFilteredList } from './_hooks'
 import { Args } from '@storybook/react'
 
 const getDefaultFilterValues = (userPreference: UserPreference) => {
-  const filters = Object.assign({}, filtersWithChildren)
+  const filters = {...filtersWithChildren}
   userPreference.filters.forEach(el => {
     (filters as any)[el.fieldName] = el.defaultValue
   })
@@ -18,124 +18,147 @@ const getDefaultFilterValues = (userPreference: UserPreference) => {
   return filters as Filters
 }
 
-const ListFilterDefaultDecorator: React.FC<{args: Args, updateArgs: (newArgs: Partial<Args>) => void, children: React.JSX.Element}> = ({args, updateArgs, children: story}) => {
-  const {listData} = useFilteredList(args.filters)
-
-  const handleFilterPropertyChange = useCallback(
-    (prop: string, value: unknown) => {
-      updateArgs({filters: { ...args.filters, [prop]: value }})
-    },
-    [args.filters, updateArgs]
-  )
+const ListFilterDefaultDecorator: React.FC<{args: Args, updateArgs: (newArgs: Partial<Args>) => void, children: React.JSX.Element}> = ({
+  args: {
+    filters,
+    visibleFilters,
+    visibleFields,
+    userPreferences,
+    selectedUserPreference,
+    downloadEnabled,
+    visibleUserPreferences,
+    ...args
+  },
+  updateArgs,
+  children: story
+}) => {
+  const {listData} = useFilteredList(filters)
   const [demoVisibleFields, setDemoVisibleFields] = useState(false)
   const [demoVisibleFilters, setDemoVisibleFilters] = useState(false)
 
-  const handleVisibleFilterChange = (name: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFilterPropertyChange = useCallback(
+    (prop: string, value: unknown) => {
+      updateArgs({filters: { ...filters, [prop]: value }})
+    },
+    [filters, updateArgs]
+  )
+
+  const handleVisibleFilterChange = useCallback((name: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.checked
-    const filter = args.visibleFilters.find((x: VisibleFilter) => x.fieldName === name)
-    const index = args.visibleFilters.indexOf(filter)
-    const newVisibleFilters = Object.assign([...args.visibleFilters], { [index]: { ...filter, isVisible: value } })
+    const newVisibleFilters = [...visibleFilters]
+    newVisibleFilters.find((x: VisibleFilter) => x.fieldName === name).isVisible = value
     updateArgs({visibleFilters: newVisibleFilters})
-  }
+  }, [visibleFilters, updateArgs])
 
-  const filtersToShow = args.visibleFilters.filter((x: VisibleFilter) => x.isVisible).map((x: VisibleFilter) => x.fieldName)
+  const filtersToShow = useMemo(() => visibleFilters.filter((x: VisibleFilter) => x.isVisible).map((x: VisibleFilter) => x.fieldName), [visibleFilters])
 
-  const handleVisibleFieldsChange = (name: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleVisibleFieldsChange = useCallback((name: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.checked
-    const filter = args.visibleFields.find((x: VisibleField) => x.fieldName === name)
-    const index = args.visibleFields.indexOf(filter)
-    const newVisibleFields = Object.assign([...args.visibleFields], { [index]: { ...filter, isVisible: value } })
+    const newVisibleFields = [...visibleFields]
+    newVisibleFields.find((x: VisibleField) => x.fieldName === name).isVisible = value
     updateArgs({visibleFields: newVisibleFields})
-  }
+  }, [visibleFields, updateArgs])
 
-  const fieldsToShow = args.visibleFields.filter((x: VisibleField) => x.isVisible).map((x: VisibleField) => x.fieldName)
+  const fieldsToShow = useMemo(() => visibleFields.filter((x: VisibleField) => x.isVisible).map((x: VisibleField) => x.fieldName), [visibleFields])
 
-  const onUserPreferenceChanged = (name: string) => {
-    const newValue = args.userPreferences.filter((x: UserPreference) => x.filterName.toLowerCase() === name.toLowerCase())[0]
+  const onUserPreferenceChanged = useCallback((name: string) => {
+    const newValue = userPreferences.filter((x: UserPreference) => x.filterName.toLowerCase() === name.toLowerCase())[0]
     updateArgs({selectedUserPreference: newValue})
 
     const defaultFilters = getDefaultFilterValues(newValue)
     updateArgs({filters: defaultFilters, visibleFields:[...newValue.fields], visibleFilters:[...newValue.filters]})
-  }
+  }, [userPreferences, updateArgs])
 
-  const onAddUserPreference = (popUpUserPreference: UserPreference) => {
-    if (popUpUserPreference.filterName === '') return
-
-    const newPreference = Object.assign({}, popUpUserPreference, {
+  const onAddUserPreference = useCallback((popUpUserPreference: UserPreference) => {
+    if (!popUpUserPreference.filterName) return
+    const newPreference = {
+      ...popUpUserPreference,
       isDefault: false,
       implicit: false,
       filterName: popUpUserPreference.filterName.trim()
-    })
-    const newValue = args.userPreferences.filter((x: UserPreference) => x.filterName.toLowerCase() === newPreference.filterName.toLowerCase())[0]
-
+    }
+    const newValue = userPreferences.filter((x: UserPreference) => x.filterName.toLowerCase() === newPreference.filterName.toLowerCase())[0]
     if (newValue) return
     else {
-      const newUserPreferences = Object.assign([...args.userPreferences, newPreference])
+      const newUserPreferences = [...userPreferences, newPreference]
       updateArgs({userPreferences: newUserPreferences, selectedUserPreference: newPreference})
     }
-  }
+  }, [userPreferences, updateArgs])
 
-  const onListDeleteChanged = (item: UserPreference) => {
+  const onListDeleteChanged = useCallback((item: UserPreference) => {
     if (item.isDefault) {
       alert('Can\'t delete default filter')
       return
     }
 
-    const newUserPreferences = args.userPreferences.filter((p: UserPreference) => p.filterName.toLowerCase() !== item.filterName.toLowerCase())
+    const newUserPreferences = userPreferences.filter((p: UserPreference) => p.filterName.toLowerCase() !== item.filterName.toLowerCase())
 
-    if (item.filterName.toLowerCase() === args.selectedUserPreference.filterName.toLowerCase()) {
-      const newPreference = Object.assign({}, args.selectedUserPreference, {
+    if (item.filterName.toLowerCase() === selectedUserPreference.filterName.toLowerCase()) {
+      const newPreference = {
+        ...selectedUserPreference, 
         isDefault: false,
         filterName: '',
         implicit: false
-      })
+      }
       updateArgs({selectedUserPreference: newPreference})
     }
     updateArgs({userPreferences: newUserPreferences})
-  }
+  }, [selectedUserPreference, userPreferences, updateArgs])
 
-  const onListImplicitChanged = (item: UserPreference) => {
-    const newUserPreferences = args.userPreferences.map((x: UserPreference) => {
+  const onListImplicitChanged = useCallback((item: UserPreference) => {
+    const newUserPreferences = userPreferences.map((x: UserPreference) => {
       if (x.filterName.toLowerCase() === item.filterName.toLowerCase()) return { ...x, implicit: !item.implicit }
       else return { ...x, implicit: false }
     })
 
     let newPreference
-    if (args.selectedUserPreference.filterName.toLowerCase() === item.filterName.toLowerCase()) {
-      newPreference = Object.assign({}, args.selectedUserPreference, { implicit: !args.selectedUserPreference.implicit })
+    if (selectedUserPreference.filterName.toLowerCase() === item.filterName.toLowerCase()) {
+      newPreference = {...selectedUserPreference, implicit: !selectedUserPreference.implicit }
     } else {
       const newImplicitPreference = newUserPreferences.filter((p: UserPreference) => p.implicit === true)
       if (newImplicitPreference && newImplicitPreference.length > 0) newPreference = newImplicitPreference[0]
-      else newPreference = Object.assign({}, args.selectedUserPreference, { implicit: false })
+      else newPreference = {...selectedUserPreference, implicit: false }
     }
     updateArgs({userPreferences: newUserPreferences, selectedUserPreference: newPreference})
-  }
+  }, [selectedUserPreference, userPreferences, updateArgs])
+
+  const onDownloadEnabledChanged = useCallback(() => updateArgs({downloadEnabled: !downloadEnabled}), [downloadEnabled, updateArgs])
+  const onDemoVisibleFiltersChanged = useCallback(() => setDemoVisibleFilters(!demoVisibleFilters), [demoVisibleFilters])
+  const onDemoVisibleFieldsChanged = useCallback(() => setDemoVisibleFields(!demoVisibleFields), [demoVisibleFields])
+  const onVisibleUserPreferencesChanged = useCallback(() => updateArgs({visibleUserPreferences: !visibleUserPreferences}), [visibleUserPreferences, updateArgs])
 
   return (
     <>
       <Grid container justifyContent='center' spacing={2}>
         <Grid item>
-          <ControlledCheckbox value={args.downloadEnabled} onChange={() => updateArgs({downloadEnabled: !args.downloadEnabled})} label={'Download Button'} />
+          <ControlledCheckbox value={downloadEnabled} onChange={onDownloadEnabledChanged} label={'Download Button'} />
         </Grid>
         <Grid item>
-          <ControlledCheckbox value={demoVisibleFilters} onChange={() => setDemoVisibleFilters(!demoVisibleFilters)} label={'Visible Filters'} />
+          <ControlledCheckbox value={demoVisibleFilters} onChange={onDemoVisibleFiltersChanged} label={'Visible Filters'} />
         </Grid>
         <Grid item>
-          <ControlledCheckbox value={demoVisibleFields} onChange={() => setDemoVisibleFields(!demoVisibleFields)} label={'Visible Fields'} />
+          <ControlledCheckbox value={demoVisibleFields} onChange={onDemoVisibleFieldsChanged} label={'Visible Fields'} />
         </Grid>
         <Grid item>
-          <ControlledCheckbox value={args.visibleUserPreferences} onChange={() => updateArgs({visibleUserPreferences: !args.visibleUserPreferences})} label={'User Preferences'} />
+          <ControlledCheckbox value={visibleUserPreferences} onChange={onVisibleUserPreferencesChanged} label={'User Preferences'} />
         </Grid>
       </Grid>
       <Divider/>
       {React.cloneElement(story, {args: {
         ...args,
+        filters,
+        visibleFilters,
+        visibleFields,
+        userPreferences,
+        selectedUserPreference,
+        downloadEnabled,
+        visibleUserPreferences,
         children: <Grid container spacing={2}>
         {filtersToShow.includes('name') && (
           <Grid item xs={6}>
             <TextField
               label='Name'
-              value={args.filters.name as string}
+              value={filters.name as string}
               onChange={event => handleFilterPropertyChange('name', event)}
               fullWidth
             />
@@ -145,7 +168,7 @@ const ListFilterDefaultDecorator: React.FC<{args: Args, updateArgs: (newArgs: Pa
           <Grid item xs={6}>
             <TextField
               label='Code'
-              value={args.filters.code as string}
+              value={filters.code as string}
               onChange={event => handleFilterPropertyChange('code', event)}
               fullWidth
             />
@@ -153,12 +176,12 @@ const ListFilterDefaultDecorator: React.FC<{args: Args, updateArgs: (newArgs: Pa
         )}
         </Grid>,
         onChangeFilterValue: handleFilterPropertyChange,
-        downloadButtonVisible: args.downloadEnabled,
+        downloadButtonVisible: downloadEnabled,
         handleVisibleFilterChange: handleVisibleFilterChange,
         handleVisibleFieldsChange: handleVisibleFieldsChange,
-        visibleFields: demoVisibleFields ? args.visibleFields : undefined,
-        visibleFilters: demoVisibleFilters ? args.visibleFilters: undefined,
-        visibleUserPreferences: args.visibleUserPreferences,
+        visibleFields: demoVisibleFields ? visibleFields : undefined,
+        visibleFilters: demoVisibleFilters ? visibleFilters: undefined,
+        visibleUserPreferences: visibleUserPreferences,
         onUserPreferenceChanged: onUserPreferenceChanged,
         onAddUserPreference: onAddUserPreference,
         onListDeleteChanged: onListDeleteChanged,

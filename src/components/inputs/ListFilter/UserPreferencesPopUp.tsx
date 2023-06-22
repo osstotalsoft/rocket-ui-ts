@@ -1,27 +1,11 @@
-import React, { useCallback, useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
-import {
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  Grid,
-  Table,
-  TableHead,
-  TableRow,
-  TableCell,
-  TableBody,
-  DialogActions,
-  Checkbox,
-  TextField,
-  Tooltip,
-  IconButton,
-  Button
-} from '@mui/material'
-import CustomButton from 'components/buttons/Button'
-import { Delete } from '@mui/icons-material'
-import { UserPreference, UserPreferencesPopUpProps } from './types'
+import { TextField, Button } from 'components'
+import { Dialog, DialogTitle, DialogContent, Grid, DialogActions } from '@mui/material'
+import { UserPreferencesPopUpProps } from './types'
+import UserPreferencesTable from './UserPreferencesTable'
 
-const UserPreferencesPopUp: React.FC<UserPreferencesPopUpProps> = ({
+const UserPreferencesPopUp = ({
   showModal,
   onCloseModal,
   userPreferences,
@@ -30,108 +14,53 @@ const UserPreferencesPopUp: React.FC<UserPreferencesPopUpProps> = ({
   onListImplicitChanged,
   onListDeleteChanged,
   onUserPreferencesPropertyChanged,
-  localizedStrings
-}) => {
-  const [isDirty, setIsDirty] = useState(false)
-
-  const onUserPreferencesPropertyChangedLocal = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    setIsDirty(true)
-    onUserPreferencesPropertyChanged(e, 'filterName')
-  }, [onUserPreferencesPropertyChanged])
-
-  const onAddUserPreferenceLocal = useCallback(() => {
-    onAddUserPreference()
-    setIsDirty(false)
-  }, [onAddUserPreference])
-
-  const onListDeleteChangedLocal = useCallback((item: UserPreference) => {
-    if (confirm(localizedStrings.DeleteUserPreference))
-      onListDeleteChanged(item)
-  },[localizedStrings.DeleteUserPreference, onListDeleteChanged])
-
-  const onCloseModalLocal = useCallback(() => {
-    setIsDirty(false)
-    onCloseModal()
-  },[onCloseModal])
-
+  localizedStrings,
+  isDirty
+}: UserPreferencesPopUpProps) => {
   return (
-    <Dialog open={showModal} onClose={onCloseModalLocal} maxWidth='xl'>
+    <Dialog open={showModal} onClose={onCloseModal} maxWidth="xl">
       <DialogTitle>{localizedStrings.UserPreferences}</DialogTitle>
-      <DialogContent sx={{paddingRight: 8}}
-      >
-        <Grid container alignItems='center'>
+      <DialogContent sx={{ paddingRight: 8 }}>
+        <Grid container alignItems="center">
           <Grid item xs={12} sm={9}>
             <TextField
               fullWidth
-              sx={{marginTop: '5px'}}
+              sx={{ marginTop: '5px' }}
               value={selectedUserPreference.isDefault ? '' : selectedUserPreference.filterName || ''}
               label={localizedStrings.FilterName}
-              onChange={onUserPreferencesPropertyChangedLocal}
+              onChange={onUserPreferencesPropertyChanged}
               inputProps={{ maxLength: 25 }}
             />
           </Grid>
           <Grid item xs={12} sm={3}>
-            <CustomButton
+            <Button
               right
               size="large"
               color="primary"
-              onClick={onAddUserPreferenceLocal}
-              disabled={!isDirty || (selectedUserPreference.filterName === '')}
+              onClick={onAddUserPreference}
+              disabled={!isDirty || selectedUserPreference.filterName === ''}
             >
               {localizedStrings.Add}
-            </CustomButton>
+            </Button>
           </Grid>
           {userPreferences.filter(p => p.isDefault === false).length > 0 && (
             <Grid item xs={12}>
-              <Table>
-                <TableHead>
-                  <TableRow>
-                    <TableCell>{localizedStrings.FilterName}</TableCell>
-                    <TableCell>{localizedStrings.Implicit}</TableCell>
-                    <TableCell ></TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {userPreferences
-                    .filter(opt => !opt.isDefault)
-                    .map(item => {
-                      return (
-                        <TableRow key={item.filterName}>
-                          <TableCell>
-                            {item.filterName}
-                          </TableCell>
-                          <TableCell>
-                            <Checkbox
-                              color='primary'
-                              checked={item.implicit || false}
-                              onChange={() => onListImplicitChanged(item)}
-                            />
-                          </TableCell>
-                          <TableCell>
-                            
-                            <Tooltip title={localizedStrings.Delete}>
-                              <span>
-                                <IconButton onClick={() => onListDeleteChangedLocal(item)} color='primary'>
-                                  <Delete />
-                                </IconButton>
-                              </span>
-                            </Tooltip>
-                          </TableCell>
-                        </TableRow>
-                      )
-                    })}
-                </TableBody>
-              </Table>
+              <UserPreferencesTable
+                localizedStrings={localizedStrings}
+                userPreferences={userPreferences}
+                onListImplicitChanged={onListImplicitChanged}
+                onListDeleteChanged={onListDeleteChanged}
+              />
             </Grid>
           )}
         </Grid>
       </DialogContent>
       <DialogActions>
         <Button
-          onClick={onCloseModalLocal}
-          size='large'
-          color='primary'
-          variant='outlined'
+          onClick={onCloseModal}
+          size="large"
+          color="primary"
+          variant="outlined"
           sx={{ marginBottom: '0.5em', marginRight: '0.5em' }}
         >
           {localizedStrings.Close}
@@ -145,16 +74,12 @@ UserPreferencesPopUp.propTypes = {
   showModal: PropTypes.bool.isRequired,
   onCloseModal: PropTypes.func.isRequired,
   userPreferences: PropTypes.array,
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   selectedUserPreference: PropTypes.object.isRequired,
   onAddUserPreference: PropTypes.func.isRequired,
   onListImplicitChanged: PropTypes.func.isRequired,
   onListDeleteChanged: PropTypes.func.isRequired,
   onUserPreferencesPropertyChanged: PropTypes.func.isRequired,
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  localizedStrings: PropTypes.object.isRequired,
+  localizedStrings: PropTypes.object.isRequired
 }
 
 export default UserPreferencesPopUp

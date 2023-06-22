@@ -93,6 +93,50 @@ export type UserPreferencesPopUpProps = {
   onAddUserPreference: () => void
   onListImplicitChanged: (item: UserPreference) => void
   onListDeleteChanged: (item: UserPreference) => void
-  onUserPreferencesPropertyChanged: (event: React.ChangeEvent<HTMLInputElement>, propertyName: string) => void,
+  onUserPreferencesPropertyChanged: (value: unknown) => void,
   localizedStrings: LocalizedStrings,
+  isDirty: boolean
+}
+
+export type FullTextFilterEndAdornmentProps = {
+  localizedStrings: LocalizedStrings
+  resetTextFilter: () => void
+  expandFilters: () => void
+  expanded: boolean
+  openVisibleFiltersMenu: (event: React.MouseEvent) => void
+  hasChildren: boolean
+  hasVisibleFilters: boolean
+}
+
+export type ListFilterButtonsProps = {
+  localizedStrings: LocalizedStrings
+  visibleUserPreferences: boolean
+  downloadButtonVisible: boolean
+  downloadEnabled: boolean
+  hasVisibleFields: boolean
+  mdLengthButtons: number
+  onShowUserPreferencesModal: () => void
+  openExportMenu: (event: React.MouseEvent) => void
+  openVisibleFieldsMenu: (event: React.MouseEvent) => void
+}
+
+export type VisibleFiltersMenuProps = {
+  visibleFilters: Array<VisibleFilter>
+  anchorElCustomize: Element
+  closeVisibleFiltersMenu: () => void
+  handleVisibleFilterChange: (fieldName: string) => (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void
+}
+
+export type VisibleFieldsMenuProps = {
+  visibleFields: Array<VisibleField>
+  anchorElFieldsFilter: Element
+  closeVisibleFieldsMenu: () => void
+  handleVisibleFieldsChange: (fieldName: string) => (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void
+}
+
+export type UserPreferencesListProps = {
+  localizedStrings: LocalizedStrings
+  userPreferences: Array<UserPreference>
+  onListImplicitChanged: (item: UserPreference) => void
+  onListDeleteChanged: (item: UserPreference) => void
 }
