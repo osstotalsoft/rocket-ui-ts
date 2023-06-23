@@ -3,8 +3,7 @@
 
 import React, { useState } from 'react'
 import { Grid, Switch, SwitchProps, Stack } from '@mui/material'
-import { Autocomplete, DynamicField, Typography } from 'components'
-import { ControlType } from 'components/inputs/DynamicField/types'
+import { Autocomplete, DynamicField, Typography, ControlType } from 'components'
 import { controlTypes } from './_mocks'
 import { options } from '../Autocomplete/_mocks'
 import { useContainerSizing, useDynamicProps } from './_hooks'
