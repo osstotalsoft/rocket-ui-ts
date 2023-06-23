@@ -25,7 +25,7 @@ const ListFilterDefaultDecorator: React.FC<{args: Args, updateArgs: (newArgs: Pa
     visibleFields,
     userPreferences,
     selectedUserPreference,
-    downloadEnabled,
+    downloadButtonVisible,
     visibleUserPreferences,
     ...args
   },
@@ -122,7 +122,7 @@ const ListFilterDefaultDecorator: React.FC<{args: Args, updateArgs: (newArgs: Pa
     updateArgs({userPreferences: newUserPreferences, selectedUserPreference: newPreference})
   }, [selectedUserPreference, userPreferences, updateArgs])
 
-  const onDownloadEnabledChanged = useCallback(() => updateArgs({downloadEnabled: !downloadEnabled}), [downloadEnabled, updateArgs])
+  const onDownloadVisibleChanged = useCallback(() => updateArgs({downloadButtonVisible: !downloadButtonVisible}), [downloadButtonVisible, updateArgs])
   const onDemoVisibleFiltersChanged = useCallback(() => setDemoVisibleFilters(!demoVisibleFilters), [demoVisibleFilters])
   const onDemoVisibleFieldsChanged = useCallback(() => setDemoVisibleFields(!demoVisibleFields), [demoVisibleFields])
   const onVisibleUserPreferencesChanged = useCallback(() => updateArgs({visibleUserPreferences: !visibleUserPreferences}), [visibleUserPreferences, updateArgs])
@@ -131,7 +131,7 @@ const ListFilterDefaultDecorator: React.FC<{args: Args, updateArgs: (newArgs: Pa
     <>
       <Grid container justifyContent='center' spacing={2}>
         <Grid item>
-          <ControlledCheckbox value={downloadEnabled} onChange={onDownloadEnabledChanged} label={'Download Button'} />
+          <ControlledCheckbox value={downloadButtonVisible} onChange={onDownloadVisibleChanged} label={'Download Button'} />
         </Grid>
         <Grid item>
           <ControlledCheckbox value={demoVisibleFilters} onChange={onDemoVisibleFiltersChanged} label={'Visible Filters'} />
@@ -147,12 +147,8 @@ const ListFilterDefaultDecorator: React.FC<{args: Args, updateArgs: (newArgs: Pa
       {React.cloneElement(story, {args: {
         ...args,
         filters,
-        visibleFilters,
-        visibleFields,
         userPreferences,
         selectedUserPreference,
-        downloadEnabled,
-        visibleUserPreferences,
         children: <Grid container spacing={2}>
         {filtersToShow.includes('name') && (
           <Grid item xs={6}>
@@ -176,7 +172,7 @@ const ListFilterDefaultDecorator: React.FC<{args: Args, updateArgs: (newArgs: Pa
         )}
         </Grid>,
         onChangeFilterValue: handleFilterPropertyChange,
-        downloadButtonVisible: downloadEnabled,
+        downloadButtonVisible: downloadButtonVisible,
         handleVisibleFilterChange: handleVisibleFilterChange,
         handleVisibleFieldsChange: handleVisibleFieldsChange,
         visibleFields: demoVisibleFields ? visibleFields : undefined,

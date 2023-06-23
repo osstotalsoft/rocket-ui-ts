@@ -38,6 +38,7 @@ const UserPreferencesPopUp = ({
               size="large"
               color="primary"
               onClick={onAddUserPreference}
+              aria-label={localizedStrings.Add}
               disabled={!isDirty || selectedUserPreference.filterName === ''}
             >
               {localizedStrings.Add}
@@ -61,6 +62,7 @@ const UserPreferencesPopUp = ({
           size="large"
           color="primary"
           variant="outlined"
+          aria-label={localizedStrings.Close}
           sx={{ marginBottom: '0.5em', marginRight: '0.5em' }}
         >
           {localizedStrings.Close}

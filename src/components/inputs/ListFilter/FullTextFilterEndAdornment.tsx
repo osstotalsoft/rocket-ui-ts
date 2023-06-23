@@ -8,14 +8,14 @@ import { IconButton } from 'components'
 const FullTextFilterEndAdornment = ({ localizedStrings, resetTextFilter, expandFilters, expanded, openVisibleFiltersMenu, hasChildren, hasVisibleFilters } : FullTextFilterEndAdornmentProps) => {
   return (
     <InputAdornment position="end">
-    <IconButton size='small' color='transparent' tooltip={localizedStrings.ResetFilters} onClick={resetTextFilter}>
+    <IconButton size='small' color='transparent' aria-label='Reset Filters' aria-description={localizedStrings.ResetFilters} tooltip={localizedStrings.ResetFilters} onClick={resetTextFilter}>
       <Close />
     </IconButton>
     {hasChildren && (
-      <IconButton size='small' color='transparent' tooltip={localizedStrings.ShowFilters} onClick={expandFilters}>{expanded ? <ExpandLess /> : <ExpandMore />}</IconButton>
+      <IconButton size='small' color='transparent' aria-label='Show Filters' aria-description={localizedStrings.ShowFilters} tooltip={localizedStrings.ShowFilters} onClick={expandFilters}>{expanded ? <ExpandLess /> : <ExpandMore />}</IconButton>
     )}
     {hasChildren && expanded && hasVisibleFilters && (
-      <IconButton size='small' color='transparent' tooltip={localizedStrings.ChooseFilters} onClick={openVisibleFiltersMenu}>
+      <IconButton size='small' color='transparent' aria-label='Visible Filters' aria-description={localizedStrings.ChooseFilters} tooltip={localizedStrings.ChooseFilters} onClick={openVisibleFiltersMenu}>
         <FilterList />
       </IconButton>
     )}

@@ -94,6 +94,7 @@ export const Default: Story = {
     sortableColumns: sortableColumns,
     localizedStrings: localizedStrings,
     downloadEnabled:false,
+    downloadButtonVisible:true,
     visibleUserPreferences:false,
     onDownload:()=>{},
     visibleFields: visibleFields,
