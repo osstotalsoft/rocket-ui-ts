@@ -11,9 +11,10 @@ const getDefaultFilterValues = (userPreference: UserPreference) => {
   userPreference.filters.forEach(el => {
     (filters as any)[el.fieldName] = el.defaultValue
   })
-  if (userPreference.order) {
-    filters.orderByColumnName = userPreference.order.orderByColumnName
-    filters.orderByDescending = userPreference.order.orderByDescending
+  const {order} = userPreference
+  if (order) {
+    filters.orderByColumnName = order.orderByColumnName
+    filters.orderByDescending = order.orderByDescending
   }
   return filters as Filters
 }
