@@ -1,6 +1,6 @@
 import React, { useCallback, useLayoutEffect, useState } from 'react'
 import PropTypes from 'prop-types'
-import NumberFormat, { NumberFormatValues } from 'react-number-format'
+import NumberFormat, { NumberFormatValues, SourceInfo } from 'react-number-format'
 import { TextField as MuiTextField, StepButton, classes } from './TextFieldStyles'
 import InputAdornment from '@mui/material/InputAdornment'
 import IconButton from '@mui/material/IconButton'
@@ -50,9 +50,9 @@ const NumberTextField = React.forwardRef<HTMLElement, NumberTextFieldProps>(func
   const valueIsNumericString = is(String, value) && is(Number, Number(value))
 
   const handleValueChange = useCallback(
-    (values: NumberFormatValues) => {
+    (values: NumberFormatValues, sourceInfo: SourceInfo) => {
       // eslint-disable-next-line no-unused-expressions
-      format ? onChange(values.value) : onChange(values.floatValue)
+      format ? onChange(values.value, sourceInfo.event) : onChange(values.floatValue, sourceInfo.event)
     },
     [onChange, format]
   )
@@ -218,12 +218,16 @@ const TextField: React.FC<TextFieldProps> = ({
   }
 
   const handleChange = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | (string | number)) => {
+    (
+      valueOrEvent: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | (string | number),
+      origEvent?: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    ) => {
       const value = isNumeric
-        ? (event as string | number)
-        : (event as React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>)?.target?.value
+        ? (valueOrEvent as string | number)
+        : (valueOrEvent as React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>)?.target?.value
+      const event = isNumeric ? origEvent : (valueOrEvent as React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>)
       setLiveValue(value)
-      debouncedOnChange(value)
+      debouncedOnChange(value, event)
     },
     [debouncedOnChange, isNumeric]
   )
