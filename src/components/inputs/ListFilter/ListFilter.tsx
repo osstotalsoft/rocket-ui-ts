@@ -1,10 +1,10 @@
 import React, { useCallback, useMemo, useState } from 'react'
 import PropTypes from 'prop-types'
-import { TextField, Autocomplete } from '../../../components'
+import { TextField, Autocomplete, Button, Dialog } from '../../../components'
 import { Toolbar, Collapse, Menu, MenuItem, InputAdornment, Grid } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
 import { ListFilterProps, UserPreference } from './types'
-import UserPreferencesPopUp from './UserPreferencesPopUp'
+import UserPreferencesModalContent from './UserPreferencesModalContent'
 import FullTextFilterEndAdornment from './FullTextFilterEndAdornment'
 import ListFilterButtons from './ListFilterButtons'
 import VisibleFiltersMenu from './VisibleFiltersMenu'
@@ -297,17 +297,35 @@ const ListFilter: React.FC<ListFilterProps> = ({
         <Toolbar>{children}</Toolbar>
       </Collapse>
       {popUpUserPreference && 
-        <UserPreferencesPopUp
-          showModal={showUserPreferencesModal}
-          onCloseModal={onCloseUserPreferencesModal}
-          onAddUserPreference={onAddUserPreferenceLocal}
-          userPreferences={userPreferences}
-          selectedUserPreference={popUpUserPreference}
-          onListImplicitChanged={onListImplicitChangedLocal}
-          onUserPreferencesPropertyChanged={onUserPreferencesPropertyChanged}
-          onListDeleteChanged={onListDeleteChangedLocal}
-          localizedStrings={localizedStrings}
-          isDirty={userPreferencesIsDirty}
+        <Dialog
+          open={showUserPreferencesModal}
+          onClose={onCloseUserPreferencesModal}
+          id='listFilter-userPreferences-modal'
+          showX={false}
+          content={
+            <UserPreferencesModalContent
+              userPreferences={userPreferences}
+              selectedUserPreference={popUpUserPreference}
+              onAddUserPreference={onAddUserPreferenceLocal}
+              onListImplicitChanged={onListImplicitChangedLocal}
+              onListDeleteChanged={onListDeleteChangedLocal}
+              onUserPreferencesPropertyChanged={onUserPreferencesPropertyChanged}
+              localizedStrings={localizedStrings}
+              isDirty={userPreferencesIsDirty}
+            />
+          }
+          actions={
+            <Button
+              onClick={onCloseUserPreferencesModal}
+              size="large"
+              color="primary"
+              variant="outlined"
+              aria-label={localizedStrings.Close}
+              sx={{ marginBottom: '0.5em', marginRight: '0.5em' }}
+            >
+              {localizedStrings.Close}
+            </Button>
+          }
         />
       }
     </>

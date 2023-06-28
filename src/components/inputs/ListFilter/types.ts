@@ -85,9 +85,7 @@ export type ListFilterProps = {
   userPreferences?: Array<UserPreference>
 }
 
-export type UserPreferencesPopUpProps = {
-  showModal: boolean
-  onCloseModal: () => void
+export type UserPreferencesModalContentProps = {
   userPreferences: Array<UserPreference>
   selectedUserPreference?: UserPreference
   onAddUserPreference: () => void
