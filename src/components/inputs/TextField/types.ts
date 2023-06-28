@@ -25,7 +25,7 @@ export type NumberTextFieldProps = InputBaseComponentProps &
      *
      * @param {unknown} value The target value from the event source of the callback.
      */
-    onChange?: (value?: unknown) => void
+    onChange?: (value?: unknown, event?: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void
     /**
      * The current language, preferably taken from the i18next (i18.language) or another internationalization library.
      */
@@ -70,7 +70,7 @@ export type TextFieldProps = Omit<MuiTextFieldProps, 'onChange' | 'variant'> &
      *
      * @param {unknown} value The target value from the event source of the callback.
      */
-    onChange?: (value?: unknown) => void
+    onChange?: (value?: unknown, event?: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void
     /**
      * @default false
      * If `true`, the input will accept only numeric values.

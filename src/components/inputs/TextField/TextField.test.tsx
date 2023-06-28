@@ -39,7 +39,7 @@ describe('TextField', () => {
     expect(mockOnChange).not.toHaveBeenCalled()
     await waitFor(
       () => {
-        expect(mockOnChange).toHaveBeenCalledWith('C')
+        expect(mockOnChange).toHaveBeenCalledWith('C', expect.anything())
         expect(mockOnChange).toHaveBeenCalledTimes(1)
       },
       { timeout: 600 }
@@ -87,7 +87,7 @@ describe('Numeric TextField', () => {
     const mockOnChange = jest.fn()
     render(<TextField isNumeric={true} onChange={mockOnChange} value={2} />)
     fireEvent.change(screen.getByRole('textbox'), { target: { value: 3 } })
-    await waitFor(() => expect(mockOnChange).toHaveBeenCalledWith(3), { timeout: 2000 })
+    await waitFor(() => expect(mockOnChange).toHaveBeenCalledWith(3, expect.anything()), { timeout: 2000 })
   })
 
   test('adds `currency` as a prefix if provided', async () => {
@@ -120,7 +120,7 @@ describe('Numeric TextField', () => {
     render(<TextField isNumeric={true} onChange={mockOnChange} value={0} minValue={0} />)
     fireEvent.change(screen.getByRole('textbox'), { target: { value: -3 } })
 
-    await waitFor(() => expect(mockOnChange).not.toHaveBeenCalledWith(-3))
+    await waitFor(() => expect(mockOnChange).not.toHaveBeenCalledWith(-3, expect.anything()))
   })
 
   test('can have max limit', async () => {
@@ -128,7 +128,7 @@ describe('Numeric TextField', () => {
     render(<TextField isNumeric={true} onChange={mockOnChange} value={0} maxValue={10} />)
     fireEvent.change(screen.getByRole('textbox'), { target: { value: 15 } })
 
-    await waitFor(() => expect(mockOnChange).not.toHaveBeenCalledWith(15))
+    await waitFor(() => expect(mockOnChange).not.toHaveBeenCalledWith(15, expect.anything()))
   })
 })
 
@@ -186,5 +186,17 @@ describe('Stepper', () => {
     render(<TextField isStepper={true} value={''} step={step} decimalScale={0} onChange={mockOnChange} />)
     userClick(screen.getByText('+'))
     await waitFor(() => expect(mockOnChange).toHaveBeenCalledWith(step))
+  })
+
+  test('if onChange receives event', async () => {
+    const mockOnChange = jest.fn()
+    render(<TextField onChange={mockOnChange} value={stringValue} name="test" />)
+    fireEvent.change(screen.getByRole('textbox'), { target: { value: 'A' } })
+    await waitFor(() =>
+      expect(mockOnChange).toHaveBeenCalledWith(
+        'A',
+        expect.objectContaining({ target: expect.objectContaining({ value: 'A', name: 'test' }) })
+      )
+    )
   })
 })
