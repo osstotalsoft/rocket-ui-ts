@@ -1,7 +1,7 @@
 import { ReactNode } from 'react'
 
 export interface SortableColumn {
-  dbColumnName: string
+  columnName: string
   displayName: string
 }
 

@@ -16,11 +16,11 @@ export const filtersWithChildren = {
 
 export const sortableColumns: Array<SortableColumn> = [
   {
-    dbColumnName: 'name',
+    columnName: 'name',
     displayName: 'Name'
   },
   {
-    dbColumnName: 'code',
+    columnName: 'code',
     displayName: 'Code'
   }
 ]

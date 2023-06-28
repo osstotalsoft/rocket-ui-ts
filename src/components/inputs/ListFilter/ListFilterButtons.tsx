@@ -2,7 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { IconButton } from 'components'
 import { ListFilterButtonsProps } from './types'
-import { CloudDownload, FilterList, PostAdd } from '@mui/icons-material'
+import FilterListIcon from '@mui/icons-material/FilterList'
+import PostAddIcon from '@mui/icons-material/PostAdd'
 import { Grid, useMediaQuery, useTheme } from '@mui/material'
 
 const ListFilterButtons = ({
@@ -24,21 +25,19 @@ const ListFilterButtons = ({
     {visibleUserPreferences && (
       <Grid item>
         <IconButton color="primary" aria-label='User Preferences' aria-description={localizedStrings.EditUserPreferences} tooltip={localizedStrings.EditUserPreferences} onClick={onShowUserPreferencesModal}>
-          <PostAdd />
+          <PostAddIcon />
         </IconButton>
       </Grid>
     )}
     {downloadButtonVisible && (
       <Grid item>
-        <IconButton color='primary' aria-label={localizedStrings.Download} aria-disabled={!downloadEnabled} tooltip={localizedStrings.Download} onClick={openExportMenu} disabled={!downloadEnabled}>
-          <CloudDownload />
-        </IconButton>
+        <IconButton type='download' color='primary' aria-label={localizedStrings.Download} aria-disabled={!downloadEnabled} tooltip={localizedStrings.Download} onClick={openExportMenu} disabled={!downloadEnabled} />
       </Grid>
     )}
     {hasVisibleFields && (
       <Grid item>
         <IconButton color='primary' aria-label='Visible Fields' aria-description={localizedStrings.ChooseFields} tooltip={localizedStrings.ChooseFields} onClick={openVisibleFieldsMenu}>
-          <FilterList />
+          <FilterListIcon />
         </IconButton>
       </Grid>
     )}

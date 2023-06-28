@@ -37,16 +37,16 @@ const filters= {
 
 const sortableColumns: Array<SortableColumn> = [
   {
-    dbColumnName: 'name',
+    columnName: 'name',
     displayName: 'Name'
   },
   {
-    dbColumnName: 'code',
+    columnName: 'code',
     displayName: 'Code'
   }
 ]
 
-export const visibleFilters: ListFilterProps['visibleFilters'] = [
+const visibleFilters: ListFilterProps['visibleFilters'] = [
   {
     defaultValue: null,
     fieldName: 'name',
@@ -61,7 +61,7 @@ export const visibleFilters: ListFilterProps['visibleFilters'] = [
   }
 ]
 
-export const visibleFields = [
+const visibleFields = [
   {
     fieldName: 'name',
     isVisible: true,
@@ -74,7 +74,7 @@ export const visibleFields = [
   }
 ]
 
-export const userPreferencesList: Array<UserPreference> = [
+const userPreferencesList: Array<UserPreference> = [
   {
     fields: [
       {

@@ -1,15 +1,15 @@
 import React, { useCallback, useMemo, useState } from 'react'
 import PropTypes from 'prop-types'
 import { TextField, Autocomplete } from 'components'
-import { Toolbar, Collapse, Menu, MenuItem, InputAdornment, Grid } from '@mui/material/'
-import { Search } from '@mui/icons-material'
+import { Toolbar, Collapse, Menu, MenuItem, InputAdornment, Grid } from '@mui/material'
+import SearchIcon from '@mui/icons-material/Search'
 import { ListFilterProps, UserPreference } from './types'
 import UserPreferencesPopUp from './UserPreferencesPopUp'
 import FullTextFilterEndAdornment from './FullTextFilterEndAdornment'
 import ListFilterButtons from './ListFilterButtons'
-import { map } from 'ramda'
 import VisibleFiltersMenu from './VisibleFiltersMenu'
 import VisibleFieldsMenu from './VisibleFieldsMenu'
+import { map } from 'ramda'
 
 const fileType = {
   excel: 'Excel',
@@ -208,7 +208,7 @@ const ListFilter: React.FC<ListFilterProps> = ({
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
-                      <Search />
+                      <SearchIcon />
                     </InputAdornment>
                   ),
                   endAdornment:
@@ -233,7 +233,7 @@ const ListFilter: React.FC<ListFilterProps> = ({
               options={sortableColumns}
               isSearchable={false}
               simpleValue={true}
-              valueKey="dbColumnName"
+              valueKey="columnName"
               labelKey="displayName"
             />
           </Grid>

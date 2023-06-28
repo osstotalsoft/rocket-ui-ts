@@ -4,7 +4,6 @@ import { UserPreferencesListProps, UserPreference } from './types'
 import { Checkbox, Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material'
 import { filter, map } from 'ramda'
 import { IconButton } from 'components'
-import { Delete } from '@mui/icons-material'
 
 const UserPreferencesTable = ({
   localizedStrings,
@@ -35,12 +34,11 @@ const UserPreferencesTable = ({
                 </TableCell>
                 <TableCell>
                   <IconButton
+                    type='delete'
                     tooltip={localizedStrings.Delete}
                     onClick={onListDeleteChangedLocal(item)}
                     color="primary"
-                  >
-                    <Delete />
-                  </IconButton>
+                  />
                 </TableCell>
               </TableRow>
             )
