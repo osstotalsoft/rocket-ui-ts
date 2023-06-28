@@ -513,7 +513,7 @@ describe('ListFilter "User preferences"', () => {
     const userPreferenceButton = screen.getByRole('button', {name: 'User Preferences'})
     await waitFor(() => userClick(userPreferenceButton))
     expect(screen.getByRole('textbox', {name: 'Filter name'})).toBeInTheDocument()
-    const deleteUserPreferenceButton = screen.getAllByRole('button', {name: 'iconButton'})[0]
+    const deleteUserPreferenceButton = screen.getAllByRole('button', {name: 'delete'})[0]
     await waitFor(() => userClick(deleteUserPreferenceButton))
     expect(mockDeleteImplicitUserPreferences).toHaveBeenCalled()
   })
