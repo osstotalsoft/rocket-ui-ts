@@ -192,23 +192,23 @@ const Autocomplete: React.FC<AutocompleteProps<any, any, any, any>> = ({
   )
 
   const handleChange = useCallback(
-    (_event: React.SyntheticEvent, inputValue: any, reason: AutocompleteChangeReason) => {
+    (event: React.SyntheticEvent, inputValue: any, reason: AutocompleteChangeReason) => {
       // when multi-value and clearable, doesn't clear disabled options that have already been selected
       if (reason === 'clear' && getOptionDisabled && isMultiSelection) {
-        return onChange(computeChangedMultiValue(disabledOptions, simpleValue, valueKey, labelKey))
+        return onChange(computeChangedMultiValue(disabledOptions, simpleValue, valueKey, labelKey), event, reason)
       }
 
       setLocalInput(handleOptionLabel(inputValue))
       // for multi-value Autocomplete, options dialog remains open after selection and we do not want to display a loading state
       if (loadOptions && !isMultiSelection) setLocalLoading(true)
 
-      if (isNil(inputValue) || isStringOrNumber(inputValue)) return onChange(inputValue)
+      if (isNil(inputValue) || isStringOrNumber(inputValue)) return onChange(inputValue, event, reason)
 
       if (isMultiSelection) {
-        return onChange(computeChangedMultiValue(inputValue, simpleValue, valueKey, labelKey))
+        return onChange(computeChangedMultiValue(inputValue, simpleValue, valueKey, labelKey), event, reason)
       }
 
-      return onChange(computeChangedSingleValue(inputValue, simpleValue, valueKey, labelKey))
+      return onChange(computeChangedSingleValue(inputValue, simpleValue, valueKey, labelKey), event, reason)
     },
     [
       disabledOptions,
