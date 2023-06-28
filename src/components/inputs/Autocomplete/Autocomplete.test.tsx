@@ -96,7 +96,7 @@ describe('Single-value Autocomplete', () => {
       act(() => userClick(screen.getByText('Add "new"')))
 
       await waitFor(() => {
-        expect(mockOnChange).toBeCalledWith({ id: 'new', displayName: 'new' })
+        expect(mockOnChange).toBeCalledWith({ id: 'new', displayName: 'new' }, expect.anything(), 'selectOption')
       })
     })
 
@@ -117,7 +117,7 @@ describe('Single-value Autocomplete', () => {
       act(() => userClick(screen.getByText('Add "new"')))
 
       await waitFor(() => {
-        expect(mockOnChange).toBeCalledWith('new')
+        expect(mockOnChange).toBeCalledWith('new', expect.anything(), 'selectOption')
       })
     })
   })
@@ -161,7 +161,7 @@ describe('Single-value Autocomplete', () => {
       const options = screen.getAllByRole('option')
       act(() => userClick(options[0]))
 
-      expect(mockOnChange).toBeCalledWith('first option')
+      expect(mockOnChange).toBeCalledWith('first option', expect.anything(), 'selectOption')
     })
 
     test('calls onChange with value of id by default', () => {
@@ -170,7 +170,7 @@ describe('Single-value Autocomplete', () => {
       const options = screen.getAllByRole('option')
       act(() => userClick(options[0]))
 
-      expect(mockOnChange).toBeCalledWith(1)
+      expect(mockOnChange).toBeCalledWith(1, expect.anything(), 'selectOption')
     })
 
     test('can display a value that is number', () => {
@@ -191,7 +191,7 @@ describe('Single-value Autocomplete', () => {
       const options = screen.getAllByRole('option')
       act(() => userClick(options[0]))
 
-      expect(mockOnChange).toBeCalledWith(basicOptions[0])
+      expect(mockOnChange).toBeCalledWith(basicOptions[0], expect.anything(), 'selectOption')
     })
   })
 
@@ -207,7 +207,7 @@ describe('Single-value Autocomplete', () => {
       const options = screen.getAllByRole('option')
       act(() => userClick(options[0]))
 
-      expect(mockOnChange).toBeCalledWith('first option')
+      expect(mockOnChange).toBeCalledWith('first option', expect.anything(), 'selectOption')
     })
 
     test('displays selected option in input for numeric options', () => {
@@ -220,7 +220,7 @@ describe('Single-value Autocomplete', () => {
       render(<Autocomplete open options={numericOptions} onChange={mockOnChange} />)
       const options = screen.getAllByRole('option')
       act(() => userClick(options[0]))
-      expect(mockOnChange).toBeCalledWith(1)
+      expect(mockOnChange).toBeCalledWith(1, expect.anything(), 'selectOption')
     })
   })
 })
@@ -266,7 +266,7 @@ describe('Multi-value Autocomplete', () => {
     act(() => userClick(screen.getByTitle('Clear')))
 
     await waitFor(() => {
-      expect(mockOnChange).toBeCalledWith([basicOptions[1].id])
+      expect(mockOnChange).toBeCalledWith([basicOptions[1].id], expect.anything(), 'clear')
     })
   })
 
@@ -335,7 +335,7 @@ describe('Multi-value Autocomplete', () => {
       const options = screen.getAllByRole('option')
       act(() => userClick(options[0]))
 
-      expect(mockOnChange).toBeCalledWith(['first option'])
+      expect(mockOnChange).toBeCalledWith(['first option'], expect.anything(), 'selectOption')
     })
 
     test('can display a value that is number', () => {
@@ -377,7 +377,11 @@ describe('Multi-value Autocomplete', () => {
       const options = screen.getAllByRole('option')
       act(() => userClick(options[0]))
 
-      expect(mockOnChange).toBeCalledWith([{ id: 1, name: 'first option', displayName: 'First Option' }])
+      expect(mockOnChange).toBeCalledWith(
+        [{ id: 1, name: 'first option', displayName: 'First Option' }],
+        expect.anything(),
+        'selectOption'
+      )
     })
   })
 })
