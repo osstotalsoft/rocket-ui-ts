@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { IconButton } from 'components'
+import { IconButton } from '../../../components'
 import { ListFilterButtonsProps } from './types'
 import FilterListIcon from '@mui/icons-material/FilterList'
 import PostAddIcon from '@mui/icons-material/PostAdd'

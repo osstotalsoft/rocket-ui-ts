@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo, useState } from 'react'
-import { Filters, TextField, UserPreference, VisibleField, VisibleFilter } from 'components'
+import { Filters, TextField, UserPreference, VisibleField, VisibleFilter } from '../../../components'
 import { filtersWithChildren } from './_mocks'
 import { Table, TableHead, TableBody, TableRow, TableCell, Grid, Divider } from '@mui/material'
 import ControlledCheckbox from '../Autocomplete/components/ControlledCheckBox'

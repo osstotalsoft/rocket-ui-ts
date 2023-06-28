@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { UserPreferencesListProps, UserPreference } from './types'
 import { Checkbox, Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material'
 import { filter, map } from 'ramda'
-import { IconButton } from 'components'
+import { IconButton } from '../../../components'
 
 const UserPreferencesTable = ({
   localizedStrings,

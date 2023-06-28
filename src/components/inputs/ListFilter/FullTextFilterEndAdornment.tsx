@@ -6,7 +6,7 @@ import CloseIcon from '@mui/icons-material/Close'
 import ExpandLessIcon from '@mui/icons-material/ExpandLess'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import FilterListIcon from '@mui/icons-material/FilterList'
-import { IconButton } from 'components'
+import { IconButton } from '../../../components'
 
 const FullTextFilterEndAdornment = ({ localizedStrings, resetTextFilter, expandFilters, expanded, openVisibleFiltersMenu, hasChildren, hasVisibleFilters } : FullTextFilterEndAdornmentProps) => {
   return (

@@ -3,7 +3,7 @@
 
 import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
-import { ListFilter } from 'components'
+import { ListFilter } from '../../../components'
 import { localizedStrings, sortableColumns } from './_mocks'
 import ListFilterDefaultDecorator from './ListFilterDefaultDecorator'
 import { filtersWithChildren,  visibleFields, visibleFilters, userPreferencesList } from './_mocks'

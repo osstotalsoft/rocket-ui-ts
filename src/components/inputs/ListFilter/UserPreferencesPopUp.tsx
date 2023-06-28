@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { TextField, Button } from 'components'
+import { TextField, Button } from '../../../components'
 import { Dialog, DialogTitle, DialogContent, Grid, DialogActions } from '@mui/material'
 import { UserPreferencesPopUpProps } from './types'
 import UserPreferencesTable from './UserPreferencesTable'
