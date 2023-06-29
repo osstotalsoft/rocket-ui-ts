@@ -2,17 +2,20 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import InputAdornment from '@mui/material/InputAdornment'
 import { FullTextFilterEndAdornmentProps } from './types'
+import FilterListIcon from '@mui/icons-material/FilterList'
 import { IconButton } from '../../../components'
 
 const FullTextFilterEndAdornment = ({ localizedStrings, resetTextFilter, expandFilters, expanded, openVisibleFiltersMenu, hasChildren, hasVisibleFilters } : FullTextFilterEndAdornmentProps) => {
   return (
   <InputAdornment position="end">
-    <IconButton size='small' type='close' color='transparent' aria-label='Reset Filters' aria-description={localizedStrings.ResetFilters} tooltip={localizedStrings.ResetFilters} onClick={resetTextFilter} />
+    <IconButton size='small' type='cancel' color='transparent' aria-label='Reset Filters' aria-description={localizedStrings.ResetFilters} tooltip={localizedStrings.ResetFilters} onClick={resetTextFilter} />
     {hasChildren && (
       <IconButton size='small' type={expanded ? 'expandLess': 'expandMore'} color='transparent' aria-label='Show Filters' aria-description={localizedStrings.ShowFilters} tooltip={localizedStrings.ShowFilters} onClick={expandFilters} />
     )}
     {hasChildren && expanded && hasVisibleFilters && (
-      <IconButton size='small' type='filterList' color='transparent' aria-label='Visible Filters' aria-description={localizedStrings.ChooseFilters} tooltip={localizedStrings.ChooseFilters} onClick={openVisibleFiltersMenu} />
+      <IconButton size='small' color='transparent' aria-label='Visible Filters' aria-description={localizedStrings.ChooseFilters} tooltip={localizedStrings.ChooseFilters} onClick={openVisibleFiltersMenu}>
+        <FilterListIcon/>
+      </IconButton>
     )}
   </InputAdornment>
   )

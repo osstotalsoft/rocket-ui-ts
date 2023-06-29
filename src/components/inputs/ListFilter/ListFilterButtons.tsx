@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import { IconButton } from '../../../components'
 import { ListFilterButtonsProps } from './types'
 import { Grid, useMediaQuery, useTheme } from '@mui/material'
+import FilterListIcon from '@mui/icons-material/FilterList'
+import PostAddIcon from '@mui/icons-material/PostAdd'
 
 const ListFilterButtons = ({
    localizedStrings,
@@ -22,7 +24,9 @@ const ListFilterButtons = ({
     <Grid container item xs={6} sm={12} md={mdLengthButtons} spacing={1} wrap='nowrap' justifyContent={smallScreen ? 'flex-start' : 'flex-end'}>
     {visibleUserPreferences && (
       <Grid item>
-        <IconButton type='postAdd' fontSize='medium' color="primary" aria-label='User Preferences' aria-description={localizedStrings.EditUserPreferences} tooltip={localizedStrings.EditUserPreferences} onClick={onShowUserPreferencesModal} />
+        <IconButton fontSize='medium' color="primary" aria-label='User Preferences' aria-description={localizedStrings.EditUserPreferences} tooltip={localizedStrings.EditUserPreferences} onClick={onShowUserPreferencesModal} >
+          <PostAddIcon />
+        </IconButton>
       </Grid>
     )}
     {downloadButtonVisible && (
@@ -32,7 +36,9 @@ const ListFilterButtons = ({
     )}
     {hasVisibleFields && (
       <Grid item>
-        <IconButton type='filterList' fontSize='medium' color='primary' aria-label='Visible Fields' aria-description={localizedStrings.ChooseFields} tooltip={localizedStrings.ChooseFields} onClick={openVisibleFieldsMenu} />
+        <IconButton fontSize='medium' color='primary' aria-label='Visible Fields' aria-description={localizedStrings.ChooseFields} tooltip={localizedStrings.ChooseFields} onClick={openVisibleFieldsMenu} >
+          <FilterListIcon />
+        </IconButton>
       </Grid>
     )}
     </Grid>

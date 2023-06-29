@@ -88,7 +88,7 @@ IconButton.propTypes = {
   /**
    * Custom icon to be displayed
    */
-  type: PropTypes.oneOf(['add', 'cancel', 'close', 'delete', 'download', 'downward', 'edit', 'view', 'save', 'upward', 'expandLess', 'expandMore', 'filterList', 'postAdd']),
+  type: PropTypes.oneOf(['add', 'cancel', 'delete', 'download', 'downward', 'edit', 'view', 'save', 'upward', 'expandLess', 'expandMore']),
   /**
    * @default 'small'
    * Size of the icon.
