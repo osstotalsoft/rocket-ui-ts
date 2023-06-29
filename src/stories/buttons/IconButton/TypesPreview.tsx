@@ -33,5 +33,11 @@ export const TypesPreview: React.FunctionComponent = () => (
     <Grid item>
       <IconButton tooltip={'Upward'} type="upward" variant="text" {...sizeProps} />
     </Grid>
+    <Grid item>
+      <IconButton tooltip={'Expand Less'} type="expandLess" variant="text" {...sizeProps} />
+    </Grid>
+    <Grid item>
+      <IconButton tooltip={'Expand More'} type="expandMore" variant="text" {...sizeProps} />
+    </Grid>
   </Grid>
 )
