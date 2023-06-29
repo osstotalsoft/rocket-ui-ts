@@ -10,7 +10,7 @@ const customButtonTypes = [
     type: 'add',
     testId: 'AddIcon'
   },
-  { type: 'cancel', testId: 'CancelIcon' },
+  { type: 'cancel', testId: 'CloseIcon' },
   {
     type: 'delete',
     testId: 'DeleteIcon'
