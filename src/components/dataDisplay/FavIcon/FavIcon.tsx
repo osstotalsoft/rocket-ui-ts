@@ -1,7 +1,7 @@
 import React, { useEffect, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import { FavIconProps } from './types'
-
+import { is } from 'ramda'
 /**
  * The FavIcon component sets the favicon displayed by the browser on the website's tab
  * The html <link> of the icon must have an id attribute of 'favicon'
@@ -10,7 +10,7 @@ const FavIcon: React.FC<FavIconProps> = ({ favIconSource, defaultFavIcon }) => {
   const onError = useCallback(
     (event: string | Event, favicon: HTMLLinkElement) => {
       favicon.href = defaultFavIcon || '#'
-      if (typeof(event) === 'string') return
+      if (is(String, event)) return
       const target = event.target as HTMLImageElement
       target.onerror = null
     },
