@@ -21,6 +21,9 @@ export * from './charts/Chart'
 export { default as Typography } from './dataDisplay/Typography'
 export * from './dataDisplay/Typography'
 
+export { default as FavIcon } from './dataDisplay/FavIcon'
+export * from './dataDisplay/FavIcon'
+
 export { default as ExpandingText } from './dataDisplay/ExpandingText'
 export * from './dataDisplay/ExpandingText'
 
