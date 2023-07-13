@@ -32,9 +32,9 @@ ChartJS.register(
  * The Chart component provides a set of frequently and customizable used chart types (`line` and `bar`).
  */
 
-const Chart: React.FC<ChartProps> = ({ title, subheader, Icon, iconColor, type = 'line', data, ...chartProps }) => {
+const Chart: React.FC<ChartProps> = ({ title, subheader, Icon, iconColor, type = 'line', data, cardProps, ...chartProps }) => {
   return (
-    <Card title={title} subheader={subheader} icon={Icon} iconColor={iconColor as CardColor}>
+    <Card title={title} subheader={subheader} icon={Icon} iconColor={iconColor as CardColor} {...cardProps}>
       <BaseChart type={type} data={data} {...chartProps} />
     </Card>
   )
@@ -65,7 +65,11 @@ Chart.propTypes = {
   /**
    * Chart data.
    */
-  data: PropTypes.any.isRequired
+  data: PropTypes.any.isRequired,
+  /**
+   * Props for the card containing the chart.
+   */
+  cardProps: PropTypes.object
 }
 
 export default Chart

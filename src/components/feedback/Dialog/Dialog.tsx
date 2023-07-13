@@ -1,10 +1,11 @@
-import React, { MouseEventHandler, useCallback } from 'react'
+import React, { MouseEventHandler, useCallback, useMemo } from 'react'
 import PropTypes from 'prop-types'
 import MuiDialog from '@mui/material/Dialog'
 import DialogActions from '@mui/material/DialogActions'
 import DialogContentText from '@mui/material/DialogContentText'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import { useTheme } from '@mui/material/styles'
+import { SystemStyleObject } from '@mui/system'
 import CloseIcon from '@mui/icons-material/Close'
 import { TransparentBackdrop, DialogContent, DialogTitle, justifyRight } from './DialogStyles'
 import { Button, IconButton } from '../../index'
@@ -66,6 +67,8 @@ const Dialog: React.FC<DialogProps> = ({
       </Button>
     </>
   )
+  const closeButtonSx = useMemo(() => ({...justifyRight, ...closeButtonProps?.sx} as SystemStyleObject), [closeButtonProps?.sx])
+
   return (
     <MuiDialog
       onClose={handleClose}
@@ -80,13 +83,13 @@ const Dialog: React.FC<DialogProps> = ({
         {title}
         {showX && (
           <IconButton
-            sx={justifyRight}
-            color="default"
-            variant="text"
-            size="small"
-            aria-label="Close"
-            onClick={handleClose as MouseEventHandler}
-            {...closeButtonProps}
+          color="default"
+          variant="text"
+          size="small"
+          aria-label="Close"
+          onClick={handleClose as MouseEventHandler}
+          {...closeButtonProps}
+          sx={closeButtonSx}
           >
             <CloseIcon />
           </IconButton>

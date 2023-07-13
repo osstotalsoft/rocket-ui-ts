@@ -28,4 +28,8 @@ export interface CollapseCardProps extends Omit<CardProps, 'content'> {
    * Callback fired on toggle.
    */
   onToggle?: (event: React.SyntheticEvent, expanded: boolean) => void
+  /**
+   * If true, the subheader will be hidden when the card is expanded.
+   */
+  hideSubheaderOnExpand?: boolean
 }
