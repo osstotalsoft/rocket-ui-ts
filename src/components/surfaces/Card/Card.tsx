@@ -1,13 +1,12 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import React from 'react'
 import PropTypes from 'prop-types'
-import MuiCard, { iconStyle } from './CardStyles'
+import MuiCard, { CardContent, iconStyle } from './CardStyles'
 import CardMedia from '@mui/material/CardMedia'
 import { any, isNil } from 'ramda'
 import { CardProps, CardColor } from './types'
 import CardHeader from './CardHeader'
 import CardActions from './CardActions'
-import { CardContent } from '@mui/material'
 
 const sizes = {
   s: {
@@ -68,7 +67,7 @@ const Card: React.FC<CardProps> = ({
         <CardHeader hasIcon={hasIcon} iconColor={hasIcon ? (iconColor as CardColor) : undefined} {...cardHeaderProps} />
       )}
       {mediaProps && <CardMedia {...sizes[size || 's']} {...standardMediaProps} />}
-      {disablePadding ? children : <CardContent children={children} {...contentProps} />}
+      {disablePadding ? children : <CardContent hasHeader={hasHeader} children={children} {...contentProps} />}
       {footer && (
         <CardActions filled={filled} {...footerProps}>
           {footer}

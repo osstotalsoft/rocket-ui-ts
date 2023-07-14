@@ -1,5 +1,6 @@
 import { Theme } from '@mui/material'
 import BaseCard from '@mui/material/Card'
+import BaseCardContent from '@mui/material/CardContent'
 import { styled } from '@mui/material/styles'
 import { includes } from 'ramda'
 import { CardColor } from './types'
@@ -47,6 +48,14 @@ const Card = styled(BaseCard, {
       background: '#fff',
       overflow: 'visible'
     })
+  }
+})
+
+export const CardContent = styled(BaseCardContent, {
+  shouldForwardProp: prop => !includes(prop, ['hasHeader'])
+})(({ hasHeader }: { hasHeader: boolean }) => {
+  return {
+    padding: hasHeader ? '8px 24px 24px 24px' : '24px'
   }
 })
 
