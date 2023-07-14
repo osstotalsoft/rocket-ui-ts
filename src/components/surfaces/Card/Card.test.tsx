@@ -34,7 +34,7 @@ describe('Card', () => {
 
   it('adds padding by default', () => {
     render(<Card>{text}</Card>)
-    expect(screen.getByText(text)).toHaveStyle(`padding: ${theme.spacing(1, 3, 3, 3)}`)
+    expect(screen.getByText(text)).toHaveStyle(`padding: ${theme.spacing(3, 3, 3, 3)}`)
   })
 
   it('removes padding when disablePadding is `true`', () => {
