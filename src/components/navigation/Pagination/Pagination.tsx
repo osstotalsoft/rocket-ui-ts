@@ -1,7 +1,8 @@
 import React, { useCallback } from 'react'
 import PropTypes from 'prop-types'
 import TablePagination from '@mui/material/TablePagination'
-import { PaginationContainer, RefreshButtonContainer } from './PaginationStyles'
+import Grid from '@mui/material/Grid'
+import { RefreshButtonContainer } from './PaginationStyles'
 import RefreshIcon from '@mui/icons-material/Refresh'
 import { PaginationProps, DisplayedRows } from './types'
 import IconButton from '../../buttons/IconButton'
@@ -49,9 +50,8 @@ const Pagination: React.FC<PaginationProps> = ({
   const handleRefresh = useCallback(() => onRefresh && onRefresh(), [onRefresh])
 
   return (
-    <>
+    <Grid container alignItems="center" justifyContent="flex-end">
       {!loading && (
-        <PaginationContainer>
           <TablePagination
             component="div"
             count={count}
@@ -64,16 +64,15 @@ const Pagination: React.FC<PaginationProps> = ({
             rowsPerPageOptions={rowsPerPageOptions}
             {...rest}
           />
-        </PaginationContainer>
       )}
       {onRefresh && (
         <RefreshButtonContainer>
           <IconButton onClick={handleRefresh} color="default" variant="text" disabled={loading}>
-            <RefreshIcon />
+            <RefreshIcon/>
           </IconButton>
         </RefreshButtonContainer>
       )}
-    </>
+    </Grid>
   )
 }
 

@@ -19,6 +19,7 @@ const CollapseCard: React.FC<CollapseCardProps> = ({
   expanded,
   onToggle,
   subheader,
+  hideSubheaderOnExpand = false,
   ...rest
 }) => {
   const [localExpanded, setLocalExpanded] = useState(defaultExpanded || false)
@@ -41,7 +42,7 @@ const CollapseCard: React.FC<CollapseCardProps> = ({
       disablePadding
       actions={Array.isArray(actions) ? [...actions, iconButton] : [actions, iconButton]}
       variant={variant}
-      subheader={subheader}
+      subheader={hideSubheaderOnExpand && exp ? <></> : subheader}
       {...rest}
     >
       <Collapse in={exp}>
@@ -95,7 +96,12 @@ CollapseCard.propTypes = {
   /**
    * Callback fired on toggle.
    */
-  onToggle: PropTypes.func
+  onToggle: PropTypes.func,
+  /**
+   * If true, the subheader will be hidden when the card is expanded.
+   * @default false
+   */
+  hideSubheaderOnExpand: PropTypes.bool
 }
 
 export default CollapseCard

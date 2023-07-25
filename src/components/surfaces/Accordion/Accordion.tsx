@@ -23,9 +23,7 @@ const AccordionItem: React.FC<AccordionProps> = ({
         </Typography>
       </AccordionSummary>
       <AccordionDetails {...detailsProps}>
-        <Typography variant="body2" color="textSecondary">
-          {content as ReactNode}
-        </Typography>
+        {content as ReactNode}
       </AccordionDetails>
     </MuiAccordion>
   )

@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import { toast, Slide, Bounce, Flip, Zoom } from 'react-toastify'
+import { toast, Slide, Bounce, Flip, Zoom, ToastContent } from 'react-toastify'
 import { classes } from './ToastStyles'
 import cx from 'classnames'
 import { cond, equals, always, T } from 'ramda'
@@ -8,14 +8,14 @@ const useToast = () => {
   return useCallback(
     /**
      *
-     * @param {String} message The text to be displayed
+     * @param {ToastContent} message The content to be displayed
      * @param {('success'|'info'|'warning'|'error')} variant The type of the toast
      * @param {('Slide' | 'Bounce' | 'Zoom' | 'Flip')} transitionType The appearance effect
      * @param {('top-right' | 'top-center' | 'top-left' | 'bottom-right' | 'bottom-center' | 'bottom-left')} position Where to be displayed on the page
      * @param {(Number| false)} autoClose Delay in ms to close the toast
      */
     (
-      message: string,
+      message: ToastContent,
       variant?: 'success' | 'info' | 'warning' | 'error',
       transitionType?: 'Slide' | 'Bounce' | 'Zoom' | 'Flip',
       position?: 'top-right' | 'top-center' | 'top-left' | 'bottom-right' | 'bottom-center' | 'bottom-left',
