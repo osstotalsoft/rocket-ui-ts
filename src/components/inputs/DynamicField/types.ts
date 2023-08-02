@@ -18,6 +18,7 @@ export type DynamicFieldProps<TCustomComponentProps extends object = any, TAutoc
   onChange?: (value: unknown) => void
   options?: readonly TAutocompleteOptions[]
   loadOptions?: (input?: string) => Promise<readonly TAutocompleteOptions[]>
+  isPaginated?: boolean
   error?: boolean
   helperText?: React.ReactNode
   required?: boolean

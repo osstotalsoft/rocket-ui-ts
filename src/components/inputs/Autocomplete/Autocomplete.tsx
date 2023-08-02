@@ -14,7 +14,7 @@ import {
   computeChangedSingleValue
 } from './utils'
 import TextField from '../TextField'
-import { AutocompleteProps, OptionProps } from './types'
+import { AutocompleteProps, OptionProps, LoadOptions, LoadOptionsPaginated } from './types'
 import {
   AutocompleteChangeReason,
   AutocompleteCloseReason,
@@ -66,10 +66,13 @@ const Autocomplete: React.FC<AutocompleteProps<any, any, any, any>> = ({
   getOptionDisabled,
   placeholder,
   inputTextFieldProps,
+  isPaginated,
   ...other
 }) => {
   const [options, setOptions] = useState(receivedOptions ?? [])
-  const [asyncOptions, setAsyncOptions] = useState(is(Array, defaultOptions) ? defaultOptions : [])
+  const [asyncOptions, setAsyncOptions] = useState<ReadonlyArray<any>>(is(Array, defaultOptions) ? defaultOptions : [])
+  const [additionalPageData, setAdditionalPageData] = useState(null)
+  const [hasMore, setHasMore] = useState<Boolean>(true)
 
   const [localLoading, setLocalLoading] = useState(false)
   const loading = receivedLoading || localLoading
@@ -84,18 +87,41 @@ const Autocomplete: React.FC<AutocompleteProps<any, any, any, any>> = ({
   const disabledValues = disabledOptions.map(prop(valueKey))
   const isValueDisabled = getOptionDisabled ? any(equals(value), disabledValues) : false
 
+  const handleLoadOptionsPaginated = useCallback(
+    (input?: string) => {
+      if (hasMore) {
+        if (asyncOptions.length === 0) setLocalLoading(true)
+        ;(loadOptions as LoadOptionsPaginated)(input, options, additionalPageData).then(
+          ({ loadedOptions, more, additional }) => {
+            if (input != localInput) setAsyncOptions(loadedOptions || [])
+            else setAsyncOptions(prevAsyncOptions => [...prevAsyncOptions, ...loadedOptions])
+            setAdditionalPageData(additional)
+            if (hasMore !== more && input === localInput) setHasMore(more)
+            setLocalLoading(false)
+            setOptionsLoaded(true)
+          }
+        )
+        return
+      }
+      setLocalLoading(false)
+      setOptionsLoaded(true)
+    },
+    [additionalPageData, asyncOptions.length, hasMore, loadOptions, localInput, options]
+  )
+
   const handleLoadOptions = useCallback(
     (input?: string) => {
-      if (loadOptions) {
+      if (!loadOptions) return
+      if (!isPaginated) {
         setLocalLoading(true)
-        loadOptions(input).then(loadedOptions => {
+        ;(loadOptions as LoadOptions)(input).then(loadedOptions => {
           setAsyncOptions(loadedOptions || [])
           setLocalLoading(false)
           setOptionsLoaded(true)
         })
-      }
+      } else handleLoadOptionsPaginated(input)
     },
-    [loadOptions]
+    [handleLoadOptionsPaginated, isPaginated, loadOptions]
   )
 
   const handleMenuOpen = useCallback(
@@ -261,6 +287,21 @@ const Autocomplete: React.FC<AutocompleteProps<any, any, any, any>> = ({
     setOptions(receivedOptions || [])
   }, [receivedOptions])
 
+  const listBoxProps = useMemo(
+    () =>
+      isPaginated
+        ? {
+            onScroll: (event: React.SyntheticEvent) => {
+              const listboxNode = event.currentTarget
+              if (listboxNode.scrollTop + listboxNode.clientHeight >= listboxNode.scrollHeight - 1 && hasMore) {
+                handleLoadOptions()
+              }
+            }
+          }
+        : undefined,
+    [handleLoadOptions, hasMore, isPaginated]
+  )
+
   return (
     <MuiAutocomplete
       noOptionsText={<NoOptionsText color={typographyContentColor}>{noOptionsText}</NoOptionsText>}
@@ -292,6 +333,7 @@ const Autocomplete: React.FC<AutocompleteProps<any, any, any, any>> = ({
       renderInput={renderInput}
       renderTags={renderTags}
       freeSolo={creatable}
+      ListboxProps={listBoxProps}
       {...other}
     />
   )
@@ -452,7 +494,12 @@ Autocomplete.propTypes = {
   /**
    *  Properties that will be passed to the rendered input. This is a TextField.
    */
-  inputTextFieldProps: PropTypes.object
+  inputTextFieldProps: PropTypes.object,
+  /**
+   * @default false
+   * If true, the options list will be loaded incrementally using the paginated loadOptions callback
+   */
+  isPaginated: PropTypes.bool
 }
 
 export default Autocomplete

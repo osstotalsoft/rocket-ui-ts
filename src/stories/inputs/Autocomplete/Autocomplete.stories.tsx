@@ -9,7 +9,7 @@ import { DefaultPreview } from './DefaultPreview'
 import { OptionTypesPreview } from './OptionTypesPreview'
 import { MultipleSelectionPreview } from './MultipleSelectionPreview'
 import { CheckboxesPreview } from './CheckboxesPreview'
-import { customOptions, loadFilteredOptions, options } from './_mocks'
+import { customOptions, loadFilteredOptions, loadFilteredOptionsPaginated, options } from './_mocks'
 import { StylingPreview } from './StylingPreview'
 import { RequiredPreview } from './RequiredPreview'
 import { CustomOptionPreview } from './CustomOptionPreview'
@@ -272,6 +272,44 @@ export const LazyLoading: Story = {
     onClose: null,
     onInputChange: null,
     onOpen: null
+  },
+  render: args => <DefaultPreview {...args} />
+}
+
+/**
+ * The component supports fetching data incrementally for large data sets. When the isPaginated prop is true, the loadOptions callback is fired when the user scrolls to the end of the options.
+ * 
+ * The loadOptions function you provide must be async and it can receive the following 3 parameters: 
+ * the current value of the search input; the currently loaded options; an "additional" object used to accumulate information required for the incremental query, such as the current page (null by default)
+ * 
+ * The loadOptions function must return an object with the shape {options: Array, hasMore: boolean, additional?: any}.
+ * options will contain the new data to append, hasMore is used to determine if there is more data to fetch and the additional object will be passed to loadOptions on the next fetch
+ */
+export const LazyLoadingPaginated: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `
+        <Autocomplete
+            label="Autocomplete"
+            value={value}
+            onChange={onChangeFn}
+            loadOptions={loadOptionsFn}
+            isPaginated={true}
+          />
+        `,
+        format: true
+      }
+    }
+  },
+  args: {
+    label: 'Lazy Loading',
+    loadOptions: loadFilteredOptionsPaginated,
+    onChange: null,
+    onClose: null,
+    onInputChange: null,
+    onOpen: null,
+    isPaginated: true
   },
   render: args => <DefaultPreview {...args} />
 }
