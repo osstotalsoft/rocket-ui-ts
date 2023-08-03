@@ -23,6 +23,10 @@ export interface OptionProps extends React.HTMLAttributes<HTMLLIElement> {
   withCheckboxes?: boolean
 }
 
+export type LoadOptionsPaginated = (input: string, options: ReadonlyArray<any>, additional?: any) => Promise<{loadedOptions: ReadonlyArray<any>, more: Boolean, additional: any}>
+
+export type LoadOptions = (input: string) => Promise<any>
+
 export interface AutocompleteProps<
   T,
   Multiple extends boolean | undefined = false,
@@ -113,7 +117,7 @@ export interface AutocompleteProps<
   /**
    * Function that returns a promise, which resolves to the set of options to be used once the promise resolves.
    */
-  loadOptions?: (input: string) => Promise<any>
+  loadOptions?: LoadOptions | LoadOptionsPaginated
   /**
    * The default set of options to show before the user starts searching. When set to true, the results for loadOptions('') will be autoloaded.
    */
@@ -159,4 +163,9 @@ export interface AutocompleteProps<
    * @returns {ReactNode}
    */
   renderInput?: (params: AutocompleteRenderInputParams) => React.ReactNode
+  /**
+  * @default false
+  * If true, the options list will be loaded incrementally using the paginated loadOptions callback
+  */
+  isPaginated?: boolean
 }

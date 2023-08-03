@@ -435,6 +435,24 @@ describe('Async Autocomplete', () => {
     expect(screen.queryByText(loadingText)).not.toBeInTheDocument()
   })
 
+  test('calls loadOptions with three parameters - when isPaginated is true', async () => {
+    const promise = Promise.resolve(basicOptions)
+    const mockLoadOptions = jest.fn(() => promise)
+    render(
+      <Autocomplete
+        simpleValue
+        loadOptions={mockLoadOptions}
+        value={1}
+        defaultOptions={basicOptions}
+        onChange={jest.fn()}
+        isPaginated
+      />
+    )
+    expect(mockLoadOptions).toBeCalledWith('first option', [], null)
+    expect(mockLoadOptions.mock.calls[0]).toHaveLength(3)
+    await act(() => promise)
+  })
+
   describe('with simpleValue={false}', () => {
     test('displays initial value - when defaultOptions={false}', async () => {
       const promise = Promise.resolve(basicOptions)

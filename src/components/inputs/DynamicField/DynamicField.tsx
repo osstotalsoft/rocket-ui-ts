@@ -29,6 +29,7 @@ function DynamicField<TCustomComponentProps extends object = any, TAutocompleteO
     onChange,
     options,
     loadOptions,
+    isPaginated,
     error,
     helperText,
     CustomComponent,
@@ -119,6 +120,7 @@ function DynamicField<TCustomComponentProps extends object = any, TAutocompleteO
           fullWidth
           error={error}
           helperText={helperText}
+          isPaginated={isPaginated}
           {...rest}
         />
       )
