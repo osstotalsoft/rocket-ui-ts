@@ -13,13 +13,15 @@ const useToast = () => {
      * @param {('Slide' | 'Bounce' | 'Zoom' | 'Flip')} transitionType The appearance effect
      * @param {('top-right' | 'top-center' | 'top-left' | 'bottom-right' | 'bottom-center' | 'bottom-left')} position Where to be displayed on the page
      * @param {(Number| false)} autoClose Delay in ms to close the toast
+     * @param {string} id The id of the specific toast
      */
     (
       message: ToastContent,
       variant?: 'success' | 'info' | 'warning' | 'error',
       transitionType?: 'Slide' | 'Bounce' | 'Zoom' | 'Flip',
       position?: 'top-right' | 'top-center' | 'top-left' | 'bottom-right' | 'bottom-center' | 'bottom-left',
-      autoClose: any = variant !== 'error'
+      autoClose: any = variant !== 'error',
+      id?: any
     ) => {
       const toastClasses = cx({
         [classes[variant]]: variant,
@@ -32,7 +34,13 @@ const useToast = () => {
         [equals('Zoom'), always(Zoom)],
         [T, always(Slide)]
       ])
-      const options = { autoClose, transition: getTransitionType(transitionType), position, className: toastClasses }
+      const options = {
+        autoClose,
+        transition: getTransitionType(transitionType),
+        position,
+        className: toastClasses,
+        toastId: id
+      }
       switch (variant) {
         case 'error':
           toast.error(message, { ...options, autoClose: false, closeOnClick: false, draggable: false })
