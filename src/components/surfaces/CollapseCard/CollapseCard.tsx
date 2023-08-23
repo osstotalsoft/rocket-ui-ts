@@ -45,7 +45,7 @@ const CollapseCard: React.FC<CollapseCardProps> = ({
       subheader={hideSubheaderOnExpand && exp ? <></> : subheader}
       {...rest}
     >
-      <Collapse id={`${rest.id}_dropDown`} in={exp}>
+      <Collapse in={exp}>
         <CardContent children={content || children} />
       </Collapse>
     </Card>

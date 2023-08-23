@@ -69,7 +69,7 @@ const Card: React.FC<CardProps> = ({
       {mediaProps && <CardMedia {...sizes[size || 's']} {...standardMediaProps} />}
       {disablePadding ? children : <CardContent hasHeader={hasHeader} children={children} {...contentProps} />}
       {footer && (
-        <CardActions filled={filled} {...footerProps}>
+        <CardActions id={`${props.id}`} filled={filled} {...footerProps}>
           {footer}
         </CardActions>
       )}
