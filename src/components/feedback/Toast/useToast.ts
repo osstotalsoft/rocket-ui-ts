@@ -1,5 +1,14 @@
 import { useCallback } from 'react'
-import { toast, Slide, Bounce, Flip, Zoom, ToastContent, ToastOptions as ToastifyToastOptions } from 'react-toastify'
+import {
+  toast,
+  Slide,
+  Bounce,
+  Flip,
+  Zoom,
+  ToastContent,
+  ToastOptions as ToastifyToastOptions,
+  TypeOptions as ToastifyTypeOptions
+} from 'react-toastify'
 import { classes } from './ToastStyles'
 import cx from 'classnames'
 import { cond, equals, always, T } from 'ramda'
@@ -14,13 +23,11 @@ const useToast = () => {
      *
      * @param {ToastContent} message The content to be displayed
      * @param {('success'|'info'|'warning'|'error')} variant The type of the toast
-     * @param {object} options Additional options passed to the toast
+     * @param {ToastOptions} options Additional options passed to the toast
      */
-    (
-      message: ToastContent,
-      variant: 'success' | 'info' | 'warning' | 'error',
-      { transitionType, autoClose, ...restOptions }: ToastOptions
-    ) => {
+    (message: ToastContent, variant?: ToastifyTypeOptions, options?: ToastOptions) => {
+      const { transitionType, autoClose, ...restOptions } = options || {}
+
       const toastClasses = cx({
         [classes[variant]]: variant,
         [classes['default']]: true
@@ -32,12 +39,14 @@ const useToast = () => {
         [equals('Zoom'), always(Zoom)],
         [T, always(Slide)]
       ])
+
       const internalOptions: ToastifyToastOptions = {
         ...restOptions,
         autoClose: autoClose || false,
         transition: getTransitionType(transitionType),
         className: toastClasses
       }
+
       switch (variant) {
         case 'error':
           toast.error(message, { ...internalOptions, autoClose: false, closeOnClick: false, draggable: false })

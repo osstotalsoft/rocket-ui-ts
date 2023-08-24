@@ -15,7 +15,7 @@ const PositionsPreview = () => {
         <Button
           size={'small'}
           color={'primary'}
-          onClick={() => addToast('This is a success message!', toast.TYPE.SUCCESS as any, 'Slide', 'top-right')}
+          onClick={() => addToast('This is a success message!', toast.TYPE.SUCCESS, { position: 'top-left' })}
         >
           {'Top Left Position'}
         </Button>
@@ -24,7 +24,7 @@ const PositionsPreview = () => {
         <Button
           size={'small'}
           color={'primary'}
-          onClick={() => addToast('This the default position!', toast.TYPE.INFO as any, 'Slide', 'top-center')}
+          onClick={() => addToast('This the default position!', toast.TYPE.INFO, { position: 'top-center' })}
         >
           {'Top Center Position'}
         </Button>
@@ -33,7 +33,7 @@ const PositionsPreview = () => {
         <Button
           size={'small'}
           color={'primary'}
-          onClick={() => addToast('This is a warning message!', toast.TYPE.WARNING as any, 'Slide', 'top-right')}
+          onClick={() => addToast('This is a warning message!', toast.TYPE.WARNING, { position: 'top-right' })}
         >
           {'Top Right Position'}
         </Button>
@@ -42,7 +42,7 @@ const PositionsPreview = () => {
         <Button
           size={'small'}
           color={'primary'}
-          onClick={() => addToast('This is an error message!', toast.TYPE.ERROR as any, 'Slide', 'bottom-right')}
+          onClick={() => addToast('This is an error message!', toast.TYPE.ERROR, { position: 'bottom-right' })}
         >
           {'Bottom Right Position'}
         </Button>
@@ -51,7 +51,7 @@ const PositionsPreview = () => {
         <Button
           size={'small'}
           color={'primary'}
-          onClick={() => addToast('This is a default message!', toast.TYPE.SUCCESS as any, 'Slide', 'bottom-center')}
+          onClick={() => addToast('This is a default message!', toast.TYPE.SUCCESS, { position: 'bottom-center' })}
         >
           {'Bottom Center Position'}
         </Button>
@@ -60,7 +60,7 @@ const PositionsPreview = () => {
         <Button
           size={'small'}
           color={'primary'}
-          onClick={() => addToast('This is a default message!', toast.TYPE.WARNING as any, 'Slide', 'bottom-left')}
+          onClick={() => addToast('This is a default message!', toast.TYPE.WARNING, { position: 'bottom-left' })}
         >
           {'Bottom Left Position'}
         </Button>
