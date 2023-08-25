@@ -15,7 +15,7 @@ export const filterOptions =
 
     // Suggest the creation of a new value if it's not empty and it doesn't already exist
     const exists = find(propEq(inputValue, labelKey), options)
-    if (creatable && inputValue !== '' && !exists) {
+    if (creatable && !(isEmpty(inputValue) || isNil(inputValue)) && !exists) {
       filtered.push(
         hasStringOptions(options)
           ? {
@@ -23,6 +23,7 @@ export const filterOptions =
               _createdOption: true
             }
           : {
+              // TODO: The valueKey should be different from the inputValue
               [valueKey]: inputValue,
               [labelKey]: inputValue,
               _createdOption: true

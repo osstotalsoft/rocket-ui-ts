@@ -28,7 +28,8 @@ const CardHeader = styled(MuiCardHeader, {
     })
   },
   ['& .MuiCardHeader-action']: {
-    display: 'flex'
+    display: 'flex',
+    alignItems: 'center'
   }
 }))
 

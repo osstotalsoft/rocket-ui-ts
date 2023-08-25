@@ -313,7 +313,8 @@ const Autocomplete: React.FC<AutocompleteProps<any, any, any, any>> = ({
       loadingText={loadingText ?? <LinearProgress />}
       onOpen={handleMenuOpen}
       onClose={handleMenuClose}
-      clearOnBlur={!creatable}
+      clearOnBlur={true}
+      freeSolo={creatable}
       options={loading ? [] : loadOptions ? asyncOptions : options || []}
       autoHighlight
       handleHomeEndKeys
@@ -332,7 +333,6 @@ const Autocomplete: React.FC<AutocompleteProps<any, any, any, any>> = ({
       renderOption={renderOption}
       renderInput={renderInput}
       renderTags={renderTags}
-      freeSolo={creatable}
       ListboxProps={listBoxProps}
       {...other}
     />
