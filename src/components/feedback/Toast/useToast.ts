@@ -32,7 +32,7 @@ const useToast = () => {
         [equals('Zoom'), always(Zoom)],
         [T, always(Slide)]
       ])
-      const internalOptions: ToastifyToastOptions = {
+      const options: ToastifyToastOptions = {
         ...restOptions,
         autoClose: autoClose || false,
         transition: getTransitionType(transitionType),
@@ -40,19 +40,19 @@ const useToast = () => {
       }
       switch (variant) {
         case 'error':
-          toast.error(message, { ...internalOptions, autoClose: false, closeOnClick: false, draggable: false })
+          toast.error(message, { ...options, autoClose: false, closeOnClick: false, draggable: false })
           break
         case 'info':
-          toast.info(message, internalOptions)
+          toast.info(message, options)
           break
         case 'success':
-          toast.success(message, internalOptions)
+          toast.success(message, options)
           break
         case 'warning':
-          toast.warn(message, internalOptions)
+          toast.warn(message, options)
           break
         default:
-          toast(message, internalOptions)
+          toast(message, options)
           break
       }
     },
