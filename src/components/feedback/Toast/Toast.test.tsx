@@ -54,7 +54,12 @@ describe('Toast', () => {
 
       render(
         <Button
-          onClick={() => result.current('This is a message!', variant as any, transitionType as any, position as any)}
+          onClick={() =>
+            result.current('This is a message!', variant as any, {
+              transitionType: transitionType as any,
+              position: position as any
+            })
+          }
         />
       )
       fireEvent.click(screen.getByRole('button'))

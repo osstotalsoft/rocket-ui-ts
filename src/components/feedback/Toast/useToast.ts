@@ -1,8 +1,21 @@
 import { useCallback } from 'react'
-import { toast, Slide, Bounce, Flip, Zoom, ToastContent } from 'react-toastify'
+import {
+  toast,
+  Slide,
+  Bounce,
+  Flip,
+  Zoom,
+  ToastContent,
+  ToastOptions as ToastifyToastOptions,
+  TypeOptions as ToastifyTypeOptions
+} from 'react-toastify'
 import { classes } from './ToastStyles'
 import cx from 'classnames'
 import { cond, equals, always, T } from 'ramda'
+
+type ToastOptions = Omit<ToastifyToastOptions, 'transition'> & {
+  transitionType?: 'Slide' | 'Bounce' | 'Zoom' | 'Flip'
+}
 
 const useToast = () => {
   return useCallback(
@@ -10,17 +23,10 @@ const useToast = () => {
      *
      * @param {ToastContent} message The content to be displayed
      * @param {('success'|'info'|'warning'|'error')} variant The type of the toast
-     * @param {('Slide' | 'Bounce' | 'Zoom' | 'Flip')} transitionType The appearance effect
-     * @param {('top-right' | 'top-center' | 'top-left' | 'bottom-right' | 'bottom-center' | 'bottom-left')} position Where to be displayed on the page
-     * @param {(Number| false)} autoClose Delay in ms to close the toast
+     * @param {ToastOptions} options Additional options passed to the toast
      */
-    (
-      message: ToastContent,
-      variant?: 'success' | 'info' | 'warning' | 'error',
-      transitionType?: 'Slide' | 'Bounce' | 'Zoom' | 'Flip',
-      position?: 'top-right' | 'top-center' | 'top-left' | 'bottom-right' | 'bottom-center' | 'bottom-left',
-      autoClose: any = variant !== 'error'
-    ) => {
+    (message: ToastContent, variant?: ToastifyTypeOptions, { transitionType, autoClose, ...restOptions } = {} as ToastOptions) => {
+
       const toastClasses = cx({
         [classes[variant]]: variant,
         [classes['default']]: true
@@ -32,7 +38,14 @@ const useToast = () => {
         [equals('Zoom'), always(Zoom)],
         [T, always(Slide)]
       ])
-      const options = { autoClose, transition: getTransitionType(transitionType), position, className: toastClasses }
+
+      const options: ToastifyToastOptions = {
+        ...restOptions,
+        autoClose: autoClose || false,
+        transition: getTransitionType(transitionType),
+        className: toastClasses
+      }
+
       switch (variant) {
         case 'error':
           toast.error(message, { ...options, autoClose: false, closeOnClick: false, draggable: false })
