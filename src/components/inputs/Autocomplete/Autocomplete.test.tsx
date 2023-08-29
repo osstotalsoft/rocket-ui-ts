@@ -286,23 +286,6 @@ describe('Multi-value Autocomplete', () => {
       fireEvent.change(screen.getByRole('combobox'), { target: { value: 'new option' } })
       expect(screen.getByText('Add "new option"')).toBeInTheDocument()
     })
-
-    test('displays created label text after typing some characters (simpleValue={true})', () => {
-      render(
-        <Autocomplete
-          isMultiSelection
-          creatable
-          simpleValue
-          createdLabel={'Add'}
-          value={[]}
-          options={basicOptions}
-          onChange={jest.fn()}
-        />
-      )
-      fireEvent.change(screen.getByRole('combobox'), { target: { value: 'new' } })
-      fireEvent.change(screen.getByRole('combobox'), { target: { value: 'new option' } })
-      expect(screen.getByText('Add "new option"')).toBeInTheDocument()
-    })
   })
 
   describe('with simpleValue={true}', () => {
