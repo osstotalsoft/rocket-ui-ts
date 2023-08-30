@@ -54,7 +54,9 @@ export const getSimpleValue = <T>(
 
   const result = isMultiSelection
     ? innerJoin((o, v) => o[valueKey as keyof T] === v, options, value as any)
-    : find(propEq(value, valueKey), options)
+    : isEmpty(options)
+    ? value
+    : prop(valueKey, find(propEq(value, valueKey), options) || {})
   return result || null
 }
 

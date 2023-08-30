@@ -9,10 +9,11 @@ import { DefaultPreview } from './DefaultPreview'
 import { OptionTypesPreview } from './OptionTypesPreview'
 import { MultipleSelectionPreview } from './MultipleSelectionPreview'
 import { CheckboxesPreview } from './CheckboxesPreview'
-import { customOptions, loadFilteredOptions, loadFilteredOptionsPaginated, options } from './_mocks'
+import { customOptions, loadFilteredOptionsPaginated, loadOptions, options } from './_mocks'
 import { StylingPreview } from './StylingPreview'
 import { RequiredPreview } from './RequiredPreview'
 import { CustomOptionPreview } from './CustomOptionPreview'
+import { Stack } from '@mui/material'
 
 const meta: Meta<typeof AutocompleteComponent> = {
   title: 'Components/Inputs/Autocomplete',
@@ -267,21 +268,26 @@ export const LazyLoading: Story = {
   },
   args: {
     label: 'Lazy Loading',
-    loadOptions: loadFilteredOptions,
+    loadOptions,
     onChange: null,
     onClose: null,
     onInputChange: null,
     onOpen: null
   },
-  render: args => <DefaultPreview {...args} />
+  render: args => (
+    <Stack spacing={3} direction={'row'}>
+      <DefaultPreview {...args} />
+      <DefaultPreview {...args} label={`${args.label} with simpleValue`} simpleValue valueKey="name" value="Cat" />
+    </Stack>
+  )
 }
 
 /**
  * The component supports fetching data incrementally for large data sets. When the isPaginated prop is true, the loadOptions callback is fired when the user scrolls to the end of the options.
- * 
- * The loadOptions function you provide must be async and it can receive the following 3 parameters: 
+ *
+ * The loadOptions function you provide must be async and it can receive the following 3 parameters:
  * the current value of the search input; the currently loaded options; an "additional" object used to accumulate information required for the incremental query, such as the current page (null by default)
- * 
+ *
  * The loadOptions function must return an object with the shape {options: Array, hasMore: boolean, additional?: any}.
  * options will contain the new data to append, hasMore is used to determine if there is more data to fetch and the additional object will be passed to loadOptions on the next fetch
  */
