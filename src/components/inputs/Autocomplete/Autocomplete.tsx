@@ -213,7 +213,9 @@ const Autocomplete: React.FC<AutocompleteProps<any, any, any, any>> = ({
 
   const isOptionEqualToValue = useCallback(
     (option: { [x: string]: any }, value: { [x: string]: any }) =>
-      simpleValue ? option[valueKey] === value[valueKey] : equals(option, value),
+      simpleValue
+        ? equals(option[valueKey], value) || equals(option?.[valueKey], value?.[valueKey])
+        : equals(option?.[valueKey], value?.[valueKey]),
     [simpleValue, valueKey]
   )
 

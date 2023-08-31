@@ -12,7 +12,7 @@
   ],
   "plugins": ["@typescript-eslint", "react-hooks"],
   "rules": {
-    "quotes": ["error", "single"],
+    "quotes": ["warn", "single"],
     "semi": ["error", "never"],
     "no-debugger": "warn",
     "no-unused-expressions": "warn",

@@ -57,7 +57,7 @@ export const customOptions = [
   { id: 1, name: 'Cat', icon: Pets, description: 'A cat is the best pet' },
   { id: 2, name: 'Dog', icon: EmojiNature, description: 'A dos is a man best friend' },
   { id: 3, name: 'Turtle', icon: BugReport, description: 'Turtles are slow' },
-  { id: 4, name: 'Horse', icon: BedroomBaby , description: 'Horses are elegant.'}
+  { id: 4, name: 'Horse', icon: BedroomBaby, description: 'Horses are elegant.' }
 ]
 export const primitiveOptions = ['first option', 'second option', 'third option']
 export const numericOptions = [{ period: 1 }, { period: 2 }, { period: 3 }]
@@ -76,13 +76,23 @@ export const loadFilteredOptions = async (input: any) => {
 }
 
 let prevInput: string = undefined
-export const loadFilteredOptionsPaginated : LoadOptionsPaginated = async (input: string, _: ReadonlyArray<any>, additional?: any) => {
+export const loadFilteredOptionsPaginated: LoadOptionsPaginated = async (
+  input: string,
+  _: ReadonlyArray<any>,
+  additional?: any
+) => {
   await sleep(1e3)
   const currentPage = prevInput !== input ? 0 : additional?.page ?? 0
   const filteredOptions = input ? optionsLong.filter(o => includes(input, o.name)) : optionsLong
   const paginatedOptions = take(15, drop(currentPage * 15, filteredOptions))
   prevInput = input
-  return new Promise(res => res({loadedOptions: paginatedOptions, more: paginatedOptions.length === 15, additional: { page: prevInput !== input ? 0 : currentPage + 1}}))
+  return new Promise(res =>
+    res({
+      loadedOptions: paginatedOptions,
+      more: paginatedOptions.length === 15,
+      additional: { page: prevInput !== input ? 0 : currentPage + 1 }
+    })
+  )
 }
 
 export const loadOptions = async () => {

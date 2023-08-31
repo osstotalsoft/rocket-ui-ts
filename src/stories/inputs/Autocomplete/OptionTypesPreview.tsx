@@ -39,6 +39,7 @@ export const OptionTypesPreview = () => {
             value={basicValue}
             onChange={setBasicValue}
             simpleValue={simpleValueBasic}
+            valueKey={simpleValueBasic ? 'Name' : 'Id'}
             isClearable={true}
             options={options}
           />
