@@ -276,8 +276,8 @@ export const LazyLoading: Story = {
   },
   render: args => (
     <Stack spacing={3} direction={'row'}>
-      <DefaultPreview {...args} />
-      <DefaultPreview {...args} label={`${args.label} with simpleValue`} simpleValue valueKey="name" value="Cat" />
+      <DefaultPreview {...args} value={{ id: 1, name: 'Cat' }} />
+      <DefaultPreview {...args} label={`${args.label} with simpleValue`} simpleValue value={1} />
     </Stack>
   )
 }

@@ -68,6 +68,13 @@ function sleep(delay = 0) {
   })
 }
 
+const filterResults = (input: any) => options.filter(o => includes(input, o.name))
+
+export const loadFilteredOptions = async (input: any) => {
+  await sleep(1e3)
+  return new Promise(res => (input ? res(filterResults(input)) : res(options)))
+}
+
 let prevInput: string = undefined
 export const loadFilteredOptionsPaginated: LoadOptionsPaginated = async (
   input: string,

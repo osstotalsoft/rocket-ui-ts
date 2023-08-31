@@ -4,7 +4,7 @@ import { Autocomplete as MuiAutocomplete, NoOptionsText, classes } from './Autoc
 import Option from './Option'
 import LinearProgress from '@mui/material/LinearProgress'
 import Chip from '@mui/material/Chip'
-import { is, isNil, equals, any, prop } from 'ramda'
+import { is, isNil, equals, isEmpty, any, prop } from 'ramda'
 import {
   filterOptions,
   getSimpleValue,
@@ -213,7 +213,9 @@ const Autocomplete: React.FC<AutocompleteProps<any, any, any, any>> = ({
 
   const isOptionEqualToValue = useCallback(
     (option: { [x: string]: any }, value: { [x: string]: any }) =>
-      simpleValue ? equals(option[valueKey], value) : equals(option?.[valueKey], value?.[valueKey]),
+      simpleValue
+        ? equals(option[valueKey], value) || equals(option?.[valueKey], value?.[valueKey])
+        : equals(option?.[valueKey], value?.[valueKey]),
     [simpleValue, valueKey]
   )
 
@@ -260,8 +262,6 @@ const Autocomplete: React.FC<AutocompleteProps<any, any, any, any>> = ({
         return
       }
 
-      if (!event) return
-
       if (loadOptions) {
         setLocalLoading(true)
         handleLoadOptions(value)
@@ -269,6 +269,21 @@ const Autocomplete: React.FC<AutocompleteProps<any, any, any, any>> = ({
     },
     [handleLoadOptions, loadOptions, onInputChange]
   )
+
+  useEffect(() => {
+    // when simpleValue is false, loadOptions has already been called at this point by handleInputChange
+    if (!simpleValue || !loadOptions) return
+    if (is(Array, defaultOptions) && !isEmpty(defaultOptions)) return
+    if (defaultOptions === false) return
+
+    const hasInitialValue = is(Array, value) ? !isEmpty(value) : value
+    // when simpleValue is true, we need to previously load a set of options in order to match the value with one of them
+    if (defaultOptions === true || hasInitialValue) {
+      handleLoadOptions()
+    }
+    // this effect should run only at component mount
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   useEffect(() => {
     setOptions(receivedOptions || [])
