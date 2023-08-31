@@ -97,6 +97,7 @@ const NavPills: React.FC<NavPillsProps> = ({
   onChange,
   tabs,
   tabProps,
+  tabPanelProps,
   actions,
   selectedColor = 'secondary',
   capitalize,
@@ -136,7 +137,7 @@ const NavPills: React.FC<NavPillsProps> = ({
         ))}
       </TabsWrapper>
       {tabs.map(({ content }, index: number) => (
-        <TabPanel key={`tab-panel-${index}`} index={index} active={onChange ? active : selfActive}>
+        <TabPanel key={`tab-panel-${index}`} index={index} active={onChange ? active : selfActive} {...tabPanelProps}>
           {content}
         </TabPanel>
       ))}
@@ -172,6 +173,10 @@ NavPills.propTypes = {
    * Custom tab properties that apply to all the Tab elements
    */
   tabProps: PropTypes.object,
+  /**
+   * Custom tab panel properties that apply to all the TabPanel elements
+   */
+  tabPanelProps: PropTypes.object,
   /**
    * @default 'scrollable'
      * Determines additional display behavior of the tabs:
