@@ -171,11 +171,11 @@ const Autocomplete: React.FC<AutocompleteProps<any, any, any, any>> = ({
   )
 
   const handleOptionLabel = useCallback(
-    (option: unknown) => {
+    (option: any) => {
       if (getOptionLabel) return getOptionLabel(option)
       if (isStringOrNumber(option)) return option.toString()
 
-      const label = findFirstNotNil([labelKey, valueKey], option)
+      const label = option?._primitiveValue ? option?._primitiveValue : findFirstNotNil([labelKey, valueKey], option)
       return label?.toString() ?? ''
     },
     [getOptionLabel, labelKey, valueKey]
