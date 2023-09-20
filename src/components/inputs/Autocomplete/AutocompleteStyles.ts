@@ -43,14 +43,14 @@ const matchThemeColor = (theme: Theme, color: string) => {
 }
 
 export const Autocomplete = styled(MuiAutocomplete, { shouldForwardProp: prop => prop !== 'typographyContentColor' })(
-  ({ theme, typographyContentColor }: AutocompleteProps<any, false, false, false> & MUIStyledCommonProps<Theme>) => {
+  ({ theme, typographyContentColor, multiple }: AutocompleteProps<any, false, false, false> & MUIStyledCommonProps<Theme> & { multiple: boolean }) => {
     const color = matchThemeColor(theme, transformDeprecatedColors(typographyContentColor))
 
     return {
-      ['& .MuiTextField-root .MuiAutocomplete-inputRoot .MuiAutocomplete-input']: {
+      ...(!multiple && {['& .MuiTextField-root .MuiAutocomplete-inputRoot .MuiAutocomplete-input']: {
         width: 'fit-content',
         minWidth: 'fit-content'
-      },
+      }}),
       [`& .${classes.input}`]: {
         display: 'flex',
         whiteSpace: 'nowrap',
