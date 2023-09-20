@@ -65,8 +65,8 @@ export const computeChangedMultiValue = <T, Multiple, DisableClearable, FreeSolo
   labelKey: string
 ): AutocompleteValue<T, Multiple, DisableClearable, FreeSolo> =>
   simpleValue
-    ? input.map((a: unknown) => (is(String, a) ? a : findFirstNotNil([valueKey, labelKey, '_primitiveValue'], a)))
-    : input.map((a: unknown) => (is(String, a) ? a : prop('_primitiveValue', a) || omit(['_createdOption'], a)))
+    ? input.map((a: unknown) => (!is(Object, a) ? a : findFirstNotNil([valueKey, labelKey, '_primitiveValue'], a)))
+    : input.map((a: unknown) => (!is(Object, a) ? a : prop('_primitiveValue', a) || omit(['_createdOption'], a)))
 
 export const computeChangedSingleValue = (input: any, simpleValue: boolean, valueKey: string, labelKey: string) =>
   simpleValue
