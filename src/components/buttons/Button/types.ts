@@ -5,7 +5,7 @@ import { Color, Size } from '../../types'
 
 export type ButtonVariant = 'outlined' | 'text' | 'contained'
 
-export interface ButtonProps extends Omit<MuiButtonProps, 'color' | 'size' | 'variant'> {
+export interface ButtonProps extends Omit<MuiButtonProps, 'color' | 'size' | 'variant' | 'component'> {
   variant?: ButtonVariant
   /**
    * The color of the button.

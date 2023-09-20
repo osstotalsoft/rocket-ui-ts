@@ -209,12 +209,14 @@ const Autocomplete: React.FC<AutocompleteProps<any, any, any, any>> = ({
           disabled={option?.isDisabled || disabled || isValueDisabled}
         />
       )),
-    [getOptionDisabled, handleOptionLabel, disabled]
+    [handleOptionLabel, disabled, isValueDisabled]
   )
 
   const isOptionEqualToValue = useCallback(
-    (option: { [x: string]: any }, value: { [x: string]: any }) =>
-      simpleValue
+    (option: any, value: any): any =>
+      !is(Object, option) && !is(Object, value)
+        ? equals(option, value)
+        : simpleValue
         ? equals(option[valueKey], value) || equals(option?.[valueKey], value?.[valueKey])
         : equals(option?.[valueKey], value?.[valueKey]),
     [simpleValue, valueKey]
