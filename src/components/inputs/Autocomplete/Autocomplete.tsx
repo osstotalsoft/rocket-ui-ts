@@ -191,6 +191,7 @@ const Autocomplete: React.FC<AutocompleteProps<any, any, any, any>> = ({
           optionLabel={optionLabel}
           selected={selected}
           withCheckboxes={withCheckboxes}
+          option={option}
           {...props}
         />
       )
@@ -205,10 +206,10 @@ const Autocomplete: React.FC<AutocompleteProps<any, any, any, any>> = ({
           key={index}
           label={handleOptionLabel(option)}
           {...getTagProps({ index })}
-          disabled={getOptionDisabled && getOptionDisabled(option)}
+          disabled={option?.isDisabled || disabled || isValueDisabled}
         />
       )),
-    [getOptionDisabled, handleOptionLabel]
+    [getOptionDisabled, handleOptionLabel, disabled]
   )
 
   const isOptionEqualToValue = useCallback(

@@ -11,6 +11,7 @@ export const MultipleSelectionPreview = () => {
   const [simpleValueBasic, setSimpleValueBasic] = useState(false)
   const [creatableBasic, setCreatableBasic] = useState(false)
   const [basicValue, setBasicValue] = useState(emptyArray)
+  const [disabledBasic, setDisabledBasic] = useState(false)
 
   const [creatablePrimitive, setCreatablePrimitive] = useState(false)
   const [primitiveValue, setPrimitiveValue] = useState(emptyArray)
@@ -44,14 +45,15 @@ export const MultipleSelectionPreview = () => {
             onChange={setBasicValue}
             creatable={creatableBasic}
             simpleValue={simpleValueBasic}
-            isClearable={true}
             options={options}
             isMultiSelection
+            disabled={disabledBasic}
           />
         </Grid>
         <Grid item xs={3} container alignContent={'flex-start'}>
           <ControlledCheckbox value={creatableBasic} onChange={setCreatableBasic} label={'creatable'} />
           <ControlledCheckbox value={simpleValueBasic} onChange={setSimpleValueBasic} label={'simpleValue'} />
+          <ControlledCheckbox value={disabledBasic} onChange={setDisabledBasic} label={'disabled'} />
         </Grid>
         <Grid item xs={3}>
           <FormattedJson>{basicValue}</FormattedJson>
@@ -64,7 +66,6 @@ export const MultipleSelectionPreview = () => {
             value={primitiveValue}
             creatable={creatablePrimitive}
             onChange={setPrimitiveValue}
-            isClearable={true}
             options={primitiveOptions}
             isMultiSelection
           />
@@ -87,7 +88,6 @@ export const MultipleSelectionPreview = () => {
             options={numericOptions}
             labelKey={'period'}
             valueKey={'period'}
-            isClearable={true}
             isMultiSelection
           />
         </Grid>
