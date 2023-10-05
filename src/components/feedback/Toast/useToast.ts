@@ -48,7 +48,7 @@ const useToast = () => {
 
       switch (variant) {
         case 'error':
-          toast.error(message, { ...options, autoClose: false, closeOnClick: false, draggable: false })
+          toast.error(message, options)
           break
         case 'info':
           toast.info(message, options)
