@@ -73,7 +73,7 @@ const Dialog: React.FC<DialogProps> = ({
     <MuiDialog
       onClose={handleClose}
       aria-labelledby={dialogTitleId}
-      fullScreen={fullScreen || smallScreen}
+      fullScreen={fullScreen || (smallScreen && fullScreen !== false)}
       BackdropComponent={transparentBackdrop && TransparentBackdrop}
       fullWidth={fullWidth}
       open={open}
