@@ -81,10 +81,10 @@ describe('Toast', () => {
     await waitFor(() => expect(screen.queryByRole('alert')).not.toBeInTheDocument())
   })
 
-  it('Error toast should not close when click-ing on its container', async () => {
+  it('Toast should not close when click-ing on its container with closeOnClick disabled', async () => {
     const { result } = renderHook(() => useToast())
 
-    render(<Button onClick={() => result.current('This is an error message!', 'error')} />)
+    render(<Button onClick={() => result.current('This is an error message!', 'error', { closeOnClick: false })} />)
 
     fireEvent.click(screen.getByRole('button'))
     await waitFor(() => expect(screen.getByRole('alert')).toBeInTheDocument())
