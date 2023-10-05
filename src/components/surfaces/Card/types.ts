@@ -91,7 +91,7 @@ export interface CardProps extends Omit<MuiCardProps, 'title'> {
   /**
    * Actions to be displayed in the upper right corner of the card. If an array, will display all items with spacing between them.
    */
-  actions?: React.ReactNode
+  actions?: React.ReactNode | React.ReactNode[]
   /**
    * Props applied to the CardActions component.
    */

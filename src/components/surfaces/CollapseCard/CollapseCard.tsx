@@ -1,11 +1,11 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useMemo, useState } from 'react'
 import Collapse from '@mui/material/Collapse'
 import PropTypes from 'prop-types'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import ExpandLessIcon from '@mui/icons-material/ExpandLess'
 import { Card, IconButton } from '../../index'
 import { CollapseCardProps } from './types'
-import { CardContent } from '@mui/material'
+import { CardContent, Stack } from '@mui/material'
 
 /**
  * A Collapse Card is basically a 'smarter' Card component that allows users to toggle the display of content by expanding or collapsing the card.
@@ -20,6 +20,7 @@ const CollapseCard: React.FC<CollapseCardProps> = ({
   onToggle,
   subheader,
   hideSubheaderOnExpand = false,
+  toggleOnHeaderClick = false,
   ...rest
 }) => {
   const [localExpanded, setLocalExpanded] = useState(defaultExpanded || false)
@@ -37,11 +38,32 @@ const CollapseCard: React.FC<CollapseCardProps> = ({
     </IconButton>
   )
 
+  const headerProps = useMemo(() => {
+    if (!toggleOnHeaderClick) return undefined
+    return { sx: { cursor: 'pointer' }, onClick: toggleCard }
+  }, [toggleOnHeaderClick, toggleCard])
+
+  const handleActionsClick = useCallback(
+    (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+      /* Stop click event propagation on card actions to prevent card toggle (if toggleOnHeaderClick is enabled) */
+      if (!toggleOnHeaderClick) return
+      event.stopPropagation()
+    },
+    [toggleOnHeaderClick]
+  )
+
   return (
     <Card
       disablePadding
-      actions={Array.isArray(actions) ? [...actions, iconButton] : [actions, iconButton]}
+      actions={
+        <Stack direction="row" spacing={1} onClick={handleActionsClick}>
+          {(Array.isArray(actions) ? [...actions, iconButton] : [actions, iconButton]).map((action, index) => (
+            <React.Fragment key={index}>{action}</React.Fragment>
+          ))}
+        </Stack>
+      }
       variant={variant}
+      headerProps={headerProps}
       subheader={hideSubheaderOnExpand && exp ? <></> : subheader}
       {...rest}
     >
@@ -101,7 +123,12 @@ CollapseCard.propTypes = {
    * If true, the subheader will be hidden when the card is expanded.
    * @default false
    */
-  hideSubheaderOnExpand: PropTypes.bool
+  hideSubheaderOnExpand: PropTypes.bool,
+  /**
+   * If true, the card will toggle when clicking on the whole header, not just the expand button.
+   * @default false
+   */
+  toggleOnHeaderClick: PropTypes.bool
 }
 
 export default CollapseCard
