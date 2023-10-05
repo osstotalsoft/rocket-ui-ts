@@ -16,13 +16,13 @@ const palette = generatePalette({
     rgba: 'rgba(0, 82, 159, 1)'
   },
   secondary: {
-    lighter: '#81b8f8',
-    light: '#4c88c5',
-    main: '#005B94',
-    dark: '#003266',
-    darker: '#000a3b',
+    lighter: '#99bffb',
+    light: '#669ff9',
+    main: '#337FF7',
+    dark: '#0859d7',
+    darker: '#063a8d',
     contrastText: '#fff',
-    rgba: 'rgb(188 228 250)'
+    rgba: 'rgba(51, 127, 247, 1)'
   },
   background: {
     default: '#efeff8',
