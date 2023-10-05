@@ -32,4 +32,8 @@ export interface CollapseCardProps extends Omit<CardProps, 'content'> {
    * If true, the subheader will be hidden when the card is expanded.
    */
   hideSubheaderOnExpand?: boolean
+  /**
+   * If true, the card will toggle when clicking on the whole header, not just the expand button.
+   */
+  toggleOnHeaderClick?: boolean
 }

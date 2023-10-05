@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useMemo, useState } from 'react'
 import Collapse from '@mui/material/Collapse'
 import PropTypes from 'prop-types'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
@@ -20,6 +20,7 @@ const CollapseCard: React.FC<CollapseCardProps> = ({
   onToggle,
   subheader,
   hideSubheaderOnExpand = false,
+  toggleOnHeaderClick = false,
   ...rest
 }) => {
   const [localExpanded, setLocalExpanded] = useState(defaultExpanded || false)
@@ -37,11 +38,17 @@ const CollapseCard: React.FC<CollapseCardProps> = ({
     </IconButton>
   )
 
+  const headerProps = useMemo(() => {
+    if (!toggleOnHeaderClick) return undefined
+    return { sx: { cursor: 'pointer' }, onClick: toggleCard }
+  }, [toggleOnHeaderClick, toggleCard])
+
   return (
     <Card
       disablePadding
       actions={Array.isArray(actions) ? [...actions, iconButton] : [actions, iconButton]}
       variant={variant}
+      headerProps={headerProps}
       subheader={hideSubheaderOnExpand && exp ? <></> : subheader}
       {...rest}
     >
