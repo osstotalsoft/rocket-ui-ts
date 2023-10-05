@@ -5,7 +5,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import ExpandLessIcon from '@mui/icons-material/ExpandLess'
 import { Card, IconButton } from '../../index'
 import { CollapseCardProps } from './types'
-import { Box, CardContent } from '@mui/material'
+import { CardContent, Grid } from '@mui/material'
 
 /**
  * A Collapse Card is basically a 'smarter' Card component that allows users to toggle the display of content by expanding or collapsing the card.
@@ -56,7 +56,9 @@ const CollapseCard: React.FC<CollapseCardProps> = ({
     <Card
       disablePadding
       actions={
-        <Box onClick={handleActionsClick}>{Array.isArray(actions) ? [...actions, iconButton] : [actions, iconButton]}</Box>
+        <Grid container gap={1} onClick={handleActionsClick}>
+          {Array.isArray(actions) ? [...actions, iconButton] : [actions, iconButton]}
+        </Grid>
       }
       variant={variant}
       headerProps={headerProps}
