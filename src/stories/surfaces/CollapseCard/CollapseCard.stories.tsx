@@ -186,7 +186,7 @@ export const Controlled: Story = {
  * The card can be toggled by clicking on the whole header with the 'toggleOnHeaderClick' option
  */
 export const WithToggleOnHeaderClick: Story = {
-  args: { title, subheader, content, onToggle: undefined, toggleOnHeaderClick: true },
+  args: { title, subheader, content, onToggle: undefined, actions, toggleOnHeaderClick: true },
   parameters: {
     docs: {
       source: {
