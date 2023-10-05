@@ -1,5 +1,6 @@
 import React, { MouseEventHandler, useCallback, useMemo } from 'react'
 import PropTypes from 'prop-types'
+import * as R from 'ramda'
 import MuiDialog from '@mui/material/Dialog'
 import DialogActions from '@mui/material/DialogActions'
 import DialogContentText from '@mui/material/DialogContentText'
@@ -67,13 +68,16 @@ const Dialog: React.FC<DialogProps> = ({
       </Button>
     </>
   )
-  const closeButtonSx = useMemo(() => ({...justifyRight, ...closeButtonProps?.sx} as SystemStyleObject), [closeButtonProps?.sx])
+  const closeButtonSx = useMemo(
+    () => ({ ...justifyRight, ...closeButtonProps?.sx } as SystemStyleObject),
+    [closeButtonProps?.sx]
+  )
 
   return (
     <MuiDialog
       onClose={handleClose}
       aria-labelledby={dialogTitleId}
-      fullScreen={fullScreen || (smallScreen && fullScreen !== false)}
+      fullScreen={R.isNil(fullScreen) ? smallScreen : fullScreen}
       BackdropComponent={transparentBackdrop && TransparentBackdrop}
       fullWidth={fullWidth}
       open={open}
@@ -83,13 +87,13 @@ const Dialog: React.FC<DialogProps> = ({
         {title}
         {showX && (
           <IconButton
-          color="default"
-          variant="text"
-          size="small"
-          aria-label="Close"
-          onClick={handleClose as MouseEventHandler}
-          {...closeButtonProps}
-          sx={closeButtonSx}
+            color="default"
+            variant="text"
+            size="small"
+            aria-label="Close"
+            onClick={handleClose as MouseEventHandler}
+            {...closeButtonProps}
+            sx={closeButtonSx}
           >
             <CloseIcon />
           </IconButton>
