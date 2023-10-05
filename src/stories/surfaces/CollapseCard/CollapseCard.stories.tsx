@@ -181,3 +181,25 @@ export const Controlled: Story = {
   },
   render: () => <ControlledPreview />
 }
+
+/**
+ * The card can be toggled by clicking on the whole header with the 'toggleOnHeaderClick' option
+ */
+export const WithToggleOnHeaderClick: Story = {
+  args: { title, subheader, content, onToggle: undefined, toggleOnHeaderClick: true },
+  parameters: {
+    docs: {
+      source: {
+        code: `
+        <CollapseCard 
+          title={'Card Title'} 
+          subheader={'Subheader'} 
+          content={--Text content here--} 
+          toggleOnHeaderClick
+        />
+        `,
+        format: true
+      }
+    }
+  }
+}
