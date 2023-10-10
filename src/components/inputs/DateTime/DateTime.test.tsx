@@ -83,7 +83,7 @@ describe('Date Picker Formats', () => {
 describe('Date Time buttons work', () => {
   it('clears the value', async () => {
     // arrange
-    render(<DateTime value={value} clearable={true} />)
+    render(<DateTime value={value} isClearable={true} />)
 
     // act
     await waitFor(() => fireEvent.click(screen.getByLabelText('Clear')))
