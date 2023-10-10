@@ -2,10 +2,11 @@
 // This source code is licensed under the MIT license.
 
 import { Meta, StoryObj } from '@storybook/react'
-import InsertChart from '@mui/icons-material/InsertChart'
+import ShowChart from '@mui/icons-material/ShowChart'
 import BarChart from '@mui/icons-material/BarChart'
+import RadioButtonUnchecked from '@mui/icons-material/RadioButtonUnchecked'
 import { Chart } from 'components'
-import { barChartData, chartOptions, lineChartData } from './_mocks'
+import { barChartData, chartOptions, doughnutChartData, lineChartData } from './_mocks'
 
 const meta: Meta<typeof Chart> = {
   title: 'Components/Charts/Chart',
@@ -28,7 +29,7 @@ export const Line: Story = {
   args: {
     title: 'Line chart',
     subheader: 'Chart infos',
-    Icon: InsertChart,
+    Icon: ShowChart,
     iconColor: 'info',
     data: lineChartData,
     options: {
@@ -87,6 +88,41 @@ export const Bar: Story = {
     Icon: BarChart,
     iconColor: 'info',
     data: barChartData,
+    options: chartOptions
+  }
+}
+
+/**
+ * Doughnut chart
+ */
+
+export const Doughnut: Story = {
+  parameters: {
+    controls: { hideNoControlsWarning: true },
+    docs: {
+      source: {
+        code: `
+            <Chart
+              title='Doughnut chart'
+              subheader={'Chart infos'}
+              type='doughnut'
+              Icon={RadioButtonUnchecked}
+              iconColor='info'
+              data={barChartData}
+              options={chartOptions}
+            />
+            `,
+        format: true
+      }
+    }
+  },
+  args: {
+    title: 'Doughnut chart',
+    subheader: 'Chart infos',
+    type: 'doughnut',
+    Icon: RadioButtonUnchecked,
+    iconColor: 'info',
+    data: doughnutChartData,
     options: chartOptions
   }
 }

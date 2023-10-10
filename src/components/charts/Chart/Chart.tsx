@@ -11,7 +11,8 @@ import {
   BarElement,
   BarController,
   Tooltip,
-  Legend
+  Legend,
+  ArcElement
 } from 'chart.js'
 import { ChartProps } from './types'
 import { Card, CardColor } from '../../surfaces/Card'
@@ -25,7 +26,8 @@ ChartJS.register(
   BarElement,
   BarController,
   Tooltip,
-  Legend
+  Legend,
+  ArcElement
 )
 
 /**
