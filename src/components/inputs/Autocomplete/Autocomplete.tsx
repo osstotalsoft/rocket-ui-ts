@@ -40,7 +40,7 @@ const Autocomplete: React.FC<AutocompleteProps<any, any, any, any>> = ({
   loadOptions,
   loading: receivedLoading,
   loadingText,
-  noOptionsText = 'No options',
+  noOptionsText,
   getOptionLabel,
   onChange,
   onInputChange,
@@ -307,9 +307,14 @@ const Autocomplete: React.FC<AutocompleteProps<any, any, any, any>> = ({
     [handleLoadOptions, hasMore, isPaginated]
   )
 
+  const internalNoOptionsText = useMemo(() => {
+    if (isSearchable && loadOptions && asyncOptions.length === 0 && !localInput) return 'Type to search...'
+    return noOptionsText || 'No options'
+  }, [isSearchable, loadOptions, asyncOptions, localInput, noOptionsText])
+
   return (
     <MuiAutocomplete
-      noOptionsText={<NoOptionsText color={typographyContentColor}>{noOptionsText}</NoOptionsText>}
+      noOptionsText={<NoOptionsText color={typographyContentColor}>{internalNoOptionsText}</NoOptionsText>}
       typographyContentColor={typographyContentColor}
       forcePopupIcon
       label={label}
