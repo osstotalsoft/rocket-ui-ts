@@ -18,13 +18,14 @@ const AccordionItem: React.FC<AccordionProps> = ({
   return (
     <MuiAccordion defaultExpanded={isBoolean(defaultExpanded) ? defaultExpanded : false} {...rest}>
       <AccordionSummary variant={'standard' as AccordionVariant} expandIcon={<ExpandMoreIcon />} {...summaryProps}>
-        <Typography variant="subtitle1" color={'textPrimary'}>
-          {title}
-        </Typography>
+        {typeof title === 'string' && (
+          <Typography variant="subtitle1" color={'textPrimary'}>
+            {title}
+          </Typography>
+        )}
+        {typeof title !== 'string' && title}
       </AccordionSummary>
-      <AccordionDetails {...detailsProps}>
-        {content as ReactNode}
-      </AccordionDetails>
+      <AccordionDetails {...detailsProps}>{content as ReactNode}</AccordionDetails>
     </MuiAccordion>
   )
 }
