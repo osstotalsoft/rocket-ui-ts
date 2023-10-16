@@ -11,7 +11,8 @@ import {
   BarElement,
   BarController,
   Tooltip,
-  Legend
+  Legend,
+  ArcElement
 } from 'chart.js'
 import { ChartProps } from './types'
 import { Card, CardColor } from '../../surfaces/Card'
@@ -25,14 +26,24 @@ ChartJS.register(
   BarElement,
   BarController,
   Tooltip,
-  Legend
+  Legend,
+  ArcElement
 )
 
 /**
  * The Chart component provides a set of frequently and customizable used chart types (`line` and `bar`).
  */
 
-const Chart: React.FC<ChartProps> = ({ title, subheader, Icon, iconColor, type = 'line', data, cardProps, ...chartProps }) => {
+const Chart: React.FC<ChartProps> = ({
+  title,
+  subheader,
+  Icon,
+  iconColor,
+  type = 'line',
+  data,
+  cardProps,
+  ...chartProps
+}) => {
   return (
     <Card title={title} subheader={subheader} icon={Icon} iconColor={iconColor as CardColor} {...cardProps}>
       <BaseChart type={type} data={data} {...chartProps} />
@@ -61,7 +72,7 @@ Chart.propTypes = {
    * @default 'line'
    * Chart type.
    */
-  type: PropTypes.oneOf(['line', 'bar']),
+  type: PropTypes.oneOf(['bar', 'bubble', 'doughnut', 'line', 'pie', 'polarArea', 'radar', 'scatter']),
   /**
    * Chart data.
    */
