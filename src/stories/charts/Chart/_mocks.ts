@@ -57,19 +57,19 @@ export const chartOptions = {
   }
 }
 
-const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July']
+const barLineLabels = ['January', 'February', 'March', 'April', 'May', 'June', 'July']
 
 export const lineChartData = {
-  labels,
+  labels: barLineLabels,
   datasets: [
     {
-      data: labels.map(() => Math.floor(Math.random() * 101)),
+      data: barLineLabels.map(() => Math.floor(Math.random() * 101)),
       label: 'Line',
       borderColor: 'rgb(255, 99, 132)',
       backgroundColor: 'rgba(255, 99, 132, 0.5)'
     },
     {
-      data: labels.map(() => Math.floor(Math.random() * 101)),
+      data: barLineLabels.map(() => Math.floor(Math.random() * 101)),
       label: 'Line2',
       borderColor: 'rgb(53, 162, 235)',
       backgroundColor: 'rgba(53, 162, 235, 0.5)'
@@ -78,19 +78,32 @@ export const lineChartData = {
 }
 
 export const barChartData = {
-  labels,
+  labels: barLineLabels,
   datasets: [
     {
-      data: labels.map(() => Math.floor(Math.random() * 101)),
+      data: barLineLabels.map(() => Math.floor(Math.random() * 101)),
       label: 'Dataset 1',
       borderColor: 'rgb(255, 99, 132)',
       backgroundColor: 'rgba(255, 99, 132, 0.5)'
     },
     {
-      data: labels.map(() => Math.floor(Math.random() * 101)),
+      data: barLineLabels.map(() => Math.floor(Math.random() * 101)),
       label: 'Dataset 2',
       borderColor: 'rgb(53, 162, 235)',
       backgroundColor: 'rgba(53, 162, 235, 0.5)'
+    }
+  ]
+}
+
+const doughnutLabels = ['Dataset1', 'Dataset 2']
+
+export const doughnutChartData = {
+  labels: doughnutLabels,
+  datasets: [
+    {
+      data: doughnutLabels.map(() => Math.floor(Math.random() * 101)),
+      borderColor: ['rgb(255, 99, 132)', 'rgb(53, 162, 235)'],
+      backgroundColor: ['rgba(255, 99, 132, 0.5)', 'rgba(53, 162, 235, 0.5)']
     }
   ]
 }
