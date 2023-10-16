@@ -29,18 +29,19 @@ export type CustomSlotsComponent = {
 }
 
 export type DateTimeProps = (
-  | Omit<DateTimePickerProps<T, T>, 'onChange' | 'renderInput'>
-  | Omit<DatePickerProps<T, T>, 'onChange' | 'renderInput'>
-  | Omit<TimePickerProps<T, T>, 'onChange' | 'renderInput'>
+  | Omit<DateTimePickerProps<T, T>, 'onChange' | 'renderInput' | 'value'>
+  | Omit<DatePickerProps<T, T>, 'onChange' | 'renderInput' | 'value'>
+  | Omit<TimePickerProps<T, T>, 'onChange' | 'renderInput' | 'value'>
 ) &
   Omit<LocalizationProviderProps, 'dateAdapter'> & {
+    value?: T
     /**
      * Callback fired when the value (the selected date) changes @DateIOType.
      * @template TValue
      * @param {T} value The new parsed value.
      * @param {string} keyboardInputValue The current value of the keyboard input.
      */
-    onChange?: (value: T, keyboardInputValue?: string) => void
+    onChange?: (value?: T, keyboardInputValue?: string) => void
     /**
      * The `renderInput` prop allows you to customize the rendered input.
      * The `props` argument of this render prop contains props of [TextField](https://mui.com/material-ui/api/text-field/#props) that you need to forward.
@@ -65,11 +66,16 @@ export type DateTimeProps = (
     /**
      * The props that will be passed down to the TextField component that will act as the `renderInput` for the picker.
      */
-    inputProps?: TextFieldProps
+    inputProps?: Omit<TextFieldProps, 'required'>
     /**
      * Choose if you want a dedicated button to clear the value from the picker
      */
-    clearable?: boolean
+    isClearable?: boolean
+    /**
+     * If `true`, the label is displayed as required and the `input` element is required.
+     * @default false
+     */
+    required?: boolean
     /**
      * This property will be passed to the renderInput
      * If `true`, the label is displayed in an error state.

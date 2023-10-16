@@ -48,7 +48,8 @@ const DateTime: React.FC<DateTimeProps> = ({
   onClose,
   value: origValue = null,
   onChange: origOnChange,
-  clearable,
+  isClearable,
+  required,
   disabled,
   error,
   helperText,
@@ -81,7 +82,7 @@ const DateTime: React.FC<DateTimeProps> = ({
     },
     [origOnChange]
   )
-  const isClearable = useMemo(() => Boolean(clearable) && Boolean(value), [clearable, value])
+  const internalIsClearable = useMemo(() => Boolean(isClearable) && Boolean(value), [isClearable, value])
   const handleClear = useCallback(() => {
     handleChange(null)
   }, [handleChange])
@@ -97,12 +98,13 @@ const DateTime: React.FC<DateTimeProps> = ({
           fullWidth
           {...inputProps}
           {...params}
+          required={required}
           error={error}
           helperText={helperText}
           InputProps={{
             endAdornment: (
               <DateTimeEndAdornment
-                isClearable={isClearable}
+                isClearable={internalIsClearable}
                 onClear={handleClear}
                 onOpen={handleOpen}
                 OpenPickerIcon={OpenPickerIcon}
@@ -113,7 +115,7 @@ const DateTime: React.FC<DateTimeProps> = ({
         />
       )
     },
-    [disabled, error, handleClear, handleOpen, helperText, inputProps, isClearable, mergedComponents.OpenPickerIcon]
+    [disabled, error, handleClear, handleOpen, helperText, inputProps, required, internalIsClearable, mergedComponents.OpenPickerIcon]
   )
 
   const localeUsed = useMemo(() => localeMap[format] ?? adapterLocale ?? localeMap.ro, [format, adapterLocale])
@@ -205,7 +207,7 @@ DateTime.propTypes = {
   /**
    * Dedicated button for clearing the value
    */
-  clearable: PropTypes.bool,
+  isClearable: PropTypes.bool,
   /**
    * @default false
    * Control the popup or dialog open state.

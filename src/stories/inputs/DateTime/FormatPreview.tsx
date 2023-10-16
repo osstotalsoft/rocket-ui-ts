@@ -3,7 +3,7 @@
 
 import React, { useCallback, useState } from 'react'
 import { Grid, ToggleButton, ToggleButtonGroup } from '@mui/material'
-import { DateTime } from 'components'
+import { DateTime, DateTimeProps } from 'components'
 
 const maskMap = {
   fr: { date: '__/__/____', dateTime: '__/__/____ __:__', time: '__:__' },
@@ -22,7 +22,8 @@ type LocaleMapType = {
 }
 
 const FormatPreview = () => {
-  const [format, setFormat] = useState('en-US')
+  const [format, setFormat] = useState<DateTimeProps['format']>('en-US')
+  
   const handleClick = useCallback((e: any) => {
     setFormat(e.target.value)
   }, [])

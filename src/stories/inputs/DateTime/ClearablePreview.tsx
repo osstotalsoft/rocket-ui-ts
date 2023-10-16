@@ -9,13 +9,13 @@ const ClearablePreview = () => {
   return (
     <Grid container spacing={4} justifyItems={'flex-start'}>
       <Grid item xs={4}>
-        <DateTime showPicker="date" label="Date Picker" mask="__.__.____" clearable={true} />
+        <DateTime showPicker="date" label="Date Picker" mask="__.__.____" isClearable={true} />
       </Grid>
       <Grid item xs={4}>
-        <DateTime showPicker="dateTime" label="Date Time Picker" mask="__.__.____ __:__" clearable={true} />
+        <DateTime showPicker="dateTime" label="Date Time Picker" mask="__.__.____ __:__" isClearable={true} />
       </Grid>
       <Grid item xs={4}>
-        <DateTime showPicker="time" label="Time Picker" mask="__:__" clearable={true} />
+        <DateTime showPicker="time" label="Time Picker" mask="__:__" isClearable={true} />
       </Grid>
     </Grid>
   )
