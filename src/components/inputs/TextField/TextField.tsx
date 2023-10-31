@@ -8,7 +8,7 @@ import CloseIcon from '@mui/icons-material/Close'
 import { is, isNil } from 'ramda'
 import i18n from 'i18next'
 import { AddButtonProps, ClearButtonProps, NumberTextFieldProps, SubtractButtonProps, TextFieldProps } from './types'
-import useDebouncedCallback from 'hooks/useDebouncedCallback'
+import useDebouncedCallback from '../../../hooks/useDebouncedCallback'
 
 const NumberTextField = React.forwardRef<HTMLElement, NumberTextFieldProps>(function NumberFormatCustom(props, ref) {
   const {
