@@ -2,7 +2,7 @@ import React, { useCallback, useLayoutEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { StyledSlider, StyledTextField, FormControl, FormHelperText } from './SliderStyles'
 import { SliderColor, SliderProps } from './types'
-import useDebouncedCallback from 'hooks/useDebouncedCallback'
+import useDebouncedCallback from '../../../hooks/useDebouncedCallback'
 
 /**
  * Sliders allow users to make selections from a range of values.
