@@ -21,21 +21,21 @@ const ListFilterButtons = ({
   const smallScreen = useMediaQuery(theme.breakpoints.down('md'))
   
   return (
-    <Grid container item xs={6} sm={12} md={mdLengthButtons} spacing={1} wrap='nowrap' justifyContent={smallScreen ? 'flex-start' : 'flex-end'}>
+    <Grid container item xs={6} md={mdLengthButtons} spacing={1} wrap='nowrap' justifyContent={smallScreen ? 'flex-start' : 'flex-end'}>
     {visibleUserPreferences && (
-      <Grid item>
+      <Grid item xs={4}>
         <IconButton fontSize='medium' color="primary" aria-label='User Preferences' aria-description={localizedStrings.EditUserPreferences} tooltip={localizedStrings.EditUserPreferences} onClick={onShowUserPreferencesModal} >
           <PostAddIcon />
         </IconButton>
       </Grid>
     )}
     {downloadButtonVisible && (
-      <Grid item>
+      <Grid item xs={4}>
         <IconButton type='download' fontSize='medium' color='primary' aria-label={localizedStrings.Download} aria-disabled={!downloadEnabled} tooltip={localizedStrings.Download} onClick={openExportMenu} disabled={!downloadEnabled} />
       </Grid>
     )}
     {hasVisibleFields && (
-      <Grid item>
+      <Grid item xs={4}>
         <IconButton fontSize='medium' color='primary' aria-label='Visible Fields' aria-description={localizedStrings.ChooseFields} tooltip={localizedStrings.ChooseFields} onClick={openVisibleFieldsMenu} >
           <FilterListIcon />
         </IconButton>
