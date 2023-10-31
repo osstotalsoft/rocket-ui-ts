@@ -7,8 +7,8 @@ import IconButton from '@mui/material/IconButton'
 import CloseIcon from '@mui/icons-material/Close'
 import { is, isNil } from 'ramda'
 import i18n from 'i18next'
-import { debounce } from 'lodash'
 import { AddButtonProps, ClearButtonProps, NumberTextFieldProps, SubtractButtonProps, TextFieldProps } from './types'
+import useDebouncedCallback from 'hooks/useDebouncedCallback'
 
 const NumberTextField = React.forwardRef<HTMLElement, NumberTextFieldProps>(function NumberFormatCustom(props, ref) {
   const {
@@ -155,12 +155,12 @@ const TextField: React.FC<TextFieldProps> = ({
   const isNumeric = receivedIsNumeric || isStepper
 
   const [liveValue, setLiveValue] = useState(value)
+
   useLayoutEffect(() => {
     setLiveValue(value)
   }, [value])
 
-  // we need to disable this warning since the useCallback hook is not sure about the dependencies of debounce
-  const debouncedOnChange = useCallback(disabled ? onChange : debounce(onChange, debounceBy), [debounceBy, onChange]) //eslint-disable-line react-hooks/exhaustive-deps
+  const debouncedOnChange = useDebouncedCallback(onChange, debounceBy)
 
   const handleClearInput = useCallback(() => {
     onChange('')
