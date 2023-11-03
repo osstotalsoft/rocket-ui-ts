@@ -1,8 +1,8 @@
 import React, { useCallback, useLayoutEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { StyledSlider, StyledTextField, FormControl, FormHelperText } from './SliderStyles'
-import { debounce } from 'lodash'
 import { SliderColor, SliderProps } from './types'
+import useDebouncedCallback from '../../../hooks/useDebouncedCallback'
 
 /**
  * Sliders allow users to make selections from a range of values.
@@ -50,8 +50,7 @@ const Slider: React.FC<SliderProps> = ({
     [min, max, onSliderChange]
   )
 
-  // we need to disable this warning since the useCallback hook is not sure about the dependencies of debounce
-  const debouncedOnChange = useCallback(debounce(onTextChanged, 500), [500, onTextChanged]) //eslint-disable-line react-hooks/exhaustive-deps
+  const debouncedOnChange = useDebouncedCallback(onTextChanged, 500)
 
   return (
     <FormControl fullWidth={fullWidth} error={error} required={required}>
