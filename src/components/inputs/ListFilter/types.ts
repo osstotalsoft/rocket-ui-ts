@@ -112,7 +112,6 @@ export type ListFilterButtonsProps = {
   downloadButtonVisible: boolean
   downloadEnabled: boolean
   hasVisibleFields: boolean
-  mdLengthButtons: number
   onShowUserPreferencesModal: () => void
   openExportMenu: (event: React.MouseEvent) => void
   openVisibleFieldsMenu: (event: React.MouseEvent) => void
