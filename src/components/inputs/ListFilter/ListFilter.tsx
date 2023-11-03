@@ -18,14 +18,14 @@ const fileType = {
 
 /**
  * The ListFilter component provides a user interface for filtering and sorting lists. It can display
- * additional filter components passed in as children, it can customize which of these filters are 
+ * additional filter components passed in as children, it can customize which of these filters are
  * visible, it can control the visibility of the list data and save/apply predetermined configurations.
  * When given additional filters as child components the search field has an expand button that reveals them.
  * The component can display a download button for exporting the contents of the list to Excel or CSV.
  * Which child filters are visible can be customized using the visibleFilters prop.
- * The data displayed within the list can be customized using the visibleFields prop. 
+ * The data displayed within the list can be customized using the visibleFields prop.
  * Predetermined filter configurations can be saved and applied using the userPreferences prop.
-*/
+ */
 const ListFilter: React.FC<ListFilterProps> = ({
   sortableColumns,
   filters,
@@ -58,10 +58,13 @@ const ListFilter: React.FC<ListFilterProps> = ({
   const [popUpUserPreference, setPopUpUserPreference] = useState(null)
   const [userPreferencesIsDirty, setUserPreferencesIsDirty] = useState(false)
 
-  const isDescendingOptions = useMemo(() => [
-    { id: false, name: localizedStrings.OrderAscending },
-    { id: true, name: localizedStrings.OrderDescending }
-  ], [localizedStrings.OrderAscending, localizedStrings.OrderDescending])
+  const isDescendingOptions = useMemo(
+    () => [
+      { id: false, name: localizedStrings.OrderAscending },
+      { id: true, name: localizedStrings.OrderDescending }
+    ],
+    [localizedStrings.OrderAscending, localizedStrings.OrderDescending]
+  )
 
   const userPreferencesOptions = useMemo(
     () =>
@@ -70,8 +73,7 @@ const ListFilter: React.FC<ListFilterProps> = ({
           id: item.filterName,
           name: item.filterName
         }
-      }, userPreferences || [])
-      ,
+      }, userPreferences || []),
     [userPreferences]
   )
 
@@ -107,32 +109,35 @@ const ListFilter: React.FC<ListFilterProps> = ({
 
   const openVisibleFiltersMenu = useCallback((event: React.MouseEvent) => {
     setAnchorElCustomize(event.target)
-  },[])
+  }, [])
 
   const closeVisibleFiltersMenu = useCallback(() => {
     setAnchorElCustomize(null)
-  },[])
+  }, [])
 
   const openVisibleFieldsMenu = useCallback((event: React.MouseEvent) => {
     setAnchorElFieldsFilter(event.target)
-  },[])
+  }, [])
 
   const closeVisibleFieldsMenu = useCallback(() => {
     setAnchorElFieldsFilter(null)
-  },[])
+  }, [])
 
   const openExportMenu = useCallback((event: React.MouseEvent) => {
     setAnchorElDownload(event.target)
-  },[])
+  }, [])
 
   const closeExportMenu = useCallback(() => {
     setAnchorElDownload(null)
-  },[])
+  }, [])
 
-  const handleDownload = useCallback(((fileType: string) => () => {
-    onDownload(fileType)
-    setAnchorElDownload(null)
-  }), [onDownload])
+  const handleDownload = useCallback(
+    (fileType: string) => () => {
+      onDownload(fileType)
+      setAnchorElDownload(null)
+    },
+    [onDownload]
+  )
 
   const onShowUserPreferencesModal = useCallback(() => {
     setShowUserPreferencesModal(true)
@@ -143,59 +148,73 @@ const ListFilter: React.FC<ListFilterProps> = ({
         filterName: '',
         implicit: false
       })
-    else 
-      setPopUpUserPreference({...selectedUserPreference})
-  },[selectedUserPreference])
+    else setPopUpUserPreference({ ...selectedUserPreference })
+  }, [selectedUserPreference])
 
   const onCloseUserPreferencesModal = useCallback(() => {
     setUserPreferencesIsDirty(false)
     setShowUserPreferencesModal(false)
-  },[])
+  }, [])
 
-  const onUserPreferencesPropertyChanged = useCallback((value: unknown) => {
-    setUserPreferencesIsDirty(true)
-    setPopUpUserPreference({
-      ...popUpUserPreference,
-      filterName: value as string
-    })
-  },[popUpUserPreference])
+  const onUserPreferencesPropertyChanged = useCallback(
+    (value: unknown) => {
+      setUserPreferencesIsDirty(true)
+      setPopUpUserPreference({
+        ...popUpUserPreference,
+        filterName: value as string
+      })
+    },
+    [popUpUserPreference]
+  )
 
   const onAddUserPreferenceLocal = useCallback(() => {
     onAddUserPreference(popUpUserPreference)
     setUserPreferencesIsDirty(false)
-  },[onAddUserPreference, popUpUserPreference])
+  }, [onAddUserPreference, popUpUserPreference])
 
-  const onListDeleteChangedLocal = useCallback((item: UserPreference) => {
-    if (confirm(localizedStrings.DeleteUserPreference) && item.filterName.toLowerCase() === selectedUserPreference.filterName.toLowerCase()) {
+  const onListDeleteChangedLocal = useCallback(
+    (item: UserPreference) => {
+      if (
+        confirm(localizedStrings.DeleteUserPreference) &&
+        item.filterName.toLowerCase() === selectedUserPreference.filterName.toLowerCase()
+      ) {
+        setPopUpUserPreference({
+          ...selectedUserPreference,
+          isDefault: false,
+          filterName: '',
+          implicit: false
+        })
+      }
+      onListDeleteChanged(item)
+    },
+    [localizedStrings.DeleteUserPreference, onListDeleteChanged, selectedUserPreference]
+  )
+
+  const onListImplicitChangedLocal = useCallback(
+    (item: UserPreference) => {
+      const newImplicitValue =
+        selectedUserPreference.filterName.toLowerCase() === item.filterName.toLowerCase()
+          ? !selectedUserPreference.implicit
+          : false
       setPopUpUserPreference({
         ...selectedUserPreference,
-        isDefault: false,
-        filterName: '',
-        implicit: false
+        implicit: newImplicitValue
       })
-    }
-    onListDeleteChanged(item)
-  },[localizedStrings.DeleteUserPreference, onListDeleteChanged, selectedUserPreference])
+      onListImplicitChanged(item)
+    },
+    [onListImplicitChanged, selectedUserPreference]
+  )
 
-  const onListImplicitChangedLocal = useCallback((item: UserPreference) => {
-    const newImplicitValue = selectedUserPreference.filterName.toLowerCase() === item.filterName.toLowerCase() ? !selectedUserPreference.implicit : false
-    setPopUpUserPreference({
-      ...selectedUserPreference,
-      implicit: newImplicitValue
-    })
-    onListImplicitChanged(item)
-  },[onListImplicitChanged, selectedUserPreference])
-
-  const hasChildren= useMemo(() => Boolean(children), [children])
-  const hasVisibleFilters= useMemo(() => Boolean(visibleFilters), [visibleFilters])
-  const hasVisibleFields= useMemo(() => Boolean(visibleFields), [visibleFields])
+  const hasChildren = useMemo(() => Boolean(children), [children])
+  const hasVisibleFilters = useMemo(() => Boolean(visibleFilters), [visibleFilters])
+  const hasVisibleFields = useMemo(() => Boolean(visibleFields), [visibleFields])
 
   return (
     <>
       <Toolbar sx={{ paddingLeft: 0, paddingRight: 0 }}>
-        <Grid container alignItems='center' spacing={2}>
+        <Grid container alignItems="center" spacing={2}>
           {(filters.fullTextFilter || filters.fullTextFilter === '') && (
-            <Grid item xs={12} md>
+            <Grid item xs={12} sm={12} md={visibleUserPreferences ? 3 : 5}>
               <TextField
                 fullWidth={true}
                 value={filters.fullTextFilter}
@@ -211,21 +230,22 @@ const ListFilter: React.FC<ListFilterProps> = ({
                       <SearchIcon />
                     </InputAdornment>
                   ),
-                  endAdornment:
-                  <FullTextFilterEndAdornment
-                    localizedStrings={localizedStrings}
-                    resetTextFilter={resetTextFilter}
-                    expandFilters={expandFilters}
-                    expanded={expanded}
-                    openVisibleFiltersMenu={openVisibleFiltersMenu}
-                    hasChildren={hasChildren}
-                    hasVisibleFilters={hasVisibleFilters}
-                  />
+                  endAdornment: (
+                    <FullTextFilterEndAdornment
+                      localizedStrings={localizedStrings}
+                      resetTextFilter={resetTextFilter}
+                      expandFilters={expandFilters}
+                      expanded={expanded}
+                      openVisibleFiltersMenu={openVisibleFiltersMenu}
+                      hasChildren={hasChildren}
+                      hasVisibleFilters={hasVisibleFilters}
+                    />
+                  )
                 }}
               />
             </Grid>
           )}
-          <Grid item xs={6} sm={visibleUserPreferences ? 4 : 6} md={visibleUserPreferences || (mdLengthButtons > 1) ? 2 : 3}>
+          <Grid item xs={6} sm={visibleUserPreferences ? 6 : 4} md={visibleUserPreferences || mdLengthButtons > 1 ? 2 : 3}>
             <Autocomplete
               label={localizedStrings.OrderBy}
               value={filters.orderByColumnName}
@@ -237,7 +257,7 @@ const ListFilter: React.FC<ListFilterProps> = ({
               labelKey="displayName"
             />
           </Grid>
-          <Grid item xs={6} sm={visibleUserPreferences ? 4 : 6} md={visibleUserPreferences || (mdLengthButtons > 1)  ? 2 : 3}>
+          <Grid item xs={6} sm={visibleUserPreferences ? 6 : 4} md={visibleUserPreferences || mdLengthButtons > 1 ? 2 : 3}>
             <Autocomplete
               label={localizedStrings.InOrder}
               value={filters.orderByDescending}
@@ -248,7 +268,7 @@ const ListFilter: React.FC<ListFilterProps> = ({
             />
           </Grid>
           {visibleUserPreferences && (
-            <Grid item xs={6} sm={4} md={2}>
+            <Grid item xs={6} sm={6} md={2}>
               <Autocomplete
                 label={localizedStrings.UserPreference}
                 value={selectedUserPreference.filterName}
@@ -258,49 +278,51 @@ const ListFilter: React.FC<ListFilterProps> = ({
               />
             </Grid>
           )}
-          <ListFilterButtons
+          <Grid item xs={6} sm md>
+            <ListFilterButtons
               localizedStrings={localizedStrings}
               visibleUserPreferences={visibleUserPreferences}
               downloadButtonVisible={downloadButtonVisible}
               downloadEnabled={downloadEnabled}
               hasVisibleFields={hasVisibleFields}
-              mdLengthButtons={mdLengthButtons}
               onShowUserPreferencesModal={onShowUserPreferencesModal}
               openExportMenu={openExportMenu}
               openVisibleFieldsMenu={openVisibleFieldsMenu}
-          />
-          {visibleFilters && 
+            />
+          </Grid>
+
+          {visibleFilters && (
             <VisibleFiltersMenu
               visibleFilters={visibleFilters}
               anchorElCustomize={anchorElCustomize}
               closeVisibleFiltersMenu={closeVisibleFiltersMenu}
               handleVisibleFilterChange={handleVisibleFilterChange}
             />
-          }
+          )}
           {downloadButtonVisible && (
-              <Menu anchorEl={anchorElDownload} open={Boolean(anchorElDownload)} onClose={closeExportMenu}>
-                <MenuItem onClick={handleDownload(fileType.excel)}>{fileType.excel}</MenuItem>
-                <MenuItem onClick={handleDownload(fileType.csv)}>{fileType.csv}</MenuItem>
-              </Menu>
-            )}
-          {visibleFields && 
+            <Menu anchorEl={anchorElDownload} open={Boolean(anchorElDownload)} onClose={closeExportMenu}>
+              <MenuItem onClick={handleDownload(fileType.excel)}>{fileType.excel}</MenuItem>
+              <MenuItem onClick={handleDownload(fileType.csv)}>{fileType.csv}</MenuItem>
+            </Menu>
+          )}
+          {visibleFields && (
             <VisibleFieldsMenu
               visibleFields={visibleFields}
               anchorElFieldsFilter={anchorElFieldsFilter}
               closeVisibleFieldsMenu={closeVisibleFieldsMenu}
               handleVisibleFieldsChange={handleVisibleFieldsChange}
             />
-          }
+          )}
         </Grid>
       </Toolbar>
       <Collapse in={expanded}>
         <Toolbar>{children}</Toolbar>
       </Collapse>
-      {popUpUserPreference && 
+      {popUpUserPreference && (
         <Dialog
           open={showUserPreferencesModal}
           onClose={onCloseUserPreferencesModal}
-          id='listFilter-userPreferences-modal'
+          id="listFilter-userPreferences-modal"
           showX={false}
           content={
             <UserPreferencesModalContent
@@ -327,7 +349,7 @@ const ListFilter: React.FC<ListFilterProps> = ({
             </Button>
           }
         />
-      }
+      )}
     </>
   )
 }
@@ -371,7 +393,7 @@ ListFilter.propTypes = {
     ChooseFields: PropTypes.string.isRequired,
     Delete: PropTypes.string.isRequired,
     Add: PropTypes.string.isRequired,
-    Close: PropTypes.string.isRequired,
+    Close: PropTypes.string.isRequired
   }).isRequired,
   /**
    * An optional array for controlling which child filters are visible.
