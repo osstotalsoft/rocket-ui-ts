@@ -20,19 +20,19 @@ const ListFilterButtons = ({
   return (
     <Grid container spacing={1} wrap='nowrap' justifyContent='flex-start'>
      {visibleUserPreferences && (
-      <Grid item xs={12} sm={12} md={12}>
+      <Grid item xs={12}>
         <IconButton fontSize='medium' color="primary" aria-label='User Preferences' aria-description={localizedStrings.EditUserPreferences} tooltip={localizedStrings.EditUserPreferences} onClick={onShowUserPreferencesModal} >
           <PostAddIcon />
         </IconButton>
       </Grid>
     )}
     {downloadButtonVisible && (
-      <Grid item xs={12} sm={12} md={12}>
+      <Grid item xs={12}>
         <IconButton type='download' fontSize='medium' color='primary' aria-label={localizedStrings.Download} aria-disabled={!downloadEnabled} tooltip={localizedStrings.Download} onClick={openExportMenu} disabled={!downloadEnabled} />
       </Grid>
     )}
     {hasVisibleFields && (
-      <Grid item xs={12} sm={12} md={12}>
+      <Grid item xs={12}>
         <IconButton fontSize='medium' color='primary' aria-label='Visible Fields' aria-description={localizedStrings.ChooseFields} tooltip={localizedStrings.ChooseFields} onClick={openVisibleFieldsMenu} >
           <FilterListIcon />
         </IconButton>
