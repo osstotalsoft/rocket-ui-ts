@@ -214,7 +214,7 @@ const ListFilter: React.FC<ListFilterProps> = ({
       <Toolbar sx={{ paddingLeft: 0, paddingRight: 0 }}>
         <Grid container alignItems="center" spacing={2}>
           {(filters.fullTextFilter || filters.fullTextFilter === '') && (
-            <Grid item xs={12} sm={12} md={visibleUserPreferences ? 3 : 5}>
+            <Grid item xs={12} md={visibleUserPreferences ? 3 : 5}>
               <TextField
                 fullWidth={true}
                 value={filters.fullTextFilter}
@@ -268,7 +268,7 @@ const ListFilter: React.FC<ListFilterProps> = ({
             />
           </Grid>
           {visibleUserPreferences && (
-            <Grid item xs={6} sm={6} md={2}>
+            <Grid item xs={6} md={2}>
               <Autocomplete
                 label={localizedStrings.UserPreference}
                 value={selectedUserPreference.filterName}
