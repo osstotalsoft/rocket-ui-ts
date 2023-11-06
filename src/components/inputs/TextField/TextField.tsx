@@ -196,10 +196,10 @@ const TextField: React.FC<TextFieldProps> = ({
   )
 
   const muiInputProps = {
-    startAdornment: internalStartAdornment,
-    endAdornment: internalEndAdornment,
     className: `${isStepper && !fullWidth ? classes.stepperFixedWidth : ''}`,
     ...InputProps,
+    startAdornment: internalStartAdornment,
+    endAdornment: internalEndAdornment,
     style: InputProps?.style
   }
 
