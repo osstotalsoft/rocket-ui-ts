@@ -1,10 +1,10 @@
-import React, { useCallback, useLayoutEffect, useState } from 'react'
+import React, { useCallback, useLayoutEffect, useMemo, useState } from 'react'
 import PropTypes from 'prop-types'
 import NumberFormat, { NumberFormatValues, SourceInfo } from 'react-number-format'
 import { TextField as MuiTextField, StepButton, classes } from './TextFieldStyles'
 import InputAdornment from '@mui/material/InputAdornment'
-import IconButton from '@mui/material/IconButton'
 import CloseIcon from '@mui/icons-material/Close'
+import IconButton from '../../buttons/IconButton'
 import { is, isNil } from 'ramda'
 import i18n from 'i18next'
 import { AddButtonProps, ClearButtonProps, NumberTextFieldProps, SubtractButtonProps, TextFieldProps } from './types'
@@ -93,11 +93,9 @@ NumberTextField.propTypes = {
 }
 
 const ClearButton: React.FC<ClearButtonProps> = ({ onClearInput, disabled }) => (
-  <InputAdornment position="end">
-    <IconButton disabled={disabled} aria-label="Clear" size="small" onClick={onClearInput}>
-      <CloseIcon fontSize="small" />
-    </IconButton>
-  </InputAdornment>
+  <IconButton disabled={disabled} aria-label="Clear" size="tiny" color="primary" variant="text" onClick={onClearInput}>
+    <CloseIcon fontSize="small" />
+  </IconButton>
 )
 ClearButton.propTypes = {
   onClearInput: PropTypes.func,
@@ -176,15 +174,30 @@ const TextField: React.FC<TextFieldProps> = ({
     if (nextValue <= maxValue) onChange(nextValue)
   }, [maxValue, onChange, step, value])
 
-  const muiInputProps = {
-    startAdornment: isStepper ? <SubtractButton onSubtract={handleSubtract} /> : startAdornment,
-    endAdornment: isStepper ? (
-      <AddButton onAdd={handleAdd} />
-    ) : isClearable ? (
-      <ClearButton onClearInput={handleClearInput} disabled={disabled} />
-    ) : (
-      endAdornment
+  const internalStartAdornment = useMemo(
+    () => (
+      <InputAdornment position="start">
+        {isStepper && <SubtractButton onSubtract={handleSubtract} />}
+        {startAdornment}
+      </InputAdornment>
     ),
+    [handleSubtract, isStepper, startAdornment]
+  )
+
+  const internalEndAdornment = useMemo(
+    () => (
+      <InputAdornment position="end">
+        {isStepper && <AddButton onAdd={handleAdd} />}
+        {isClearable && <ClearButton onClearInput={handleClearInput} disabled={disabled} />}
+        {endAdornment}
+      </InputAdornment>
+    ),
+    [disabled, endAdornment, handleAdd, handleClearInput, isClearable, isStepper]
+  )
+
+  const muiInputProps = {
+    startAdornment: internalStartAdornment,
+    endAdornment: internalEndAdornment,
     className: `${isStepper && !fullWidth ? classes.stepperFixedWidth : ''}`,
     ...InputProps,
     style: InputProps?.style

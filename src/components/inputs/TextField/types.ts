@@ -1,4 +1,4 @@
-import { TextFieldProps as MuiTextFieldProps } from '@mui/material'
+import { FilledInputProps, InputProps, TextFieldProps as MuiTextFieldProps, OutlinedInputProps } from '@mui/material'
 import { InputBaseComponentProps } from '@mui/material'
 import { NumberFormatProps } from 'react-number-format'
 
@@ -63,7 +63,7 @@ export type NumberTextFieldProps = InputBaseComponentProps &
     thousandSeparator?: string | boolean
   }
 
-export type TextFieldProps = Omit<MuiTextFieldProps, 'onChange' | 'variant'> &
+export type TextFieldProps = Omit<MuiTextFieldProps, 'onChange' | 'variant' | 'InputProps'> &
   NumberTextFieldProps & {
     /**
      * Callback fired when the value is changed.
@@ -77,11 +77,18 @@ export type TextFieldProps = Omit<MuiTextFieldProps, 'onChange' | 'variant'> &
      */
     isNumeric?: boolean
     /**
-     * Start adornment of component. (Usually an InputAdornment from Material-UI)
+     * Props applied to the Input element.
+     */
+    InputProps?:
+      | Omit<Partial<FilledInputProps>, 'startAdornment' | 'endAdornment'>
+      | Omit<Partial<OutlinedInputProps>, 'startAdornment' | 'endAdornment'>
+      | Omit<Partial<InputProps>, 'startAdornment' | 'endAdornment'>
+    /**
+     * Start adornment of component.
      */
     startAdornment?: React.ReactNode
     /**
-     * End adornment of component. (Usually an InputAdornment from Material-UI)
+     * End adornment of component.
      */
     endAdornment?: React.ReactNode
     /**
