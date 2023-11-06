@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo, useState } from 'react'
 import PropTypes from 'prop-types'
 import { TextField, Autocomplete, Button, Dialog } from '../../../components'
-import { Toolbar, Collapse, Menu, MenuItem, InputAdornment, Grid } from '@mui/material'
+import { Toolbar, Collapse, Menu, MenuItem, Grid } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
 import { ListFilterProps, UserPreference } from './types'
 import UserPreferencesModalContent from './UserPreferencesModalContent'
@@ -224,24 +224,18 @@ const ListFilter: React.FC<ListFilterProps> = ({
                   maxLength: searchTextMaxLength,
                   placeholder: searchPlaceholder
                 }}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <SearchIcon />
-                    </InputAdornment>
-                  ),
-                  endAdornment: (
-                    <FullTextFilterEndAdornment
-                      localizedStrings={localizedStrings}
-                      resetTextFilter={resetTextFilter}
-                      expandFilters={expandFilters}
-                      expanded={expanded}
-                      openVisibleFiltersMenu={openVisibleFiltersMenu}
-                      hasChildren={hasChildren}
-                      hasVisibleFilters={hasVisibleFilters}
-                    />
-                  )
-                }}
+                startAdornment={<SearchIcon />}
+                endAdornment={
+                  <FullTextFilterEndAdornment
+                    localizedStrings={localizedStrings}
+                    resetTextFilter={resetTextFilter}
+                    expandFilters={expandFilters}
+                    expanded={expanded}
+                    openVisibleFiltersMenu={openVisibleFiltersMenu}
+                    hasChildren={hasChildren}
+                    hasVisibleFilters={hasVisibleFilters}
+                  />
+                }
               />
             </Grid>
           )}
