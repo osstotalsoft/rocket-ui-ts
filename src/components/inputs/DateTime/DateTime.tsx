@@ -101,21 +101,29 @@ const DateTime: React.FC<DateTimeProps> = ({
           required={required}
           error={error}
           helperText={helperText}
-          InputProps={{
-            endAdornment: (
-              <DateTimeEndAdornment
-                isClearable={internalIsClearable}
-                onClear={handleClear}
-                onOpen={handleOpen}
-                OpenPickerIcon={OpenPickerIcon}
-                disabled={disabled}
-              />
-            )
-          }}
+          endAdornment={
+            <DateTimeEndAdornment
+              isClearable={internalIsClearable}
+              onClear={handleClear}
+              onOpen={handleOpen}
+              OpenPickerIcon={OpenPickerIcon}
+              disabled={disabled}
+            />
+          }
         />
       )
     },
-    [disabled, error, handleClear, handleOpen, helperText, inputProps, required, internalIsClearable, mergedComponents.OpenPickerIcon]
+    [
+      disabled,
+      error,
+      handleClear,
+      handleOpen,
+      helperText,
+      inputProps,
+      required,
+      internalIsClearable,
+      mergedComponents.OpenPickerIcon
+    ]
   )
 
   const localeUsed = useMemo(() => localeMap[format] ?? adapterLocale ?? localeMap.ro, [format, adapterLocale])
