@@ -174,26 +174,26 @@ const TextField: React.FC<TextFieldProps> = ({
     if (nextValue <= maxValue) onChange(nextValue)
   }, [maxValue, onChange, step, value])
 
-  const internalStartAdornment = useMemo(
-    () => (
+  const internalStartAdornment = useMemo(() => {
+    if (!isStepper && !startAdornment) return null
+    return (
       <InputAdornment position="start">
         {isStepper && <SubtractButton onSubtract={handleSubtract} />}
         {startAdornment}
       </InputAdornment>
-    ),
-    [handleSubtract, isStepper, startAdornment]
-  )
+    )
+  }, [handleSubtract, isStepper, startAdornment])
 
-  const internalEndAdornment = useMemo(
-    () => (
+  const internalEndAdornment = useMemo(() => {
+    if (!isStepper && !isClearable && !endAdornment) return null
+    return (
       <InputAdornment position="end">
         {isStepper && <AddButton onAdd={handleAdd} />}
         {isClearable && <ClearButton onClearInput={handleClearInput} disabled={disabled} />}
         {endAdornment}
       </InputAdornment>
-    ),
-    [disabled, endAdornment, handleAdd, handleClearInput, isClearable, isStepper]
-  )
+    )
+  }, [disabled, endAdornment, handleAdd, handleClearInput, isClearable, isStepper])
 
   const muiInputProps = {
     className: `${isStepper && !fullWidth ? classes.stepperFixedWidth : ''}`,
