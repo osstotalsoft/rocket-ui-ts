@@ -299,12 +299,12 @@ const Autocomplete: React.FC<AutocompleteProps<any, any, any, any>> = ({
             onScroll: (event: React.SyntheticEvent) => {
               const listboxNode = event.currentTarget
               if (listboxNode.scrollTop + listboxNode.clientHeight >= listboxNode.scrollHeight - 1 && hasMore) {
-                handleLoadOptions()
+                handleLoadOptions(localInput)
               }
             }
           }
         : undefined,
-    [handleLoadOptions, hasMore, isPaginated]
+    [handleLoadOptions, hasMore, isPaginated, localInput]
   )
 
   return (
