@@ -45,9 +45,6 @@ export * from './inputs/DateTime'
 export { default as Slider } from './inputs/Slider'
 export * from './inputs/Slider'
 
-export { default as ListFilter } from './inputs/ListFilter'
-export * from './inputs/ListFilter'
-
 export { default as NavPills } from './navigation/NavPills'
 export * from './navigation/NavPills'
 
