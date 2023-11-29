@@ -17,7 +17,7 @@
 
 > A set of reusable and composable React components built on top of Material UI core for developing fast and friendly web applications interfaces.
 
-## Installation
+# Installation
 
 You first need to install `@totalsoft/rocket-ui` the package
 
@@ -31,24 +31,38 @@ Then you can use anything you need from the library.
 import { IconButton } from '@totalsoft/rocket-ui'
 ```
 
-## Contributing guide
+# Contributing guide
 
 When using Visual Studio Code please follow these steps: [Editor Setup for VSCode](https://yarnpkg.com/getting-started/editor-sdks#vscode) (allows VSCode to read .zip yarn cache files and supports features like go-to-definition).
 
-### - Build
+## - Build
 
 ```javascript
 yarn install
 yarn build
 ```
 
-### - Test
+## - Test
 
 ```javascript
 yarn test
 ```
 
-### - Testing local packages
+## - Testing the build and package creation locally
+
+First create the build, the result will be located in the `dist` folder
+
+```
+yarn run build
+```
+
+Then, generate the npm package locally. It will generate a `.tgz` file, this is basically a compressed copy of a target directory. You can install this with `npm i ./file.tgz` or just open it in explorer.
+
+```
+npm pack
+```
+
+## - Testing local packages
 
 To test the package locally without publishing to a npm repository, you can create a link in your testing project. For example:
 
@@ -69,6 +83,6 @@ If the package reference does not already exist in your testing project, you can
 
 For additional options see the [official documentation](https://docs.npmjs.com/cli/v8/commands/npm-link)
 
-## License
+# License
 
 rocket-ui-ts is licensed under the [MIT](LICENSE) license. @TotalSoft
