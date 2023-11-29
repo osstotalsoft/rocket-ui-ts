@@ -5,7 +5,7 @@ import FormattedJson from './components/FormattedJson'
 import ColumnHeader from './components/ColumnHeader'
 import { options, primitiveOptions, numericOptions } from './_mocks'
 import { Autocomplete } from 'components'
-import { emptyArray } from 'testingUtils/constants'
+import { emptyArray } from 'components/utils/constants'
 
 export const MultipleSelectionPreview = () => {
   const [simpleValueBasic, setSimpleValueBasic] = useState(false)

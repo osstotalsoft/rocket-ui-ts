@@ -4,7 +4,7 @@ import { Autocomplete, DateTime, TextField } from '../../index'
 import { ControlType, DynamicFieldProps } from './types'
 import { Checkbox } from '@mui/material'
 import { FormControlLabel } from '@mui/material'
-import { emptyString } from '../../../testingUtils/constants'
+import { emptyString } from '../../utils/constants'
 
 /**
  * The DynamicField component is used for rendering controls dynamically
