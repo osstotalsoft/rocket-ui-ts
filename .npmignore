@@ -1,7 +1,17 @@
 node_modules
 coverage
 tsconfig.json
+tsconfig.build.json
 .storybook
 .github
 __tests__
 __mocks__
+.babelrc
+.eslintignore
+.eslintrc.json
+.gitignore
+.yarn
+.vscode
+.vim
+public
+
