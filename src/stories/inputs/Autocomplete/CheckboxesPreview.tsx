@@ -3,7 +3,7 @@
 
 import React, { useState } from 'react'
 import { Autocomplete } from 'components'
-import { emptyArray } from 'testingUtils/constants'
+import { emptyArray } from 'components/utils/constants'
 
 export const CheckboxesPreview = (props: any) => {
   const [value, setValue] = useState(emptyArray)
