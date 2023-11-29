@@ -15,3 +15,5 @@ __mocks__
 .vim
 public
 .prettierrc
+src/testingUtils
+src/stories
