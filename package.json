@@ -15,9 +15,6 @@
   },
   "main": "dist/components/index.js",
   "types": "dist/components/index.d.ts",
-  "files": [
-    "dist/*/**"
-  ],
   "scripts": {
     "build": "run clean && tsc --p tsconfig.build.json && run copy",
     "build-storybook": "storybook build -o storybuild",

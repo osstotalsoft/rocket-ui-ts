@@ -3,4 +3,5 @@ coverage
 tsconfig.json
 .storybook
 .github
-src
+__tests__
+__mocks__
