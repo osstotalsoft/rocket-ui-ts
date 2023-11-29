@@ -8,7 +8,7 @@ import IconButton from '../../buttons/IconButton'
 import { is, isNil } from 'ramda'
 import i18n from 'i18next'
 import { AddButtonProps, ClearButtonProps, NumberTextFieldProps, SubtractButtonProps, TextFieldProps } from './types'
-import useDebouncedCallback from '../../../hooks/useDebouncedCallback'
+import useDebouncedCallback from '../../utils/useDebouncedCallback'
 
 const NumberTextField = React.forwardRef<HTMLElement, NumberTextFieldProps>(function NumberFormatCustom(props, ref) {
   const {

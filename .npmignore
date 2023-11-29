@@ -14,4 +14,4 @@ __mocks__
 .vscode
 .vim
 public
-
+.prettierrc

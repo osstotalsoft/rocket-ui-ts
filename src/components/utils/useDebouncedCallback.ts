@@ -6,11 +6,7 @@ const useDebouncedCallback = (callback: (...args: any[]) => any, debounceBy: num
 
   const debouncedCallback = useMemo(() => {
     if (debounceBy) {
-      if (
-        debouncedCallbackRef.current &&
-        debouncedCallbackRef.current.cancel &&
-        typeof debouncedCallbackRef.current.cancel === 'function'
-      )
+      if (debouncedCallbackRef?.current?.cancel && typeof debouncedCallbackRef.current.cancel === 'function')
         debouncedCallbackRef.current.cancel()
       const debounced = debounce(callback, debounceBy)
       debouncedCallbackRef.current = debounced
