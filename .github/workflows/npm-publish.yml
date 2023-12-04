@@ -28,8 +28,6 @@ jobs:
         run: yarn install
       - name: Build
         run: yarn build
-      # - name: Run tests
-      #   run: yarn test
       - name: Bump version
         run: yarn run version
       - name: Set npm authToken from env

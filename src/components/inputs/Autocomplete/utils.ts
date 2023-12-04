@@ -1,5 +1,5 @@
 import { createFilterOptions } from '@mui/material/Autocomplete'
-import { prop, map, innerJoin, find, propEq, all, includes, is, isEmpty, isNil, props, omit } from 'ramda'
+import { prop, map, innerJoin, find, propEq, all, includes, is, isEmpty, isNil, props, omit, equals, any } from 'ramda'
 import { AutocompleteValue, FilterOptionsState } from '@mui/material'
 
 export const findFirstNotNil = (propNames: string[], option: any) => find(x => !isNil(x), props(propNames, option))
@@ -14,7 +14,14 @@ export const filterOptions =
     const { inputValue } = params
 
     // Suggest the creation of a new value if it's not empty and it doesn't already exist
-    const exists = find(propEq(inputValue, labelKey), options)
+    const exists = any(
+      (option: any) =>
+        is(Object, option)
+          ? equals(inputValue, is(String, option?.[labelKey]) ? option?.[labelKey] : JSON.stringify(option?.[labelKey]))
+          : equals(inputValue, is(String, option) ? option : JSON.stringify(option)),
+      options
+    )
+
     if (creatable && !(isEmpty(inputValue) || isNil(inputValue)) && !exists) {
       filtered.push(
         hasStringOptions(options)

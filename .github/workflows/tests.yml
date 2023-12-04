@@ -21,6 +21,8 @@ jobs:
         with:
           node-version: 16.x
       - name: Install Dependencies
-        run: yarn install    
+        run: yarn install
       - name: Run tests
         run: yarn test
+      - name: Run build test
+        run: yarn run build-test

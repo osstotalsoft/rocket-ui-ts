@@ -25,7 +25,7 @@
     "linter": "eslint . --fix --ext .ts,.tsx",
     "publish": "yarn npm publish",
     "storybook": "storybook dev -p 6006",
-    "test": "jest --collectCoverage --passWithNoTests--silent=false --runInBand && run build-test",
+    "test": "jest --collectCoverage --passWithNoTests--silent=false --runInBand",
     "version": "yarn version -i $(git describe --abbrev=0 --tags)"
   },
   "browserslist": {
