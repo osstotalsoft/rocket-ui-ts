@@ -29,7 +29,7 @@
       "request": "launch",
       "runtimeExecutable": "yarn",
       "runtimeArgs": ["run", "test"],
-      "args": ["--runInBand", "${fileBasenameNoExtension}"],
+      "args": ["--verbose", "-i", "--no-cache", "--testPathPattern", "${fileBasename}"],
       "cwd": "${fileDirname}",
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen"

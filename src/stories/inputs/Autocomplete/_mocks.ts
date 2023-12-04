@@ -59,7 +59,8 @@ export const customOptions = [
   { id: 3, name: 'Turtle', icon: BugReport, description: 'Turtles are slow' },
   { id: 4, name: 'Horse', icon: BedroomBaby, description: 'Horses are elegant.' }
 ]
-export const primitiveOptions = ['first option', 'second option', 'third option']
+export const primitiveStringOptions = ['first option', 'second option', 'third option']
+export const primitiveNumericOptions = [1, 2, 3]
 export const numericOptions = [{ period: 1 }, { period: 2 }, { period: 3 }]
 
 function sleep(delay = 0) {

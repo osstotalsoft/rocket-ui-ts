@@ -13,7 +13,7 @@ const basicOptions = [
   { id: 3, name: 'third option', displayName: 'Third Option' }
 ]
 
-const primitiveOptions = ['first option', 'second option', 'third option']
+const stringOptions = ['first option', 'second option', 'third option']
 
 const numericOptions = [1, 2, 3]
 
@@ -23,7 +23,7 @@ describe('Single-value Autocomplete', () => {
     expect(screen.getByTitle('Open')).toBeInTheDocument()
   })
 
-  it('does not break when options are undefined and displays \'No options\' message', () => {
+  it('does not break when options are undefined and displays "No options" message', () => {
     render(<Autocomplete open onChange={jest.fn()} />)
     expect(screen.getByText('No options')).toBeInTheDocument()
   })
@@ -47,7 +47,7 @@ describe('Single-value Autocomplete', () => {
     expect(screen.getByRole('combobox')).toHaveAttribute('readonly')
   })
 
-  it('sets \'No option\' text to typographyContentColor', () => {
+  it('sets "No option" text to typographyContentColor', () => {
     render(<Autocomplete open options={[]} onChange={jest.fn()} typographyContentColor={'secondary'} />)
     expect(screen.getByText('No options')).toHaveStyle(`color: ${theme.palette.secondary.main}`)
   })
@@ -73,7 +73,7 @@ describe('Single-value Autocomplete', () => {
       expect(screen.getByText('Add "new"')).toBeInTheDocument()
     })
 
-    test('doesn\'t show \'Add\' option for the ones that already exist', () => {
+    test('does not show "Add" option for the ones that already exist', () => {
       render(<Autocomplete open creatable createdLabel={'Add'} onChange={jest.fn()} options={basicOptions} />)
       fireEvent.change(screen.getByRole('combobox'), { target: { value: 'first option' } })
       expect(screen.queryByText('Add "first option"')).not.toBeInTheDocument()
@@ -197,13 +197,13 @@ describe('Single-value Autocomplete', () => {
 
   describe('with primitive options', () => {
     test('displays selected option in input', () => {
-      render(<Autocomplete value={'first option'} options={primitiveOptions} onChange={jest.fn()} />)
+      render(<Autocomplete value={'first option'} options={stringOptions} onChange={jest.fn()} />)
       expect(screen.getByRole<HTMLInputElement>('combobox').value).toBe('first option')
     })
 
     test('calls onChange with selected option', () => {
       const mockOnChange = jest.fn()
-      render(<Autocomplete open options={primitiveOptions} onChange={mockOnChange} />)
+      render(<Autocomplete open options={stringOptions} onChange={mockOnChange} />)
       const options = screen.getAllByRole('option')
       act(() => userClick(options[0]))
 
@@ -221,6 +221,18 @@ describe('Single-value Autocomplete', () => {
       const options = screen.getAllByRole('option')
       act(() => userClick(options[0]))
       expect(mockOnChange).toBeCalledWith(1, expect.anything(), 'selectOption')
+    })
+
+    test('does not show "Add" option for the one that already exist with numeric options', () => {
+      render(<Autocomplete open creatable createdLabel={'Add'} onChange={jest.fn()} options={numericOptions} />)
+      fireEvent.change(screen.getByRole('combobox'), { target: { value: 1 } })
+      expect(screen.queryByText('Add "1"')).not.toBeInTheDocument()
+    })
+
+    test('does not show "Add" option for the one that already exist with string options', () => {
+      render(<Autocomplete open creatable createdLabel={'Add'} onChange={jest.fn()} options={stringOptions} />)
+      fireEvent.change(screen.getByRole('combobox'), { target: { value: 'first option' } })
+      expect(screen.queryByText('Add "first option"')).not.toBeInTheDocument()
     })
   })
 })
@@ -248,7 +260,7 @@ describe('Multi-value Autocomplete', () => {
     expect(screen.getByText('second option').parentElement).toHaveClass('Mui-disabled')
   })
 
-  it('doesn\'t clear disabled selections when `Clear` button is clicked', async () => {
+  it('does not clear disabled selections when "Clear" button is clicked', async () => {
     const mockGetOptionDisabled = jest.fn(option => option.isDisabled)
     const mockOnChange = jest.fn()
     render(
@@ -520,7 +532,7 @@ describe('Async Autocomplete', () => {
       await act(() => promise)
     })
 
-    test('doesn\'t call loadOptions at render if defaultOptions is not true', async () => {
+    test('does not call loadOptions at render if defaultOptions is not true', async () => {
       const promise = Promise.resolve(basicOptions)
       const mockLoadOptions = jest.fn(() => promise)
       render(<Autocomplete simpleValue loadOptions={mockLoadOptions} onChange={jest.fn()} />)
@@ -528,7 +540,7 @@ describe('Async Autocomplete', () => {
       await act(() => promise)
     })
 
-    test('doesn\'t call loadOptions at render for initial value if defaultOptions={false}', async () => {
+    test('does not call loadOptions at render for initial value if defaultOptions={false}', async () => {
       const promise = Promise.resolve(basicOptions)
       const mockLoadOptions = jest.fn(() => promise)
       render(
@@ -594,14 +606,14 @@ describe('Async Multi-value Autocomplete', () => {
     expect(mockLoadOptions).toBeCalledTimes(1)
   })
 
-  test('doesn\'t call loadOptions if no initial value was provided - when simpleValue={true}', () => {
+  test('does not call loadOptions if no initial value was provided - when simpleValue={true}', () => {
     const promise = Promise.resolve(basicOptions)
     const mockLoadOptions = jest.fn(() => promise)
     render(<Autocomplete isMultiSelection simpleValue loadOptions={mockLoadOptions} value={[]} onChange={jest.fn()} />)
     expect(mockLoadOptions).not.toBeCalled()
   })
 
-  test('doesn\'t call loadOptions if no initial value was provided - when simpleValue={false}', () => {
+  test('does not call loadOptions if no initial value was provided - when simpleValue={false}', () => {
     const promise = Promise.resolve(basicOptions)
     const mockLoadOptions = jest.fn(() => promise)
     render(<Autocomplete isMultiSelection loadOptions={mockLoadOptions} value={[]} onChange={jest.fn()} />)
