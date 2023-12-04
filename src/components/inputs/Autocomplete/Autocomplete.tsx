@@ -74,6 +74,7 @@ const Autocomplete: React.FC<AutocompleteProps<any, any, any, any>> = ({
   const [additionalPageData, setAdditionalPageData] = useState(null)
   const [hasMore, setHasMore] = useState<Boolean>(true)
 
+  const [firstLoad, setFirstLoad] = useState(true)
   const [localLoading, setLocalLoading] = useState(false)
   const loading = receivedLoading || localLoading
 
@@ -265,12 +266,15 @@ const Autocomplete: React.FC<AutocompleteProps<any, any, any, any>> = ({
         return
       }
 
-      if (loadOptions) {
+      const resetByUser = reason === 'reset' && Boolean(event)
+
+      if (loadOptions && (firstLoad || reason !== 'reset' || resetByUser)) {
         setLocalLoading(true)
         handleLoadOptions(value)
+        setFirstLoad(false)
       }
     },
-    [handleLoadOptions, loadOptions, onInputChange]
+    [handleLoadOptions, loadOptions, onInputChange, firstLoad]
   )
 
   useEffect(() => {
