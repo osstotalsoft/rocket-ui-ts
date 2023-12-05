@@ -77,8 +77,6 @@ const Autocomplete: React.FC<AutocompleteProps<any, any, any, any>> = ({
   const [localLoading, setLocalLoading] = useState(false)
   const loading = receivedLoading || localLoading
 
-  const [multiselectSearchInput, setMultiselectSearchInput] = React.useState('')
-
   const [localInput, setLocalInput] = useState<string>()
   const [optionsLoaded, setOptionsLoaded] = useState(false)
 
@@ -164,13 +162,12 @@ const Autocomplete: React.FC<AutocompleteProps<any, any, any, any>> = ({
           startAdornment={params.InputProps.startAdornment}
           endAdornment={params.InputProps.endAdornment}
           {...textFieldProps}
-          onChange={isMultiSelection && isSearchable ? setMultiselectSearchInput : undefined}
           InputProps={{ ...params.InputProps, margin: 'none' }}
           InputLabelProps={{ ...params.InputLabelProps, margin: null }}
         />
       )
     },
-    [inputSelectedColor, isSearchable, label, error, helperText, required, placeholder, inputTextFieldProps, isMultiSelection]
+    [inputSelectedColor, isSearchable, label, error, helperText, required, placeholder, inputTextFieldProps]
   )
 
   const handleOptionLabel = useCallback(
@@ -316,7 +313,6 @@ const Autocomplete: React.FC<AutocompleteProps<any, any, any, any>> = ({
       typographyContentColor={typographyContentColor}
       forcePopupIcon
       label={label}
-      inputValue={isMultiSelection && isSearchable ? multiselectSearchInput : undefined}
       disabled={disabled || isValueDisabled}
       loading={loading}
       loadingText={loadingText ?? <LinearProgress />}
