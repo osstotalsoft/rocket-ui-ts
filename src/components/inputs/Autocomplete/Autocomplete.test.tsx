@@ -223,6 +223,28 @@ describe('Single-value Autocomplete', () => {
       expect(mockOnChange).toBeCalledWith(1, expect.anything(), 'selectOption')
     })
 
+    it.only('calls onChange with the new created primitive option when options are empty', () => {
+      const mockOnChange = jest.fn()
+      render(
+        <Autocomplete
+          open
+          creatable
+          options={
+            [
+              /* 'a' */
+            ]
+          }
+          onChange={mockOnChange}
+        />
+      )
+      fireEvent.change(screen.getByRole('combobox'), { target: { value: 'x' } })
+      expect(screen.queryByText('Add "x"')).toBeInTheDocument()
+
+      const options = screen.getAllByRole('option')
+      act(() => userClick(options[0]))
+      expect(mockOnChange).toBeCalledWith('x', expect.anything(), 'selectOption')
+    })
+
     test('does not show "Add" option for the one that already exist with numeric options', () => {
       render(<Autocomplete open creatable createdLabel={'Add'} onChange={jest.fn()} options={numericOptions} />)
       fireEvent.change(screen.getByRole('combobox'), { target: { value: 1 } })
