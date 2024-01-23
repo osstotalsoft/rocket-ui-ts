@@ -45,6 +45,10 @@ const UploadButton: React.FC<UploadButtonProps> = ({
     [accept, maxItemSize, maxTotalSize, minItemSize, minTotalSize, onError, onFilesChanged]
   )
 
+  const handleClick = useCallback(({ target = {} }: any) => {
+    target.value = ''
+  }, [])
+
   return (
     <IconButton aria-label="upload" size={size} disabled={disabled} {...rest} component="label">
       <Input
@@ -53,6 +57,7 @@ const UploadButton: React.FC<UploadButtonProps> = ({
         style={{ display: 'none' }}
         inputProps={{ accept, capture, multiple }}
         onChange={handleFileSelected}
+        onClick={handleClick}
         onAbort={handleFileSelected}
       />
       <Icon fontSize={fontSize} />
