@@ -45,8 +45,8 @@ const UploadButton: React.FC<UploadButtonProps> = ({
     [accept, maxItemSize, maxTotalSize, minItemSize, minTotalSize, onError, onFilesChanged]
   )
 
-  const handleClick = useCallback(({ target = {} }: any) => {
-    target.value = ''
+  const handleClick = useCallback(({ target }: any) => {
+    if (target?.value) target.value = ''
   }, [])
 
   return (
