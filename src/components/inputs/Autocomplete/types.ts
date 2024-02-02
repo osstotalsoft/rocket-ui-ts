@@ -92,6 +92,11 @@ export interface AutocompleteProps<
    */
   isSearchable?: boolean
   /**
+  * @default false
+  * If true and multiple value selection is also enabled, then this will prevent the user's search input from being reset after making a selection
+  */
+  preserveSearch?: boolean
+  /**
    * @default false
    * If true, the value set on change will be set to option[valueKey]/
    * We use this prop when our options are objects.
