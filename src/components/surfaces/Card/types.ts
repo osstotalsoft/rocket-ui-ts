@@ -13,7 +13,7 @@ export type CardVariant = 'elevation' | 'outlined'
 
 export type CardColor = Exclude<Color, 'default' | 'white' | 'transparent'>
 
-export type ActionAlign = 'left' | 'right'
+export type ActionAlign = 'left' | 'right' | 'center'
 
 export type CardMediaProps = MuiCardMediaProps & {
   /**
