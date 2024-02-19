@@ -52,7 +52,7 @@ const BasicCardsPreview = () => {
         </Card>
       </Grid>
       <Grid item xs={10}>
-        <Card footer={<LearnMoreButton />}>
+        <Card footer={<LearnMoreButton />} footerProps={{ align: 'center' }}>
           <Grid container spacing={2}>
             <Grid item xs={8}>
               <Typography gutterBottom variant="h5">
