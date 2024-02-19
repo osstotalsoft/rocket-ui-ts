@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useState, useCallback } from 'react'
 import { Grid } from '@mui/material'
-import { Button, Typography, Card } from 'components'
+import { Button, Typography, Card, Pagination } from 'components'
 import robot from '../../assets/img/robot.png'
 import spaceship from '../../assets/img/spaceship.png'
 
@@ -13,6 +13,18 @@ const LearnMoreButton = () => {
 }
 
 const BasicCardsPreview = () => {
+  const [page, setPage] = useState<number>(0)
+  const [pageSize, setPageSize] = useState<number>(10)
+
+  const handleChangePage = useCallback((value: number) => {
+    setPage(value)
+  }, [])
+
+  const handleChangeRowsPerPage = useCallback((value: number) => {
+    setPageSize(value)
+    setPage(0)
+  }, [])
+
   return (
     <Grid container spacing={2} justifyContent="center">
       <Grid item xs={10}>
@@ -52,7 +64,18 @@ const BasicCardsPreview = () => {
         </Card>
       </Grid>
       <Grid item xs={10}>
-        <Card footer={<LearnMoreButton />} footerProps={{ align: 'center' }}>
+        <Card
+          footer={
+            <Pagination
+              count={10}
+              page={page}
+              onPageChange={handleChangePage}
+              pageSize={pageSize}
+              onRowsPerPageChange={handleChangeRowsPerPage}
+              align="center"
+            />
+          }
+        >
           <Grid container spacing={2}>
             <Grid item xs={8}>
               <Typography gutterBottom variant="h5">
