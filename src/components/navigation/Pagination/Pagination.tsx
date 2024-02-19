@@ -6,12 +6,20 @@ import { RefreshButtonContainer } from './PaginationStyles'
 import RefreshIcon from '@mui/icons-material/Refresh'
 import { PaginationProps, DisplayedRows } from './types'
 import IconButton from '../../buttons/IconButton'
+import { T, always, cond, equals } from 'ramda'
 
 const displayedRows =
   (rowsOfText: string) =>
   ({ from, to, count }: DisplayedRows) => {
     return `${from}-${to} ${rowsOfText} ${count}`
   }
+
+const contentAlignment = cond([
+  [equals('left'), always('flex-start')],
+  [equals('right'), always('flex-end')],
+  [equals('center'), always('center')],
+  [T, always('flex-end')]
+])
 
 /**
  * The Pagination component was designed to paginate a list of arbitrary items when infinite loading isn't used. It's preferred in contexts where SEO is important, for instance, a blog.
@@ -29,6 +37,7 @@ const Pagination: React.FC<PaginationProps> = ({
   onRefresh,
   rowsOfText = 'of',
   rowsPerPageOptions = [10, 25, 50, 100],
+  align,
   ...rest
 }) => {
   const handlePageChange = useCallback(
@@ -50,25 +59,25 @@ const Pagination: React.FC<PaginationProps> = ({
   const handleRefresh = useCallback(() => onRefresh && onRefresh(), [onRefresh])
 
   return (
-    <Grid container alignItems="center" justifyContent="flex-end">
+    <Grid container alignItems="center" justifyContent={contentAlignment(align)}>
       {!loading && (
-          <TablePagination
-            component="div"
-            count={count}
-            page={page}
-            onPageChange={handlePageChange}
-            rowsPerPage={pageSize}
-            onRowsPerPageChange={handleRowsPerPageChange}
-            labelRowsPerPage={rowsPerPageText}
-            labelDisplayedRows={displayedRows(rowsOfText)}
-            rowsPerPageOptions={rowsPerPageOptions}
-            {...rest}
-          />
+        <TablePagination
+          component="div"
+          count={count}
+          page={page}
+          onPageChange={handlePageChange}
+          rowsPerPage={pageSize}
+          onRowsPerPageChange={handleRowsPerPageChange}
+          labelRowsPerPage={rowsPerPageText}
+          labelDisplayedRows={displayedRows(rowsOfText)}
+          rowsPerPageOptions={rowsPerPageOptions}
+          {...rest}
+        />
       )}
       {onRefresh && (
         <RefreshButtonContainer>
           <IconButton onClick={handleRefresh} color="default" variant="text" disabled={loading}>
-            <RefreshIcon/>
+            <RefreshIcon />
           </IconButton>
         </RefreshButtonContainer>
       )}
@@ -135,7 +144,12 @@ Pagination.propTypes = {
         value: PropTypes.number.isRequired
       })
     ]).isRequired
-  )
+  ),
+  /**
+   * Align container.
+   * @default 'right'
+   */
+  align: PropTypes.oneOf(['left', 'right', 'center'])
 }
 
 export default Pagination

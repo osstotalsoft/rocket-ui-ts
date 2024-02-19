@@ -14,7 +14,7 @@ CardActions.propTypes = {
    */
   filled: PropTypes.bool,
   /**
-   * Align actions to left or right.
+   * Align actions.
    * @default 'left'
    */
   align: PropTypes.oneOf(['left', 'right', 'center'])
