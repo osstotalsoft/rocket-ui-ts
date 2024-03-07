@@ -7,30 +7,30 @@ import {
   DateTimePicker,
   DateTimePickerProps,
   TimePickerProps,
-  DatePickerProps
+  DatePickerProps,
+  DateTimePickerSlotsComponents,
+  TimePickerSlotsComponents,
+  DatePickerSlotsComponents,
+  renderTimeViewClock
 } from '@mui/x-date-pickers'
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3'
 import { CalendarTodaySmallIcon } from './DateTimeStyles'
 import * as R from 'ramda'
-import ro from 'date-fns/locale/ro'
-import fr from 'date-fns/locale/fr'
-import ru from 'date-fns/locale/ru'
-import de from 'date-fns/locale/de'
-import enUS from 'date-fns/locale/en-US'
+import { ro } from 'date-fns/locale/ro'
+import { fr } from 'date-fns/locale/fr'
+import { de } from 'date-fns/locale/de'
+import { enUS } from 'date-fns/locale/en-US'
 import DateTimeEndAdornment from './DateTimeEndAdornment'
-import TextField, { TextFieldProps } from '../TextField'
 import { T, DateTimeProps, CustomSlotsComponent } from './types'
 import { SvgIconComponent } from '@mui/icons-material'
-import { DateTimePickerSlotsComponent } from '@mui/x-date-pickers/DateTimePicker/DateTimePicker'
-import { TimePickerSlotsComponent } from '@mui/x-date-pickers/TimePicker/TimePicker'
-import { DatePickerSlotsComponent } from '@mui/x-date-pickers/DatePicker/DatePicker'
+import TextField from '../TextField'
+import { UncapitalizeObjectKeys } from '@mui/x-date-pickers/internals'
 
 const localeMap = {
   de: de,
   ['en-US']: enUS,
   fr: fr,
-  ro: ro,
-  ru: ru
+  ro: ro
 }
 
 const defaultComponents = {
@@ -77,6 +77,7 @@ const DateTime: React.FC<DateTimeProps> = ({
   }, [origValue])
   const handleChange = useCallback(
     (value: T) => {
+      debugger
       const changeValue = origOnChange ?? setValue
       changeValue(value)
     },
@@ -90,72 +91,69 @@ const DateTime: React.FC<DateTimeProps> = ({
 
   const mergedComponents = useMemo(() => R.mergeRight(defaultComponents, components), [components])
 
-  const renderInput = useCallback(
-    (params: Partial<TextFieldProps>) => {
-      const OpenPickerIcon = mergedComponents.OpenPickerIcon as SvgIconComponent
-      return (
-        <TextField
-          fullWidth
-          {...inputProps}
-          {...params}
-          required={required}
-          error={error}
-          helperText={helperText}
-          endAdornment={
-            <DateTimeEndAdornment
-              isClearable={internalIsClearable}
-              onClear={handleClear}
-              onOpen={handleOpen}
-              OpenPickerIcon={OpenPickerIcon}
-              disabled={disabled}
-            />
-          }
-        />
-      )
-    },
-    [
-      disabled,
-      error,
-      handleClear,
-      handleOpen,
-      helperText,
-      inputProps,
-      required,
-      internalIsClearable,
-      mergedComponents.OpenPickerIcon
-    ]
-  )
+  // TODO: check if base props are merged with local ones
+  const slotProps = useMemo(() => {
+    const OpenPickerIcon = mergedComponents.OpenPickerIcon as SvgIconComponent
+    return {
+      textField: {
+        fullWidth: true,
+        ...inputProps,
+        required,
+        error,
+        helperText,
+        endAdornment: (
+          <DateTimeEndAdornment
+            isClearable={internalIsClearable}
+            onClear={handleClear}
+            onOpen={handleOpen}
+            OpenPickerIcon={OpenPickerIcon}
+            disabled={disabled}
+          />
+        )
+      }
+    }
+  }, [
+    disabled,
+    error,
+    handleClear,
+    handleOpen,
+    helperText,
+    inputProps,
+    required,
+    internalIsClearable,
+    mergedComponents.OpenPickerIcon
+  ])
 
   const localeUsed = useMemo(() => localeMap[format] ?? adapterLocale ?? localeMap.ro, [format, adapterLocale])
 
-  const commonProps = { renderInput, open, onClose: handleClose, value, onChange: handleChange, disabled }
+  const commonProps = {
+    slots: { textField: TextField, openPickerIcon: mergedComponents.OpenPickerIcon } as UncapitalizeObjectKeys<
+      DateTimePickerSlotsComponents<T> | TimePickerSlotsComponents<T> | DatePickerSlotsComponents<T>
+    >,
+    viewRenderers: {
+      hours: renderTimeViewClock,
+      minutes: renderTimeViewClock,
+      seconds: renderTimeViewClock
+    },
+    slotProps,
+    open,
+    onClose: handleClose,
+    value,
+    onChange: handleChange,
+    disabled
+  } as
+    | Partial<DateTimePickerSlotsComponents<T> & CustomSlotsComponent>
+    | Partial<TimePickerSlotsComponents<T> & CustomSlotsComponent>
+    | Partial<DatePickerSlotsComponents<T> & CustomSlotsComponent>
   const renderPicker = () => {
     switch (showPicker) {
       case 'dateTime':
-        return (
-          <DateTimePicker
-            components={mergedComponents as Partial<DateTimePickerSlotsComponent & CustomSlotsComponent>}
-            {...commonProps}
-            {...(rest as DateTimePickerProps<T, T>)}
-          />
-        )
+        return <DateTimePicker {...commonProps} {...(rest as DateTimePickerProps<T>)} timezone="UTC" />
       case 'time':
-        return (
-          <TimePicker
-            components={mergedComponents as Partial<TimePickerSlotsComponent & CustomSlotsComponent>}
-            {...commonProps}
-            {...(rest as TimePickerProps<T, T>)}
-          />
-        )
+        return <TimePicker {...commonProps} {...(rest as TimePickerProps<T>)} timezone="UTC" />
 
       default:
-        return (
-          <DatePicker
-            components={mergedComponents as Partial<DatePickerSlotsComponent & CustomSlotsComponent>}
-            {...commonProps}
-            {...(rest as DatePickerProps<T, T>)}
-          />
-        )
+        return <DatePicker {...commonProps} {...(rest as DatePickerProps<T>)} timezone="UTC" />
     }
   }
   return (
@@ -176,6 +174,8 @@ DateTime.propTypes = {
   /**
    * The adapterLocale object/string from the engine you use for displaying the date
    */
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  //@ts-ignore
   adapterLocale: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   /**
    * Choose the type of picker you want displayed by the component
@@ -202,7 +202,7 @@ DateTime.propTypes = {
    * A small sample of ISO format names that will be used to display the date.
    * @default 'ro'
    */
-  format: PropTypes.oneOf(['de', 'en-US', 'fr', 'ro', 'ru']),
+  format: PropTypes.oneOf(['de', 'en-US', 'fr', 'ro']),
   /**
    * @default null
    * Value of the picker
@@ -236,6 +236,8 @@ DateTime.propTypes = {
   /**
    * The helper text content.
    */
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  //@ts-ignore
   helperText: PropTypes.node
 }
 

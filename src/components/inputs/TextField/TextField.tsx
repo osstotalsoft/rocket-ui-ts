@@ -1,4 +1,4 @@
-import React, { useCallback, useLayoutEffect, useMemo, useState } from 'react'
+import React, { ComponentType, useCallback, useLayoutEffect, useMemo, useState } from 'react'
 import PropTypes from 'prop-types'
 import NumberFormat, { NumberFormatValues, SourceInfo } from 'react-number-format'
 import { TextField as MuiTextField, StepButton, classes } from './TextFieldStyles'
@@ -124,7 +124,7 @@ SubtractButton.propTypes = {
  * Text Fields let users enter and edit text.
  * At its core, it uses [Material-UI TextField](https://mui.com/material-ui/react-text-field/#basic-textfield).
  */
-const TextField: React.FC<TextFieldProps> = ({
+const TextField: ComponentType<TextFieldProps> = ({
   isNumeric: receivedIsNumeric,
   inputProps,
   InputProps,
@@ -178,7 +178,11 @@ const TextField: React.FC<TextFieldProps> = ({
     if (!isStepper && !startAdornment) return null
     return (
       <>
-        {isStepper && <InputAdornment position="start"><SubtractButton onSubtract={handleSubtract} /></InputAdornment>}
+        {isStepper && (
+          <InputAdornment position="start">
+            <SubtractButton onSubtract={handleSubtract} />
+          </InputAdornment>
+        )}
         {startAdornment}
       </>
     )
@@ -281,10 +285,14 @@ TextField.propTypes = {
   /**
    * End adornment of component. (Usually an InputAdornment from material-ui)
    */
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  //@ts-ignore
   endAdornment: PropTypes.node,
   /**
    * Start adornment of component. (Usually an InputAdornment from material-ui)
    */
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  //@ts-ignore
   startAdornment: PropTypes.node,
   /**
    * If `true`, the input will take up the full width of its container.

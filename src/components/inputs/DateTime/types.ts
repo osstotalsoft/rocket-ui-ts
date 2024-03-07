@@ -1,10 +1,15 @@
 // // Copyright (c) TotalSoft.
 // // This source code is licensed under the MIT license.
 
-import { DatePickerProps, DateTimePickerProps, LocalizationProviderProps, TimePickerProps } from '@mui/x-date-pickers'
+import {
+  DatePickerProps,
+  DateTimePickerProps,
+  LocalizationProviderProps,
+  MuiPickersAdapter,
+  TimePickerProps
+} from '@mui/x-date-pickers'
 import { Locale } from 'date-fns'
 import { TextFieldProps } from '../TextField'
-import { MuiPickersAdapter } from '@mui/x-date-pickers/internals'
 
 export type T = Date | string
 
@@ -13,7 +18,6 @@ export type LocaleMapType = {
   ['en-US']: Locale
   fr: Locale
   ro: Locale
-  ru: Locale
 }
 
 export interface DateTimeEndAdornmentProps {
@@ -29,11 +33,11 @@ export type CustomSlotsComponent = {
 }
 
 export type DateTimeProps = (
-  | Omit<DateTimePickerProps<T, T>, 'onChange' | 'renderInput' | 'value'>
-  | Omit<DatePickerProps<T, T>, 'onChange' | 'renderInput' | 'value'>
-  | Omit<TimePickerProps<T, T>, 'onChange' | 'renderInput' | 'value'>
+  | Omit<DateTimePickerProps<T>, 'onChange' | 'renderInput' | 'value'>
+  | Omit<DatePickerProps<T>, 'onChange' | 'renderInput' | 'value'>
+  | Omit<TimePickerProps<T>, 'onChange' | 'renderInput' | 'value'>
 ) &
-  Omit<LocalizationProviderProps, 'dateAdapter'> & {
+  Omit<LocalizationProviderProps<T, T>, 'dateAdapter'> & {
     value?: T
     /**
      * Callback fired when the value (the selected date) changes @DateIOType.
