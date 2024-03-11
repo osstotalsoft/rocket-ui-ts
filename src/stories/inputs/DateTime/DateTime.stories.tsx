@@ -122,7 +122,7 @@ export const Disabled: Story = {
 }
 
 /**
- * Clearable functionality can be achieved using `clearable={true}`.
+ * Clearable functionality can be achieved using `isClearable={true}`.
  */
 export const Clearable: Story = {
   parameters: {
@@ -130,7 +130,7 @@ export const Clearable: Story = {
     docs: {
       source: {
         code: `
-        <DateTime showPicker="dateTime" label="Date Time Picker" mask="__.__.____ __:__" clearable={true} />
+        <DateTime showPicker="dateTime" label="Date Time Picker" mask="__.__.____ __:__" isClearable={true} />
                 `,
         format: true
       }
