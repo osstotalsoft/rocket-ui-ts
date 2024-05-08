@@ -11,6 +11,7 @@ import {
   mockedAccordionContentListExpandAll
 } from './_mocks'
 import ControlledPreview from './ControlledPreview'
+import ActionsPreview from './ActionsPreview'
 
 const meta: Meta<typeof AccordionComponent> = {
   title: 'Components/Surfaces/Accordion',
@@ -95,4 +96,62 @@ export const Controlled: Story = {
     }
   },
   render: () => <ControlledPreview />
+}
+
+/**
+ * Accordion component allows appending custom actions inside the title component
+ *
+ * Note!
+ * If any action components are rendered inside the title, the main event must stop propagation in order to avoid undesired accordion toggles. (see code bellow)
+ */
+export const Actions: Story = {
+  render: () => <ActionsPreview />,
+  parameters: {
+    controls: { hideNoControlsWarning: true },
+    docs: {
+      source: {
+        code: `
+        const ActionsPreview = () => {
+          const [value, setValue] = useState()
+        
+          const handleChange = useCallback((val: any) => {
+            setValue(val)
+          }, [])
+        
+          const handleDelete = useCallback((event: any) => {
+            event.stopPropagation()
+          }, [])
+        
+          return (
+            <Accordion
+              title={
+                <Grid container spacing={2} alignItems={'center'}>
+                  <Grid item lg={4}>
+                    <Typography variant="subtitle1" emphasis="bold" color="primary">
+                      {'Accordion Title'}
+                    </Typography>
+                  </Grid>
+                  <Grid item lg={7}>
+                    <Autocomplete
+                      label="Basic Autocomplete"
+                      options={options}
+                      value={value}
+                      onChange={handleChange}
+                      stopEventPropagation
+                    />
+                  </Grid>
+                  <Grid item lg={1}>
+                    <IconButton type="delete" variant="text" size="small" color="error" tooltip={'Delete'} onClick={handleDelete} />
+                  </Grid>
+                </Grid>
+              }
+              content={content}
+            />
+          )
+        }
+        `,
+        format: true
+      }
+    }
+  }
 }
