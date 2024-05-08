@@ -79,3 +79,7 @@ export const computeChangedSingleValue = (input: any, simpleValue: boolean, valu
   simpleValue
     ? findFirstNotNil([valueKey, labelKey], input)
     : prop('_primitiveValue', input) ?? omit(['_createdOption'], input)
+
+export const stopPropagation = (event: any) => {
+  event.stopPropagation()
+}
