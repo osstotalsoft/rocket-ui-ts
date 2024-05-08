@@ -69,7 +69,7 @@ const Autocomplete: React.FC<AutocompleteProps<any, any, any, any>> = ({
   inputTextFieldProps,
   isPaginated,
   ListboxProps,
-  stopEventPropagation,
+  stopEventPropagation = false,
   ...other
 }) => {
   const [options, setOptions] = useState(receivedOptions ?? [])

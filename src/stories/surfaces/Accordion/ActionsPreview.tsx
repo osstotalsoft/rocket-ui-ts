@@ -33,6 +33,7 @@ const ActionsPreview = () => {
               value={value}
               onChange={handleChange}
               stopEventPropagation
+              isClearable
             />
             <Typography>{`Selected value: ${JSON.stringify(value)}`}</Typography>
           </Grid>
