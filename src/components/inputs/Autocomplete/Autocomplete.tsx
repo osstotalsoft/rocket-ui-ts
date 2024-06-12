@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import { Autocomplete as MuiAutocomplete, NoOptionsText, classes } from './AutocompleteStyles'
 import Option from './Option'
@@ -74,7 +74,7 @@ const Autocomplete: React.FC<AutocompleteProps<any, any, any, any>> = ({
   const [additionalPageData, setAdditionalPageData] = useState(null)
   const [hasMore, setHasMore] = useState<Boolean>(true)
 
-  const [firstLoad, setFirstLoad] = useState(true)
+  const firstLoadRef = useRef<boolean>(true)
   const [localLoading, setLocalLoading] = useState(false)
   const loading = receivedLoading || localLoading
 
@@ -268,13 +268,13 @@ const Autocomplete: React.FC<AutocompleteProps<any, any, any, any>> = ({
 
       const resetByUser = reason === 'reset' && Boolean(event)
 
-      if (loadOptions && (firstLoad || reason !== 'reset' || resetByUser)) {
+      if (loadOptions && (firstLoadRef.current || reason !== 'reset' || resetByUser)) {
         setLocalLoading(true)
         handleLoadOptions(value)
-        setFirstLoad(false)
+        firstLoadRef.current = false
       }
     },
-    [handleLoadOptions, loadOptions, onInputChange, firstLoad]
+    [handleLoadOptions, loadOptions, onInputChange]
   )
 
   useEffect(() => {
