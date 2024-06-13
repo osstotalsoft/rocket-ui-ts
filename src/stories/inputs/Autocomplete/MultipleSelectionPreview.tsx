@@ -3,7 +3,7 @@ import Grid from '@mui/material/Grid'
 import ControlledCheckbox from './components/ControlledCheckBox'
 import FormattedJson from './components/FormattedJson'
 import ColumnHeader from './components/ColumnHeader'
-import { options, primitiveOptions, numericOptions } from './_mocks'
+import { options, primitiveStringOptions, numericOptions } from './_mocks'
 import { Autocomplete } from 'components'
 import { emptyArray } from 'components/utils/constants'
 
@@ -66,7 +66,7 @@ export const MultipleSelectionPreview = () => {
             value={primitiveValue}
             creatable={creatablePrimitive}
             onChange={setPrimitiveValue}
-            options={primitiveOptions}
+            options={primitiveStringOptions}
             isMultiSelection
           />
         </Grid>

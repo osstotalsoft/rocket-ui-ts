@@ -177,10 +177,10 @@ const TextField: React.FC<TextFieldProps> = ({
   const internalStartAdornment = useMemo(() => {
     if (!isStepper && !startAdornment) return null
     return (
-      <InputAdornment position="start">
-        {isStepper && <SubtractButton onSubtract={handleSubtract} />}
+      <>
+        {isStepper && <InputAdornment position="start"><SubtractButton onSubtract={handleSubtract} /></InputAdornment>}
         {startAdornment}
-      </InputAdornment>
+      </>
     )
   }, [handleSubtract, isStepper, startAdornment])
 

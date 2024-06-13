@@ -176,4 +176,9 @@ export interface AutocompleteProps<
    * If true, the options list will be loaded incrementally using the paginated loadOptions callback
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * Stops click and change event propagation.
+   */
+  stopEventPropagation?: boolean
 }

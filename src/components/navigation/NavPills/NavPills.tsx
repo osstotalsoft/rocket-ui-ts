@@ -3,17 +3,22 @@ import PropTypes from 'prop-types'
 import Box from '@mui/material/Box'
 import { Tabs, Tab } from './NavPillsStyles'
 import { NavPillsProps, TabPanelProps, OrientationWrapperProps, TabsWrapperProps } from './types'
+import { equals } from 'ramda'
 
 const TabPanel: React.FC<TabPanelProps> = ({ children, active, index, ...other }) => {
+  const isActive = equals(active, index)
+  if (!isActive) return null
+
   return (
     <Box
       role="tab-panel"
       hidden={active !== index}
       id={`full-width-tabpanel-${index}`}
       aria-labelledby={`full-width-tab-${index}`}
+      padding={3}
       {...other}
     >
-      {active === index && <Box sx={{ p: 3 }}>{children}</Box>}
+      {children}
     </Box>
   )
 }

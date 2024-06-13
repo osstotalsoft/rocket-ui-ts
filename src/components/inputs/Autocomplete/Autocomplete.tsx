@@ -11,7 +11,8 @@ import {
   findFirstNotNil,
   isStringOrNumber,
   computeChangedMultiValue,
-  computeChangedSingleValue
+  computeChangedSingleValue,
+  stopPropagation
 } from './utils'
 import TextField from '../TextField'
 import { AutocompleteProps, OptionProps, LoadOptions, LoadOptionsPaginated } from './types'
@@ -67,6 +68,8 @@ const Autocomplete: React.FC<AutocompleteProps<any, any, any, any>> = ({
   placeholder,
   inputTextFieldProps,
   isPaginated,
+  ListboxProps,
+  stopEventPropagation = false,
   ...other
 }) => {
   const [options, setOptions] = useState(receivedOptions ?? [])
@@ -147,12 +150,14 @@ const Autocomplete: React.FC<AutocompleteProps<any, any, any, any>> = ({
       if (inputSelectedColor) params.inputProps.style = { color: inputSelectedColor }
       params.inputProps.readOnly = !isSearchable
 
+      const stopPropagationProps = stopEventPropagation ? { onClick: stopPropagation, onFocus: stopPropagation } : {}
       const textFieldProps = {
         label,
         error,
         helperText,
         required,
         placeholder,
+        ...stopPropagationProps,
         ...inputTextFieldProps
       } as Partial<TextFieldProps>
 
@@ -163,12 +168,22 @@ const Autocomplete: React.FC<AutocompleteProps<any, any, any, any>> = ({
           startAdornment={params.InputProps.startAdornment}
           endAdornment={params.InputProps.endAdornment}
           {...textFieldProps}
-          InputProps={{ ...params.InputProps, margin: 'none' }}
+          InputProps={{ ...params.InputProps, margin: 'none', onClick: stopPropagation }}
           InputLabelProps={{ ...params.InputLabelProps, margin: null }}
         />
       )
     },
-    [inputSelectedColor, isSearchable, label, error, helperText, required, placeholder, inputTextFieldProps]
+    [
+      inputSelectedColor,
+      isSearchable,
+      stopEventPropagation,
+      label,
+      error,
+      helperText,
+      required,
+      placeholder,
+      inputTextFieldProps
+    ]
   )
 
   const handleOptionLabel = useCallback(
@@ -225,6 +240,7 @@ const Autocomplete: React.FC<AutocompleteProps<any, any, any, any>> = ({
 
   const handleChange = useCallback(
     (event: React.SyntheticEvent, inputValue: any, reason: AutocompleteChangeReason) => {
+      if (stopEventPropagation) event.stopPropagation()
       // when multi-value and clearable, doesn't clear disabled options that have already been selected
       if (reason === 'clear' && getOptionDisabled && isMultiSelection) {
         return onChange(computeChangedMultiValue(disabledOptions, simpleValue, valueKey, labelKey), event, reason)
@@ -251,6 +267,7 @@ const Autocomplete: React.FC<AutocompleteProps<any, any, any, any>> = ({
       loadOptions,
       onChange,
       simpleValue,
+      stopEventPropagation,
       valueKey
     ]
   )
@@ -300,6 +317,7 @@ const Autocomplete: React.FC<AutocompleteProps<any, any, any, any>> = ({
     () =>
       isPaginated
         ? {
+            ...ListboxProps,
             onScroll: (event: React.SyntheticEvent) => {
               const listboxNode = event.currentTarget
               if (listboxNode.scrollTop + listboxNode.clientHeight >= listboxNode.scrollHeight - 1 && hasMore) {
@@ -307,8 +325,8 @@ const Autocomplete: React.FC<AutocompleteProps<any, any, any, any>> = ({
               }
             }
           }
-        : undefined,
-    [handleLoadOptions, hasMore, isPaginated, localInput]
+        : ListboxProps,
+    [ListboxProps, handleLoadOptions, hasMore, isPaginated, localInput]
   )
 
   return (
@@ -508,7 +526,12 @@ Autocomplete.propTypes = {
    * @default false
    * If true, the options list will be loaded incrementally using the paginated loadOptions callback
    */
-  isPaginated: PropTypes.bool
+  isPaginated: PropTypes.bool,
+  /**
+   * @default false
+   * Stops click and change event propagation.
+   */
+  stopEventPropagation: PropTypes.bool
 }
 
 export default Autocomplete

@@ -3,7 +3,7 @@ import Grid from '@mui/material/Grid'
 import ControlledCheckbox from './components/ControlledCheckBox'
 import FormattedJson from './components/FormattedJson'
 import ColumnHeader from './components/ColumnHeader'
-import { options, primitiveOptions, numericOptions } from './_mocks'
+import { options, primitiveStringOptions, numericOptions } from './_mocks'
 import { Autocomplete } from 'components'
 
 export const OptionTypesPreview = () => {
@@ -59,7 +59,7 @@ export const OptionTypesPreview = () => {
             creatable={creatablePrimitive}
             onChange={setPrimitiveValue}
             isClearable={true}
-            options={primitiveOptions}
+            options={primitiveStringOptions}
           />
         </Grid>
         <Grid item xs={3}>

@@ -34,12 +34,16 @@ describe('Single-value Autocomplete', () => {
     expect(focused).toHaveTextContent('second option')
   })
 
-  it('is clearable', () => {
+  it('is clearable', async () => {
     render(<Autocomplete isClearable simpleValue value={1} options={basicOptions} onChange={jest.fn()} />)
+
+    expect(screen.getByTitle('Clear')).toBeInTheDocument()
     expect(screen.getByRole<HTMLInputElement>('combobox')?.value).toBe('first option')
 
-    fireEvent.click(screen.getByTitle('Clear'))
-    expect(screen.getByRole<HTMLInputElement>('combobox')?.value).toBe('')
+    userClick(screen.getByTitle('Clear'))
+    await waitFor(() => {
+      expect(screen.getByRole<HTMLInputElement>('combobox')?.value).toBe('')
+    })
   })
 
   it('text field is read-only when isSearchable={false}', () => {
