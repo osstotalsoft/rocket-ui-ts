@@ -53,6 +53,7 @@ export interface AutocompleteProps<
     | 'multiple'
     | 'disableClearable'
     | 'renderTags'
+    | 'noOptionsText'
   > {
   /**
    * Array of options.
@@ -139,7 +140,7 @@ export interface AutocompleteProps<
    * Text to display when there are no options.
    * For localization purposes, you can use the provided translations.
    */
-  noOptionsText?: React.ReactNode
+  noOptionsText?: React.ReactNode | ((inputValue: string, loadingOptions: boolean) => React.ReactNode)
   /**
    * The color of selected input.
    */
