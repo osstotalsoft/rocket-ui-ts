@@ -325,6 +325,10 @@ const Autocomplete: React.FC<AutocompleteProps<any, any, any, any>> = ({
     [ListboxProps, handleLoadOptions, hasMore, isPaginated, localInput]
   )
 
+  const localValue = useMemo(() => {
+    return simpleValue ? getSimpleValue(loadOptions ? asyncOptions : options, value, valueKey, isMultiSelection) : value
+  }, [simpleValue, loadOptions, asyncOptions, options, value, valueKey, isMultiSelection])
+
   return (
     <MuiAutocomplete
       noOptionsText={<NoOptionsText color={typographyContentColor}>{noOptionsText}</NoOptionsText>}
@@ -348,7 +352,7 @@ const Autocomplete: React.FC<AutocompleteProps<any, any, any, any>> = ({
       getOptionLabel={handleOptionLabel}
       isOptionEqualToValue={isOptionEqualToValue}
       getOptionDisabled={getOptionDisabled}
-      value={simpleValue ? getSimpleValue(loadOptions ? asyncOptions : options, value, valueKey, isMultiSelection) : value}
+      value={localValue}
       multiple={isMultiSelection}
       onChange={handleChange}
       onInputChange={handleInputChange}
