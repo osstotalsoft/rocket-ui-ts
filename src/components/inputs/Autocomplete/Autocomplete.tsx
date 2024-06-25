@@ -309,6 +309,11 @@ const Autocomplete: React.FC<AutocompleteProps<any, any, any, any>> = ({
     setOptions(receivedOptions || [])
   }, [receivedOptions])
 
+  const localNoOptionsText = useMemo(() => {
+    if (!noOptionsText || typeof noOptionsText !== 'function') return noOptionsText as React.ReactNode
+    return noOptionsText(localInput, localLoading)
+  }, [noOptionsText, localInput, localLoading])
+
   const listBoxProps = useMemo(
     () =>
       isPaginated
@@ -331,7 +336,7 @@ const Autocomplete: React.FC<AutocompleteProps<any, any, any, any>> = ({
 
   return (
     <MuiAutocomplete
-      noOptionsText={<NoOptionsText color={typographyContentColor}>{noOptionsText}</NoOptionsText>}
+      noOptionsText={<NoOptionsText color={typographyContentColor}>{localNoOptionsText}</NoOptionsText>}
       typographyContentColor={typographyContentColor}
       forcePopupIcon
       label={label}
