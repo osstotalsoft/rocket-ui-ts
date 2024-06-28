@@ -10,6 +10,7 @@ import {
   LineElement,
   BarElement,
   BarController,
+  DoughnutController,
   Tooltip,
   Legend,
   ArcElement
@@ -25,6 +26,7 @@ ChartJS.register(
   LineElement,
   BarElement,
   BarController,
+  DoughnutController,
   Tooltip,
   Legend,
   ArcElement
