@@ -33,6 +33,8 @@ import { IconButton } from '@totalsoft/rocket-ui'
 
 # Contributing guide
 
+> This library uses Yarn 2 Plug'n'Play, see its [documentation](https://yarnpkg.com/migration/guide) in order to install it locally. 
+
 When using Visual Studio Code please follow these steps: [Editor Setup for VSCode](https://yarnpkg.com/getting-started/editor-sdks#vscode) (allows VSCode to read .zip yarn cache files and supports features like go-to-definition).
 
 ## - Build
@@ -82,6 +84,14 @@ If the package reference does not already exist in your testing project, you can
 ```
 
 For additional options see the [official documentation](https://docs.npmjs.com/cli/v8/commands/npm-link)
+
+## Running Storybook locally
+This project's documentation is written using Storybook. 
+
+To start it locally run the following command in your terminal:
+`yarn storybook` 
+
+Or use the existing `Storybook Debug` VSCode launch configuration, to start it in debug mode.
 
 # License
 
