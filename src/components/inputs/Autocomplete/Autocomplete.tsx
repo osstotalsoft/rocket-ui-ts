@@ -24,7 +24,7 @@ import {
   TextFieldProps
 } from '@mui/material'
 import { AutocompleteRenderGetTagProps } from '@mui/material'
-
+import useDebouncedCallback from '../../utils/useDebouncedCallback'
 /**
  *
  * The autocomplete is a normal text input enhanced by a panel of suggested options.
@@ -334,6 +334,8 @@ const Autocomplete: React.FC<AutocompleteProps<any, any, any, any>> = ({
     return simpleValue ? getSimpleValue(loadOptions ? asyncOptions : options, value, valueKey, isMultiSelection) : value
   }, [simpleValue, loadOptions, asyncOptions, options, value, valueKey, isMultiSelection])
 
+  const debouncedOnInputChange = useDebouncedCallback(handleInputChange, 500)
+
   return (
     <MuiAutocomplete
       noOptionsText={<NoOptionsText color={typographyContentColor}>{localNoOptionsText}</NoOptionsText>}
@@ -360,7 +362,7 @@ const Autocomplete: React.FC<AutocompleteProps<any, any, any, any>> = ({
       value={localValue}
       multiple={isMultiSelection}
       onChange={handleChange}
-      onInputChange={handleInputChange}
+      onInputChange={debouncedOnInputChange}
       disableClearable={!isClearable}
       renderOption={renderOption}
       renderInput={renderInput}
