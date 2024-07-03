@@ -9,14 +9,15 @@ const config: StorybookConfig = {
     getAbsolutePath("@storybook/addon-links"),
     getAbsolutePath("@storybook/addon-interactions"),
     getAbsolutePath("@storybook/preview-api"),
-    "@storybook/addon-webpack5-compiler-babel",
-    "@chromatic-com/storybook"
+    getAbsolutePath("@storybook/addon-webpack5-compiler-babel"),
+    getAbsolutePath("@chromatic-com/storybook")
   ],
   staticDirs: ['../public'],
   framework: {
     name: getAbsolutePath("@storybook/react-webpack5"),
     options: {
       builder: {
+        name: getAbsolutePath("@storybook/builder-webpack5"),
         fsCache: true,
         lazyCompilation: true
       }
@@ -24,7 +25,7 @@ const config: StorybookConfig = {
   },
   core: {},
   typescript: {
-    reactDocgen: 'react-docgen-typescript',
+    reactDocgen: 'react-docgen',
     check: false
   },
   webpackFinal: async (config: any) => {
