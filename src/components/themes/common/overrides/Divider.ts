@@ -14,7 +14,8 @@ export default function Divider(): CustomComponents {
           backgroundColor: 'transparent',
           backgroundImage: 'linear-gradient(to right, rgba(52, 71, 103, 0), rgba(52, 71, 103, 0.4), rgba(52, 71, 103, 0))',
           opacity: '0.45'
-        }
+        },
+        vertical: {}
       }
     }
   }

@@ -29,7 +29,7 @@ const StatsCard: React.FC<StatsCardProps> = ({
         <CardTitle variant="subtitle1">{title}</CardTitle>
         <CardDescription variant="h5">{description}</CardDescription>
       </CardContent>
-      <Divider />
+      <Divider orientation="vertical" flexItem />
       <StyledCardActions {...footerProps}>{footer}</StyledCardActions>
     </StyledCard>
   )
