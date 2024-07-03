@@ -19,7 +19,6 @@ const withThemeProvider = (Story, context) => {
 
 const preview: Preview = {
   parameters: {
-    actions: { argTypesRegex: '^on[A-Z].*' },
     controls: {
       expanded: true
     },
@@ -45,7 +44,8 @@ const preview: Preview = {
       }
     }
   },
-  decorators: [withThemeProvider]
+  decorators: [withThemeProvider],
+  tags: ['autodocs']
 }
 
 export default preview

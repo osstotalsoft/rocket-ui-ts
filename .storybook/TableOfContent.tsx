@@ -3,7 +3,7 @@
 import React, { useEffect, useRef } from 'react'
 import { Subheading } from '@storybook/blocks'
 import { makeStyles } from 'tss-react/mui'
-import { addons } from '@storybook/addons'
+import { addons } from '@storybook/manager-api'
 import { NAVIGATE_URL } from '@storybook/core-events'
 
 export const nameToHash = (id: string): string => id.toLowerCase().replace(/[^a-z0-9]/gi, '-')
