@@ -16,6 +16,7 @@ const basicOptions = [
 const stringOptions = ['first option', 'second option', 'third option']
 
 const numericOptions = [1, 2, 3]
+const onInputHandlerDebouncedBy = 500
 
 describe('Single-value Autocomplete', () => {
   it('renders open button', () => {
@@ -429,7 +430,10 @@ describe('Async Autocomplete', () => {
         onChange={jest.fn()}
       />
     )
-    expect(screen.getByText(loadingText)).toBeInTheDocument()
+
+    setTimeout(async () => {
+      expect(screen.getByText(loadingText)).toBeInTheDocument()
+    }, onInputHandlerDebouncedBy)
     await act(() => promise)
     expect(screen.queryByText(loadingText)).not.toBeInTheDocument()
   })
@@ -447,9 +451,12 @@ describe('Async Autocomplete', () => {
         isPaginated
       />
     )
-    expect(mockLoadOptions).toBeCalledWith('first option', [], null)
-    expect(mockLoadOptions.mock.calls[0]).toHaveLength(3)
-    await act(() => promise)
+
+    setTimeout(async () => {
+      expect(mockLoadOptions).toBeCalledWith('first option', [], null)
+      expect(mockLoadOptions.mock.calls[0]).toHaveLength(3)
+      await act(() => promise)
+    }, onInputHandlerDebouncedBy)
   })
 
   describe('with simpleValue={false}', () => {
@@ -467,9 +474,11 @@ describe('Async Autocomplete', () => {
       render(
         <Autocomplete loadOptions={mockLoadOptions} value={basicOptions[0]} defaultOptions={true} onChange={jest.fn()} />
       )
-      expect(mockLoadOptions).toBeCalledWith('first option')
-      expect(mockLoadOptions.mock.calls[0]).toHaveLength(1)
-      await act(() => promise)
+      setTimeout(async () => {
+        expect(mockLoadOptions).toBeCalledWith('first option')
+        expect(mockLoadOptions.mock.calls[0]).toHaveLength(1)
+        await act(() => promise)
+      }, onInputHandlerDebouncedBy)
     })
 
     test('calls loadOptions with input value - when defaultOptions is an array', async () => {
@@ -483,9 +492,11 @@ describe('Async Autocomplete', () => {
           onChange={jest.fn()}
         />
       )
-      expect(mockLoadOptions).toBeCalledWith('first option')
-      expect(mockLoadOptions.mock.calls[0]).toHaveLength(1)
-      await act(() => promise)
+      setTimeout(async () => {
+        expect(mockLoadOptions).toBeCalledWith('first option')
+        expect(mockLoadOptions.mock.calls[0]).toHaveLength(1)
+        await act(() => promise)
+      }, onInputHandlerDebouncedBy)
     })
   })
 
@@ -499,8 +510,10 @@ describe('Async Autocomplete', () => {
       expect(mockLoadOptions).toBeCalledWith(undefined)
       await act(() => promise)
 
-      expect(mockLoadOptions).toBeCalledWith('first option')
-      expect(mockLoadOptions).toBeCalledTimes(2)
+      setTimeout(() => {
+        expect(mockLoadOptions).toBeCalledWith('first option')
+        expect(mockLoadOptions).toBeCalledTimes(2)
+      }, onInputHandlerDebouncedBy)
     })
 
     test('displays initial value - when defaultOptions={true}', async () => {
@@ -531,9 +544,11 @@ describe('Async Autocomplete', () => {
           onChange={jest.fn()}
         />
       )
-      expect(mockLoadOptions).toBeCalledWith('first option')
-      expect(mockLoadOptions.mock.calls[0]).toHaveLength(1)
-      await act(() => promise)
+      setTimeout(async () => {
+        expect(mockLoadOptions).toBeCalledWith('first option')
+        expect(mockLoadOptions.mock.calls[0]).toHaveLength(1)
+        await act(() => promise)
+      }, onInputHandlerDebouncedBy)
     })
 
     test('does not call loadOptions at render if defaultOptions is not true', async () => {
@@ -570,11 +585,12 @@ describe('Async Autocomplete', () => {
         />
       )
 
-      await act(() => promise)
-      fireEvent.change(screen.getByRole('combobox'), { target: { value: 'new' } })
-      await act(() => promise)
-
-      expect(screen.getByText('Add "new"')).toBeInTheDocument()
+      setTimeout(async () => {
+        await act(() => promise)
+        fireEvent.change(screen.getByRole('combobox'), { target: { value: 'new' } })
+        await act(() => promise)
+        expect(screen.getByText('Add "new"')).toBeInTheDocument()
+      }, onInputHandlerDebouncedBy)
     })
 
     test('displays created label text after typing some characters - when simpleValue={true}', async () => {
@@ -592,11 +608,13 @@ describe('Async Autocomplete', () => {
         />
       )
 
-      await act(() => promise)
-      fireEvent.change(screen.getByRole('combobox'), { target: { value: 'new' } })
-      await act(() => promise)
+      setTimeout(async () => {
+        await act(() => promise)
+        fireEvent.change(screen.getByRole('combobox'), { target: { value: 'new' } })
+        await act(() => promise)
 
-      expect(screen.getByText('Add "new"')).toBeInTheDocument()
+        expect(screen.getByText('Add "new"')).toBeInTheDocument()
+      }, onInputHandlerDebouncedBy)
     })
   })
 })
@@ -606,8 +624,10 @@ describe('Async Multi-value Autocomplete', () => {
     const promise = Promise.resolve(basicOptions)
     const mockLoadOptions = jest.fn(() => promise)
     render(<Autocomplete isMultiSelection simpleValue loadOptions={mockLoadOptions} value={[1]} onChange={jest.fn()} />)
-    await act(() => promise)
-    expect(mockLoadOptions).toBeCalledTimes(1)
+    setTimeout(async () => {
+      await act(() => promise)
+      expect(mockLoadOptions).toBeCalledTimes(1)
+    }, onInputHandlerDebouncedBy)
   })
 
   test('does not call loadOptions if no initial value was provided - when simpleValue={true}', () => {
