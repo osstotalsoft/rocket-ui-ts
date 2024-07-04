@@ -12,7 +12,7 @@ const emphasisToCSSProps = {
   'line-through': { textDecoration: 'line-through' },
   underline: { textDecoration: 'underline' }
 }
-const getCSSPropsFromEmphasis = (emphasis: string) => R.prop<React.CSSProperties>(emphasis, emphasisToCSSProps)
+const getCSSPropsFromEmphasis =  R.prop(R.__, emphasisToCSSProps) as (emphasis:string) => React.CSSProperties
 
 const parseEmphasis = (emphasis?: Emphasis | Emphasis[]): React.CSSProperties => {
   if (!emphasis) return {}

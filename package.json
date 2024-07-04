@@ -95,6 +95,7 @@
     "@storybook/react": "^8.1.11",
     "@storybook/react-webpack5": "^8.1.11",
     "@storybook/test": "^8.1.11",
+    "@storybook/theming": "^8.1.11",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.4.3",
@@ -135,9 +136,9 @@
     "tss-react": "^4.8.2",
     "typescript": "5.0.4"
   },
-  "packageManager": "yarn@3.5.0",
+  "packageManager": "yarn@4.3.1",
   "engines": {
-    "node": ">=18.x",
+    "node": ">=20.x",
     "yarn": ">=3.x"
   },
   "publishConfig": {
