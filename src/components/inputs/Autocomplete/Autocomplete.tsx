@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import React, { useCallback, useRef, useEffect, useMemo, useState } from 'react'
 import PropTypes from 'prop-types'
 import { Autocomplete as MuiAutocomplete, NoOptionsText, classes } from './AutocompleteStyles'
 import Option from './Option'
@@ -24,7 +24,7 @@ import {
   TextFieldProps
 } from '@mui/material'
 import { AutocompleteRenderGetTagProps } from '@mui/material'
-import useDebouncedCallback from '../../utils/useDebouncedCallback'
+import { throttle } from 'lodash'
 /**
  *
  * The autocomplete is a normal text input enhanced by a panel of suggested options.
@@ -334,7 +334,7 @@ const Autocomplete: React.FC<AutocompleteProps<any, any, any, any>> = ({
     return simpleValue ? getSimpleValue(loadOptions ? asyncOptions : options, value, valueKey, isMultiSelection) : value
   }, [simpleValue, loadOptions, asyncOptions, options, value, valueKey, isMultiSelection])
 
-  const debouncedOnInputChange = useDebouncedCallback(handleInputChange, 500)
+  const throttledOnInputChange = useRef(throttle(handleInputChange, 500)).current
 
   return (
     <MuiAutocomplete
@@ -362,7 +362,7 @@ const Autocomplete: React.FC<AutocompleteProps<any, any, any, any>> = ({
       value={localValue}
       multiple={isMultiSelection}
       onChange={handleChange}
-      onInputChange={debouncedOnInputChange}
+      onInputChange={throttledOnInputChange}
       disableClearable={!isClearable}
       renderOption={renderOption}
       renderInput={renderInput}
