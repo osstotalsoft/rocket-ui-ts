@@ -1,5 +1,5 @@
 import { createFilterOptions } from '@mui/material/Autocomplete'
-import { prop,  find, all, is, isEmpty, isNil, props, omit, equals, any } from 'ramda'
+import { prop, map, innerJoin, find, propEq, all, includes, is, isEmpty, isNil, props, omit, equals, any } from 'ramda'
 import { AutocompleteValue, FilterOptionsState } from '@mui/material'
 
 export const findFirstNotNil = (propNames: string[], option: any) => find(x => !isNil(x), props(propNames, option))
@@ -41,29 +41,29 @@ export const filterOptions =
     return filtered
   }
 
-// export const getSimpleValue = <T>(
-//   readonlyOptions: readonly T[],
-//   value: unknown,
-//   valueKey: string,
-//   isMultiSelection: boolean
-// ) => {
-//   const options = readonlyOptions as T[]
-//   if (isMultiSelection && (!is(Array, value) || isEmpty(options))) return []
-//   if (!all(is(Object), options)) return value
+export const getSimpleValue = <T>(
+  readonlyOptions: readonly T[],
+  value: unknown,
+  valueKey: string,
+  isMultiSelection: boolean
+) => {
+  const options = readonlyOptions as T[]
+  if (isMultiSelection && (!is(Array, value) || isEmpty(options))) return []
+  if (!all(is(Object), options)) return value
 
-//   // Add new options if the Autocomplete is multiSelection and creatable
-//   if (is(Array, value)) {
-//     const optionsSimpleValues = map(prop(valueKey), options)
-//     value?.map(v => {
-//       if (!includes(v, optionsSimpleValues)) options.push({ [valueKey]: v } as T)
-//     })
-//   }
+  // Add new options if the Autocomplete is multiSelection and creatable
+  if (is(Array, value)) {
+    const optionsSimpleValues = map(prop(valueKey), options)
+    value?.map(v => {
+      if (!includes(v, optionsSimpleValues)) options.push({ [valueKey]: v } as T)
+    })
+  }
 
-//   const result = isMultiSelection
-//     ? innerJoin((o, v) => o[valueKey as keyof T] === v, options, value as any)
-//     : find(propEq(value, valueKey), options)
-//   return result || null
-// }
+  const result = isMultiSelection
+    ? innerJoin((o, v) => o[valueKey as keyof T] === v, options, value as any)
+    : find(propEq(value, valueKey), options)
+  return result || null
+}
 
 export const computeChangedMultiValue = <T, Multiple, DisableClearable, FreeSolo>(
   input: any,

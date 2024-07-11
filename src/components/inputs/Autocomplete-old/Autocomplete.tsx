@@ -7,7 +7,7 @@ import Chip from '@mui/material/Chip'
 import { is, isNil, equals, isEmpty, any, prop } from 'ramda'
 import {
   filterOptions,
-  // getSimpleValue,
+  getSimpleValue,
   findFirstNotNil,
   isStringOrNumber,
   computeChangedMultiValue,
@@ -331,7 +331,7 @@ const Autocomplete: React.FC<AutocompleteProps<any, any, any, any>> = ({
   )
 
   const localValue = useMemo(() => {
-    return /* simpleValue ? getSimpleValue(loadOptions ? asyncOptions : options, value, valueKey, isMultiSelection) :  */value
+    return simpleValue ? getSimpleValue(loadOptions ? asyncOptions : options, value, valueKey, isMultiSelection) : value
   }, [simpleValue, loadOptions, asyncOptions, options, value, valueKey, isMultiSelection])
 
   const throttledOnInputChange = useRef(throttle(handleInputChange, 500)).current
