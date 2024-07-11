@@ -12,7 +12,7 @@ const emphasisToCSSProps = {
   'line-through': { textDecoration: 'line-through' },
   underline: { textDecoration: 'underline' }
 }
-const getCSSPropsFromEmphasis = (emphasis: string) => R.prop<React.CSSProperties>(emphasis, emphasisToCSSProps)
+const getCSSPropsFromEmphasis = (emphasis: Emphasis) => emphasisToCSSProps?.[emphasis]
 
 const parseEmphasis = (emphasis?: Emphasis | Emphasis[]): React.CSSProperties => {
   if (!emphasis) return {}
@@ -22,7 +22,7 @@ const parseEmphasis = (emphasis?: Emphasis | Emphasis[]): React.CSSProperties =>
     return R.reduce<string, React.CSSProperties>(
       (acc, elem) => {
         // Retrieves the associated CSS object for an emphasis value
-        const cssObj = getCSSPropsFromEmphasis(elem)
+        const cssObj = getCSSPropsFromEmphasis(elem as Emphasis)
         /**
          * If 2 or more CSS objects have the same property, we need to merge their values
          * e.g.
