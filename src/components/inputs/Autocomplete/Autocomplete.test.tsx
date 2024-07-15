@@ -429,6 +429,7 @@ describe('Async Autocomplete', () => {
         onChange={jest.fn()}
       />
     )
+
     expect(screen.getByText(loadingText)).toBeInTheDocument()
     await act(() => promise)
     expect(screen.queryByText(loadingText)).not.toBeInTheDocument()
@@ -447,6 +448,7 @@ describe('Async Autocomplete', () => {
         isPaginated
       />
     )
+
     expect(mockLoadOptions).toBeCalledWith('first option', [], null)
     expect(mockLoadOptions.mock.calls[0]).toHaveLength(3)
     await act(() => promise)
@@ -573,7 +575,6 @@ describe('Async Autocomplete', () => {
       await act(() => promise)
       fireEvent.change(screen.getByRole('combobox'), { target: { value: 'new' } })
       await act(() => promise)
-
       expect(screen.getByText('Add "new"')).toBeInTheDocument()
     })
 

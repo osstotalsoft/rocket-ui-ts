@@ -6,7 +6,7 @@ import { Validator } from './types'
 const verifiedFileType = curry(flip(accepts))
 const invalidFileType = curry(pipe(verifiedFileType, not)) as (arg1: string) => (arg2: File) => boolean
 
-const getSize = prop('size') as (o: unknown) => number
+const getSize = prop<any>('size') as (file: File) => number
 const totalSize = pipe(map(getSize), sum) as (files: unknown) => number
 
 const biggerItems = curry((maxItemSize, file) => lt(maxItemSize, getSize(file)))

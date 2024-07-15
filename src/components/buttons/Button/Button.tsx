@@ -36,7 +36,7 @@ const Button: React.FC<ButtonProps> = ({
     [classes.gradient]: gradient
   })
 
-  const classNames = `${classes.button} ${btnClasses}`
+  const classNames = btnClasses ? `${classes.button} ${btnClasses}` : classes?.button || {}
 
   const Comp = useMemo(() => createButton(loading), [loading])
 

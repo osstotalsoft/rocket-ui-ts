@@ -43,7 +43,8 @@ describe('DynamicField', () => {
   })
 
   test('renders an autocomplete if control type is "Autocomplete"', () => {
-    render(<DynamicField controlType={ControlType.Autocomplete} />)
+    const mockOnChange = jest.fn()
+    render(<DynamicField controlType={ControlType.Autocomplete} onChange={mockOnChange} />)
     expect(screen.getByRole('combobox')).toBeInTheDocument()
   })
 
