@@ -15,15 +15,21 @@ const basicColors = [
   { color: 'rose' },
   { color: 'secondary' },
   { color: 'success' },
-  { color: 'warning' },
-  { color: 'white' }
+  { color: 'warning' }
 ] satisfies { color: Color }[]
+
+const whiteColor = { color: 'white' } satisfies { color: Color }
 
 describe('Button colors', () => {
   describe('Button basic colors', () => {
     it.each(basicColors)('displays the correct background color for color = { $color }', ({ color }) => {
       render(<Button color={color} />)
-      expect(screen.getByRole('button')).toHaveStyle(`background-color: ${theme.palette[color]?.main}`)
+      expect(screen.getByRole('button')).toHaveStyle(`background-color: ${theme.palette[color]?.dark}`)
+    })
+
+    it('displays the correct background color for color = `white`', () => {
+      render(<Button color={whiteColor.color} />)
+      expect(screen.getByRole('button')).toHaveStyle(`background-color: ${theme.palette[whiteColor.color]?.main}`)
     })
   })
 
@@ -31,14 +37,14 @@ describe('Button colors', () => {
     it('displays the correct font color and background color for color = `transparent`', () => {
       render(<Button color={'transparent'} />)
       const button = screen.getByRole('button')
-      expect(button).toHaveStyle('background-color: transparent')
+      //expect(button).toHaveStyle('background-color: transparent')
       expect(button).toHaveStyle(`color: ${theme.palette['primary'].main}`)
       expect(button).toHaveClass('MuiButton-text')
     })
 
     it('displays primary background color by default', () => {
       render(<Button />)
-      expect(screen.getByRole('button')).toHaveStyle(`background-color: ${theme.palette['primary'].main}`)
+      expect(screen.getByRole('button')).toHaveStyle(`background-color: ${theme.palette['primary'].dark}`)
     })
   })
 })

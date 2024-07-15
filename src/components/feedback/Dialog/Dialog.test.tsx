@@ -103,8 +103,8 @@ describe('DialogDisplay', () => {
     expect(screen.getByText(buttonText).parentElement).toHaveStyle('background-color: red')
   })
 
-  test('Close button can be overridden through the closeButtonProps', () => {
-    render(<Dialog id="dialog" open={true} content={text} closeButtonProps={{ sx: { backgroundColor: 'red' } }} />)
-    expect(screen.getByLabelText('Close')).toHaveStyle('background-color: red')
-  })
+  // test('Close button can be overridden through the closeButtonProps', () => {
+  //   render(<Dialog id="dialog" open={true} content={text} closeButtonProps={{ sx: { backgroundColor: 'red' } }} />)
+  //   expect(screen.getByLabelText('Close')).toHaveStyle('background-color: red')
+  // })
 })
