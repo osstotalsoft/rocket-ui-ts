@@ -11,7 +11,6 @@ import TransitionsPreview from './TransitionsPreview'
 const meta: Meta<typeof ToastContainer> = {
   title: 'Components/Feedback/Toast',
   component: ToastContainer,
-  tags: ['autodocs']
 } satisfies Meta<typeof ToastContainer>
 
 export default meta

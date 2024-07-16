@@ -10,7 +10,6 @@ import { NotFound } from 'components'
 const meta: Meta<typeof NotFound> = {
   title: 'Components/Feedback/NotFound',
   component: NotFound,
-  tags: ['autodocs']
 } satisfies Meta<typeof NotFound>
 
 export default meta

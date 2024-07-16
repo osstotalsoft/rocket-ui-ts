@@ -13,7 +13,6 @@ import MediaPreview from './MediaPreview'
 const meta: Meta<typeof CardComponent> = {
   title: 'Components/Surfaces/Card',
   component: CardComponent,
-  tags: ['autodocs'],
   argTypes: {
     icon: {
       control: false

@@ -12,7 +12,6 @@ import { LinearProgress, Stack } from '@mui/material'
 const meta: Meta<typeof StatsCardComponent> = {
   title: 'Components/Surfaces/StatsCard',
   component: StatsCardComponent,
-  tags: ['autodocs'],
   argTypes: {
     icon: {
       control: false

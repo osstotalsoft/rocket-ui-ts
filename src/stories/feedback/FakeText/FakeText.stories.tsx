@@ -10,7 +10,6 @@ import VariantsPreview from './VariantsPreview'
 const meta: Meta<typeof FakeText> = {
   title: 'Components/Feedback/FakeText',
   component: FakeText,
-  tags: ['autodocs']
 } satisfies Meta<typeof FakeText>
 
 export default meta

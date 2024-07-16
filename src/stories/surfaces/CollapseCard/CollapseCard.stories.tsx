@@ -13,7 +13,6 @@ import ControlledPreview from './ControlledPreview'
 const meta: Meta<typeof CollapseCardComponent> = {
   title: 'Components/Surfaces/CollapseCard',
   component: CollapseCardComponent,
-  tags: ['autodocs'],
   argTypes: {
     icon: {
       control: false

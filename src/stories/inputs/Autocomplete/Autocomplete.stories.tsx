@@ -18,7 +18,6 @@ import { Stack } from '@mui/material'
 const meta: Meta<typeof AutocompleteComponent> = {
   title: 'Components/Inputs/Autocomplete',
   component: AutocompleteComponent,
-  tags: ['autodocs']
 } satisfies Meta<typeof AutocompleteComponent>
 
 export default meta

@@ -14,7 +14,6 @@ import { TypesPreview } from './TypesPreview'
 const meta: Meta<typeof IconButtonComponent> = {
   title: 'Components/Buttons/IconButton',
   component: IconButtonComponent,
-  tags: ['autodocs']
 } satisfies Meta<typeof IconButtonComponent>
 
 export default meta

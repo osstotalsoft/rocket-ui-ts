@@ -9,7 +9,6 @@ import DefaultPreview from './DefaultPreview'
 const meta: Meta<typeof SideMenu> = {
   title: 'Components/Navigation/SideMenu',
   component: SideMenu,
-  tags: ['autodocs']
 } satisfies Meta<typeof SideMenu>
 
 export default meta

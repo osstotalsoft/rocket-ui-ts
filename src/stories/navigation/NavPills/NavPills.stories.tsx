@@ -14,7 +14,6 @@ import ControlledPreview from './ControlledPreview'
 const meta: Meta<typeof NavPillsComponent> = {
   title: 'Components/Navigation/NavPills',
   component: NavPillsComponent,
-  tags: ['autodocs']
 } satisfies Meta<typeof NavPillsComponent>
 
 export default meta

@@ -7,7 +7,6 @@ import { Forbidden } from 'components'
 const meta: Meta<typeof Forbidden> = {
   title: 'Components/Feedback/Forbidden',
   component: Forbidden,
-  tags: ['autodocs']
 } satisfies Meta<typeof Forbidden>
 
 export default meta

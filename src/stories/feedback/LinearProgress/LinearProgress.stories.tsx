@@ -12,7 +12,6 @@ import GlobalPreview from './GlobalPreview'
 const meta: Meta<typeof LinearProgress> = {
   title: 'Components/Feedback/LinearProgress',
   component: LinearProgress,
-  tags: ['autodocs']
 } satisfies Meta<typeof LinearProgress>
 
 export default meta

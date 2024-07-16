@@ -9,7 +9,6 @@ import { DisplayPreview } from './DisplayPreview'
 const meta: Meta<typeof ExpandingTextComponent> = {
   title: 'Components/DataDisplay/ExpandingText',
   component: ExpandingTextComponent,
-  tags: ['autodocs']
 } satisfies Meta<typeof ExpandingTextComponent>
 
 export default meta

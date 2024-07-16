@@ -5,7 +5,6 @@ import { FavIcon } from 'components'
 const meta: Meta<typeof FavIcon> = {
   title: 'Components/DataDisplay/FavIcon',
   component: FavIcon,
-  tags: ['autodocs'],
   argTypes: {
     favIconSource: {
       control: { type: 'radio' },

@@ -11,7 +11,6 @@ import ActionsPreview from './ActionsPreview'
 const meta: Meta<typeof DialogComponent> = {
   title: 'Components/Feedback/Dialog',
   component: DialogComponent,
-  tags: ['autodocs']
 } satisfies Meta<typeof DialogComponent>
 
 export default meta
