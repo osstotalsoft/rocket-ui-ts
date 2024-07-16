@@ -12,17 +12,10 @@ const config: StorybookConfig = {
     getAbsolutePath("@storybook/addon-webpack5-compiler-swc"),
   ],
   staticDirs: ['../public'],
-  framework: {
-    name: getAbsolutePath("@storybook/react-webpack5"),
-    options: {
-      builder: {
-        name: getAbsolutePath("@storybook/builder-webpack5"),
-        fsCache: true,
-        lazyCompilation: true
-      }
-    }
+  framework: '@storybook/react-webpack5',
+  core:{
+    builder:"@storybook/builder-webpack5"
   },
-  core: {},
   typescript: {
     reactDocgen: 'react-docgen',
     check: false
@@ -31,7 +24,6 @@ const config: StorybookConfig = {
     config.resolve.plugins = [new TsconfigPathsPlugin()]
     return config
   },
-  docs: {}
 }
 export default config
 
