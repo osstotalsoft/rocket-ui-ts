@@ -5027,6 +5027,7 @@ __metadata:
     "@storybook/manager-api": "npm:^8.2.4"
     "@storybook/preview-api": "npm:^8.2.4"
     "@storybook/react-dom-shim": "npm:8.2.4"
+    "@storybook/theming": "npm:^8.2.4"
     "@types/escodegen": "npm:^0.0.6"
     "@types/estree": "npm:^0.0.51"
     "@types/node": "npm:^18.0.0"
@@ -5072,7 +5073,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/theming@npm:^8.2.4":
+"@storybook/theming@npm:^8.1.11, @storybook/theming@npm:^8.2.4":
   version: 8.2.4
   resolution: "@storybook/theming@npm:8.2.4"
   peerDependencies:
@@ -5360,7 +5361,7 @@ __metadata:
     "@storybook/preview-api": "npm:^8.1.11"
     "@storybook/react": "npm:^8.1.11"
     "@storybook/react-webpack5": "npm:^8.1.11"
-    "@storybook/theming": "npm:^8.2.4"
+    "@storybook/theming": "npm:^8.1.11"
     "@testing-library/jest-dom": "npm:^5.16.5"
     "@testing-library/react": "npm:^14.0.0"
     "@testing-library/user-event": "npm:^14.4.3"
