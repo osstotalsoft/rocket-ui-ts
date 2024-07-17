@@ -1,4 +1,3 @@
-// @ts-nocheck
 import './doc-root.css'
 import React from 'react'
 import type { Preview } from '@storybook/react'
