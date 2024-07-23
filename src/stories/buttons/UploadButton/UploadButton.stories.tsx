@@ -14,7 +14,6 @@ import { CustomIconsPreview } from './CustomIconsPreview'
 const meta: Meta<typeof UploadButtonComponent> = {
   title: 'Components/Buttons/UploadButton',
   component: UploadButtonComponent,
-  tags: ['autodocs']
 } satisfies Meta<typeof UploadButtonComponent>
 
 export default meta

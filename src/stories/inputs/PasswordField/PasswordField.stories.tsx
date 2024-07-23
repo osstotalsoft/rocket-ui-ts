@@ -10,7 +10,6 @@ import StatesPreview from './StatesPreview'
 const meta: Meta<typeof PasswordFieldComponent> = {
   title: 'Components/Inputs/PasswordField',
   component: PasswordFieldComponent,
-  tags: ['autodocs']
 } satisfies Meta<typeof PasswordFieldComponent>
 
 export default meta

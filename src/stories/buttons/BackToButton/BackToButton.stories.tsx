@@ -10,7 +10,6 @@ import { BrowserRouter } from 'react-router-dom'
 const meta: Meta<typeof BackToButtonComponent> = {
   title: 'Components/Buttons/BackToButton',
   component: BackToButtonComponent,
-  tags: ['autodocs']
 } satisfies Meta<typeof BackToButtonComponent>
 
 export default meta

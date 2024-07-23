@@ -11,7 +11,6 @@ import { barChartData, chartOptions, doughnutChartData, lineChartData } from './
 const meta: Meta<typeof Chart> = {
   title: 'Components/Charts/Chart',
   component: Chart,
-  tags: ['autodocs'],
   args: {
     width: 500,
     height: 200

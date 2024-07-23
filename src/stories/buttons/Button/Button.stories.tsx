@@ -10,7 +10,6 @@ import { WithIconPreview } from './WithIconPreview'
 const meta: Meta<typeof ButtonComponent> = {
   title: 'Components/Buttons/Button',
   component: ButtonComponent,
-  tags: ['autodocs']
 } satisfies Meta<typeof ButtonComponent>
 
 export default meta

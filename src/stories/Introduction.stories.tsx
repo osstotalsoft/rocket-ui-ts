@@ -22,6 +22,7 @@ const LandingPage = () => {
 const meta: Meta<typeof LandingPage> = {
   title: 'Introduction',
   component: LandingPage,
+  tags: ['!autodocs'],
   parameters: {
     options: {
       showPanel: false

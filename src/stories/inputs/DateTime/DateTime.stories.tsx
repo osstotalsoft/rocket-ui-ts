@@ -15,7 +15,6 @@ import SwipeRightAlt from '@mui/icons-material/SwipeRightAlt'
 const meta: Meta<typeof DateTime> = {
   title: 'Components/Inputs/DateTime',
   component: DateTime,
-  tags: ['autodocs']
 } satisfies Meta<typeof DateTime>
 
 export default meta

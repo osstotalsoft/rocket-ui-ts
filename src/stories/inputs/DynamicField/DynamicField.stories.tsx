@@ -12,7 +12,6 @@ import { Rating, Stack } from '@mui/material'
 export default {
   title: 'Components/Inputs/DynamicField',
   component: DynamicFieldComponent as ComponentType<DynamicFieldProps<any, any>>,
-  tags: ['autodocs']
 } satisfies Meta<typeof DynamicFieldComponent>
 
 type Story = StoryObj<typeof DynamicFieldComponent>

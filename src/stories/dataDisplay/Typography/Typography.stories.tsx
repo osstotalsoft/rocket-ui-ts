@@ -8,7 +8,6 @@ import { ExtraStylingPreview } from './ExtraStylingPreview'
 const meta: Meta<typeof TypographyComponent> = {
   title: 'Components/DataDisplay/Typography',
   component: TypographyComponent,
-  tags: ['autodocs']
 } satisfies Meta<typeof TypographyComponent>
 
 export default meta

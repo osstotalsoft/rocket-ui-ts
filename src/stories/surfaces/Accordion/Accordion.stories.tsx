@@ -16,7 +16,6 @@ import ActionsPreview from './ActionsPreview'
 const meta: Meta<typeof AccordionComponent> = {
   title: 'Components/Surfaces/Accordion',
   component: AccordionComponent,
-  tags: ['autodocs']
 } satisfies Meta<typeof AccordionComponent>
 
 export default meta

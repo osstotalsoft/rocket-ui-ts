@@ -11,7 +11,6 @@ import { StatsChart } from 'components'
 const meta: Meta<typeof StatsChart> = {
   title: 'Components/Charts/StatsChart',
   component: StatsChart,
-  tags: ['autodocs'],
   args: {
     width: 500,
     height: 200

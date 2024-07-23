@@ -10,7 +10,6 @@ import DefaultPreview from './DefaultPreview'
 const meta: Meta<typeof PaginationComponent> = {
   title: 'Components/Navigation/Pagination',
   component: PaginationComponent,
-  tags: ['autodocs']
 } satisfies Meta<typeof PaginationComponent>
 
 export default meta
