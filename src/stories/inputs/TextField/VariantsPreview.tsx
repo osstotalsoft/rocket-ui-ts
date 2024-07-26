@@ -9,9 +9,6 @@ const VariantsPreview = () => {
         <TextField
           label="Standard (default)"
           fullWidth
-          InputProps={{
-            readOnly: true
-          }}
         />
       </Grid>
       <Grid item xs={4}>
@@ -19,9 +16,6 @@ const VariantsPreview = () => {
           label="Outlined"
           variant="outlined"
           fullWidth
-          InputProps={{
-            readOnly: true
-          }}
         />
       </Grid>
       <Grid item xs={4}>
@@ -29,9 +23,6 @@ const VariantsPreview = () => {
           label="Filled"
           variant="filled"
           fullWidth
-          InputProps={{
-            readOnly: true
-          }}
         />
       </Grid>
     </Grid>
