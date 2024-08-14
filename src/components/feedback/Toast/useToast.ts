@@ -41,7 +41,7 @@ const useToast = () => {
 
       const options: ToastifyToastOptions = {
         ...restOptions,
-        autoClose: autoClose || false,
+        autoClose: autoClose,
         transition: getTransitionType(transitionType),
         className: toastClasses
       }
