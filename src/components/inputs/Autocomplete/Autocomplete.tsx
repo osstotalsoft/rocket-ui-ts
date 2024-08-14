@@ -64,6 +64,7 @@ const Autocomplete: React.FC<AutocompleteProps<any, any, any, any>> = ({
   typographyContentColor = 'textSecondary',
   inputSelectedColor,
   isSearchable = true,
+  preserveSearch = false,
   getOptionDisabled,
   placeholder,
   inputTextFieldProps,
@@ -80,6 +81,7 @@ const Autocomplete: React.FC<AutocompleteProps<any, any, any, any>> = ({
   const [localLoading, setLocalLoading] = useState(false)
   const loading = receivedLoading || localLoading
 
+  const [multiselectSearchInput, setMultiselectSearchInput] = React.useState('')
   const [localInput, setLocalInput] = useState<string>()
   const [optionsLoaded, setOptionsLoaded] = useState(false)
 
@@ -273,11 +275,19 @@ const Autocomplete: React.FC<AutocompleteProps<any, any, any, any>> = ({
 
   const handleInputChange = useCallback(
     (event: React.SyntheticEvent, value: string, reason: AutocompleteInputChangeReason) => {
+      const eventType = event?.nativeEvent?.type
+      
+      if (preserveSearch) {
+        if (reason === 'clear') setMultiselectSearchInput('')
+        if (!event || eventType === 'click' || eventType === 'keydown') return
+        if (eventType === 'input') setMultiselectSearchInput(value)
+      }
+    
       setLocalInput(value ? value : '')
       if (onInputChange) onInputChange(event, value, reason)
 
       // this prevents the component from calling loadOptions again when the user clicks outside it and the menu closes
-      if (event?.nativeEvent?.type === 'focusout') {
+      if (eventType === 'focusout') {
         setOptionsLoaded(false)
         return
       }
@@ -287,7 +297,7 @@ const Autocomplete: React.FC<AutocompleteProps<any, any, any, any>> = ({
         handleLoadOptions(value)
       }
     },
-    [handleLoadOptions, loadOptions, onInputChange]
+    [handleLoadOptions, loadOptions, onInputChange, preserveSearch]
   )
 
   useEffect(() => {
@@ -342,6 +352,7 @@ const Autocomplete: React.FC<AutocompleteProps<any, any, any, any>> = ({
       typographyContentColor={typographyContentColor}
       forcePopupIcon
       label={label}
+      inputValue={isMultiSelection && preserveSearch ? multiselectSearchInput : undefined}
       disabled={disabled || isValueDisabled}
       loading={loading}
       loadingText={loadingText ?? <LinearProgress />}
@@ -444,6 +455,11 @@ Autocomplete.propTypes = {
    * If false, the user cannot type in Autocomplete, filter options or create new ones.
    */
   isSearchable: PropTypes.bool,
+  /**
+   * @default false
+   * If true and multiple value selection is also enabled, then this will prevent the user's search input from being reset after making a selection
+   */
+  preserveSearch: PropTypes.bool,
   /**
    * @default false
    * If true, the Autocomplete is free solo, meaning that the user input is not bound to provided options and can add
