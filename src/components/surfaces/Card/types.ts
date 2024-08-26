@@ -65,7 +65,7 @@ export interface CardHeaderProps extends Omit<MuiCardHeaderProps, 'action'> {
   /**
    * Props applied to the avatar.
    */
-  avatarProps?: any
+  avatarStyle?: any
   /**
    * Style applied to the header content.
    */
@@ -145,7 +145,7 @@ export interface CardProps extends Omit<MuiCardProps, 'title'> {
   /**
    * Props applied to the avatar.
    */
-  avatarProps?: any
+  avatarStyle?: any
   /**
    * Style applied to the header content.
    */

@@ -34,7 +34,7 @@ const subheader = 'Subheader'
 const children =
   'Cards are surfaces that display content and actions on a single topic. They should be easy to scan for relevant and actionable information. Elements, like text and images, should be placed on them in a way that clearly indicates hierarchy. Although cards can support multiple actions, UI controls, and an overflow menu, use restraint and remember that cards are entry points to more complex and detailed information.'
 const footer = <Button variant="text">SUBMIT</Button>
-const avatarProps = { left: '-10px', top: '-10px' }
+const avatarStyle = { left: '-10px', top: '-10px' }
 const actions = (
   <IconButton color="info" variant="text" size="small">
     <QuestionMark fontSize="small" />
@@ -47,7 +47,7 @@ const headerContentStyle = { paddingLeft: '30px' }
  * use restraint and remember that cards are entry points to more complex and detailed information.
  */
 export const Card: Story = {
-  args: { title, subheader, children, icon: People, footer, actions, avatarProps, headerContentStyle },
+  args: { title, subheader, children, icon: People, footer, actions, avatarStyle, headerContentStyle },
 
   parameters: {
     docs: {

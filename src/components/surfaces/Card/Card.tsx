@@ -45,7 +45,7 @@ const Card: React.FC<CardProps> = ({
   icon: Icon,
   iconColor = 'secondary',
   mediaProps,
-  avatarProps,
+  avatarStyle,
   headerContentStyle,
   ...props
 }) => {
@@ -69,7 +69,7 @@ const Card: React.FC<CardProps> = ({
         <CardHeader
           hasIcon={hasIcon}
           iconColor={hasIcon ? (iconColor as CardColor) : undefined}
-          avatarProps={avatarProps}
+          avatarStyle={avatarStyle}
           headerContentStyle={headerContentStyle}
           {...cardHeaderProps}
         />
@@ -161,7 +161,7 @@ Card.propTypes = {
    *  @default {}
    * Props applied to the avatar.
    */
-  avatarProps: PropTypes.object,
+  avatarStyle: PropTypes.object,
   /**
    * @default {}
    * Props applied to the CardHeader component.

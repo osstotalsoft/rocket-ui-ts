@@ -9,20 +9,20 @@ type StyledProps = {
   filled: boolean
   hasIcon: boolean
   iconColor: CardColor
-  avatarProps: any
+  avatarStyle: any
   headerContentStyle: any
 }
 
 const CardHeader = styled(MuiCardHeader, {
   shouldForwardProp: prop =>
-    !includes(prop, ['variant', 'hasIcon', 'iconColor', 'filled', 'avatarProps', 'headerContentStyle'])
+    !includes(prop, ['variant', 'hasIcon', 'iconColor', 'filled', 'avatarStyle', 'headerContentStyle'])
 })(
   ({
     theme,
     filled,
     hasIcon,
     iconColor = 'secondary' as CardColor & keyof Palette,
-    avatarProps,
+    avatarStyle,
     headerContentStyle
   }: Partial<StyledProps>) => ({
     ['&.MuiCardHeader-root']: {
@@ -36,7 +36,7 @@ const CardHeader = styled(MuiCardHeader, {
         background: `linear-gradient(195deg, ${theme?.palette[iconColor].light}, ${theme?.palette[iconColor].main})`,
         position: 'absolute',
         top: '-20px',
-        ...avatarProps
+        ...avatarStyle
       })
     },
     ['& .MuiCardHeader-content']: {
