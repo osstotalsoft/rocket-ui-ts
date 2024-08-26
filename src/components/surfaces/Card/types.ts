@@ -62,6 +62,14 @@ export interface CardHeaderProps extends Omit<MuiCardHeaderProps, 'action'> {
    * Icon color.
    */
   iconColor?: CardColor
+  /**
+   * Props applied to the avatar.
+   */
+  avatarProps?: any
+  /**
+   * Style applied to the header content.
+   */
+  headerContentStyle?: any
 }
 
 export interface CardProps extends Omit<MuiCardProps, 'title'> {
@@ -134,4 +142,12 @@ export interface CardProps extends Omit<MuiCardProps, 'title'> {
    * Props applied to the CardContent component
    */
   contentProps?: MuiCardContentProps
+  /**
+   * Props applied to the avatar.
+   */
+  avatarProps?: any
+  /**
+   * Style applied to the header content.
+   */
+  headerContentStyle?: any
 }

@@ -34,19 +34,20 @@ const subheader = 'Subheader'
 const children =
   'Cards are surfaces that display content and actions on a single topic. They should be easy to scan for relevant and actionable information. Elements, like text and images, should be placed on them in a way that clearly indicates hierarchy. Although cards can support multiple actions, UI controls, and an overflow menu, use restraint and remember that cards are entry points to more complex and detailed information.'
 const footer = <Button variant="text">SUBMIT</Button>
-
+const avatarProps = { left: '-10px', top: '-10px' }
 const actions = (
   <IconButton color="info" variant="text" size="small">
     <QuestionMark fontSize="small" />
   </IconButton>
 )
+const headerContentStyle = { paddingLeft: '30px' }
 
 /**
  * Although cards can support multiple actions, UI controls, and an overflow menu,
  * use restraint and remember that cards are entry points to more complex and detailed information.
  */
 export const Card: Story = {
-  args: { title, subheader, children, icon: People, footer, actions },
+  args: { title, subheader, children, icon: People, footer, actions, avatarProps, headerContentStyle },
 
   parameters: {
     docs: {
@@ -58,7 +59,7 @@ export const Card: Story = {
           children={--Text content here--} 
           icon={People} 
           footer={<Button variant="text">SUBMIT</Button>}
-          action={
+          actions={
             <IconButton color="info" variant="text" size="small">
               <QuestionMark fontSize="small" />
             </IconButton>
@@ -113,8 +114,8 @@ export const Filled: Story = {
 
 /**
  * Examples of cards using images, video or audio files to reinforce the content.
- * 
- * By default, we use the combination of a `<div>` element and a background image to display the media. 
+ *
+ * By default, we use the combination of a `<div>` element and a background image to display the media.
  * It can be problematic in some situations, for example, you might want to display a video or a responsive image. Use the component prop for these use cases:
  */
 export const Media: Story = {
