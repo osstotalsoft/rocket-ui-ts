@@ -45,6 +45,8 @@ const Card: React.FC<CardProps> = ({
   icon: Icon,
   iconColor = 'secondary',
   mediaProps,
+  avatarProps,
+  headerContentProps,
   ...props
 }) => {
   const hasIcon = !!Icon
@@ -64,7 +66,13 @@ const Card: React.FC<CardProps> = ({
   return (
     <MuiCard color={color} hasIcon={hasIcon} variant={variant} {...props}>
       {hasHeader && (
-        <CardHeader hasIcon={hasIcon} iconColor={hasIcon ? (iconColor as CardColor) : undefined} {...cardHeaderProps} />
+        <CardHeader
+          hasIcon={hasIcon}
+          iconColor={hasIcon ? (iconColor as CardColor) : undefined}
+          avatarProps={avatarProps}
+          headerContentProps={headerContentProps}
+          {...cardHeaderProps}
+        />
       )}
       {mediaProps && <CardMedia {...sizes[size || 's']} {...standardMediaProps} />}
       {disablePadding ? children : <CardContent hasHeader={hasHeader} children={children} {...contentProps} />}
@@ -148,7 +156,17 @@ Card.propTypes = {
   /*
    * Props applied to the CardMedia component.
    */
-  mediaProps: PropTypes.object
+  mediaProps: PropTypes.object,
+  /**
+   *  @default {}
+   * Props applied to the avatar.
+   */
+  avatarProps: PropTypes.object,
+  /**
+   * @default {}
+   * Props applied to the CardHeader component.
+   */
+  headerContentProps: PropTypes.object
 }
 
 export default Card

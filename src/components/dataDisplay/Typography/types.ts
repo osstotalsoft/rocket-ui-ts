@@ -5,7 +5,15 @@ import { TypographyProps as MuiTypographyProps } from '@mui/material'
 /**
  * The color of the text.
  */
-export type TypographyColor = 'initial' | 'inherit' | 'primary' | 'secondary' | 'textPrimary' | 'textSecondary' | 'error'
+export type TypographyColor =
+  | 'initial'
+  | 'inherit'
+  | 'primary'
+  | 'secondary'
+  | 'textPrimary'
+  | 'textSecondary'
+  | 'error'
+  | string
 
 /**
  * Controls the text emphasis. Different font styles can be used individually or in combination.

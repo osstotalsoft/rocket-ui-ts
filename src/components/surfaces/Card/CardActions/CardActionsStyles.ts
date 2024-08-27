@@ -10,7 +10,7 @@ const contentAlignment = cond([
   [equals('left'), always('flex-start')],
   [equals('right'), always('flex-end')],
   [equals('center'), always('center')],
-  [T, always('flex-start')]
+  [T, always('unset')]
 ])
 
 const CardActions = styled(MuiCardActions, {
