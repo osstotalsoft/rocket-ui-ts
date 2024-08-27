@@ -1,6 +1,6 @@
 // Copyright (c) TotalSoft.
 // This source code is licensed under the MIT license.
-import { ToastContainerProps as ReactToastifyProps, ToastOptions as ToastifyToastOptions } from 'react-toastify'
+import { ToastContainerProps as ReactToastifyProps, ToastTransition } from 'react-toastify'
 
 export interface ToastContainerProps extends Omit<ReactToastifyProps, 'transition'> {
   /**
@@ -8,9 +8,10 @@ export interface ToastContainerProps extends Omit<ReactToastifyProps, 'transitio
    * @default Slide
    */
   transitionType?: 'Slide' | 'Bounce' | 'Zoom' | 'Flip'
-}
-
-export interface ToastifyToastOptionsCustom extends ToastifyToastOptions {
+  /**
+   * Pass a custom transition built with react-transition-group.
+   */
+  transition?: ToastTransition
   /**
    * Set the delay in ms to close the toast automatically.
    * Use `false` to prevent the toast from closing.
