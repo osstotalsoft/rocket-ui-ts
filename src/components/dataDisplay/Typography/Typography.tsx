@@ -69,7 +69,10 @@ Typography.propTypes = {
   /**
    * The color of the text.
    */
-  color: PropTypes.oneOf(['initial', 'inherit', 'primary', 'secondary', 'textPrimary', 'textSecondary', 'error']),
+  color: PropTypes.oneOfType([
+    PropTypes.oneOf(['initial', 'inherit', 'primary', 'secondary', 'textPrimary', 'textSecondary', 'error']),
+    PropTypes.string
+  ]),
   /**
    * Controls the text emphasis. Different font styles can be used individually or in combination.
    */

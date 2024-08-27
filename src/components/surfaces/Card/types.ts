@@ -5,7 +5,7 @@ import {
   CardProps as MuiCardProps,
   CardContentProps as MuiCardContentProps
 } from '@mui/material'
-import { ElementType } from 'react'
+import { ElementType, HTMLAttributes } from 'react'
 import { SvgIconComponent } from '@mui/icons-material'
 import { Color } from '../../types'
 
@@ -65,11 +65,11 @@ export interface CardHeaderProps extends Omit<MuiCardHeaderProps, 'action'> {
   /**
    * Props applied to the avatar.
    */
-  avatarStyle?: any
+  avatarProps?: HTMLAttributes<HTMLDivElement>
   /**
    * Style applied to the header content.
    */
-  headerContentStyle?: any
+  headerContentProps?: HTMLAttributes<HTMLDivElement>
 }
 
 export interface CardProps extends Omit<MuiCardProps, 'title'> {
@@ -145,9 +145,9 @@ export interface CardProps extends Omit<MuiCardProps, 'title'> {
   /**
    * Props applied to the avatar.
    */
-  avatarStyle?: any
+  avatarProps?: HTMLAttributes<HTMLDivElement>
   /**
    * Style applied to the header content.
    */
-  headerContentStyle?: any
+  headerContentProps?: HTMLAttributes<HTMLDivElement>
 }
