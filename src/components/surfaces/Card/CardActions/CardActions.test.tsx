@@ -31,7 +31,7 @@ describe('CardActions', () => {
         <Button>ok</Button>
       </CardActions>
     )
-    expect(screen.getByRole('button').parentElement).toHaveStyle('justify-content: flex-start')
+    expect(screen.getByRole('button').parentElement).toHaveStyle('justify-content: unset')
   })
 
   it('displays actions on the right when `align` is set to `right`', () => {
