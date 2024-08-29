@@ -14,10 +14,11 @@ import { StylingPreview } from './StylingPreview'
 import { RequiredPreview } from './RequiredPreview'
 import { CustomOptionPreview } from './CustomOptionPreview'
 import { Stack } from '@mui/material'
+import { GroupedPreview } from './GroupedPreview'
 
 const meta: Meta<typeof AutocompleteComponent> = {
   title: 'Components/Inputs/Autocomplete',
-  component: AutocompleteComponent,
+  component: AutocompleteComponent
 } satisfies Meta<typeof AutocompleteComponent>
 
 export default meta
@@ -389,4 +390,76 @@ export const TextFieldInheritance: Story = {
     }
   },
   render: args => <RequiredPreview {...args} />
+}
+
+/**
+ * You can group the options with the `groupBy` prop. If you do so, make sure that the options are also sorted with the same dimension that they are grouped by, otherwise, you will notice duplicate headers.
+ * 
+ * To control how the groups are rendered, provide a custom renderGroup prop. This is a function that accepts an object with two fields:
+ * - `group` — a string representing a group name
+ * - `children` — a collection of list items that belong to the group
+ * The following demo shows how to use this prop to define custom markup and override the styles of the default groups:
+ */
+export const Grouped: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `
+import React, { useCallback, useState } from 'react'
+import { Autocomplete } from 'components'
+import { emptyArray } from 'components/utils/constants'
+import { groupedOptions } from './_mocks'
+import { styled } from '@mui/material'
+
+const GroupHeader = styled('div')(({ theme }) => ({
+  ...theme.typography.defaultFont,
+  padding: '4px 10px',
+  fontWeight: 'bold'
+}))
+
+const GroupItems = styled('ul')(({ theme }) => ({
+  ...theme.typography.defaultFont,
+  paddingLeft:'5px'
+}))
+
+export const GroupedPreview = (props: any) => {
+  const [value, setValue] = useState(emptyArray)
+
+  const groupBy = useCallback((option: any) => option.category?.name, [])
+
+  const renderGroup = useCallback(
+    (params: any) => (
+      <li key={params.key}>
+        <GroupHeader>{params.group}</GroupHeader>
+        <GroupItems>{params.children}</GroupItems>
+      </li>
+    ),
+    []
+  )
+
+  return (
+    <Autocomplete
+      {...props}
+      fullWidth
+      value={value}
+      onChange={setValue}
+      options={groupedOptions}
+      groupBy={groupBy}
+      renderGroup={renderGroup}
+    />
+  )
+}
+        `,
+        format: true
+      }
+    }
+  },
+  args: {
+    label: 'Grouped Options',
+    onChange: null,
+    onClose: null,
+    onInputChange: null,
+    onOpen: null
+  },
+  render: args => <GroupedPreview {...args} />
 }

@@ -70,6 +70,7 @@ const Autocomplete: React.FC<AutocompleteProps<any, any, any, any>> = ({
   isPaginated,
   ListboxProps,
   stopEventPropagation = false,
+  renderGroup,
   ...other
 }) => {
   const [options, setOptions] = useState(receivedOptions ?? [])
@@ -81,7 +82,6 @@ const Autocomplete: React.FC<AutocompleteProps<any, any, any, any>> = ({
   const loading = receivedLoading || localLoading
 
   const [localInput, setLocalInput] = useState<string>()
-  const [optionsLoaded, setOptionsLoaded] = useState(false)
 
   const disabledOptions = useMemo(
     () => (getOptionDisabled ? options.filter(getOptionDisabled) : []),
@@ -101,13 +101,11 @@ const Autocomplete: React.FC<AutocompleteProps<any, any, any, any>> = ({
             setAdditionalPageData(additional)
             if (hasMore !== more && input === localInput) setHasMore(more)
             setLocalLoading(false)
-            setOptionsLoaded(true)
           }
         )
         return
       }
       setLocalLoading(false)
-      setOptionsLoaded(true)
     },
     [additionalPageData, asyncOptions.length, hasMore, loadOptions, localInput, options]
   )
@@ -120,7 +118,6 @@ const Autocomplete: React.FC<AutocompleteProps<any, any, any, any>> = ({
         ;(loadOptions as LoadOptions)(input).then(loadedOptions => {
           setAsyncOptions(loadedOptions || [])
           setLocalLoading(false)
-          setOptionsLoaded(true)
         })
       } else handleLoadOptionsPaginated(input)
     },
@@ -129,10 +126,10 @@ const Autocomplete: React.FC<AutocompleteProps<any, any, any, any>> = ({
 
   const handleMenuOpen = useCallback(
     (event: React.SyntheticEvent<Element, Event>) => {
-      if (!optionsLoaded) handleLoadOptions(localInput)
       if (onOpen) onOpen(event)
+      handleLoadOptions(localInput)
     },
-    [handleLoadOptions, localInput, onOpen, optionsLoaded]
+    [handleLoadOptions, localInput, onOpen]
   )
 
   const handleMenuClose = useCallback(
@@ -278,7 +275,6 @@ const Autocomplete: React.FC<AutocompleteProps<any, any, any, any>> = ({
 
       // this prevents the component from calling loadOptions again when the user clicks outside it and the menu closes
       if (event?.nativeEvent?.type === 'focusout') {
-        setOptionsLoaded(false)
         return
       }
 
@@ -364,11 +360,11 @@ const Autocomplete: React.FC<AutocompleteProps<any, any, any, any>> = ({
       onChange={handleChange}
       onInputChange={throttledOnInputChange}
       disableClearable={!isClearable}
-      renderOption={renderOption}
       renderInput={renderInput}
       renderTags={renderTags}
       ListboxProps={listBoxProps}
       {...other}
+      {...(renderGroup ? { renderGroup } : { renderOption })}
     />
   )
 }
@@ -538,7 +534,14 @@ Autocomplete.propTypes = {
    * @default false
    * Stops click and change event propagation.
    */
-  stopEventPropagation: PropTypes.bool
+  stopEventPropagation: PropTypes.bool,
+  /**
+   * Render the group.
+   *
+   * @param {AutocompleteRenderGroupParams} params The group to render.
+   * @returns {ReactNode}
+   */
+  renderGroup: PropTypes.func
 }
 
 export default Autocomplete

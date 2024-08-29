@@ -1,7 +1,7 @@
 import { AutocompleteChangeReason, AutocompleteValue, AutocompleteProps as MuiAutocompleteProps } from '@mui/material'
 import { TypographyColor } from '../../dataDisplay/Typography'
 import { TextFieldProps } from '../TextField'
-import { AutocompleteRenderInputParams } from '@mui/material'
+import { AutocompleteRenderInputParams, AutocompleteRenderGroupParams } from '@mui/material'
 
 export interface OptionProps extends React.HTMLAttributes<HTMLLIElement> {
   /**
@@ -54,6 +54,7 @@ export interface AutocompleteProps<
     | 'disableClearable'
     | 'renderTags'
     | 'noOptionsText'
+    | 'renderGroup'
   > {
   /**
    * Array of options.
@@ -182,4 +183,11 @@ export interface AutocompleteProps<
    * Stops click and change event propagation.
    */
   stopEventPropagation?: boolean
+  /**
+   * Render the group.
+   *
+   * @param {AutocompleteRenderGroupParams} params The group to render.
+   * @returns {ReactNode}
+   */
+  renderGroup?: (params: AutocompleteRenderGroupParams) => React.ReactNode
 }
