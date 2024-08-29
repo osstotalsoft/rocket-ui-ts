@@ -4,6 +4,7 @@ import BugReport from '@mui/icons-material/BugReport'
 import BedroomBaby from '@mui/icons-material/BedroomBaby'
 import { includes, take, drop } from 'ramda'
 import { LoadOptionsPaginated } from '../../../components'
+import * as R from 'ramda'
 
 export const options = [
   { id: 1, name: 'Cat' },
@@ -102,3 +103,47 @@ export const loadOptions = async () => {
 }
 
 export const getOptionDisabled = (option: { isDisabled: any }) => option.isDisabled
+
+export const categories = [
+  { id: 1, name: 'Animals' },
+  { id: 2, name: 'Cars' },
+  { id: 3, name: 'Colors' }
+]
+
+export const types = [
+  { id: 1, categoryId: 1, name: 'Cat' },
+  { id: 2, categoryId: 1, name: 'Rabbit' },
+  {
+    id: 3,
+    categoryId: 2,
+    name: 'Audi'
+  },
+  {
+    id: 4,
+    categoryId: 2,
+    name: 'BMW'
+  },
+  {
+    id: 5,
+    categoryId: 3,
+    name: 'Blue'
+  },
+  {
+    id: 6,
+    categoryId: 3,
+    name: 'Red'
+  },
+  {
+    id: 7,
+    categoryId: 3,
+    name: 'Yellow'
+  }
+]
+
+export const groupedOptions = R.map(
+  ({ categoryId, ...res }) => ({
+    ...res,
+    category: R.find(R.propEq(categoryId, 'id'), categories)
+  }),
+  types
+)
