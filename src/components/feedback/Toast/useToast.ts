@@ -13,7 +13,7 @@ import { classes } from './ToastStyles'
 import cx from 'classnames'
 import { cond, equals, always, T } from 'ramda'
 
-type ToastOptions = Omit<ToastContainerProps, 'transition'> & {
+type ToastOptions = ToastContainerProps & {
   transitionType?: 'Slide' | 'Bounce' | 'Zoom' | 'Flip'
 }
 
