@@ -25,7 +25,7 @@ const useToast = () => {
      * @param {('success'|'info'|'warning'|'error')} variant The type of the toast
      * @param {ToastOptions} options Additional options passed to the toast
      */
-    (message: ToastContent, variant?: ToastifyTypeOptions, { transitionType, autoClose, ...restOptions } = {} as ToastOptions) => {
+    (message: ToastContent, variant?: ToastifyTypeOptions, { transitionType, ...restOptions } = {} as ToastOptions) => {
 
       const toastClasses = cx({
         [classes[variant]]: variant,
@@ -41,7 +41,6 @@ const useToast = () => {
 
       const options: ToastContainerProps = {
         ...restOptions,
-        autoClose,
         transition: getTransitionType(transitionType),
         className: toastClasses
       }
