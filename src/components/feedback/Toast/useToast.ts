@@ -6,14 +6,14 @@ import {
   Flip,
   Zoom,
   ToastContent,
+  ToastOptions as ToastifyToastOptions,
   TypeOptions as ToastifyTypeOptions
 } from 'react-toastify'
-import {ToastContainerProps} from './types'
 import { classes } from './ToastStyles'
 import cx from 'classnames'
 import { cond, equals, always, T } from 'ramda'
 
-type ToastOptions = ToastContainerProps & {
+type ToastOptions = Omit<ToastifyToastOptions, 'transition'> & {
   transitionType?: 'Slide' | 'Bounce' | 'Zoom' | 'Flip'
 }
 
@@ -39,7 +39,7 @@ const useToast = () => {
         [T, always(Slide)]
       ])
 
-      const options: ToastContainerProps = {
+      const options: ToastifyToastOptions  = {
         ...restOptions,
         transition: getTransitionType(transitionType),
         className: toastClasses
