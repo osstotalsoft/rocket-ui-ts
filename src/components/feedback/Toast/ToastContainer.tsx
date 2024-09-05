@@ -11,7 +11,7 @@ import { ToastContainerProps } from './types'
 
 const ToastContainer: React.FC<ToastContainerProps> = ({
   position = toast.POSITION.TOP_CENTER,
-  autoClose = 3000,
+  autoClose = false,
   newestOnTop = true,
   transitionType = 'Slide',
   limit = 5,
@@ -37,7 +37,7 @@ ToastContainer.propTypes = {
   /**
    * Set the delay in ms to close the toast automatically.
    * Use `false` to prevent the toast from closing.
-   * @default 3000
+   * @default false
    */
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
