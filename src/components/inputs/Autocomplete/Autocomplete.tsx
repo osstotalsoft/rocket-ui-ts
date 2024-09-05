@@ -128,7 +128,6 @@ const Autocomplete: React.FC<AutocompleteProps<any, any, any, any>> = ({
   const handleMenuOpen = useCallback(
     async (event: React.SyntheticEvent<Element, Event>) => {
       if (onOpen) onOpen(event)
-      if (localInput) return
       await handleLoadOptions(localInput)
     },
     [handleLoadOptions, localInput, onOpen]
@@ -137,6 +136,7 @@ const Autocomplete: React.FC<AutocompleteProps<any, any, any, any>> = ({
   const handleMenuClose = useCallback(
     (event: React.SyntheticEvent<Element, Event>, reason: AutocompleteCloseReason) => {
       setLocalInput('')
+      setAsyncOptions([])
       if (onClose) onClose(event, reason)
     },
     [onClose]
@@ -279,13 +279,8 @@ const Autocomplete: React.FC<AutocompleteProps<any, any, any, any>> = ({
       if (event?.nativeEvent?.type === 'focusout') {
         return
       }
-
-      if (loadOptions) {
-        setLocalLoading(true)
-        await handleLoadOptions(value)
-      }
     },
-    [handleLoadOptions, loadOptions, onInputChange]
+    [onInputChange]
   )
 
   useEffect(() => {
