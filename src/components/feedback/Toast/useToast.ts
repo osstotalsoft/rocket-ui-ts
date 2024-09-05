@@ -26,7 +26,6 @@ const useToast = () => {
      * @param {ToastOptions} options Additional options passed to the toast
      */
     (message: ToastContent, variant?: ToastifyTypeOptions, { transitionType, ...restOptions } = {} as ToastOptions) => {
-
       const toastClasses = cx({
         [classes[variant]]: variant,
         [classes['default']]: true
@@ -39,7 +38,7 @@ const useToast = () => {
         [T, always(Slide)]
       ])
 
-      const options: ToastifyToastOptions  = {
+      const options: ToastifyToastOptions = {
         ...restOptions,
         transition: getTransitionType(transitionType),
         className: toastClasses
