@@ -116,10 +116,8 @@ const Autocomplete: React.FC<AutocompleteProps<any, any, any, any>> = ({
       if (!isPaginated) {
         setLocalLoading(true)
         const loadedOptions = await (loadOptions as LoadOptions)(input)
-        // ;(loadOptions as LoadOptions)(input).then(loadedOptions => {
         setAsyncOptions(loadedOptions || [])
         setLocalLoading(false)
-        // })
       } else handleLoadOptionsPaginated(input)
     },
     [handleLoadOptionsPaginated, isPaginated, loadOptions]
