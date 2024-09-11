@@ -277,8 +277,10 @@ const Autocomplete: React.FC<AutocompleteProps<any, any, any, any>> = ({
       if (event?.nativeEvent?.type === 'focusout') {
         return
       }
+
+      await handleLoadOptions(value)
     },
-    [onInputChange]
+    [handleLoadOptions, onInputChange]
   )
 
   useEffect(() => {
@@ -325,7 +327,12 @@ const Autocomplete: React.FC<AutocompleteProps<any, any, any, any>> = ({
     return simpleValue ? getSimpleValue(loadOptions ? asyncOptions : options, value, valueKey, isMultiSelection) : value
   }, [simpleValue, loadOptions, asyncOptions, options, value, valueKey, isMultiSelection])
 
-  const throttledOnInputChange = useRef(throttle(handleInputChange, 500)).current
+  const inputChangeRef = useRef(throttle(handleInputChange, 500))
+  const throttledOnInputChange = inputChangeRef.current
+
+  useEffect(() => {
+    inputChangeRef.current = throttle(handleInputChange, 500)
+  }, [handleInputChange])
 
   return (
     <MuiAutocomplete
