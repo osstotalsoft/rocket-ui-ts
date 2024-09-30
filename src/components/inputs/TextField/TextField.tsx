@@ -148,7 +148,6 @@ const TextField: React.FC<TextFieldProps> = ({
   minValue = -Infinity,
   maxValue = Infinity,
   variant = 'standard',
-  helperText,
   ...rest
 }) => {
   const isNumeric = receivedIsNumeric || isStepper
@@ -264,7 +263,6 @@ const TextField: React.FC<TextFieldProps> = ({
         className: classes.label,
         ...InputLabelProps
       }}
-      helperText={helperText || ' '}
     />
   )
 }
@@ -370,11 +368,7 @@ TextField.propTypes = {
    * @default 'standard'
    * The variant to use.
    */
-  variant: PropTypes.oneOf(['filled', 'standard', 'outlined']),
-  /**
-   * Provide feedback to the user about the error.
-   */
-  helperText: PropTypes.string
+  variant: PropTypes.oneOf(['filled', 'standard', 'outlined'])
 }
 
 export default TextField
