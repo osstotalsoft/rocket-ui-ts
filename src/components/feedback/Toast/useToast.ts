@@ -9,13 +9,10 @@ import {
   ToastOptions as ToastifyToastOptions,
   TypeOptions as ToastifyTypeOptions
 } from 'react-toastify'
+import { ToastContainerProps } from './types'
 import { classes } from './ToastStyles'
 import cx from 'classnames'
 import { cond, equals, always, T } from 'ramda'
-
-type ToastOptions = Omit<ToastifyToastOptions, 'transition'> & {
-  transitionType?: 'Slide' | 'Bounce' | 'Zoom' | 'Flip'
-}
 
 const useToast = () => {
   return useCallback(
@@ -23,9 +20,9 @@ const useToast = () => {
      *
      * @param {ToastContent} message The content to be displayed
      * @param {('success'|'info'|'warning'|'error')} variant The type of the toast
-     * @param {ToastOptions} options Additional options passed to the toast
+     * @param {ToastContainerProps} options Additional options passed to the toast
      */
-    (message: ToastContent, variant?: ToastifyTypeOptions, { transitionType, ...restOptions } = {} as ToastOptions) => {
+    (message: ToastContent, variant?: ToastifyTypeOptions, { transitionType, ...restOptions } = {} as ToastContainerProps) => {
       const toastClasses = cx({
         [classes[variant]]: variant,
         [classes['default']]: true
