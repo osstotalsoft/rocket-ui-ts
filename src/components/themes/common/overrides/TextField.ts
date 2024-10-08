@@ -6,8 +6,8 @@ export default function TextField(): CustomComponents {
       styleOverrides: {
         root: {
           '&.Mui-error': {
-            position: 'absolute',
-            top: '100%'
+            marginTop: 0,
+            lineHeight: 1
           }
         }
       }
