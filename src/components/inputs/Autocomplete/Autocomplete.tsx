@@ -111,23 +111,22 @@ const Autocomplete: React.FC<AutocompleteProps<any, any, any, any>> = ({
   )
 
   const handleLoadOptions = useCallback(
-    (input?: string) => {
+    async (input?: string) => {
       if (!loadOptions) return
       if (!isPaginated) {
         setLocalLoading(true)
-        ;(loadOptions as LoadOptions)(input).then(loadedOptions => {
-          setAsyncOptions(loadedOptions || [])
-          setLocalLoading(false)
-        })
+        const loadedOptions = await (loadOptions as LoadOptions)(input)
+        setAsyncOptions(loadedOptions || [])
+        setLocalLoading(false)
       } else handleLoadOptionsPaginated(input)
     },
     [handleLoadOptionsPaginated, isPaginated, loadOptions]
   )
 
   const handleMenuOpen = useCallback(
-    (event: React.SyntheticEvent<Element, Event>) => {
+    async (event: React.SyntheticEvent<Element, Event>) => {
       if (onOpen) onOpen(event)
-      handleLoadOptions(localInput)
+      await handleLoadOptions(localInput)
     },
     [handleLoadOptions, localInput, onOpen]
   )
@@ -135,6 +134,7 @@ const Autocomplete: React.FC<AutocompleteProps<any, any, any, any>> = ({
   const handleMenuClose = useCallback(
     (event: React.SyntheticEvent<Element, Event>, reason: AutocompleteCloseReason) => {
       setLocalInput('')
+      setAsyncOptions([])
       if (onClose) onClose(event, reason)
     },
     [onClose]
@@ -269,7 +269,7 @@ const Autocomplete: React.FC<AutocompleteProps<any, any, any, any>> = ({
   )
 
   const handleInputChange = useCallback(
-    (event: React.SyntheticEvent, value: string, reason: AutocompleteInputChangeReason) => {
+    async (event: React.SyntheticEvent, value: string, reason: AutocompleteInputChangeReason) => {
       setLocalInput(value ? value : '')
       if (onInputChange) onInputChange(event, value, reason)
 
@@ -278,12 +278,9 @@ const Autocomplete: React.FC<AutocompleteProps<any, any, any, any>> = ({
         return
       }
 
-      if (loadOptions) {
-        setLocalLoading(true)
-        handleLoadOptions(value)
-      }
+      await handleLoadOptions(value)
     },
-    [handleLoadOptions, loadOptions, onInputChange]
+    [handleLoadOptions, onInputChange]
   )
 
   useEffect(() => {
@@ -330,7 +327,12 @@ const Autocomplete: React.FC<AutocompleteProps<any, any, any, any>> = ({
     return simpleValue ? getSimpleValue(loadOptions ? asyncOptions : options, value, valueKey, isMultiSelection) : value
   }, [simpleValue, loadOptions, asyncOptions, options, value, valueKey, isMultiSelection])
 
-  const throttledOnInputChange = useRef(throttle(handleInputChange, 500)).current
+  const inputChangeRef = useRef(throttle(handleInputChange, 500))
+  const throttledOnInputChange = inputChangeRef.current
+
+  useEffect(() => {
+    inputChangeRef.current = throttle(handleInputChange, 500)
+  }, [handleInputChange])
 
   return (
     <MuiAutocomplete
