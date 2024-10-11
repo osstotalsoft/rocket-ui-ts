@@ -178,7 +178,11 @@ const TextField: React.FC<TextFieldProps> = ({
     if (!isStepper && !startAdornment) return null
     return (
       <>
-        {isStepper && <InputAdornment position="start"><SubtractButton onSubtract={handleSubtract} /></InputAdornment>}
+        {isStepper && (
+          <InputAdornment position="start">
+            <SubtractButton onSubtract={handleSubtract} />
+          </InputAdornment>
+        )}
         {startAdornment}
       </>
     )
