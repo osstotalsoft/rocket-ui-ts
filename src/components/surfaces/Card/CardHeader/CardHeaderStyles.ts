@@ -26,7 +26,8 @@ const CardHeader = styled(MuiCardHeader, {
     headerContentProps
   }: Partial<StyledProps>) => ({
     ['&.MuiCardHeader-root']: {
-      ...(filled && { backgroundColor: theme?.palette.grey[200], minHeight: '48px' })
+      ...(filled && { backgroundColor: theme?.palette.grey[200], minHeight: '48px' }),
+      ...(hasIcon ? { padding: 0 } : {})
     },
     ['& .MuiCardHeader-avatar']: {
       ...(hasIcon && {
