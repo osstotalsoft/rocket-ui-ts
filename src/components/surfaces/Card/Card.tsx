@@ -47,7 +47,7 @@ const Card: React.FC<CardProps> = ({
   mediaProps,
   avatarProps,
   headerContentProps,
-  iconStyle,
+  iconStyle = {},
   ...props
 }) => {
   const hasIcon = !!Icon
