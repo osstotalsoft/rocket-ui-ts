@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import React from 'react'
 import PropTypes from 'prop-types'
-import MuiCard, { CardContent, iconStyle } from './CardStyles'
+import MuiCard, { CardContent, iconStyle as baseIconStyle } from './CardStyles'
 import CardMedia from '@mui/material/CardMedia'
 import { any, isNil } from 'ramda'
 import { CardProps, CardColor } from './types'
@@ -47,6 +47,7 @@ const Card: React.FC<CardProps> = ({
   mediaProps,
   avatarProps,
   headerContentProps,
+  iconStyle,
   ...props
 }) => {
   const hasIcon = !!Icon
@@ -54,7 +55,7 @@ const Card: React.FC<CardProps> = ({
   const cardHeaderProps = {
     title,
     subheader,
-    avatar: Icon && <Icon style={iconStyle} />,
+    avatar: Icon && <Icon style={{ ...baseIconStyle, ...iconStyle }} />,
     actions,
     filled,
     ...headerProps
@@ -166,7 +167,12 @@ Card.propTypes = {
    * @default {}
    * Props applied to the CardHeader component.
    */
-  headerContentProps: PropTypes.object
+  headerContentProps: PropTypes.object,
+  /**
+   * @default {}
+   * Style applied to icon avatar.
+   */
+  iconStyle: PropTypes.object
 }
 
 export default Card
