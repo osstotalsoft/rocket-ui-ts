@@ -52,10 +52,10 @@ const Card = styled(BaseCard, {
 })
 
 export const CardContent = styled(BaseCardContent, {
-  shouldForwardProp: prop => !includes(prop, ['hasHeader'])
-})(({ hasHeader }: { hasHeader: boolean }) => {
+  shouldForwardProp: prop => !includes(prop, ['hasHeader', 'hasIcon'])
+})(({ hasHeader, hasIcon }: { hasHeader: boolean; hasIcon: boolean }) => {
   return {
-    padding: hasHeader ? '8px 24px 24px 24px' : '24px'
+    padding: !hasHeader || hasIcon ? '24px' : '8px 24px 24px 24px'
   }
 })
 

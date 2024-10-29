@@ -11,7 +11,6 @@ import { ToastContainerProps } from './types'
 
 const ToastContainer: React.FC<ToastContainerProps> = ({
   position = toast.POSITION.TOP_CENTER,
-  autoClose = false,
   newestOnTop = true,
   transitionType = 'Slide',
   limit = 5,
@@ -22,7 +21,6 @@ const ToastContainer: React.FC<ToastContainerProps> = ({
       <ReactToastify
         className={classes.toastWrapper}
         position={position}
-        autoClose={autoClose}
         newestOnTop={newestOnTop}
         transition={transitionType as any}
         theme="colored"

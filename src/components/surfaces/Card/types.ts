@@ -150,4 +150,8 @@ export interface CardProps extends Omit<MuiCardProps, 'title'> {
    * Style applied to the header content.
    */
   headerContentProps?: HTMLAttributes<HTMLDivElement>
+  /**
+   * Icon style.
+   */
+  iconStyle?: React.CSSProperties
 }

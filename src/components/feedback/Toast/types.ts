@@ -8,10 +8,4 @@ export interface ToastContainerProps extends Omit<ReactToastifyProps, 'transitio
    * @default Slide
    */
   transitionType?: 'Slide' | 'Bounce' | 'Zoom' | 'Flip'
-  /**
-   * Set the delay in ms to close the toast automatically.
-   * Use `false` to prevent the toast from closing.
-   * `Default: false`
-   */
-  autoClose?: number | false
 }
