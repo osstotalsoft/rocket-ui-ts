@@ -23,11 +23,11 @@
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "typescript.updateImportsOnFileMove.enabled": "always",
   "typescript.tsserver.log": "verbose",
-  "eslint.packageManager": "yarn",
   "npm.packageManager": "yarn",
   "cSpell.words": [
     "autodocs",
     "copyfiles",
+    "rsbuild",
     "storybuild",
     "Toastify",
     "Totalsoft",
