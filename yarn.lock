@@ -5842,7 +5842,7 @@ __metadata:
     classnames: "npm:^2.5.1"
     copyfiles: "npm:^2.4.1"
     date-fns: "npm:^2.30.0"
-    dedent: "npm:^0.7.0"
+    dedent: "npm:^1.5.3"
     eslint: "npm:9.13.0"
     eslint-config-prettier: "npm:^9.1.0"
     eslint-plugin-prettier: "npm:^5.2.1"
@@ -8561,7 +8561,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dedent@npm:^1.0.0":
+"dedent@npm:^1.0.0, dedent@npm:^1.5.3":
   version: 1.5.3
   resolution: "dedent@npm:1.5.3"
   peerDependencies:
