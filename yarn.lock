@@ -4688,9 +4688,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nx/devkit@npm:20.0.6":
-  version: 20.0.6
-  resolution: "@nx/devkit@npm:20.0.6"
+"@nx/devkit@npm:20.0.7":
+  version: 20.0.7
+  resolution: "@nx/devkit@npm:20.0.7"
   dependencies:
     ejs: "npm:^3.1.7"
     enquirer: "npm:~2.3.6"
@@ -4702,13 +4702,13 @@ __metadata:
     yargs-parser: "npm:21.1.1"
   peerDependencies:
     nx: ">= 19 <= 21"
-  checksum: 10c0/cf1768160a0de434e26424dffd6b9acd436a63c1d89dde0bdf75082daf110efe7961c823a15a70cfbc7f6d1a27bffd82f5de66a8e8d6dfce5e0fd54a725b98b5
+  checksum: 10c0/ea18aa7966230d0ddaf972dbc90dba628d82999b89dc7d7f2d1907319b2511c376942d3d0e69468d8851be014ce13b658ca09159ea72e5f0bb5854dd75c8f4e5
   languageName: node
   linkType: hard
 
-"@nx/js@npm:^20.0.6":
-  version: 20.0.6
-  resolution: "@nx/js@npm:20.0.6"
+"@nx/js@npm:^20.0.7":
+  version: 20.0.7
+  resolution: "@nx/js@npm:20.0.7"
   dependencies:
     "@babel/core": "npm:^7.23.2"
     "@babel/plugin-proposal-decorators": "npm:^7.22.7"
@@ -4717,8 +4717,8 @@ __metadata:
     "@babel/preset-env": "npm:^7.23.2"
     "@babel/preset-typescript": "npm:^7.22.5"
     "@babel/runtime": "npm:^7.22.6"
-    "@nx/devkit": "npm:20.0.6"
-    "@nx/workspace": "npm:20.0.6"
+    "@nx/devkit": "npm:20.0.7"
+    "@nx/workspace": "npm:20.0.7"
     "@zkochan/js-yaml": "npm:0.0.7"
     babel-plugin-const-enum: "npm:^1.0.1"
     babel-plugin-macros: "npm:^2.8.0"
@@ -4745,91 +4745,91 @@ __metadata:
   peerDependenciesMeta:
     verdaccio:
       optional: true
-  checksum: 10c0/d9509433f5b5efe12a3d8d881ed4dbb70a9ec299df4857fb8fb64eaccc176e72040d6ba92d8b2efdca734ba298c66468051777eec2f4e7b3c246f4c0e74da2b2
+  checksum: 10c0/eae4688886a73c2fc0354dbfc1b626c897337b4a77a264f851cc166ae48ae9e7437fd052d94325c1270724e95e9cebb2e45b872adbe742fc3784d3a454815b93
   languageName: node
   linkType: hard
 
-"@nx/nx-darwin-arm64@npm:20.0.6":
-  version: 20.0.6
-  resolution: "@nx/nx-darwin-arm64@npm:20.0.6"
+"@nx/nx-darwin-arm64@npm:20.0.7":
+  version: 20.0.7
+  resolution: "@nx/nx-darwin-arm64@npm:20.0.7"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@nx/nx-darwin-x64@npm:20.0.6":
-  version: 20.0.6
-  resolution: "@nx/nx-darwin-x64@npm:20.0.6"
+"@nx/nx-darwin-x64@npm:20.0.7":
+  version: 20.0.7
+  resolution: "@nx/nx-darwin-x64@npm:20.0.7"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@nx/nx-freebsd-x64@npm:20.0.6":
-  version: 20.0.6
-  resolution: "@nx/nx-freebsd-x64@npm:20.0.6"
+"@nx/nx-freebsd-x64@npm:20.0.7":
+  version: 20.0.7
+  resolution: "@nx/nx-freebsd-x64@npm:20.0.7"
   conditions: os=freebsd & cpu=x64
   languageName: node
   linkType: hard
 
-"@nx/nx-linux-arm-gnueabihf@npm:20.0.6":
-  version: 20.0.6
-  resolution: "@nx/nx-linux-arm-gnueabihf@npm:20.0.6"
+"@nx/nx-linux-arm-gnueabihf@npm:20.0.7":
+  version: 20.0.7
+  resolution: "@nx/nx-linux-arm-gnueabihf@npm:20.0.7"
   conditions: os=linux & cpu=arm
   languageName: node
   linkType: hard
 
-"@nx/nx-linux-arm64-gnu@npm:20.0.6":
-  version: 20.0.6
-  resolution: "@nx/nx-linux-arm64-gnu@npm:20.0.6"
+"@nx/nx-linux-arm64-gnu@npm:20.0.7":
+  version: 20.0.7
+  resolution: "@nx/nx-linux-arm64-gnu@npm:20.0.7"
   conditions: os=linux & cpu=arm64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@nx/nx-linux-arm64-musl@npm:20.0.6":
-  version: 20.0.6
-  resolution: "@nx/nx-linux-arm64-musl@npm:20.0.6"
+"@nx/nx-linux-arm64-musl@npm:20.0.7":
+  version: 20.0.7
+  resolution: "@nx/nx-linux-arm64-musl@npm:20.0.7"
   conditions: os=linux & cpu=arm64 & libc=musl
   languageName: node
   linkType: hard
 
-"@nx/nx-linux-x64-gnu@npm:20.0.6":
-  version: 20.0.6
-  resolution: "@nx/nx-linux-x64-gnu@npm:20.0.6"
+"@nx/nx-linux-x64-gnu@npm:20.0.7":
+  version: 20.0.7
+  resolution: "@nx/nx-linux-x64-gnu@npm:20.0.7"
   conditions: os=linux & cpu=x64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@nx/nx-linux-x64-musl@npm:20.0.6":
-  version: 20.0.6
-  resolution: "@nx/nx-linux-x64-musl@npm:20.0.6"
+"@nx/nx-linux-x64-musl@npm:20.0.7":
+  version: 20.0.7
+  resolution: "@nx/nx-linux-x64-musl@npm:20.0.7"
   conditions: os=linux & cpu=x64 & libc=musl
   languageName: node
   linkType: hard
 
-"@nx/nx-win32-arm64-msvc@npm:20.0.6":
-  version: 20.0.6
-  resolution: "@nx/nx-win32-arm64-msvc@npm:20.0.6"
+"@nx/nx-win32-arm64-msvc@npm:20.0.7":
+  version: 20.0.7
+  resolution: "@nx/nx-win32-arm64-msvc@npm:20.0.7"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"@nx/nx-win32-x64-msvc@npm:20.0.6":
-  version: 20.0.6
-  resolution: "@nx/nx-win32-x64-msvc@npm:20.0.6"
+"@nx/nx-win32-x64-msvc@npm:20.0.7":
+  version: 20.0.7
+  resolution: "@nx/nx-win32-x64-msvc@npm:20.0.7"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
 
-"@nx/workspace@npm:20.0.6":
-  version: 20.0.6
-  resolution: "@nx/workspace@npm:20.0.6"
+"@nx/workspace@npm:20.0.7":
+  version: 20.0.7
+  resolution: "@nx/workspace@npm:20.0.7"
   dependencies:
-    "@nx/devkit": "npm:20.0.6"
+    "@nx/devkit": "npm:20.0.7"
     chalk: "npm:^4.1.0"
     enquirer: "npm:~2.3.6"
-    nx: "npm:20.0.6"
+    nx: "npm:20.0.7"
     tslib: "npm:^2.3.0"
     yargs-parser: "npm:21.1.1"
-  checksum: 10c0/5b8c6b0b132d7e9f691ebeda98db3452e683edf3cb902971f300bc4f58ed196d6c5e23a8a90843a4a2ff03710f0dc889cbb3d724d738420d835f140df376decb
+  checksum: 10c0/009de0fa1b7d3dc0b4ab7064d1b37c8d2b0921bc164316dfec6d9dc43b2e55a76c7688001528b33556e74dbf295e809dcf06887ed8554eb63ffd58482d1c8002
   languageName: node
   linkType: hard
 
@@ -5773,7 +5773,7 @@ __metadata:
     "@mui/system": "npm:^5.16.0"
     "@mui/types": "npm:^7.2.14"
     "@mui/x-date-pickers": "npm:5.0.0-beta.6"
-    "@nx/js": "npm:^20.0.6"
+    "@nx/js": "npm:^20.0.7"
     "@storybook/addon-essentials": "npm:^8.1.11"
     "@storybook/addon-interactions": "npm:^8.1.11"
     "@storybook/addon-links": "npm:^8.1.11"
@@ -12970,21 +12970,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nx@npm:20.0.6":
-  version: 20.0.6
-  resolution: "nx@npm:20.0.6"
+"nx@npm:20.0.7":
+  version: 20.0.7
+  resolution: "nx@npm:20.0.7"
   dependencies:
     "@napi-rs/wasm-runtime": "npm:0.2.4"
-    "@nx/nx-darwin-arm64": "npm:20.0.6"
-    "@nx/nx-darwin-x64": "npm:20.0.6"
-    "@nx/nx-freebsd-x64": "npm:20.0.6"
-    "@nx/nx-linux-arm-gnueabihf": "npm:20.0.6"
-    "@nx/nx-linux-arm64-gnu": "npm:20.0.6"
-    "@nx/nx-linux-arm64-musl": "npm:20.0.6"
-    "@nx/nx-linux-x64-gnu": "npm:20.0.6"
-    "@nx/nx-linux-x64-musl": "npm:20.0.6"
-    "@nx/nx-win32-arm64-msvc": "npm:20.0.6"
-    "@nx/nx-win32-x64-msvc": "npm:20.0.6"
+    "@nx/nx-darwin-arm64": "npm:20.0.7"
+    "@nx/nx-darwin-x64": "npm:20.0.7"
+    "@nx/nx-freebsd-x64": "npm:20.0.7"
+    "@nx/nx-linux-arm-gnueabihf": "npm:20.0.7"
+    "@nx/nx-linux-arm64-gnu": "npm:20.0.7"
+    "@nx/nx-linux-arm64-musl": "npm:20.0.7"
+    "@nx/nx-linux-x64-gnu": "npm:20.0.7"
+    "@nx/nx-linux-x64-musl": "npm:20.0.7"
+    "@nx/nx-win32-arm64-msvc": "npm:20.0.7"
+    "@nx/nx-win32-x64-msvc": "npm:20.0.7"
     "@yarnpkg/lockfile": "npm:^1.1.0"
     "@yarnpkg/parsers": "npm:3.0.0-rc.46"
     "@zkochan/js-yaml": "npm:0.0.7"
@@ -13048,7 +13048,7 @@ __metadata:
   bin:
     nx: bin/nx.js
     nx-cloud: bin/nx-cloud.js
-  checksum: 10c0/b5413b84507e37056b7ded24eaeed26e583883f6e7f64c6ee374c41fc1c7b7a8537ab23f338f12df92e30b1860a89f9f3ec828dcc11fe22797512df3aa12f135
+  checksum: 10c0/fc3385b075710ff8b655861df25357fc5c1f4f10fa1bf5b7fb5e941bac03b1e1b90034ea5c68f8dce65b8e0709f3a1929d3d8308bc118cf979ebdc873570de82
   languageName: node
   linkType: hard
 
