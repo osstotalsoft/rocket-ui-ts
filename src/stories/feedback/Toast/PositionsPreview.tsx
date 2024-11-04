@@ -3,7 +3,6 @@
 
 import React from 'react'
 import { Grid } from '@mui/material'
-import { toast } from 'react-toastify'
 import { Button, useToast } from 'components'
 
 const PositionsPreview = () => {
