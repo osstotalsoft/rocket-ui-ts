@@ -131,10 +131,10 @@
     "rimraf": "^6.0.1",
     "sort-package-json": "^2.10.1",
     "storybook": "^8.1.11",
-    "ts-jest": "^29.1.0",
-    "ts-node": "^10.9.1",
+    "ts-jest": "^29.2.5",
+    "ts-node": "^10.9.2",
     "tsconfig-paths-webpack-plugin": "^4.0.1",
-    "tss-react": "^4.8.2",
+    "tss-react": "^4.9.13",
     "typescript": "5.0.4"
   },
   "packageManager": "yarn@4.3.1",
