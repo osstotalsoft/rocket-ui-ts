@@ -138,7 +138,7 @@
     "tss-react": "^4.9.13",
     "typescript": "5.5.4"
   },
-  "packageManager": "yarn@4.3.1",
+  "packageManager": "yarn@4.5.1",
   "engines": {
     "node": ">=20.x",
     "yarn": ">=3.x"
