@@ -1,11 +1,10 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { Title } from './AboutStyles'
 import { Grid } from '@mui/material'
 import { orbits, homeData } from '../constants/orbits'
 import { Typography } from 'components'
 
-const AboutContainer = ({ activeItem }: any) => {
+const AboutContainer = ({ activeItem = 0 }: any) => {
   const data = [homeData, ...orbits].find(o => o.id === activeItem)
   return (
     <Grid container rowSpacing={2}>
@@ -24,14 +23,6 @@ const AboutContainer = ({ activeItem }: any) => {
       </Grid>
     </Grid>
   )
-}
-
-AboutContainer.propTypes = {
-  activeItem: PropTypes.number.isRequired
-}
-
-AboutContainer.defaultProps = {
-  activeItem: 0
 }
 
 export default AboutContainer

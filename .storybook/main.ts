@@ -9,7 +9,6 @@ const config: StorybookConfig = {
     getAbsolutePath("@storybook/addon-links"),
     getAbsolutePath("@storybook/addon-interactions"),
     getAbsolutePath("@storybook/preview-api"),
-    getAbsolutePath('@chromatic-com/storybook'),
     getAbsolutePath("@storybook/addon-webpack5-compiler-swc"),
   ],
   staticDirs: ['../public'],
