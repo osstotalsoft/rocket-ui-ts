@@ -41,7 +41,7 @@ export const filterOptions =
     return filtered
   }
 
-export const getSimpleValue = <T>(
+export const getSimpleValue = <T extends {}>(
   readonlyOptions: readonly T[],
   value: unknown,
   valueKey: string,

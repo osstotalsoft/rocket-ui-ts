@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { ToastContainer as ReactToastify, toast } from 'react-toastify'
+import { ToastContainer as ReactToastify } from 'react-toastify'
 import Container, { classes } from './ToastStyles'
 import 'react-toastify/dist/ReactToastify.css'
 import { ToastContainerProps } from './types'
@@ -10,7 +10,7 @@ import { ToastContainerProps } from './types'
  */
 
 const ToastContainer: React.FC<ToastContainerProps> = ({
-  position = toast.POSITION.TOP_CENTER,
+  position = 'top-center',
   newestOnTop = true,
   transitionType = 'Slide',
   limit = 5,
