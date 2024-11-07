@@ -83,6 +83,9 @@
   "devDependencies": {
     "@babel/core": "^7.26.0",
     "@emotion/css": "^11.13.4",
+    "@eslint/compat": "^1.2.2",
+    "@eslint/eslintrc": "^3.1.0",
+    "@eslint/js": "^9.14.0",
     "@nx/js": "^20.0.8",
     "@storybook/addon-essentials": "8.3.0",
     "@storybook/addon-interactions": "8.3.0",

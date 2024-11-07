@@ -42,7 +42,7 @@ const AccordionItem: React.FC<AccordionProps> = ({
  */
 const Accordion: React.FC<AccordionProps> = ({ canExpandAll = false, defaultExpanded, content, ...res }) => {
   const [localActive, setLocalActive] = useState(isBoolean(defaultExpanded) ? -1 : defaultExpanded)
-  const handleChange = (index: number) => (_: React.SyntheticEvent, expanded: Boolean) =>
+  const handleChange = (index: number) => (_: React.SyntheticEvent, expanded: boolean) =>
     setLocalActive(expanded ? index : -1)
 
   return isArray(content) ? (

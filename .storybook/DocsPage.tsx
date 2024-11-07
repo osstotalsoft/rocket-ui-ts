@@ -12,7 +12,7 @@ const useStyles = makeStyles()({
   toc: {
     flexBasis: '200px',
     flexShrink: 0,
-    [`@media screen and (max-width: 1300px)`]: {
+    ['@media screen and (max-width: 1300px)']: {
       display: 'none'
     }
   },
