@@ -17,7 +17,7 @@ const config: StorybookConfig = {
     options: {}
   },
   core: {
-    builder: '@storybook/builder-webpack5'
+    builder: getAbsolutePath('@storybook/builder-webpack5')
   },
   typescript: {
     reactDocgen: 'react-docgen',
