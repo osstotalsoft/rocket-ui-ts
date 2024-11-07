@@ -83,7 +83,6 @@
   "devDependencies": {
     "@babel/core": "^7.26.0",
     "@emotion/css": "^11.13.4",
-    "@nx/js": "^20.0.8",
     "@storybook/addon-essentials": "8.3.0",
     "@storybook/addon-interactions": "8.3.0",
     "@storybook/addon-links": "8.3.0",
