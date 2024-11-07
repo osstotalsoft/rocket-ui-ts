@@ -127,7 +127,6 @@
     "prop-types": "15.8.1",
     "react-syntax-highlighter": "^15.6.1",
     "rimraf": "^6.0.1",
-    "sort-package-json": "^2.10.1",
     "storybook": "8.3.0",
     "ts-jest": "^29.2.5",
     "ts-node": "^10.9.2",
