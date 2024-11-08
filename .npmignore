@@ -7,8 +7,7 @@ tsconfig.build.json
 __tests__
 __mocks__
 .babelrc
-.eslintignore
-.eslintrc.json
+eslint.config.mjs
 .gitignore
 .yarn
 .vscode

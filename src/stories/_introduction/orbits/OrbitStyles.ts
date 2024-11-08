@@ -1,4 +1,3 @@
-//@ts-nocheck
 import styled from '@emotion/styled'
 import { css } from '@emotion/css'
 import materialImage from '../../assets/img/satellite.png'
@@ -62,7 +61,7 @@ export const Orbit = styled(Link, { shouldForwardProp: prop => prop !== 'orbitCo
     ${(props: any) =>
       props.isActive
         ? css`
-            border: 1px solid ${(props: any) => props.orbitColor};
+            border: 1px solid ${props.orbitColor};
             &::before {
               transform: scale(1.5) translate(-50%, -50%);
             }
@@ -80,7 +79,9 @@ export const Rocket = styled.div`
   border-radius: 1000px;
   background-image: url(${rocketImage});
   background-size: cover;
-  box-shadow: 0 0 10px 2px rgba(255, 107, 0, 0.4), 0 0 22px 11px rgba(255, 203, 0, 0.13);
+  box-shadow:
+    0 0 10px 2px rgba(255, 107, 0, 0.4),
+    0 0 22px 11px rgba(255, 203, 0, 0.13);
   transform: translate(-50%, -50%);
   z-index: 150;
 `

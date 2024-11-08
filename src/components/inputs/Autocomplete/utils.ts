@@ -41,7 +41,7 @@ export const filterOptions =
     return filtered
   }
 
-export const getSimpleValue = <T extends {}>(
+export const getSimpleValue = <T extends Record<string, unknown>>(
   readonlyOptions: readonly T[],
   value: unknown,
   valueKey: string,
@@ -78,7 +78,7 @@ export const computeChangedMultiValue = <T, Multiple, DisableClearable, FreeSolo
 export const computeChangedSingleValue = (input: any, simpleValue: boolean, valueKey: string, labelKey: string) =>
   simpleValue
     ? findFirstNotNil([valueKey, labelKey], input)
-    : prop('_primitiveValue', input) ?? omit(['_createdOption'], input)
+    : (prop('_primitiveValue', input) ?? omit(['_createdOption'], input))
 
 export const stopPropagation = (event: any) => {
   event.stopPropagation()

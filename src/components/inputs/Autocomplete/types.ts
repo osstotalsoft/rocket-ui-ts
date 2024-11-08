@@ -7,11 +7,11 @@ export interface OptionProps extends React.HTMLAttributes<HTMLLIElement> {
   /**
    * The string value for a given option
    */
-  optionLabel?: String
+  optionLabel?: string
   /**
    * Custom label displayed when @creatable is true
    */
-  createdLabel?: String
+  createdLabel?: string
   /**
    *  The selected option(s)
    */
@@ -31,7 +31,7 @@ export type LoadOptionsPaginated = (
   input: string,
   options: ReadonlyArray<any>,
   additional?: any
-) => Promise<{ loadedOptions: ReadonlyArray<any>; more: Boolean; additional: any }>
+) => Promise<{ loadedOptions: ReadonlyArray<any>; more: boolean; additional: any }>
 
 export type LoadOptions = (input: string) => Promise<any>
 
