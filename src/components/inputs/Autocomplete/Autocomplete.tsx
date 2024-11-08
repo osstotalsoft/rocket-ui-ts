@@ -76,7 +76,7 @@ const Autocomplete: React.FC<AutocompleteProps<any, any, any, any>> = ({
   const [options, setOptions] = useState(receivedOptions ?? [])
   const [asyncOptions, setAsyncOptions] = useState<ReadonlyArray<any>>(is(Array, defaultOptions) ? defaultOptions : [])
   const [additionalPageData, setAdditionalPageData] = useState(null)
-  const [hasMore, setHasMore] = useState<Boolean>(true)
+  const [hasMore, setHasMore] = useState<boolean>(true)
 
   const [localLoading, setLocalLoading] = useState(false)
   const loading = receivedLoading || localLoading
@@ -229,8 +229,8 @@ const Autocomplete: React.FC<AutocompleteProps<any, any, any, any>> = ({
       !is(Object, option) && !is(Object, value)
         ? equals(option, value)
         : simpleValue
-        ? equals(option[valueKey], value) || equals(option?.[valueKey], value?.[valueKey])
-        : equals(option?.[valueKey], value?.[valueKey]),
+          ? equals(option[valueKey], value) || equals(option?.[valueKey], value?.[valueKey])
+          : equals(option?.[valueKey], value?.[valueKey]),
     [simpleValue, valueKey]
   )
 

@@ -51,8 +51,8 @@ const NumberTextField = React.forwardRef<HTMLElement, NumberTextFieldProps>(func
 
   const handleValueChange = useCallback(
     (values: NumberFormatValues, sourceInfo: SourceInfo) => {
-      // eslint-disable-next-line no-unused-expressions
-      format ? onChange(values.value, sourceInfo.event) : onChange(values.floatValue, sourceInfo.event)
+      if (format) onChange(values.value, sourceInfo.event)
+      else onChange(values.floatValue, sourceInfo.event)
     },
     [onChange, format]
   )

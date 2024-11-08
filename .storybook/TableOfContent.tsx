@@ -15,7 +15,7 @@ const useTocStyles = makeStyles()({
     marginLeft: '40px',
     flexBasis: '200px',
     flexShrink: 0,
-    [`@media screen and (max-width: 1300px)`]: {
+    ['@media screen and (max-width: 1300px)']: {
       display: 'none'
     }
   },
@@ -111,7 +111,7 @@ export function TableOfContent({ stories }) {
               <a
                 href={`#${name}`}
                 target="_self"
-                onClick={e => {
+                onClick={_e => {
                   isNavigating.current = true
                   addons.getChannel().emit(NAVIGATE_URL, `#${name}`)
                   setSelected(name)
