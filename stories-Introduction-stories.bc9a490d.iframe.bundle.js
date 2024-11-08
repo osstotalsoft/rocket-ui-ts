@@ -49,7 +49,7 @@
     }
 
     ${props=>props.isActive?css`
-            border: 1px solid ${props=>props.orbitColor};
+            border: 1px solid ${props.orbitColor};
             &::before {
               transform: scale(1.5) translate(-50%, -50%);
             }
@@ -64,7 +64,9 @@
   border-radius: 1000px;
   background-image: url(${rocket_namespaceObject});
   background-size: cover;
-  box-shadow: 0 0 10px 2px rgba(255, 107, 0, 0.4), 0 0 22px 11px rgba(255, 203, 0, 0.13);
+  box-shadow:
+    0 0 10px 2px rgba(255, 107, 0, 0.4),
+    0 0 22px 11px rgba(255, 203, 0, 0.13);
   transform: translate(-50%, -50%);
   z-index: 150;
 `,MaterialOrbit=(0,emotion_styled_browser_esm.A)(Orbit)`
@@ -125,4 +127,4 @@
     font-size: 5rem;
   }
 `;var Grid=__webpack_require__("./.yarn/__virtual__/@mui-material-virtual-50bcb6f5bc/4/.yarn/berry/cache/@mui-material-npm-5.16.7-7070122752-10c0.zip/node_modules/@mui/material/Grid/Grid.js");const AboutContainer=({activeItem=0})=>{const data=[homeData,...orbits].find((o=>o.id===activeItem));return react.createElement(Grid.Ay,{container:!0,rowSpacing:2},react.createElement(Grid.Ay,{item:!0,xs:12},react.createElement(Title,{variant:"h1"},data.name)),react.createElement(Grid.Ay,{item:!0,xs:12},react.createElement(components.o5,{variant:"h5",emphasis:"italic",color:"secondary"},data.heading)),react.createElement(Grid.Ay,{item:!0,xs:12},react.createElement(components.o5,{variant:"h6",color:"textSecondary"},data.description)))},about_AboutContainer=AboutContainer;AboutContainer.__docgenInfo={description:"",methods:[],displayName:"AboutContainer",props:{activeItem:{defaultValue:{value:"0",computed:!1},required:!1}}};const LandingPage=()=>{const[activeItem,setActiveItem]=(0,react.useState)(0);return react.createElement(Grid.Ay,{container:!0,alignItems:"stretch",justifyContent:"center"},react.createElement(Grid.Ay,{item:!0,xs:12,md:6},react.createElement(orbits_OrbitContainer,{setActiveItem})),react.createElement(Grid.Ay,{item:!0,xs:12,md:6},react.createElement(about_AboutContainer,{activeItem})))},Introduction_stories={title:"Introduction",component:LandingPage,tags:["!autodocs"],parameters:{options:{showPanel:!1}}},Introduction={render:()=>react.createElement(LandingPage,null)},__namedExportsOrder=["Introduction"];Introduction.parameters={...Introduction.parameters,docs:{...Introduction.parameters?.docs,source:{originalSource:"{\n  render: () => <LandingPage />\n}",...Introduction.parameters?.docs?.source}}}},"./src/stories/assets/img/robot.png":(module,__unused_webpack_exports,__webpack_require__)=>{module.exports=__webpack_require__.p+"static/media/robot.27205e8b.png"},"./src/stories/assets/img/spaceship.png":(module,__unused_webpack_exports,__webpack_require__)=>{module.exports=__webpack_require__.p+"static/media/spaceship.fdcbb82b.png"}}]);
-//# sourceMappingURL=stories-Introduction-stories.fc931bd7.iframe.bundle.js.map
+//# sourceMappingURL=stories-Introduction-stories.bc9a490d.iframe.bundle.js.map
