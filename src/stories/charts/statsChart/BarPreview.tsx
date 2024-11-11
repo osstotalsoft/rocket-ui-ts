@@ -9,7 +9,7 @@ import { statsChartData, statsChartOptions } from './_mocks'
 
 const BarPreview = () => {
   return (
-    (<Grid container spacing={2}>
+    <Grid container spacing={2}>
       <Grid size={6}>
         <StatsChart
           type="bar"
@@ -34,7 +34,7 @@ const BarPreview = () => {
           iconColor="info"
         />
       </Grid>
-    </Grid>)
+    </Grid>
   )
 }
 

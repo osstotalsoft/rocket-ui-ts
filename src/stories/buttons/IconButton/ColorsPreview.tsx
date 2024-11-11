@@ -238,12 +238,7 @@ export const ColorsPreview: React.FunctionComponent = () => (
           <RocketIcon />
         </IconButton>
       </Grid>
-      <Grid
-        size={{
-          xs: 3,
-          md: 1
-        }}
-      />
+      <Grid size={{ xs: 3, md: 1 }} />
     </Grid>
   </Grid>
 )

@@ -23,13 +23,13 @@ type LocaleMapType = {
 
 const FormatPreview = () => {
   const [format, setFormat] = useState<DateTimeProps['format']>('en-US')
-  
+
   const handleClick = useCallback((e: any) => {
     setFormat(e.target.value)
   }, [])
 
   return (
-    (<Grid container spacing={4} justifyItems={'flex-start'}>
+    <Grid container spacing={4} justifyItems={'flex-start'}>
       <Grid size={12}>
         <ToggleButtonGroup value={format} exclusive sx={{ mb: 2, display: 'block' }}>
           {Object.keys(maskMap).map(localeItem => (
@@ -53,7 +53,7 @@ const FormatPreview = () => {
       <Grid size={4}>
         <DateTime showPicker="time" label="Time Picker" format={format} mask={maskMap[format as keyof LocaleMapType].time} />
       </Grid>
-    </Grid>)
+    </Grid>
   )
 }
 
