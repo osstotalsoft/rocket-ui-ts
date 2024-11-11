@@ -2,7 +2,7 @@ import React from 'react'
 import Grid from '@mui/material/Grid2'
 import { NavPills } from 'components'
 import { tabs } from './_options'
-import SyntaxHighlighter from 'react-syntax-highlighter' 
+import SyntaxHighlighter from 'react-syntax-highlighter'
 import { github } from 'react-syntax-highlighter/dist/esm/styles/hljs'
 
 const controlled = `function ControlledNavPills({tabs}) {
@@ -31,7 +31,7 @@ const uncontrolled = `function UncontrolledNavPills({tabs}) {
 
 const ControlledPreview = () => {
   return (
-    (<Grid container spacing={4}>
+    <Grid container spacing={4}>
       <Grid size={4}>
         <NavPills tabs={tabs(false, true)} />
       </Grid>
@@ -45,7 +45,7 @@ const ControlledPreview = () => {
           {uncontrolled}
         </SyntaxHighlighter>
       </Grid>
-    </Grid>)
+    </Grid>
   )
 }
 

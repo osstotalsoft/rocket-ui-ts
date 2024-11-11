@@ -9,7 +9,7 @@ export const RequiredPreview = () => {
   const [helperValue, setHelperValue] = useState()
 
   return (
-    (<Grid container spacing={2}>
+    <Grid container spacing={2}>
       <Grid container spacing={4} size={12}>
         <Grid size={3}>
           <Autocomplete required label="Required" value={requiredValue} onChange={setRequiredValue} options={options} />
@@ -36,6 +36,6 @@ export const RequiredPreview = () => {
           />
         </Grid>
       </Grid>
-    </Grid>)
+    </Grid>
   )
 }

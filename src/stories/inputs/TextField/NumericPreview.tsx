@@ -23,7 +23,7 @@ const NumericPreview = () => {
   }
 
   return (
-    (<Grid container spacing={4} justifyItems={'flex-start'}>
+    <Grid container spacing={4} justifyItems={'flex-start'}>
       <Grid size={3}>
         <TextField
           isNumeric
@@ -66,7 +66,7 @@ const NumericPreview = () => {
           fullWidth
         />
       </Grid>
-    </Grid>)
+    </Grid>
   )
 }
 

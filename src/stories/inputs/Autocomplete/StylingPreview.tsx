@@ -11,7 +11,7 @@ export const StylingPreview = () => {
   const [typographyColorValue, setTypographyColorValue] = useState()
 
   return (
-    (<Grid container spacing={2}>
+    <Grid container spacing={2}>
       <Grid container spacing={4} size={12}>
         <Grid size={3}>
           <ColumnHeader>{'Component'}</ColumnHeader>
@@ -52,6 +52,6 @@ export const StylingPreview = () => {
           <Typography>{'error'}</Typography>
         </Grid>
       </Grid>
-    </Grid>)
+    </Grid>
   )
 }

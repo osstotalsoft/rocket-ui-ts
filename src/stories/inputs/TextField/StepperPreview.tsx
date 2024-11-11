@@ -21,7 +21,7 @@ const StepperPreview = () => {
   }
 
   return (
-    (<Grid container spacing={4} justifyItems={'flex-start'}>
+    <Grid container spacing={4} justifyItems={'flex-start'}>
       <Grid size={4}>
         <TextField
           label="Basic stepper"
@@ -51,7 +51,7 @@ const StepperPreview = () => {
           onChange={handleChangeCustomValue}
         />
       </Grid>
-    </Grid>)
+    </Grid>
   )
 }
 

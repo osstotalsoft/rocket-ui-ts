@@ -7,7 +7,7 @@ import { github } from 'react-syntax-highlighter/dist/esm/styles/hljs'
 
 const FilledPreview = () => {
   return (
-    (<Grid container columnSpacing={4} justifyContent="center" direction="column">
+    <Grid container columnSpacing={4} justifyContent="center" direction="column">
       <Grid>
         <SyntaxHighlighter language="javascript" wrapLongLines style={github}>
           {'<NavPills color="rose" .../>'}
@@ -26,7 +26,7 @@ const FilledPreview = () => {
         </SyntaxHighlighter>
         <NavPills tabs={tabs(false, true)} colorGradient="warning" />
       </Grid>
-    </Grid>)
+    </Grid>
   )
 }
 

@@ -9,7 +9,7 @@ import { statsChartData, statsChartOptions } from './_mocks'
 
 const LinePreview = () => {
   return (
-    (<Grid container spacing={2}>
+    <Grid container spacing={2}>
       <Grid size={6}>
         <StatsChart
           type="line"
@@ -34,7 +34,7 @@ const LinePreview = () => {
           statAction={<Button size="tiny">Ok</Button>}
         />
       </Grid>
-    </Grid>)
+    </Grid>
   )
 }
 

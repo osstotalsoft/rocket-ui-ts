@@ -2,7 +2,7 @@
 // This source code is licensed under the MIT license.
 
 import React from 'react'
-import Grid  from '@mui/material/Grid2'
+import Grid from '@mui/material/Grid2'
 import { Button, usePromiseToast, useToast } from 'components'
 
 const VariantsPreview = () => {
@@ -12,7 +12,7 @@ const VariantsPreview = () => {
   const resolveAfter3Sec = () => new Promise(resolve => setTimeout(resolve, 3000))
 
   return (
-    (<Grid container spacing={2} justifyItems={'flex-start'}>
+    <Grid container spacing={2} justifyItems={'flex-start'}>
       <Grid size={2}>
         <Button
           size={'small'}
@@ -60,7 +60,7 @@ The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for t
           {'Promise toast'}
         </Button>
       </Grid>
-    </Grid>)
+    </Grid>
   )
 }
 

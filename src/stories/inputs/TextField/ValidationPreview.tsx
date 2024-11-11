@@ -6,7 +6,7 @@ import { TextField } from 'components'
 
 const ValidationPreview = () => {
   return (
-    (<Grid container spacing={4} justifyItems={'flex-start'}>
+    <Grid container spacing={4} justifyItems={'flex-start'}>
       <Grid size={6}>
         <TextField label="Error" fullWidth error />
       </Grid>
@@ -25,7 +25,7 @@ const ValidationPreview = () => {
       <Grid size={6}>
         <TextField label="Error" helperText="Incorrect input" variant="filled" fullWidth error />
       </Grid>
-    </Grid>)
+    </Grid>
   )
 }
 

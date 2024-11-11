@@ -25,7 +25,7 @@ export const MultipleSelectionPreview = () => {
   useEffect(() => setBasicValue(emptyArray), [simpleValueBasic, creatableBasic])
 
   return (
-    (<Grid container spacing={2}>
+    <Grid container spacing={2}>
       <Grid container spacing={4} size={12}>
         <Grid size={6}>
           <ColumnHeader>{'Component'}</ColumnHeader>
@@ -99,6 +99,6 @@ export const MultipleSelectionPreview = () => {
           <FormattedJson>{numericValue}</FormattedJson>
         </Grid>
       </Grid>
-    </Grid>)
+    </Grid>
   )
 }

@@ -20,7 +20,7 @@ export const OptionTypesPreview = () => {
   useEffect(() => setNumericValue(null), [simpleValueNumeric])
 
   return (
-    (<Grid container spacing={2}>
+    <Grid container spacing={2}>
       <Grid container spacing={4} size={12}>
         <Grid size={3}>
           <ColumnHeader>{'Component'}</ColumnHeader>
@@ -89,6 +89,6 @@ export const OptionTypesPreview = () => {
           <FormattedJson>{numericValue}</FormattedJson>
         </Grid>
       </Grid>
-    </Grid>)
+    </Grid>
   )
 }

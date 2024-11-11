@@ -20,7 +20,7 @@ export const CreatablePreview = () => {
   useEffect(() => setNumericValue(null), [simpleValueNumeric])
 
   return (
-    (<Grid container spacing={2}>
+    <Grid container spacing={2}>
       <Grid container spacing={4} size={12}>
         <Grid size={3}>
           <ColumnHeader>{'Component'}</ColumnHeader>
@@ -104,6 +104,6 @@ export const CreatablePreview = () => {
           <FormattedJson>{numericValue}</FormattedJson>
         </Grid>
       </Grid>
-    </Grid>)
+    </Grid>
   )
 }

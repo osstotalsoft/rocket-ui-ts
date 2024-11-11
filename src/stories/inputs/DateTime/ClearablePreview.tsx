@@ -7,7 +7,7 @@ import { DateTime } from 'components'
 
 const ClearablePreview = () => {
   return (
-    (<Grid container spacing={4} justifyItems={'flex-start'}>
+    <Grid container spacing={4} justifyItems={'flex-start'}>
       <Grid size={4}>
         <DateTime showPicker="date" label="Date Picker" mask="__.__.____" isClearable={true} />
       </Grid>
@@ -17,7 +17,7 @@ const ClearablePreview = () => {
       <Grid size={4}>
         <DateTime showPicker="time" label="Time Picker" mask="__:__" isClearable={true} />
       </Grid>
-    </Grid>)
+    </Grid>
   )
 }
 
