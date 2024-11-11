@@ -6,7 +6,7 @@ import React from 'react'
 
 export const ColorsPreview: React.FunctionComponent = () => (
   <>
-    <Typography sx={{ color: 'initial' }} gutterBottom> {/*TODO*/}
+    <Typography sx={{ color: 'initial' }} gutterBottom>
       Initial
     </Typography>
     <Typography color="error" gutterBottom>
