@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react'
-import { Grid } from '@mui/material'
+import Grid from '@mui/material/Grid2'
 import SyntaxHighlighter from 'react-syntax-highlighter'
 import { github } from 'react-syntax-highlighter/dist/esm/styles/hljs'
 import { Button, CollapseCard, IconButton } from 'components'
@@ -39,12 +39,12 @@ const ControlledPreview = () => {
 
   return (
     <Grid container spacing={4}>
-      <Grid item xs={4}>
+      <Grid size={4}>
         <CollapseCard
           expanded={expanded}
           onToggle={handleToggle}
           title="Title"
-          content='--Text content here--'
+          content="--Text content here--"
           footer={
             <Button variant="contained" size="small" color="info">
               SUBMIT
@@ -57,12 +57,12 @@ const ControlledPreview = () => {
           }
         />
       </Grid>
-      <Grid item xs={4}>
+      <Grid size={4}>
         <SyntaxHighlighter language="javascript" wrapLongLines style={github}>
           {controlled}
         </SyntaxHighlighter>
       </Grid>
-      <Grid item xs={4}>
+      <Grid size={4}>
         <SyntaxHighlighter language="javascript" wrapLongLines style={github}>
           {uncontrolled}
         </SyntaxHighlighter>

@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react'
 import PropTypes from 'prop-types'
 import TablePagination from '@mui/material/TablePagination'
-import Grid from '@mui/material/Grid'
+import Grid from '@mui/material/Grid2'
 import { RefreshButtonContainer } from './PaginationStyles'
 import RefreshIcon from '@mui/icons-material/Refresh'
 import { PaginationProps, DisplayedRows } from './types'

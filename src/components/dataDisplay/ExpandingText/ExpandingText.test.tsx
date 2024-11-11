@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { act } from 'react'
 import ExpandingText from './ExpandingText'
 import { fireEvent, render, screen } from '../../../testingUtils'
 import getTheme from '../../themes'
@@ -25,9 +25,9 @@ describe('ExpandingText', () => {
     expect(screen.getByText(`${text.substring(0, minLength)}...`)).toBeInTheDocument()
   })
 
-  test('displays correct items when expanded', () => {
+  test('displays correct items when expanded', async () => {
     render(<ExpandingText text={text} minLength={250} showMoreText={showMoreText} showLessText={showLessText} />)
-    fireEvent.click(screen.getByText(showMoreText))
+    await act(async () => fireEvent.click(screen.getByText(showMoreText)))
 
     expect(screen.getByText(showLessText)).toBeInTheDocument()
     expect(screen.getByText(text)).toBeInTheDocument()

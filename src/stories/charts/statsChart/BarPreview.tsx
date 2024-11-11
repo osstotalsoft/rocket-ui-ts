@@ -4,13 +4,13 @@
 import React from 'react'
 import { Button, StatsChart } from 'components'
 import AccessTime from '@mui/icons-material/AccessTime'
-import { Grid } from '@mui/material'
+import Grid from '@mui/material/Grid2'
 import { statsChartData, statsChartOptions } from './_mocks'
 
 const BarPreview = () => {
   return (
-    <Grid container spacing={2}>
-      <Grid item xs={6}>
+    (<Grid container spacing={2}>
+      <Grid size={6}>
         <StatsChart
           type="bar"
           data={statsChartData}
@@ -21,7 +21,7 @@ const BarPreview = () => {
           options={statsChartOptions}
         />
       </Grid>
-      <Grid item xs={6}>
+      <Grid size={6}>
         <StatsChart
           type="bar"
           data={statsChartData}
@@ -34,7 +34,7 @@ const BarPreview = () => {
           iconColor="info"
         />
       </Grid>
-    </Grid>
+    </Grid>)
   )
 }
 

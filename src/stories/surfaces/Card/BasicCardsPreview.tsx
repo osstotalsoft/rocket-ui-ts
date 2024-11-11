@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react'
-import { Grid } from '@mui/material'
+import Grid from '@mui/material/Grid2'
 import { Button, Typography, Card, Pagination } from 'components'
 import robot from '../../assets/img/robot.png'
 import spaceship from '../../assets/img/spaceship.png'
@@ -27,18 +27,18 @@ const BasicCardsPreview = () => {
 
   return (
     <Grid container spacing={2} justifyContent="center">
-      <Grid item xs={10}>
+      <Grid size={10}>
         <Card footer={<LearnMoreButton />}>
           <Grid container direction="column" justifyContent="center" alignItems="center">
-            <Grid item>
+            <Grid>
               <img src={robot} id="img1" alt="robot" />
             </Grid>
-            <Grid item>
+            <Grid>
               <Typography gutterBottom variant="h5">
                 TypeScript
               </Typography>
             </Grid>
-            <Grid item>
+            <Grid>
               <Typography variant="body2" color="secondary">
                 TypeScript is a strongly typed programming language that builds on JavaScript, giving you better tooling at
                 any scale. TypeScript adds additional syntax to JavaScript to support a tighter integration with your editor.
@@ -50,7 +50,7 @@ const BasicCardsPreview = () => {
           </Grid>
         </Card>
       </Grid>
-      <Grid item xs={10}>
+      <Grid size={10}>
         <Card footer={<LearnMoreButton />}>
           <Typography gutterBottom align="center" variant="h2">
             MATERIAL-UI
@@ -63,7 +63,7 @@ const BasicCardsPreview = () => {
           </Typography>
         </Card>
       </Grid>
-      <Grid item xs={10}>
+      <Grid size={10}>
         <Card
           footer={
             <Pagination
@@ -77,7 +77,7 @@ const BasicCardsPreview = () => {
           }
         >
           <Grid container spacing={2}>
-            <Grid item xs={8}>
+            <Grid size={8}>
               <Typography gutterBottom variant="h5">
                 GITHUB REPOSITORY
               </Typography>
@@ -86,7 +86,7 @@ const BasicCardsPreview = () => {
                 flight.
               </Typography>
             </Grid>
-            <Grid item xs={4}>
+            <Grid size={4}>
               <img src={spaceship} id="img1" alt="spaceship" />
             </Grid>
           </Grid>

@@ -2,7 +2,7 @@
 // This source code is licensed under the MIT license.
 
 import React, { useState } from 'react'
-import { Grid, Stack } from '@mui/material'
+import { Grid2 as Grid, Stack } from '@mui/material'
 import { DynamicField, Typography, ControlType } from 'components'
 import LinkTo from '@storybook/addon-links/react'
 import { options } from '../Autocomplete/_mocks'
@@ -22,7 +22,7 @@ const ControlPreview = ({ controlType, ...rest }: ControlPreviewProps) => {
 
   return (
     <Grid container alignItems={'center'} spacing={2} minWidth={width}>
-      <Grid item xs={12} sm={6}>
+      <Grid size={{ xs: 12, sm: 6 }}>
         <DynamicField
           controlType={controlType}
           label={`Dynamic (${controlType})`}
@@ -33,7 +33,7 @@ const ControlPreview = ({ controlType, ...rest }: ControlPreviewProps) => {
           onChange={newValue => setValue(newValue)}
         />
       </Grid>
-      <Grid item xs={12} sm={6}>
+      <Grid size={{ xs: 12, sm: 6 }}>
         {currentControlData.props.length > 0 && (
           <Stack gap={2}>
             <Typography fontWeight={700}>

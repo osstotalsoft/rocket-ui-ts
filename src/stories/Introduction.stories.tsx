@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import OrbitContainer from './_introduction/orbits/OrbitContainer'
 import AboutContainer from './_introduction/about/AboutContainer'
-import Grid from '@mui/material/Grid'
+import Grid from '@mui/material/Grid2'
 import type { Meta, StoryObj } from '@storybook/react'
 
 const LandingPage = () => {
@@ -9,10 +9,10 @@ const LandingPage = () => {
 
   return (
     <Grid container alignItems="stretch" justifyContent="center">
-      <Grid item xs={12} md={6}>
+      <Grid size={{ xs: 12, md: 6 }}>
         <OrbitContainer setActiveItem={setActiveItem} />
       </Grid>
-      <Grid item xs={12} md={6}>
+      <Grid size={{ xs: 12, md: 6 }}>
         <AboutContainer activeItem={activeItem} />
       </Grid>
     </Grid>

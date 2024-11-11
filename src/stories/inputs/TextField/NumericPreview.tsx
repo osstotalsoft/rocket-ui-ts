@@ -3,7 +3,7 @@
 
 import React, { useState } from 'react'
 import { TextField } from 'components'
-import { Grid } from '@mui/material'
+import Grid from '@mui/material/Grid2'
 
 const NumericPreview = () => {
   const [numberValue, setNumberValue] = useState()
@@ -23,8 +23,8 @@ const NumericPreview = () => {
   }
 
   return (
-    <Grid container spacing={4} justifyItems={'flex-start'}>
-      <Grid item xs={3}>
+    (<Grid container spacing={4} justifyItems={'flex-start'}>
+      <Grid size={3}>
         <TextField
           isNumeric
           label="Basic number field"
@@ -35,7 +35,7 @@ const NumericPreview = () => {
           isClearable
         />
       </Grid>
-      <Grid item xs={3}>
+      <Grid size={3}>
         <TextField
           isNumeric
           language="de-DE"
@@ -45,7 +45,7 @@ const NumericPreview = () => {
           fullWidth
         />
       </Grid>
-      <Grid item xs={3}>
+      <Grid size={3}>
         <TextField
           isNumeric
           language="de-DE"
@@ -56,7 +56,7 @@ const NumericPreview = () => {
           fullWidth
         />
       </Grid>
-      <Grid item xs={3}>
+      <Grid size={3}>
         <TextField
           label="Custom phone number format"
           value={phoneNumberValue}
@@ -66,7 +66,7 @@ const NumericPreview = () => {
           fullWidth
         />
       </Grid>
-    </Grid>
+    </Grid>)
   )
 }
 

@@ -3,7 +3,7 @@
 
 import React, { useState } from 'react'
 import { TextField } from 'components'
-import { Grid } from '@mui/material'
+import Grid from '@mui/material/Grid2'
 
 const StepperPreview = () => {
   const [stepperValue, setStepperValue] = useState('')
@@ -21,8 +21,8 @@ const StepperPreview = () => {
   }
 
   return (
-    <Grid container spacing={4} justifyItems={'flex-start'}>
-      <Grid item xs={4}>
+    (<Grid container spacing={4} justifyItems={'flex-start'}>
+      <Grid size={4}>
         <TextField
           label="Basic stepper"
           isStepper
@@ -31,7 +31,7 @@ const StepperPreview = () => {
           decimalScale={0}
         />
       </Grid>
-      <Grid item xs={4}>
+      <Grid size={4}>
         <TextField
           label="Limited stepper (0 to 5)"
           isStepper
@@ -42,7 +42,7 @@ const StepperPreview = () => {
           maxValue={5}
         />
       </Grid>
-      <Grid item xs={4}>
+      <Grid size={4}>
         <TextField
           label="Custom step value"
           isStepper
@@ -51,7 +51,7 @@ const StepperPreview = () => {
           onChange={handleChangeCustomValue}
         />
       </Grid>
-    </Grid>
+    </Grid>)
   )
 }
 
