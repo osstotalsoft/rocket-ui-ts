@@ -125,12 +125,12 @@ export const Actions: Story = {
             <Accordion
               title={
                 <Grid container spacing={2} alignItems={'center'}>
-                  <Grid item lg={4}>
+                  <Grid size={{ lg: 4 }}>
                     <Typography variant="subtitle1" emphasis="bold" color="primary">
                       {'Accordion Title'}
                     </Typography>
                   </Grid>
-                  <Grid item lg={7}>
+                  <Grid size={{ lg: 7 }}>
                     <Autocomplete
                       label="Basic Autocomplete"
                       options={options}
@@ -139,7 +139,7 @@ export const Actions: Story = {
                       stopEventPropagation
                     />
                   </Grid>
-                  <Grid item lg={1}>
+                  <Grid size={{ lg: 1 }}>
                     <IconButton type="delete" variant="text" size="small" color="error" tooltip={'Delete'} onClick={handleDelete} />
                   </Grid>
                 </Grid>
