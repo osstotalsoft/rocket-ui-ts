@@ -19,9 +19,14 @@ const basicColors = [
   { color: 'white' }
 ] satisfies { color: Color }[]
 
-describe('Button colors', () => {
-  describe.skip('Button basic colors', () => {
-    //TODO
+// The "Button colors" tests were temporarily skipped because testing-library admits that
+// toHaveStyle is not responsible for making sure the stylesheets are loaded
+// in jsdom which means that it may not work all the time due to the tests not having stylesheets loaded.
+// https://github.com/testing-library/jest-dom/issues/295  https://github.com/testing-library/jest-dom/issues/461
+//TODO: Investigate further
+
+describe.skip('Button colors', () => {
+  describe('Button basic colors', () => {
     it.each(basicColors)('displays the correct background color for color = { $color }', ({ color }) => {
       render(<Button color={color} />)
 
@@ -29,8 +34,7 @@ describe('Button colors', () => {
     })
   })
 
-  describe.skip('Button `noBackground` colors', () => {
-    //TODO
+  describe('Button `noBackground` colors', () => {
     it('displays the correct font color and background color for color = `transparent`', () => {
       render(<Button color={'transparent'} />)
       const button = screen.getByRole('button')
