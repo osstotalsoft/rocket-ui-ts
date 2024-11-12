@@ -30,7 +30,7 @@ export const BackToButton: Story = {
     }
   },
   render: args => (
-    <BrowserRouter>
+    <BrowserRouter future={{ v7_relativeSplatPath: true }}>
       <BackToButtonComponent tooltip="redirect to provided path" path="/buttons/icon-button" {...args} />
     </BrowserRouter>
   )
@@ -53,7 +53,7 @@ export const Sizes: Story = {
   },
   render: () => (
     <Box columnGap="15px" display="flex">
-      <BrowserRouter>
+      <BrowserRouter future={{ v7_relativeSplatPath: true }}>
         <BackToButtonComponent size="small" tooltip="small" path="/buttons/icon-button" />
         <BackToButtonComponent size="medium" tooltip="medium (default)" path="/buttons/icon-button" />
         <BackToButtonComponent size="large" tooltip="large" path="/buttons/icon-button" />
@@ -79,7 +79,7 @@ export const FontSizes: Story = {
   },
   render: () => (
     <Box columnGap="15px" display="flex">
-      <BrowserRouter>
+      <BrowserRouter future={{ v7_relativeSplatPath: true }}>
         <BackToButtonComponent tooltip="small (default)" path="/buttons/icon-button" />
         <BackToButtonComponent tooltip="medium" fontSize="medium" path="/buttons/icon-button" />
         <BackToButtonComponent tooltip="large" fontSize="large" path="/buttons/icon-button" />
