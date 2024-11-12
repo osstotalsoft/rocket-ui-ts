@@ -1,5 +1,5 @@
 import { fireEvent, renderHook, screen, waitFor } from '@testing-library/react'
-import React from 'react'
+import React, { act } from 'react'
 import useToast from './useToast'
 import { render } from 'testingUtils'
 import Button from 'components/buttons/Button'
@@ -62,7 +62,7 @@ describe('Toast', () => {
           }
         />
       )
-      fireEvent.click(screen.getByRole('button'))
+      await act(async () => fireEvent.click(screen.getByRole('button')))
 
       await waitFor(() => expect(screen.getByRole('alert').parentNode).toHaveClass(expectedVariant, expectedTransition))
       await waitFor(() => expect(screen.getByRole('alert').parentNode.parentNode).toHaveClass(expectedPosition))
@@ -74,10 +74,10 @@ describe('Toast', () => {
 
     render(<Button onClick={() => result.current('This is a success message!', 'success')} />)
 
-    fireEvent.click(screen.getByRole('button'))
+    await act(async () => fireEvent.click(screen.getByRole('button')))
     await waitFor(() => expect(screen.getByRole('alert')).toBeInTheDocument())
 
-    fireEvent.click(screen.getByLabelText('close'))
+    await act(async () => fireEvent.click(screen.getByLabelText('close')))
     await waitFor(() => expect(screen.queryByRole('alert')).not.toBeInTheDocument())
   })
 
@@ -86,7 +86,7 @@ describe('Toast', () => {
 
     render(<Button onClick={() => result.current('This is an error message!', 'error', { closeOnClick: false })} />)
 
-    fireEvent.click(screen.getByRole('button'))
+    await act(async () => fireEvent.click(screen.getByRole('button')))
     await waitFor(() => expect(screen.getByRole('alert')).toBeInTheDocument())
 
     fireEvent.click(screen.getByRole('alert'))
@@ -106,7 +106,7 @@ describe('Promise toast', () => {
         }
       />
     )
-    fireEvent.click(screen.getByRole('button'))
+    await act(async () => fireEvent.click(screen.getByRole('button')))
 
     await waitFor(() => expect(screen.getByRole('alert')).toBeInTheDocument())
     await waitFor(() => expect(screen.getByRole('alert').parentNode).toHaveClass('Toastify__toast--default'))

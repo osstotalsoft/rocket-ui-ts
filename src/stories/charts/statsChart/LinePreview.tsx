@@ -4,13 +4,13 @@
 import React from 'react'
 import { Button, StatsChart } from 'components'
 import AccessTime from '@mui/icons-material/AccessTime'
-import { Grid } from '@mui/material'
+import Grid from '@mui/material/Grid2'
 import { statsChartData, statsChartOptions } from './_mocks'
 
 const LinePreview = () => {
   return (
     <Grid container spacing={2}>
-      <Grid item xs={6}>
+      <Grid size={6}>
         <StatsChart
           type="line"
           data={statsChartData}
@@ -22,7 +22,7 @@ const LinePreview = () => {
           iconColor="error"
         />
       </Grid>
-      <Grid item xs={6}>
+      <Grid size={6}>
         <StatsChart
           type="line"
           data={statsChartData}

@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react'
-import { Grid } from '@mui/material'
+import Grid from '@mui/material/Grid2'
 import SyntaxHighlighter from 'react-syntax-highlighter'
 import { github } from 'react-syntax-highlighter/dist/esm/styles/hljs'
 import { Accordion } from 'components'
@@ -41,15 +41,15 @@ const ControlledPreview = () => {
 
   return (
     <Grid container spacing={4}>
-      <Grid item xs={4}>
+      <Grid size={4}>
         <Accordion title={title} content={content} expanded={expanded} onChange={handleToggle} />
       </Grid>
-      <Grid item xs={4}>
+      <Grid size={4}>
         <SyntaxHighlighter language="javascript" wrapLongLines style={github}>
           {controlled}
         </SyntaxHighlighter>
       </Grid>
-      <Grid item xs={4}>
+      <Grid size={4}>
         <SyntaxHighlighter language="javascript" wrapLongLines style={github}>
           {uncontrolled}
         </SyntaxHighlighter>

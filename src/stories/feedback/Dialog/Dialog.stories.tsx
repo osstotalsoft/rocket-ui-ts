@@ -10,7 +10,7 @@ import ActionsPreview from './ActionsPreview'
 
 const meta: Meta<typeof DialogComponent> = {
   title: 'Components/Feedback/Dialog',
-  component: DialogComponent,
+  component: DialogComponent
 } satisfies Meta<typeof DialogComponent>
 
 export default meta
@@ -114,10 +114,10 @@ export const Actions: Story = {
           disableEscapeKeyDown={true}
           content={
             <Grid container spacing={2} justifyContent={'center'} sx={{ pt: 3 }}>
-              <Grid item xs={10}>
+              <Grid  size={10}>
                 <TextField label="username" fullWidth />
               </Grid>
-              <Grid item xs={10}>
+              <Grid  size={10}>
                 <TextField label="password" type="password" fullWidth />
               </Grid>
             </Grid>

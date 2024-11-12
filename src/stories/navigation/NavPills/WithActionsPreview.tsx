@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid } from '@mui/material'
+import Grid from '@mui/material/Grid2'
 import { tabs } from './_options'
 import { IconButton, NavPills } from 'components'
 
@@ -12,7 +12,7 @@ const WithActionsPreview = () => {
 
   return (
     <Grid container columnSpacing={4}>
-      <Grid item>
+      <Grid>
         <NavPills tabs={tabs(false, true)} actions={actions} />
       </Grid>
     </Grid>

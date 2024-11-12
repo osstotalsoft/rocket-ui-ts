@@ -3,7 +3,7 @@
 
 import React, { useState } from 'react'
 import { TextField } from 'components'
-import { Grid } from '@mui/material'
+import Grid from '@mui/material/Grid2'
 
 const FormPropsPreview = () => {
   const [value, setValue] = useState()
@@ -14,10 +14,10 @@ const FormPropsPreview = () => {
 
   return (
     <Grid container spacing={4} justifyItems={'flex-start'}>
-      <Grid item xs={4}>
+      <Grid size={4}>
         <TextField required label="Required" value={value || ''} onChange={handleValueChange} debounceBy={1000} fullWidth />
       </Grid>
-      <Grid item xs={4}>
+      <Grid size={4}>
         <TextField
           label="Read-only"
           value={'cannot be modified'}
@@ -27,10 +27,10 @@ const FormPropsPreview = () => {
           fullWidth
         />
       </Grid>
-      <Grid item xs={4}>
+      <Grid size={4}>
         <TextField label="Disabled" value={'cannot be modified'} disabled fullWidth />
       </Grid>
-      <Grid item xs={4}>
+      <Grid size={4}>
         <TextField
           label="Password"
           type="password"
@@ -41,7 +41,7 @@ const FormPropsPreview = () => {
           fullWidth
         />
       </Grid>
-      <Grid item xs={4}>
+      <Grid size={4}>
         <TextField
           label="Read-only"
           value={'cannot be modified'}
@@ -52,10 +52,10 @@ const FormPropsPreview = () => {
           fullWidth
         />
       </Grid>
-      <Grid item xs={4}>
+      <Grid size={4}>
         <TextField label="Disabled" variant="outlined" value={'cannot be modified'} disabled fullWidth />
       </Grid>
-      <Grid item xs={4}>
+      <Grid size={4}>
         <TextField
           label="Basic text field"
           variant="filled"
@@ -65,7 +65,7 @@ const FormPropsPreview = () => {
           fullWidth
         />
       </Grid>
-      <Grid item xs={4}>
+      <Grid size={4}>
         <TextField
           label="Read-only"
           value={'cannot be modified'}
@@ -76,7 +76,7 @@ const FormPropsPreview = () => {
           fullWidth
         />
       </Grid>
-      <Grid item xs={4}>
+      <Grid size={4}>
         <TextField label="Disabled" variant="filled" value={'cannot be modified'} disabled fullWidth />
       </Grid>
     </Grid>

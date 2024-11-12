@@ -2,7 +2,7 @@
 // This source code is licensed under the MIT license.
 
 import React from 'react'
-import { Grid } from '@mui/material'
+import Grid from '@mui/material/Grid2'
 import { Button, useToast } from 'components'
 
 const TransitionsPreview = () => {
@@ -10,7 +10,7 @@ const TransitionsPreview = () => {
 
   return (
     <Grid container spacing={2} justifyItems={'flex-start'}>
-      <Grid item xs={2}>
+      <Grid size={2}>
         <Button
           size={'small'}
           color={'primary'}
@@ -19,7 +19,7 @@ const TransitionsPreview = () => {
           {'Slide transition'}
         </Button>
       </Grid>
-      <Grid item xs={2}>
+      <Grid size={2}>
         <Button
           size={'small'}
           color={'primary'}
@@ -28,7 +28,7 @@ const TransitionsPreview = () => {
           {'Zoom transition'}
         </Button>
       </Grid>
-      <Grid item xs={2}>
+      <Grid size={2}>
         <Button
           size={'small'}
           color={'primary'}
@@ -37,7 +37,7 @@ const TransitionsPreview = () => {
           {'Bounce transition'}
         </Button>
       </Grid>
-      <Grid item xs={2}>
+      <Grid size={2}>
         <Button
           size={'small'}
           color={'primary'}

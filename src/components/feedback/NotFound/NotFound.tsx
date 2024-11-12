@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { NotFoundImage, NotFoundText } from './NotFoundStyles'
 import notFound from '../../assets/img/notFound.png'
-import Grid from '@mui/material/Grid'
+import Grid from '@mui/material/Grid2'
 import { NotFoundProps } from './types'
 
 /**

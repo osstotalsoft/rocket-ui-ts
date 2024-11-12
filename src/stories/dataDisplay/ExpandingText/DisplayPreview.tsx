@@ -2,7 +2,7 @@
 // This source code is licensed under the MIT license.
 
 import React from 'react'
-import { Grid } from '@mui/material'
+import Grid from '@mui/material/Grid2'
 import { ExpandingText, Typography } from 'components'
 
 const text =
@@ -10,19 +10,19 @@ const text =
 
 export const DisplayPreview: React.FunctionComponent = () => (
   <Grid container rowSpacing={2}>
-    <Grid item>
+    <Grid>
       <Typography variant="body2" emphasis="bold">
         display: inline-block
       </Typography>
       <ExpandingText text={text} display="inline-block" minLength={250} />
     </Grid>
-    <Grid item>
+    <Grid>
       <Typography variant="body2" emphasis="bold">
         display: block
       </Typography>
       <ExpandingText text={text} display="block" minLength={250} />
     </Grid>
-    <Grid item>
+    <Grid>
       <Typography variant="body2" emphasis="bold">
         display: flex; justify-content: flex-end
       </Typography>

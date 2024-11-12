@@ -2,20 +2,20 @@
 // This source code is licensed under the MIT license.
 
 import React from 'react'
-import { Grid } from '@mui/material'
+import Grid from '@mui/material/Grid2'
 import { PasswordField } from 'components'
 
 const VariantsPreview = () => {
   return (
     <Grid container>
-      <Grid item xs={12} container spacing={3}>
-        <Grid item>
+      <Grid container spacing={3} size={12}>
+        <Grid>
           <PasswordField label="Standard (default)" value={''} />
         </Grid>
-        <Grid item>
+        <Grid>
           <PasswordField label="Outlined" variant="outlined" value={''} />
         </Grid>
-        <Grid item>
+        <Grid>
           <PasswordField label="Filled" variant="filled" value={''} />
         </Grid>
       </Grid>

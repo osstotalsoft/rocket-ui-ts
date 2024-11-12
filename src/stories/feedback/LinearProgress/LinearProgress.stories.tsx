@@ -80,23 +80,23 @@ export const Variants: Story = {
           }, [])
           return (
             <Grid container rowSpacing={2} columnSpacing={2}>
-              <Grid item sm={6}>
+              <Grid  size={{ sm: 6 }}>
                 <Typography textAlign={'center'}>{'determinate '}</Typography>
                 <LinearProgress variant={'determinate'} value={progress} />
               </Grid>
-              <Grid item sm={6}>
+              <Grid  size={{ sm: 6 }}>
                 <Typography textAlign={'center'}>{'buffer '}</Typography>
                 <LinearProgress variant="buffer" value={progress} valueBuffer={buffer} />
               </Grid>
-              <Grid item sm={6}>
+              <Grid  size={{ sm: 6 }}>
                 <Typography textAlign={'center'}>{'indeterminate'}</Typography>
                 <LinearProgress />
               </Grid>
-              <Grid item sm={6}>
+              <Grid  size={{ sm: 6 }}>
                 <Typography textAlign={'center'}>{'determinate with label'}</Typography>
                 <LinearProgress variant={'determinate'} value={progress} showLabel />
               </Grid>
-              <Grid item sm={6}>
+              <Grid  size={{ sm: 6 }}>
                 <Typography textAlign={'center'}>{'buffer with label'}</Typography>
                 <LinearProgress variant="buffer" value={progress} valueBuffer={buffer} showLabel />
               </Grid>

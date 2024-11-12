@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { act } from 'react'
 import { render } from '../../../testingUtils'
 import { fireEvent, screen } from '@testing-library/react'
 import NavPills from './NavPills'
@@ -143,17 +143,17 @@ describe('NavPills', () => {
     expect(actionElements?.length).toStrictEqual(2)
   })
 
-  it('handles tab changes by default', () => {
+  it('handles tab changes by default', async () => {
     render(<NavPills tabs={tabs} />)
-    fireEvent.click(screen.getByText('Item two'))
+    await act(async () => fireEvent.click(screen.getByText('Item two')))
 
     expect(screen.getByText('Content 2')).toBeInTheDocument()
   })
 
-  it('uses the correct onChange function when the components is controlled', () => {
+  it('uses the correct onChange function when the components is controlled', async () => {
     const handleChange = jest.fn()
     render(<NavPills tabs={tabs} onChange={handleChange} />)
-    fireEvent.click(screen.getAllByRole('tab')[1])
+    await act(async () => fireEvent.click(screen.getAllByRole('tab')[1]))
 
     expect(handleChange).toHaveBeenCalledTimes(1)
   })

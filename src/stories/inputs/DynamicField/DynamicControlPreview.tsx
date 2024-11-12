@@ -2,7 +2,7 @@
 // This source code is licensed under the MIT license.
 
 import React, { useState } from 'react'
-import { Grid, Switch, SwitchProps, Stack } from '@mui/material'
+import { Grid2 as Grid, Switch, SwitchProps, Stack } from '@mui/material'
 import { Autocomplete, DynamicField, Typography, ControlType } from 'components'
 import { controlTypes } from './_mocks'
 import { options } from '../Autocomplete/_mocks'
@@ -18,7 +18,7 @@ const DynamicControlPreview = () => {
 
   return (
     <Grid container alignItems={'center'} spacing={2} minWidth={width}>
-      <Grid item xs={12} sm={6}>
+      <Grid size={{ xs: 12, sm: 6 }}>
         <DynamicField<SwitchProps>
           controlType={type}
           label={`Dynamic (${type})`}
@@ -34,7 +34,7 @@ const DynamicControlPreview = () => {
           }}
         />
       </Grid>
-      <Grid item xs={12} sm={6}>
+      <Grid size={{ xs: 12, sm: 6 }}>
         <Stack gap={2}>
           <Autocomplete
             options={controlTypes}

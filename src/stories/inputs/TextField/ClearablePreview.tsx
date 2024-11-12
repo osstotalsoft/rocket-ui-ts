@@ -3,7 +3,7 @@
 
 import React, { useState } from 'react'
 import { IconButton, TextField, Typography } from 'components'
-import { Grid } from '@mui/material'
+import Grid from '@mui/material/Grid2'
 import AssignmentIcon from '@mui/icons-material/Assignment'
 import SaveIcon from '@mui/icons-material/Save'
 
@@ -16,10 +16,10 @@ const ClearablePreview = () => {
 
   return (
     <Grid container spacing={4} justifyItems={'flex-start'}>
-      <Grid item xs={12}>
+      <Grid size={12}>
         <Typography>Variants:</Typography>
       </Grid>
-      <Grid item xs={4}>
+      <Grid size={4}>
         <TextField
           label="Standard (default)"
           fullWidth
@@ -28,7 +28,7 @@ const ClearablePreview = () => {
           isClearable
         />
       </Grid>
-      <Grid item xs={4}>
+      <Grid size={4}>
         <TextField
           label="Outlined"
           variant="outlined"
@@ -38,7 +38,7 @@ const ClearablePreview = () => {
           isClearable
         />
       </Grid>
-      <Grid item xs={4}>
+      <Grid size={4}>
         <TextField
           label="Filled"
           variant="filled"
@@ -48,10 +48,10 @@ const ClearablePreview = () => {
           isClearable
         />
       </Grid>
-      <Grid item xs={12}>
+      <Grid size={12}>
         <Typography>With end adornments:</Typography>
       </Grid>
-      <Grid item xs={12}>
+      <Grid size={12}>
         <TextField
           label="Filled"
           variant="filled"

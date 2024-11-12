@@ -4,15 +4,7 @@ import FormControlLabel from '@mui/material/FormControlLabel'
 import Checkbox from '@mui/material/Checkbox'
 import { Typography } from 'components'
 
-const ControlledCheckbox = ({
-  value,
-  onChange,
-  label
-}: {
-  value: boolean
-  onChange: any
-  label: string
-}) => {
+const ControlledCheckbox = ({ value, onChange, label }: { value: boolean; onChange: any; label: string }) => {
   const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => onChange(e.target.checked), [onChange])
 
   return (
@@ -20,7 +12,7 @@ const ControlledCheckbox = ({
       control={<Checkbox color="primary" size="small" checked={value || false} onChange={handleChange} />}
       disableTypography
       label={
-        <Typography color={'textSecondary'} variant={'caption'}>
+        <Typography color="textSecondary" variant="caption">
           {label}
         </Typography>
       }

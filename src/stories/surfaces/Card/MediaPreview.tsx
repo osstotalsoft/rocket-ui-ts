@@ -1,13 +1,13 @@
 import React from 'react'
-import { Grid, Link } from '@mui/material'
+import { Grid2 as Grid, Link } from '@mui/material'
 import { Typography, Card } from 'components'
 import natureSound from '../../assets/audio/rain-ambient.mp3'
 
 const MediaPreview = () => {
   return (
     <Grid container spacing={2}>
-      <Grid item xs={12} container spacing={2}>
-        <Grid item xs={6} md={4}>
+      <Grid container spacing={2} size={12}>
+        <Grid size={{ xs: 6, md: 4 }}>
           <Card
             title="Random Image"
             mediaProps={{ component: 'img', image: 'https://i.imgur.com/8woNLN2.jpeg', size: 's', alt: 'Squirrel' }}
@@ -15,7 +15,7 @@ const MediaPreview = () => {
             <Typography>This image is rendered with default &#39;s&#39; size.</Typography>
           </Card>
         </Grid>
-        <Grid item xs={6} md={4}>
+        <Grid size={{ xs: 6, md: 4 }}>
           <Card
             title="Random Image"
             mediaProps={{ component: 'img', image: 'https://i.imgur.com/8woNLN2.jpeg', size: 'm', alt: 'Squirrel' }}
@@ -23,7 +23,7 @@ const MediaPreview = () => {
             <Typography>This image is rendered with default &#39;m&#39; size.</Typography>
           </Card>
         </Grid>
-        <Grid item xs={6} md={4}>
+        <Grid size={{ xs: 6, md: 4 }}>
           <Card
             title="Random Image"
             mediaProps={{ component: 'img', image: 'https://i.imgur.com/8woNLN2.jpeg', size: 'l', alt: 'Squirrel' }}
@@ -32,8 +32,8 @@ const MediaPreview = () => {
           </Card>
         </Grid>
       </Grid>
-      <Grid item xs={12} container spacing={2}>
-        <Grid item xs={6} md={4}>
+      <Grid container spacing={2} size={12}>
+        <Grid size={{ xs: 6, md: 4 }}>
           <Card
             title="Random Video"
             mediaProps={{
@@ -54,7 +54,7 @@ const MediaPreview = () => {
             </Typography>
           </Card>
         </Grid>
-        <Grid item xs={6} md={4}>
+        <Grid size={{ xs: 6, md: 4 }}>
           <Card
             title="Random Audio"
             mediaProps={{
@@ -67,7 +67,7 @@ const MediaPreview = () => {
             <Typography>This is a random audio file with default controls.</Typography>
           </Card>
         </Grid>
-        <Grid item xs={6} md={4}>
+        <Grid size={{ xs: 6, md: 4 }}>
           <Card
             title="Random Image"
             mediaProps={{

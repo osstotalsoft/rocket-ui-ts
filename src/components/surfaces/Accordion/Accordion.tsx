@@ -21,7 +21,7 @@ const AccordionItem: React.FC<AccordionProps> = ({
         {isValidElement(title) ? (
           title
         ) : (
-          <Typography variant="subtitle1" color={'textPrimary'}>
+          <Typography variant="subtitle1" color="textPrimary">
             {title}
           </Typography>
         )}

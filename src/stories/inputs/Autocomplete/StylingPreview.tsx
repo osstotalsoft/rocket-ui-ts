@@ -2,7 +2,7 @@
 // This source code is licensed under the MIT license.
 
 import React, { useState } from 'react'
-import Grid from '@mui/material/Grid'
+import Grid from '@mui/material/Grid2'
 import ColumnHeader from './components/ColumnHeader'
 import { Autocomplete, Typography } from 'components'
 
@@ -12,30 +12,30 @@ export const StylingPreview = () => {
 
   return (
     <Grid container spacing={2}>
-      <Grid item xs={12} container spacing={4}>
-        <Grid item xs={3}>
+      <Grid container spacing={4} size={12}>
+        <Grid size={3}>
           <ColumnHeader>{'Component'}</ColumnHeader>
         </Grid>
-        <Grid item xs={3}>
+        <Grid size={3}>
           <ColumnHeader>{'Prop'}</ColumnHeader>
         </Grid>
-        <Grid item xs={3}>
+        <Grid size={3}>
           <ColumnHeader>{'Value'}</ColumnHeader>
         </Grid>
       </Grid>
-      <Grid item xs={12} container spacing={4}>
-        <Grid item xs={3}>
+      <Grid container spacing={4} size={12}>
+        <Grid size={3}>
           <Autocomplete inputSelectedColor={'#26C6DA'} value={inputColorValue} onChange={setInputColorValue} />
         </Grid>
-        <Grid item xs={3}>
+        <Grid size={3}>
           <Typography>{'inputSelectedColor'}</Typography>
         </Grid>
-        <Grid item xs={3}>
+        <Grid size={3}>
           <Typography>{'#26C6DA'}</Typography>
         </Grid>
       </Grid>
-      <Grid item xs={12} container spacing={4}>
-        <Grid item xs={3}>
+      <Grid container spacing={4} size={12}>
+        <Grid size={3}>
           <Autocomplete
             options={[]}
             open
@@ -45,10 +45,10 @@ export const StylingPreview = () => {
             typographyContentColor={'error'}
           />
         </Grid>
-        <Grid item xs={3}>
+        <Grid size={3}>
           <Typography>{'typographyContentColor'}</Typography>
         </Grid>
-        <Grid item xs={3}>
+        <Grid size={3}>
           <Typography>{'error'}</Typography>
         </Grid>
       </Grid>

@@ -2,7 +2,7 @@
 // This source code is licensed under the MIT license.
 
 import React, { useCallback, useState } from 'react'
-import { Grid, ToggleButton, ToggleButtonGroup } from '@mui/material'
+import { Grid2 as Grid, ToggleButton, ToggleButtonGroup } from '@mui/material'
 import { DateTime, DateTimeProps } from 'components'
 
 const maskMap = {
@@ -23,14 +23,14 @@ type LocaleMapType = {
 
 const FormatPreview = () => {
   const [format, setFormat] = useState<DateTimeProps['format']>('en-US')
-  
+
   const handleClick = useCallback((e: any) => {
     setFormat(e.target.value)
   }, [])
 
   return (
     <Grid container spacing={4} justifyItems={'flex-start'}>
-      <Grid item xs={12}>
+      <Grid size={12}>
         <ToggleButtonGroup value={format} exclusive sx={{ mb: 2, display: 'block' }}>
           {Object.keys(maskMap).map(localeItem => (
             <ToggleButton key={localeItem} value={localeItem} onClick={handleClick}>
@@ -39,10 +39,10 @@ const FormatPreview = () => {
           ))}
         </ToggleButtonGroup>
       </Grid>
-      <Grid item xs={4}>
+      <Grid size={4}>
         <DateTime showPicker="date" label="Date Picker" format={format} mask={maskMap[format as keyof LocaleMapType].date} />
       </Grid>
-      <Grid item xs={4}>
+      <Grid size={4}>
         <DateTime
           showPicker="dateTime"
           label="Date Time Picker"
@@ -50,7 +50,7 @@ const FormatPreview = () => {
           mask={maskMap[format as keyof LocaleMapType].dateTime}
         />
       </Grid>
-      <Grid item xs={4}>
+      <Grid size={4}>
         <DateTime showPicker="time" label="Time Picker" format={format} mask={maskMap[format as keyof LocaleMapType].time} />
       </Grid>
     </Grid>

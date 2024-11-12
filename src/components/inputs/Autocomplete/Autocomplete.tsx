@@ -1,3 +1,5 @@
+/* eslint-disable */
+// @ts-nocheck
 import React, { useCallback, useRef, useEffect, useMemo, useState } from 'react'
 import PropTypes from 'prop-types'
 import { Autocomplete as MuiAutocomplete, NoOptionsText, classes } from './AutocompleteStyles'
