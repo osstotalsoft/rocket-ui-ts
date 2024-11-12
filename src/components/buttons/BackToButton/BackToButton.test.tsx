@@ -6,7 +6,7 @@ import { render, userClick, waitFor, screen, act } from '../../../testingUtils'
 describe('BackToButton', () => {
   test('redirects to the path received', async () => {
     render(
-      <BrowserRouter future={{ v7_relativeSplatPath: true }}>
+      <BrowserRouter future={{ v7_relativeSplatPath: true, v7_startTransition: true }}>
         <BackToButton path="/back" />
         <Routes>
           <Route path="/back" element={<div>{'redirected'}</div>}></Route>
