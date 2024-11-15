@@ -1,26 +1,13 @@
 // Copyright (c) TotalSoft.
 // This source code is licensed under the MIT license.
 
-import { SvgIconComponent } from '@mui/icons-material'
-import { CardProps } from '../../../components'
-import { ChartProps as Chart } from 'react-chartjs-2'
+import { BarChartProps, LineChartProps, PieChartProps } from '@mui/x-charts'
 
-export interface ChartProps extends Omit<Chart, 'title'> {
-  /**
-   * Chart subtitle.
-   */
-  subheader?: React.ReactNode
-  /**
-   * Chart icon.
-   */
-  Icon?: SvgIconComponent
-  /**
-   * Chart icon color.
-   */
-  iconColor?: string
-  /**
-   * Content of the title.
-   */
-  title?: React.ReactNode
-  cardProps?: CardProps
-}
+//ChartProps defines a discriminated union for handling multiple chart types.
+export type ChartProps =
+  | ({ type: 'line' } & LineChartProps)
+  | ({ type: 'bar' } & BarChartProps)
+  | ({ type: 'pie' } & PieChartProps)
+
+//ChartType defines the chart types that can be used with the Chart component.
+export type ChartType = 'line' | 'bar' | 'pie'

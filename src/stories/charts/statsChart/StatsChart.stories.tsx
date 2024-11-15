@@ -7,24 +7,20 @@ import { statsChartData, statsChartOptions } from './_mocks'
 import BarPreview from './BarPreview'
 import LinePreview from './LinePreview'
 import { StatsChart } from 'components'
+import StatChartTypesPreview from './StatsChartTypesPreview'
 
 const meta: Meta<typeof StatsChart> = {
   title: 'Components/Charts/StatsChart',
-  component: StatsChart,
-  args: {
-    width: 500,
-    height: 200
-  }
+  component: StatsChart
 } satisfies Meta<typeof StatsChart>
 
 export default meta
-type Story = StoryObj<typeof meta>
+type Story = StoryObj<typeof StatsChart>
 
 /**
  * The default StatsChart component.
  */
 export const Default: Story = {
-  args: { data: statsChartData, options: statsChartOptions },
   parameters: {
     docs: {
       source: {
@@ -99,5 +95,5 @@ export const Bar: Story = {
       }
     }
   },
-  render: args => <BarPreview {...args} />
+  render: () => <StatChartTypesPreview />
 }

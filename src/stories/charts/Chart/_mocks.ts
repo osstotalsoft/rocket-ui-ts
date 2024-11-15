@@ -1,109 +1,93 @@
-// Copyright (c) TotalSoft.
-// This source code is licensed under the MIT license.
-
-import { LayoutPosition } from 'chart.js'
-
-export const chartOptions = {
-  maintainAspectRatio: false,
-  barPercentage: 0.2,
-  plugins: {
-    title: {
-      display: false,
-      text: ''
-    },
-    legend: {
-      position: 'bottom' as LayoutPosition
-    }
+export const scatterData = [
+  {
+    id: 'data-0',
+    x1: 329.39,
+    x2: 391.29,
+    y1: 443.28,
+    y2: 153.9
   },
-  layout: {
-    padding: {
-      left: 0,
-      right: 20,
-      top: 20,
-      bottom: 0
-    }
+  {
+    id: 'data-1',
+    x1: 96.94,
+    x2: 139.6,
+    y1: 110.5,
+    y2: 217.8
   },
-  scales: {
-    x: {
-      offset: false,
-      grid: {
-        display: true,
-        borderDash: [1, 5],
-        zeroLineColor: 'rgb(255,255,255)',
-        drawBorder: false,
-        zeroLineWidth: 0
-      },
-      scaleLabel: {
-        display: false,
-        labelString: ''
-      },
-      ticks: {
-        autoSkip: false
-      }
-    },
-    y: {
-      grid: {
-        display: true,
-        borderDash: [1, 5],
-        zeroLineColor: 'rgb(255,255,255)',
-        drawBorder: false,
-        zeroLineBorderDash: [1, 5]
-      },
-      scaleLabel: {
-        display: false,
-        labelString: ''
-      }
-    }
+  {
+    id: 'data-2',
+    x1: 336.35,
+    x2: 282.34,
+    y1: 175.23,
+    y2: 286.32
+  },
+  {
+    id: 'data-3',
+    x1: 159.44,
+    x2: 384.85,
+    y1: 195.97,
+    y2: 325.12
+  },
+  {
+    id: 'data-4',
+    x1: 188.86,
+    x2: 182.27,
+    y1: 351.77,
+    y2: 144.58
+  },
+  {
+    id: 'data-5',
+    x1: 143.86,
+    x2: 360.22,
+    y1: 43.253,
+    y2: 146.51
+  },
+  {
+    id: 'data-6',
+    x1: 202.02,
+    x2: 209.5,
+    y1: 376.34,
+    y2: 309.69
+  },
+  {
+    id: 'data-7',
+    x1: 384.41,
+    x2: 258.93,
+    y1: 31.514,
+    y2: 236.38
+  },
+  {
+    id: 'data-8',
+    x1: 256.76,
+    x2: 70.571,
+    y1: 231.31,
+    y2: 440.72
+  },
+  {
+    id: 'data-9',
+    x1: 143.79,
+    x2: 419.02,
+    y1: 108.04,
+    y2: 20.29
+  },
+  {
+    id: 'data-10',
+    x1: 103.48,
+    x2: 15.886,
+    y1: 321.77,
+    y2: 484.17
+  },
+  {
+    id: 'data-11',
+    x1: 272.39,
+    x2: 189.03,
+    y1: 120.18,
+    y2: 54.962
+  },
+  {
+    id: 'data-12',
+    x1: 23.57,
+    x2: 456.4,
+    y1: 366.2,
+    y2: 418.5
   }
-}
-
-const barLineLabels = ['January', 'February', 'March', 'April', 'May', 'June', 'July']
-
-export const lineChartData = {
-  labels: barLineLabels,
-  datasets: [
-    {
-      data: barLineLabels.map(() => Math.floor(Math.random() * 101)),
-      label: 'Line',
-      borderColor: 'rgb(255, 99, 132)',
-      backgroundColor: 'rgba(255, 99, 132, 0.5)'
-    },
-    {
-      data: barLineLabels.map(() => Math.floor(Math.random() * 101)),
-      label: 'Line2',
-      borderColor: 'rgb(53, 162, 235)',
-      backgroundColor: 'rgba(53, 162, 235, 0.5)'
-    }
-  ]
-}
-
-export const barChartData = {
-  labels: barLineLabels,
-  datasets: [
-    {
-      data: barLineLabels.map(() => Math.floor(Math.random() * 101)),
-      label: 'Dataset 1',
-      borderColor: 'rgb(255, 99, 132)',
-      backgroundColor: 'rgba(255, 99, 132, 0.5)'
-    },
-    {
-      data: barLineLabels.map(() => Math.floor(Math.random() * 101)),
-      label: 'Dataset 2',
-      borderColor: 'rgb(53, 162, 235)',
-      backgroundColor: 'rgba(53, 162, 235, 0.5)'
-    }
-  ]
-}
-
-const doughnutLabels = ['Dataset1', 'Dataset 2']
-
-export const doughnutChartData = {
-  labels: doughnutLabels,
-  datasets: [
-    {
-      data: doughnutLabels.map(() => Math.floor(Math.random() * 101)),
-      borderColor: ['rgb(255, 99, 132)', 'rgb(53, 162, 235)'],
-      backgroundColor: ['rgba(255, 99, 132, 0.5)', 'rgba(53, 162, 235, 0.5)']
-    }
-  ]
-}
+]

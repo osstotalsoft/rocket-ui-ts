@@ -1,127 +1,21 @@
 // Copyright (c) TotalSoft.
 // This source code is licensed under the MIT license.
-
+import React from 'react'
 import { Meta, StoryObj } from '@storybook/react'
-import ShowChart from '@mui/icons-material/ShowChart'
-import BarChart from '@mui/icons-material/BarChart'
-import RadioButtonUnchecked from '@mui/icons-material/RadioButtonUnchecked'
-import { Chart } from 'components'
-import { barChartData, chartOptions, doughnutChartData, lineChartData } from './_mocks'
+import ChartComponent from 'components/charts/Chart'
+import ChartTypesPreview from './ChartTypesPreview'
 
-const meta: Meta<typeof Chart> = {
+const meta: Meta<typeof ChartComponent> = {
   title: 'Components/Charts/Chart',
-  component: Chart,
-  args: {
-    width: 500,
-    height: 200
-  }
-} satisfies Meta<typeof Chart>
+  component: ChartComponent
+} satisfies Meta<typeof ChartComponent>
 
 export default meta
-type Story = StoryObj<typeof meta>
+type Story = StoryObj<typeof ChartComponent>
 
 /**
- * Default type is set to `line`.
+ * The Chart component.
  */
-
-export const Line: Story = {
-  args: {
-    title: 'Line chart',
-    subheader: 'Chart infos',
-    Icon: ShowChart,
-    iconColor: 'info',
-    data: lineChartData,
-    options: {
-      ...chartOptions,
-      plugins: { ...chartOptions.plugins, legend: { ...chartOptions.plugins.legend, display: false } }
-    }
-  },
-  parameters: {
-    docs: {
-      source: {
-        code: `
-        <Chart
-          title='Line chart'
-          subheader={'Chart infos'}
-          type='line'
-          Icon={InsertChart}
-          iconColor='info'
-          data={lineChartData}
-          options={chartOptions}
-        />
-        `,
-        format: true
-      }
-    }
-  }
-}
-
-/**
- * You can show the `legend` by providing it to the `options` prop. It will use the `label` text to display it.
- */
-
-export const Bar: Story = {
-  parameters: {
-    controls: { hideNoControlsWarning: true },
-    docs: {
-      source: {
-        code: `
-            <Chart
-              title='Bar chart'
-              subheader={'Chart infos'}
-              type='bar'
-              Icon={BarChart}
-              iconColor='info'
-              data={barChartData}
-              options={chartOptions}
-            />
-            `,
-        format: true
-      }
-    }
-  },
-  args: {
-    title: 'Bar chart',
-    subheader: 'Chart infos',
-    type: 'bar',
-    Icon: BarChart,
-    iconColor: 'info',
-    data: barChartData,
-    options: chartOptions
-  }
-}
-
-/**
- * Doughnut chart
- */
-
-export const Doughnut: Story = {
-  parameters: {
-    controls: { hideNoControlsWarning: true },
-    docs: {
-      source: {
-        code: `
-            <Chart
-              title='Doughnut chart'
-              subheader={'Chart infos'}
-              type='doughnut'
-              Icon={RadioButtonUnchecked}
-              iconColor='info'
-              data={barChartData}
-              options={chartOptions}
-            />
-            `,
-        format: true
-      }
-    }
-  },
-  args: {
-    title: 'Doughnut chart',
-    subheader: 'Chart infos',
-    type: 'doughnut',
-    Icon: RadioButtonUnchecked,
-    iconColor: 'info',
-    data: doughnutChartData,
-    options: chartOptions
-  }
+export const Types: Story = {
+  render: () => <ChartTypesPreview />
 }

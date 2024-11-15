@@ -2,19 +2,24 @@
 // This source code is licensed under the MIT license.
 
 import { SvgIconComponent } from '@mui/icons-material'
-import { ChartProps } from 'react-chartjs-2'
 import { Color } from '../../types'
+import { ChartProps } from '../Chart'
 
-export interface DataSetsChart {
-  data: number[]
-  label: string
-  backgroundColor: string
-  borderColor: string
+// export interface DataSetsChart {
+//   data: number[]
+//   label: string
+//   backgroundColor: string
+//   borderColor: string
+// }
+
+export interface StatsChartProps {
+text: string,
+StatIcon: SvgIconComponent,
 }
 
 export type StatsIconColor = Exclude<Color, 'default' | 'white' | 'transparent' | 'dark' | 'rose'>
 
-export interface StatsChartProps extends Omit<ChartProps, 'type' | 'data'> {
+export interface StatsChartProps extends ChartProps{
   /**
    * Chart type.
    */
