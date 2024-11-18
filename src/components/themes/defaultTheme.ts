@@ -29,7 +29,7 @@ const palette = generatePalette({
     paper: '#fff'
   },
   sideMenu: {
-    bgColor: '#000',
+    bgColor: '#000000d9',
     color: '#fff',
     hoverBgColor: 'rgba(200, 200, 200, 0.2)',
     hoverTextColor: '#fff',
