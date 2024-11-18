@@ -48,7 +48,7 @@ describe('Standard Date Picker', () => {
 describe('Date Picker Formats', () => {
   it('renders the date in french', () => {
     // arrange
-    render(<DateTime showPicker="dateTime" value={value} format="fr" />)
+    render(<DateTime showPicker="dateTime" value={value} localeFormat="fr" />)
 
     // act
     const pickers = screen.getAllByDisplayValue('14/03/2022 16:35')
@@ -59,7 +59,7 @@ describe('Date Picker Formats', () => {
 
   it('renders the date in united states', () => {
     // arrange
-    render(<DateTime showPicker="dateTime" value={value} format="en-US" />)
+    render(<DateTime showPicker="dateTime" value={value} localeFormat="en-US" />)
 
     // act
     const picker = screen.getAllByDisplayValue('03/14/2022 04:35 PM')
@@ -70,7 +70,7 @@ describe('Date Picker Formats', () => {
 
   it('renders the date in romanian', () => {
     // arrange
-    render(<DateTime showPicker="dateTime" value={value} format="ro" />)
+    render(<DateTime showPicker="dateTime" value={value} localeFormat="ro" />)
 
     // act
     const picker = screen.getAllByDisplayValue('14.03.2022 16:35')
