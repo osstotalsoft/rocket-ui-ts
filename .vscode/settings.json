@@ -12,7 +12,16 @@
   "typescript.updateImportsOnFileMove.enabled": "always",
   "typescript.tsserver.log": "verbose",
   "npm.packageManager": "yarn",
-  "cSpell.words": ["autodocs", "copyfiles", "rsbuild", "storybuild", "Toastify", "Totalsoft", "uuidv"],
+  "cSpell.words": [
+    "autodocs",
+    "copyfiles",
+    "rsbuild",
+    "storybuild",
+    "Toastify",
+    "toolbelt",
+    "Totalsoft",
+    "uuidv"
+  ],
   "licenser.license": "Custom",
   "licenser.author": "TotalSoft",
   "licenser.customHeader": "Copyright (c) @AUTHOR@.\nThis source code is licensed under the MIT license."

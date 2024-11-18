@@ -4,7 +4,6 @@
 import React from 'react'
 import { Grid2 as Grid, Typography } from '@mui/material'
 import { Chart } from 'components'
-import { ScatterChart } from '@mui/x-charts'
 import { scatterData } from './_mocks'
 
 const ChartTypesPreview = () => {
