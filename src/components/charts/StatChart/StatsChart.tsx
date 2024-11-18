@@ -1,5 +1,5 @@
 import React from 'react'
-import PropTypes, { number } from 'prop-types'
+import PropTypes, { number, string } from 'prop-types'
 import {
   StyledCard,
   CardActions,
@@ -27,13 +27,12 @@ const StatsChart: React.FC<StatsChartProps> = ({
   text,
   statText,
   StatIcon,
-  type = 'line',
   statAction,
-  ...rest
+  chart
 }) => {
   return (
     <StyledCard disablePadding>
-      <StyledCardHeader color={chartColor} subheader={<Chart type={type} {...rest} />} />
+      <StyledCardHeader color={chartColor} subheader={<Chart {...chart} />} />
       <CardContent>
         <CardTitle variant="subtitle1">{title}</CardTitle>
         {text && <CardCategory variant="subtitle2">{text}</CardCategory>}
@@ -56,10 +55,15 @@ const StatsChart: React.FC<StatsChartProps> = ({
 
 StatsChart.propTypes = {
   /**
-   * @default 'line'
-   * Chart type.
+   * @default 'info'
+   * Chart color.
    */
-  type: PropTypes.oneOf(['line', 'bar']),
+  chartColor: PropTypes.oneOf(['primary', 'secondary', 'info', 'success', 'warning', 'error', 'rose', 'dark']),
+  /**
+   * @default 'grey'
+   * Chart icon color.
+   */
+  iconColor: PropTypes.oneOf(['primary', 'secondary', 'info', 'success', 'warning', 'error']),
   /**
    * Chart title.
    */
@@ -69,29 +73,25 @@ StatsChart.propTypes = {
    */
   text: PropTypes.string,
   /**
+   * Chart status text.
+   */
+  statText: PropTypes.string,
+  /**
    * Chart icon.
    */
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   StatIcon: PropTypes.object,
   /**
-   * @default 'grey'
-   * Chart icon color.
-   */
-  iconColor: PropTypes.oneOf(['primary', 'secondary', 'info', 'success', 'warning', 'error']),
-  /**
-   * @default 'info'
-   * Chart color.
-   */
-  chartColor: PropTypes.oneOf(['primary', 'secondary', 'info', 'success', 'warning', 'error', 'rose', 'dark']),
-  /**
-   * Chart status text.
-   */
-  statText: PropTypes.node,
-  /**
    *  Actions to be displayed in the right corner of the card.
    */
-  statAction: PropTypes.node
+  statAction: PropTypes.node,
+  /**
+   * Chart properties.
+   */
+  // chart: PropTypes.shape({
+  //   type: ChartType
+  // })
 }
 
 export default StatsChart

@@ -54,7 +54,8 @@ const ChartTypesPreview = () => {
       </Grid>
       <Grid size={6}>
         <Typography textAlign={'center'}>{'scatter '}</Typography>
-        <ScatterChart
+        <Chart
+          type="scatter"
           width={600}
           height={300}
           series={[

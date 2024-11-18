@@ -14,7 +14,7 @@ export default meta
 type Story = StoryObj<typeof ChartComponent>
 
 /**
- * The Chart component.
+ * The Chart components.
  */
 export const Types: Story = {
   render: () => <ChartTypesPreview />

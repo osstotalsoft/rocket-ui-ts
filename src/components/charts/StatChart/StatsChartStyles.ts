@@ -8,10 +8,9 @@ import { Gradient } from '../../types'
 export const StyledCard = styled(Card)(({ theme }) => ({
   display: 'inline-block',
   position: 'relative',
-  width: '100%',
   margin: '25px 0',
   boxShadow: '0 1px 4px 0 rgba(0, 0, 0, 0.14)',
-  borderRadius: '6px',
+  borderRadius: '10px',
   color: theme.palette.primary.main,
   background: '#fff',
   overflow: 'visible'
