@@ -1,5 +1,5 @@
 import React from 'react'
-import PropTypes, { number, string } from 'prop-types'
+import PropTypes from 'prop-types'
 import {
   StyledCard,
   CardActions,
@@ -89,9 +89,9 @@ StatsChart.propTypes = {
   /**
    * Chart properties.
    */
-  // chart: PropTypes.shape({
-  //   type: ChartType
-  // })
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  chart: PropTypes.object
 }
 
 export default StatsChart

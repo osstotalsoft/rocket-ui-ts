@@ -6,7 +6,7 @@ import { Grid2 as Grid, Typography } from '@mui/material'
 import { Chart } from 'components'
 import { scatterData } from './_mocks'
 
-const ChartTypesPreview = () => {
+const TypesPreview = () => {
   return (
     <Grid container rowSpacing={2} columnSpacing={4}>
       <Grid size={6}>
@@ -73,4 +73,4 @@ const ChartTypesPreview = () => {
   )
 }
 
-export default ChartTypesPreview
+export default TypesPreview

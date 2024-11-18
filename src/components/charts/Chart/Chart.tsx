@@ -1,5 +1,5 @@
 import React from 'react'
-
+import PropTypes from 'prop-types'
 import { ChartProps } from './types'
 import {
   BarChart,
@@ -30,5 +30,9 @@ const Chart: React.FC<ChartProps> = ({ type, ...props }) => {
       return <p>Unsupported chart type</p>
   }
 }
+
+// Chart.propTypes = {
+//   type: PropTypes.oneOf(['line', 'bar', 'pie', 'scatter']).isRequired
+// }
 
 export default Chart

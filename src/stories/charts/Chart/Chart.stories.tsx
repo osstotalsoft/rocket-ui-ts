@@ -3,7 +3,7 @@
 import React from 'react'
 import { Meta, StoryObj } from '@storybook/react'
 import ChartComponent from 'components/charts/Chart'
-import ChartTypesPreview from './ChartTypesPreview'
+import TypesPreview from './TypesPreview'
 
 const meta: Meta<typeof ChartComponent> = {
   title: 'Components/Charts/Chart',
@@ -17,5 +17,5 @@ type Story = StoryObj<typeof ChartComponent>
  * The Chart components.
  */
 export const Types: Story = {
-  render: () => <ChartTypesPreview />
+  render: () => <TypesPreview />
 }

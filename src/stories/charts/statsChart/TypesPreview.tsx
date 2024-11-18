@@ -7,11 +7,11 @@ import { StatsChart } from 'components'
 import AccessTime from '@mui/icons-material/AccessTime'
 import { scatterData } from './_mocks'
 
-const StatChartTypesPreview = () => {
+const TypesPreview = () => {
   return (
     <>
       <Grid container rowSpacing={2} columnSpacing={4}>
-        <Grid size={6}>
+        <Grid>
           <StatsChart
             StatIcon={AccessTime}
             statText={'Line chart infos'}
@@ -29,7 +29,7 @@ const StatChartTypesPreview = () => {
             }}
           />
         </Grid>
-        <Grid size={6}>
+        <Grid>
           <StatsChart
             StatIcon={AccessTime}
             statText={'Bar chart infos'}
@@ -47,7 +47,7 @@ const StatChartTypesPreview = () => {
             }}
           />
         </Grid>
-        <Grid size={6}>
+        <Grid>
           <StatsChart
             StatIcon={AccessTime}
             statText={'Pie chart infos'}
@@ -72,7 +72,7 @@ const StatChartTypesPreview = () => {
             }}
           />
         </Grid>
-        <Grid size={6}>
+        <Grid>
           <StatsChart
             StatIcon={AccessTime}
             statText={'Scatter chart infos'}
@@ -103,4 +103,4 @@ const StatChartTypesPreview = () => {
   )
 }
 
-export default StatChartTypesPreview
+export default TypesPreview
