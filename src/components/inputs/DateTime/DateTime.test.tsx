@@ -1,9 +1,9 @@
 import React from 'react'
 import { fireEvent, screen, waitFor } from '@testing-library/react'
-import DateTime from './DateTime'
 import { render, userClick } from 'testingUtils'
+import DateTime from './DateTime'
 
-const value = '2022-03-14 16:35:25.123'
+const value = new Date('2022-03-14 16:35:25.123')
 
 describe('Standard Date Picker', () => {
   it('renders a Date component by default', () => {
@@ -62,7 +62,7 @@ describe('Date Picker Formats', () => {
     render(<DateTime showPicker="dateTime" value={value} format="en-US" />)
 
     // act
-    const picker = screen.getAllByDisplayValue('03/14/2022 04:35 pm')
+    const picker = screen.getAllByDisplayValue('03/14/2022 04:35 PM')
 
     // assert
     expect(picker).toHaveLength(1)
@@ -83,10 +83,10 @@ describe('Date Picker Formats', () => {
 describe('Date Time buttons work', () => {
   it('clears the value', async () => {
     // arrange
-    render(<DateTime value={value} isClearable={true} />)
+    render(<DateTime value={value} label="Clear" isClearable={true} />)
 
     // act
-    await waitFor(() => fireEvent.click(screen.getByLabelText('Clear')))
+    await waitFor(() => fireEvent.click(screen.getByTitle('Clear')))
 
     // assert
     expect(() => screen.getAllByDisplayValue('14.03.2022')).toThrow()
@@ -94,11 +94,11 @@ describe('Date Time buttons work', () => {
 
   it('opens dialog to choose date', async () => {
     // arrange
-    render(<DateTime value={value} />)
+    render(<DateTime value={null} />)
     expect(() => screen.getByRole('dialog')).toThrow()
 
     // act
-    await waitFor(() => fireEvent.click(screen.getByLabelText('Open')))
+    await waitFor(() => fireEvent.click(screen.getByLabelText('Choose date')))
 
     // assert
     expect(() => screen.getByRole('dialog')).not.toThrow()
@@ -122,7 +122,7 @@ describe('Date Time helper text', () => {
   it('displays helper text', () => {
     // arrange
     const helperText = 'Helper Text'
-    render(<DateTime value={value} helperText={helperText} />)
+    render(<DateTime value={value} slotProps={{ textField: { helperText } }} />)
 
     // act
     const helper = screen.getByText(helperText)

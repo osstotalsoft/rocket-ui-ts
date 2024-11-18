@@ -14,7 +14,7 @@ import SwipeRightAlt from '@mui/icons-material/SwipeRightAlt'
 
 const meta: Meta<typeof DateTime> = {
   title: 'Components/Inputs/DateTime',
-  component: DateTime,
+  component: DateTime
 } satisfies Meta<typeof DateTime>
 
 export default meta
@@ -42,7 +42,7 @@ export const Default: Story = {
 export const Customized: Story = {
   args: {
     label: 'Customized Picker',
-    components: { OpenPickerIcon: HeartBroken, LeftArrowIcon: SwipeLeftAlt, RightArrowIcon: SwipeRightAlt }
+    slots: { openPickerIcon: HeartBroken, leftArrowIcon: SwipeLeftAlt, rightArrowIcon: SwipeRightAlt }
   }
 }
 
@@ -54,7 +54,7 @@ export const LimitOptions: Story = {
 }
 
 /**
- * Different formats can be used. You can choose from `fr`, `en-us`, `ru`, `ro`, `de`. Default set to `ro`.
+ * Different formats can be used. You can choose from `fr`, `en-us`, `ro`, `de`. Default set to `ro`.
  */
 export const Format: Story = {
   parameters: {
@@ -65,8 +65,7 @@ export const Format: Story = {
             <DateTime
                 showPicker='date'
                 label='Date Picker'
-                format={'your format'}
-                mask={maskMap[format].date}
+                localeFormat={'your format'}
             />
                 `,
         format: true
@@ -89,9 +88,7 @@ export const ErrorHelperText: Story = {
             <DateTime
                 showPicker="time"
                 label="Time Picker"
-                mask="__:__"
-                error={true}
-                helperText="This is a helper text!"
+                slotProps={{ textField: { error: true, helperText: 'This is a helper text!' } }}
             />
                 `,
         format: true
@@ -111,7 +108,7 @@ export const Disabled: Story = {
     docs: {
       source: {
         code: `
-        <DateTime showPicker="date" label="Date Picker" mask="__.__.____" value={value} disabled={true} />
+        <DateTime showPicker="date" label="Date Picker" value={value} disabled={true} />
                 `,
         format: true
       }
@@ -129,7 +126,7 @@ export const Clearable: Story = {
     docs: {
       source: {
         code: `
-        <DateTime showPicker="dateTime" label="Date Time Picker" mask="__.__.____ __:__" isClearable={true} />
+        <DateTime showPicker="dateTime" label="Date Time Picker" isClearable={true} />
                 `,
         format: true
       }
