@@ -5,7 +5,7 @@ import React from 'react'
 import { StatsChart } from 'components'
 import Grid from '@mui/material/Grid2'
 import { scatterData } from './_mocks'
-import { AccessTime } from '@mui/icons-material'
+import AccessTime from '@mui/icons-material/AccessTime'
 
 const ScatterPreview = () => {
   return (

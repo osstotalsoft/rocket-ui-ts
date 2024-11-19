@@ -3,7 +3,7 @@
 
 import React from 'react'
 import { StatsChart } from 'components'
-import { AccessTime } from '@mui/icons-material'
+import AccessTime from '@mui/icons-material/AccessTime'
 import Grid from '@mui/material/Grid2'
 
 const BarPreview = () => {

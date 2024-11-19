@@ -3,7 +3,7 @@ import MuiCardActions from '@mui/material/CardActions'
 import { styled } from '@mui/material/styles'
 import Typography from '../Typography'
 import { Gradient } from 'components/types'
-import { Card, CardHeader } from 'components/surfaces/Card'
+import { Card, CardHeader } from '../../surfaces/Card'
 
 export const StyledCard = styled(Card)(({ theme }) => ({
   display: 'inline-block',
