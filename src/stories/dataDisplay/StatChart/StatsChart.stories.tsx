@@ -25,7 +25,8 @@ export const Line: Story = {
   parameters: {
     docs: {
       source: {
-        code: `<StatsChart
+        code: `
+        <StatsChart
           StatIcon={AccessTime}
           statText={'Line chart infos'}
           title={'Line Chart'}
@@ -122,7 +123,33 @@ export const Scatter: Story = {
   parameters: {
     docs: {
       source: {
-        code: `<StatsChart
+        code: `
+        const scatterData = [
+        {
+          id: 'data-0',
+          x1: 329.39,
+          x2: 391.29,
+          y1: 443.28,
+          y2: 153.9
+        },
+        {
+          id: 'data-1',
+          x1: 96.94,
+          x2: 139.6,
+          y1: 110.5,
+          y2: 217.8
+        },
+        {
+          id: 'data-2',
+          x1: 336.35,
+          x2: 282.34,
+          y1: 175.23,
+          y2: 286.32
+        }
+        //etc...  
+      ]
+
+        <StatsChart
           StatIcon={AccessTime}
           statText={'Scatter chart infos'}
           title={'Scatter Chart'}

@@ -6,6 +6,7 @@ import { StatsChart } from 'components'
 import AccessTime from '@mui/icons-material/AccessTime'
 import Grid from '@mui/material/Grid2'
 import { ErrorOutline } from '@mui/icons-material'
+import { pieData } from './_mocks'
 
 const PiePreview = () => {
   return (
@@ -21,15 +22,7 @@ const PiePreview = () => {
           statAction={'View'}
           chart={{
             type: 'pie',
-            series: [
-              {
-                data: [
-                  { id: 0, value: 10, label: 'series A' },
-                  { id: 1, value: 15, label: 'series B' },
-                  { id: 2, value: 20, label: 'series C' }
-                ]
-              }
-            ],
+            series: [{ data: pieData }],
             width: 450,
             height: 300
           }}
@@ -46,15 +39,7 @@ const PiePreview = () => {
           statAction={'View'}
           chart={{
             type: 'pie',
-            series: [
-              {
-                data: [
-                  { id: 0, value: 10, label: 'series A' },
-                  { id: 1, value: 15, label: 'series B' },
-                  { id: 2, value: 20, label: 'series C' }
-                ]
-              }
-            ],
+            series: [{ data: pieData }],
             width: 450,
             height: 300
           }}
