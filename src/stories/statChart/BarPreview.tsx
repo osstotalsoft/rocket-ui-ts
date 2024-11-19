@@ -2,8 +2,8 @@
 // This source code is licensed under the MIT license.
 
 import React from 'react'
-import { Button, StatsChart } from 'components'
-import AccessTime from '@mui/icons-material/AccessTime'
+import { StatsChart } from 'components'
+import { AccessTime, ErrorOutline } from '@mui/icons-material'
 import Grid from '@mui/material/Grid2'
 
 const BarPreview = () => {
@@ -16,29 +16,35 @@ const BarPreview = () => {
           title={'Bar Chart'}
           chartColor="info"
           iconColor="info"
-          text={'This is a bar chart'}
+          text={'This is a bar chart with custom colors'}
           statAction={'View'}
           chart={{
             type: 'bar',
+            colors: ['#ff6f61', '#fdd835', '#004d6f'],
             xAxis: [{ scaleType: 'band', data: ['group A', 'group B', 'group C'] }],
             series: [{ data: [4, 3, 5] }, { data: [1, 6, 3] }, { data: [2, 5, 6] }],
-            width: 500,
+            width: 450,
             height: 300
           }}
         />
       </Grid>
       <Grid size={6}>
-        {/* <StatsChart
-          type="bar"
-          data={statsChartData}
-          chartColor={'info'}
-          StatIcon={AccessTime}
+        <StatsChart
+          StatIcon={ErrorOutline}
           statText={'Bar chart infos'}
-          title={'Bar chart with action button'}
-          options={statsChartOptions}
-          statAction={<Button size="tiny">Ok</Button>}
-          iconColor="info"
-        /> */}
+          title={'Bar Chart'}
+          chartColor="info"
+          iconColor="error"
+          text={'This is a bar chart with error icon'}
+          statAction={'View'}
+          chart={{
+            type: 'bar',
+            xAxis: [{ scaleType: 'band', data: ['group A', 'group B', 'group C'] }],
+            series: [{ data: [4, 3, 5] }, { data: [1, 6, 3] }, { data: [2, 5, 6] }],
+            width: 450,
+            height: 300
+          }}
+        />
       </Grid>
     </Grid>
   )

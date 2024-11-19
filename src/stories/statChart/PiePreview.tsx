@@ -5,33 +5,31 @@ import React from 'react'
 import { StatsChart } from 'components'
 import AccessTime from '@mui/icons-material/AccessTime'
 import Grid from '@mui/material/Grid2'
-import { scatterData } from './_mocks'
 
-const ScatterPreview = () => {
+const PiePreview = () => {
   return (
     <Grid container spacing={2}>
       <Grid size={6}>
         <StatsChart
           StatIcon={AccessTime}
-          statText={'Scatter chart infos'}
-          title={'Scatter Chart'}
+          statText={'Pie chart infos'}
+          title={'Pie Chart'}
           chartColor="info"
           iconColor="info"
-          text={'This is a scatter chart'}
+          text={'This is a pie chart'}
           statAction={'View'}
           chart={{
-            type: 'scatter',
+            type: 'pie',
             series: [
               {
-                label: 'Series A',
-                data: scatterData.map(v => ({ x: v.x1, y: v.y1, id: v.id }))
-              },
-              {
-                label: 'Series B',
-                data: scatterData.map(v => ({ x: v.x1, y: v.y2, id: v.id }))
+                data: [
+                  { id: 0, value: 10, label: 'series A' },
+                  { id: 1, value: 15, label: 'series B' },
+                  { id: 2, value: 20, label: 'series C' }
+                ]
               }
             ],
-            width: 500,
+            width: 450,
             height: 300
           }}
         />
@@ -40,4 +38,4 @@ const ScatterPreview = () => {
   )
 }
 
-export default ScatterPreview
+export default PiePreview

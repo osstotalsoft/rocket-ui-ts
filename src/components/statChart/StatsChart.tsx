@@ -14,10 +14,11 @@ import {
 
 import Divider from '@mui/material/Divider'
 import { StatsIconColor, StatsChartProps } from './types'
-import Chart from '../Chart'
+import Chart from './Chart'
 
 /**
- * The StatsChart component provides a set of frequently and customizable used chart types (`line` and `bar`).
+ * The StatsChart component provides a customizable and rich card component that combines
+ * multiple elements to display different chart types with their corresponding statistical information
  */
 
 const StatsChart: React.FC<StatsChartProps> = ({

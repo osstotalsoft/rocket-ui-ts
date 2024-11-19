@@ -10,7 +10,7 @@ import PiePreview from './PiePreview'
 import ScatterPreview from './ScatterPreview'
 
 const meta: Meta<typeof StatsChart> = {
-  title: 'Components/Charts/StatsChart',
+  title: 'Components/StatChart',
   component: StatsChart
 } satisfies Meta<typeof StatsChart>
 
@@ -21,6 +21,29 @@ type Story = StoryObj<typeof StatsChart>
  * The Line Stat Chart.
  */
 export const Line: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `<StatsChart
+          StatIcon={AccessTime}
+          statText={'Line chart infos'}
+          title={'Line Chart'}
+          chartColor="secondary"
+          iconColor="info"
+          text={'This is a line chart'}
+          statAction={<Button size="tiny">Ok</Button>}
+          chart={{
+            type: 'line',
+            xAxis: [{ data: [1, 2, 3, 5, 8, 10] }],
+            series: [{ data: [2, 5.5, 2, 8.5, 1.5, 5] }],
+            width: 450,
+            height: 300
+          }}
+        />`,
+        format: true
+      }
+    }
+  },
   render: () => <LinePreview />
 }
 

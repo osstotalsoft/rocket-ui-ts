@@ -1,6 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import { ChartProps } from './types'
 import {
   BarChart,
   BarChartProps,
@@ -11,6 +9,7 @@ import {
   ScatterChart,
   ScatterChartProps
 } from '@mui/x-charts'
+import { ChartProps } from './types'
 
 /**
  * The Chart component serves as a unified interface for rendering all available chart types in MUI X,
@@ -30,9 +29,5 @@ const Chart: React.FC<ChartProps> = ({ type, ...props }) => {
       return <p>Unsupported chart type</p>
   }
 }
-
-// Chart.propTypes = {
-//   type: PropTypes.oneOf(['line', 'bar', 'pie', 'scatter']).isRequired
-// }
 
 export default Chart
