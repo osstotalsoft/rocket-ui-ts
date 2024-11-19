@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react'
+import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
 import {
   DatePicker,
@@ -46,7 +46,7 @@ const DateTime: React.FC<DateTimeProps<Date, string>> = ({
     [error, helperText, isClearable, slotProps]
   )
 
-  const renderPicker = useCallback(
+  const renderPicker = useMemo(
     () =>
       cond([
         [
@@ -91,7 +91,7 @@ const DateTime: React.FC<DateTimeProps<Date, string>> = ({
 
   return (
     <LocalizationProvider dateAdapter={dateAdapter} adapterLocale={locale}>
-      {renderPicker()}
+      {renderPicker}
     </LocalizationProvider>
   )
 }
