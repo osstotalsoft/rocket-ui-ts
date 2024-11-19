@@ -5,12 +5,7 @@ import React, { useCallback, useState } from 'react'
 import { Grid2 as Grid, ToggleButton, ToggleButtonGroup } from '@mui/material'
 import { DateTime, DateTimeProps } from 'components'
 
-const maskMap = {
-  fr: { date: '__/__/____', dateTime: '__/__/____ __:__', time: '__:__' },
-  ['en-US']: { date: '__/__/____', dateTime: '__/__/____ __:__ _M', time: '__:__ _M' },
-  ro: { date: '__.__.____', dateTime: '__.__.____ __:__', time: '__:__' },
-  de: { date: '__.__.____', dateTime: '__.__.____ __:__', time: '__:__' }
-}
+const formatMap = ['fr', 'en-US', 'ro', 'de']
 
 const FormatPreview = () => {
   const [format, setFormat] = useState<DateTimeProps<Date, string>['localeFormat']>('en-US')
@@ -23,7 +18,7 @@ const FormatPreview = () => {
     <Grid container spacing={4} justifyItems={'flex-start'}>
       <Grid size={12}>
         <ToggleButtonGroup value={format} exclusive sx={{ mb: 2, display: 'block' }}>
-          {Object.keys(maskMap).map(localeItem => (
+          {formatMap.map(localeItem => (
             <ToggleButton key={localeItem} value={localeItem} onClick={handleClick}>
               {localeItem}
             </ToggleButton>

@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, { useCallback, useMemo } from 'react'
 import PropTypes from 'prop-types'
 import {
   DatePicker,
@@ -32,53 +32,66 @@ const DateTime: React.FC<DateTimeProps<Date, string>> = ({
   slotProps = {},
   slots = {},
   localeFormat = 'ro',
+  helperText,
+  error,
   ...rest
 }) => {
   const locale = useMemo(() => adapterLocale ?? localeMap[localeFormat] ?? ro, [adapterLocale, localeFormat])
-  const commonSlotProps = useMemo(() => ({ field: { clearable: isClearable }, ...slotProps }), [isClearable, slotProps])
+  const commonSlotProps = useMemo(
+    () => ({
+      ...slotProps,
+      field: { ...slotProps?.field, clearable: isClearable },
+      textField: { ...slotProps?.textField, helperText, error }
+    }),
+    [error, helperText, isClearable, slotProps]
+  )
 
-  const renderPicker = cond([
-    [
-      equals('date'),
-      () => (
-        <DatePicker
-          value={value}
-          onChange={onChange}
-          slotProps={commonSlotProps as DatePickerSlotProps<Date, false>}
-          slots={slots as DatePickerSlots<Date>}
-          {...(rest as DatePickerProps<Date>)}
-        />
-      )
-    ],
-    [
-      equals('dateTime'),
-      () => (
-        <DateTimePicker
-          value={value}
-          onChange={onChange}
-          slotProps={commonSlotProps as DateTimePickerSlotProps<Date, false>}
-          slots={slots as DateTimePickerSlots<Date>}
-          {...(rest as DateTimePickerProps<Date>)}
-        />
-      )
-    ],
-    [
-      equals('time'),
-      () => (
-        <TimePicker
-          value={value}
-          onChange={onChange}
-          slotProps={commonSlotProps as TimePickerSlotProps<Date, false>}
-          slots={slots as TimePickerSlots<Date>}
-          {...(rest as TimePickerProps<Date>)}
-        />
-      )
-    ]
-  ])
+  const renderPicker = useCallback(
+    () =>
+      cond([
+        [
+          equals('date'),
+          () => (
+            <DatePicker
+              value={value}
+              onChange={onChange}
+              slotProps={commonSlotProps as DatePickerSlotProps<Date, false>}
+              slots={slots as DatePickerSlots<Date>}
+              {...(rest as DatePickerProps<Date>)}
+            />
+          )
+        ],
+        [
+          equals('dateTime'),
+          () => (
+            <DateTimePicker
+              value={value}
+              onChange={onChange}
+              slotProps={commonSlotProps as DateTimePickerSlotProps<Date, false>}
+              slots={slots as DateTimePickerSlots<Date>}
+              {...(rest as DateTimePickerProps<Date>)}
+            />
+          )
+        ],
+        [
+          equals('time'),
+          () => (
+            <TimePicker
+              value={value}
+              onChange={onChange}
+              slotProps={commonSlotProps as TimePickerSlotProps<Date, false>}
+              slots={slots as TimePickerSlots<Date>}
+              {...(rest as TimePickerProps<Date>)}
+            />
+          )
+        ]
+      ])(showPicker),
+    [commonSlotProps, onChange, rest, showPicker, slots, value]
+  )
 
   return (
     <LocalizationProvider dateAdapter={dateAdapter} adapterLocale={locale}>
-      {renderPicker(showPicker)}
+      {renderPicker()}
     </LocalizationProvider>
   )
 }
@@ -123,7 +136,15 @@ DateTime.propTypes = {
    * @default 'ro'
    * A small sample of ISO format names that will be used to display the date.
    */
-  localeFormat: PropTypes.oneOf(['de', 'en-US', 'fr', 'ro'])
+  localeFormat: PropTypes.oneOf(['de', 'en-US', 'fr', 'ro']),
+  /**
+   * If true, the label is displayed in an error state.
+   */
+  error: PropTypes.bool,
+  /**
+   * The helper text content.
+   */
+  helperText: PropTypes.node
 }
 
 export default DateTime

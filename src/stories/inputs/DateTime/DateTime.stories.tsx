@@ -28,16 +28,16 @@ export const Default: Story = {
 }
 
 /**
- * The component can be deeply customized using the `components` property. It allows customizing the following elements:
+ * The component can be deeply customized using the `slots` property. It allows customizing the following elements:
  *
- * - OpenPickerIcon
- * - ActionBar
- * - LeftArrowButton
- * - RightArrowButton
- * - LeftArrowIcon
- * - RightArrowIcon
- * - SwitchViewButton
- * - SwitchViewIcon
+ * - openPickerIcon
+ * - actionBar
+ * - leftArrowButton
+ * - rightArrowButton
+ * - leftArrowIcon
+ * - rightArrowIcon
+ * - switchViewButton
+ * - switchViewIcon
  */
 export const Customized: Story = {
   args: {
@@ -88,7 +88,8 @@ export const ErrorHelperText: Story = {
             <DateTime
                 showPicker="time"
                 label="Time Picker"
-                slotProps={{ textField: { error: true, helperText: 'This is a helper text!' } }}
+                error="true"
+                helperText= 'This is a helper text!'
             />
                 `,
         format: true

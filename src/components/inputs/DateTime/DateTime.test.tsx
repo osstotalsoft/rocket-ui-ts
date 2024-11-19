@@ -83,7 +83,7 @@ describe('Date Picker Formats', () => {
 describe('Date Time buttons work', () => {
   it('clears the value', async () => {
     // arrange
-    render(<DateTime value={value} label="Clear" isClearable={true} />)
+    render(<DateTime value={value} isClearable={true} />)
 
     // act
     await waitFor(() => fireEvent.click(screen.getByTitle('Clear')))
@@ -122,7 +122,7 @@ describe('Date Time helper text', () => {
   it('displays helper text', () => {
     // arrange
     const helperText = 'Helper Text'
-    render(<DateTime value={value} slotProps={{ textField: { helperText } }} />)
+    render(<DateTime value={value} helperText={helperText} />)
 
     // act
     const helper = screen.getByText(helperText)

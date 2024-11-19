@@ -52,4 +52,14 @@ export type DateTimeProps<TDate, TError> = (
      * Choose if you want a dedicated button to clear the value from the picker.
      */
     isClearable?: boolean
+    /**
+     * This property will be passed to the renderInput
+     * If `true`, the label is displayed in an error state.
+     */
+    error?: boolean
+    /**
+     * This property will be passed to the renderInput
+     * The helper text content.
+     */
+    helperText?: React.ReactNode
   }

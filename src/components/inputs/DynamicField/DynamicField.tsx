@@ -92,13 +92,7 @@ function DynamicField<TCustomComponentProps extends object = any, TAutocompleteO
       )
     case ControlType.Date:
       return (
-        <DateTime
-          value={value as Date}
-          label={label}
-          onChange={onChange}
-          slotProps={{ textField: { error, helperText } }}
-          {...rest}
-        />
+        <DateTime value={value as Date} label={label} onChange={onChange} error={error} helperText={helperText} {...rest} />
       )
     case ControlType.Checkbox:
       return (
