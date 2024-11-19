@@ -2,9 +2,9 @@
 // This source code is licensed under the MIT license.
 
 import { SvgIconComponent } from '@mui/icons-material'
-import { Color } from '../types'
 
 import { BarChartProps, LineChartProps, PieChartProps, ScatterChartProps } from '@mui/x-charts'
+import { Color } from 'components/types'
 
 //ChartType defines the chart types that can be used with the Chart component.
 export type ChartType = 'line' | 'bar' | 'pie' | 'scatter'

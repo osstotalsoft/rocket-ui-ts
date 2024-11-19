@@ -10,7 +10,7 @@ import PiePreview from './PiePreview'
 import ScatterPreview from './ScatterPreview'
 
 const meta: Meta<typeof StatsChart> = {
-  title: 'Components/StatChart',
+  title: 'Components/DataDisplay/StatChart',
   component: StatsChart
 } satisfies Meta<typeof StatsChart>
 
@@ -55,13 +55,13 @@ export const Bar: Story = {
 }
 
 /**
- * The Bar Stat Chart.
+ * The Pie Stat Chart.
  */
 export const Pie: Story = {
   render: () => <PiePreview />
 }
 /**
- * The Bar Stat Chart.
+ * The Scatter Stat Chart.
  */
 export const Scatter: Story = {
   render: () => <ScatterPreview />
