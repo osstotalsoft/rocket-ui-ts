@@ -25,7 +25,7 @@ describe('DynamicField', () => {
   })
 
   test('renders a date field if control type is "Date"', () => {
-    const value = '2022-03-14 16:35:25.123'
+    const value = new Date('2022-03-14 16:35:25.123')
     render(<DynamicField controlType={ControlType.Date} showPicker={'dateTime'} value={value} />)
     expect(screen.getAllByDisplayValue('14.03.2022 16:35')).toHaveLength(1)
   })

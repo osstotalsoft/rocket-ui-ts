@@ -11,13 +11,13 @@ const DisabledPreview = () => {
   return (
     <Grid container spacing={4} justifyItems={'flex-start'}>
       <Grid size={4}>
-        <DateTime showPicker="date" label="Date Picker" mask="__.__.____" value={value} disabled={true} />
+        <DateTime showPicker="date" label="Date Picker" value={value} disabled={true} />
       </Grid>
       <Grid size={4}>
-        <DateTime showPicker="dateTime" label="Date Time Picker" mask="__.__.____ __:__" value={value} disabled={true} />
+        <DateTime showPicker="dateTime" label="Date Time Picker" value={value} disabled={true} />
       </Grid>
       <Grid size={4}>
-        <DateTime showPicker="time" label="Time Picker" mask="__:__" value={value} disabled={true} />
+        <DateTime showPicker="time" label="Time Picker" value={value} disabled={true} />
       </Grid>
     </Grid>
   )
