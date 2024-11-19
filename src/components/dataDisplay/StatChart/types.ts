@@ -3,11 +3,11 @@
 
 import { SvgIconComponent } from '@mui/icons-material'
 
-import { BarChartProps, LineChartProps, PieChartProps, ScatterChartProps } from '@mui/x-charts'
+import { BarChartProps, GaugeContainerProps, LineChartProps, PieChartProps, ScatterChartProps } from '@mui/x-charts'
 import { Color } from 'components/types'
 
 //ChartType defines the chart types that can be used with the Chart component.
-export type ChartType = 'line' | 'bar' | 'pie' | 'scatter'
+export type ChartType = 'line' | 'bar' | 'pie' | 'scatter' | 'gauge'
 
 //ChartProps defines a discriminated union for handling multiple chart types.
 export type ChartProps =
@@ -15,6 +15,7 @@ export type ChartProps =
   | ({ type: 'bar' } & BarChartProps)
   | ({ type: 'pie' } & PieChartProps)
   | ({ type: 'scatter' } & ScatterChartProps)
+  | ({ type: 'gauge' } & GaugeContainerProps)
 
 export type StatsChartProps = {
   chartColor: Color

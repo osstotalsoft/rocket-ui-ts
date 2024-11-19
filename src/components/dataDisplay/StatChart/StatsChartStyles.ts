@@ -61,7 +61,7 @@ export const CardActions = styled(MuiCardActions)(({ theme }) => ({
 }))
 
 export const CardStatContainer = styled('div')(({ theme }) => ({
-  lineHeight: '22px',
+  lineHeight: '20px',
   color: theme.palette.grey[500],
   fontSize: '12px',
   display: 'inline-block',
@@ -75,7 +75,7 @@ export const StatAction = styled(MuiCardActions)(() => ({
 export const statIconStyle = {
   position: 'relative',
   top: '4px',
-  width: '16px',
-  height: '16px',
+  width: '20px',
+  height: '20px',
   marginRight: '5px'
 } as React.CSSProperties

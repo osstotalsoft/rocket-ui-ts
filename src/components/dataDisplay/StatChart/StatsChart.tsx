@@ -56,43 +56,44 @@ const StatsChart: React.FC<StatsChartProps> = ({
 
 StatsChart.propTypes = {
   /**
+   * Chart properties. For more information about chart properties see https://mui.com/x/react-charts/. They depend on the specified type.
+   * Example: {type: 'pie', series: [{data: [1, 2, 3]}], width: 450, height: 300}}. 'type' property is mandatory
+   */
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  chart: PropTypes.object,
+  /**
    * @default 'info'
-   * Chart color.
+   * Chart color
    */
   chartColor: PropTypes.oneOf(['primary', 'secondary', 'info', 'success', 'warning', 'error', 'rose', 'dark']),
   /**
    * @default 'grey'
-   * Chart icon color.
+   * Chart icon color
    */
   iconColor: PropTypes.oneOf(['primary', 'secondary', 'info', 'success', 'warning', 'error']),
   /**
-   * Chart title.
-   */
-  title: PropTypes.string,
-  /**
-   * The text content of chart.
-   */
-  text: PropTypes.string,
-  /**
-   * Chart status text.
+   * Chart status text
    */
   statText: PropTypes.string,
   /**
-   * Chart icon.
+   * Chart icon
    */
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   StatIcon: PropTypes.object,
   /**
-   *  Actions to be displayed in the right corner of the card.
+   *  Actions to be displayed in the right corner of the card
    */
   statAction: PropTypes.node,
   /**
-   * Chart properties.
+   * Chart title
    */
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  chart: PropTypes.object
+  title: PropTypes.string,
+  /**
+   * The text content of chart
+   */
+  text: PropTypes.string
 }
 
 export default StatsChart

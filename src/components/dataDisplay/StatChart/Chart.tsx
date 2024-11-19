@@ -2,6 +2,8 @@ import React from 'react'
 import {
   BarChart,
   BarChartProps,
+  Gauge,
+  GaugeContainerProps,
   LineChart,
   LineChartProps,
   PieChart,
@@ -25,6 +27,8 @@ const Chart: React.FC<ChartProps> = ({ type, ...props }) => {
       return <PieChart {...(props as PieChartProps)} />
     case 'scatter':
       return <ScatterChart {...(props as ScatterChartProps)} />
+    case 'gauge':
+      return <Gauge {...(props as GaugeContainerProps)} />
     default:
       return <p>Unsupported chart type</p>
   }
