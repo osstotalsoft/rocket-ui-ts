@@ -12,8 +12,11 @@ export * from './buttons/BackToButton'
 export { default as UploadButton } from './buttons/UploadButton'
 export * from './buttons/UploadButton'
 
+export { default as StatsChart } from './charts/StatsChart'
+export * from './charts/StatsChart'
+
 export { default as OldStatsChart } from './charts/OldStatsChart'
-export * from './charts/OldChart'
+export * from './charts/OldStatsChart'
 
 export { default as OldChart } from './charts/OldChart'
 export * from './charts/OldChart'

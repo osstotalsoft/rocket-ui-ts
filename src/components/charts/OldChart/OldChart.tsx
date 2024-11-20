@@ -15,7 +15,7 @@ import {
   Legend,
   ArcElement
 } from 'chart.js'
-import { ChartProps } from './types'
+import { OldChartProps } from './types'
 import { Card, CardColor } from '../../surfaces/Card'
 
 ChartJS.register(
@@ -37,7 +37,7 @@ ChartJS.register(
  * We recommend using se Mui X Chart components instead: https://mui.com/x/react-charts/
  */
 
-const OldChart: React.FC<ChartProps> = ({
+const OldChart: React.FC<OldChartProps> = ({
   title,
   subheader,
   Icon,

@@ -5,7 +5,7 @@ import { SvgIconComponent } from '@mui/icons-material'
 import { CardProps } from '../..'
 import { ChartProps as OldChart } from 'react-chartjs-2'
 
-export interface ChartProps extends Omit<OldChart, 'title'> {
+export interface OldChartProps extends Omit<OldChart, 'title'> {
   /**
    * Chart subtitle.
    */

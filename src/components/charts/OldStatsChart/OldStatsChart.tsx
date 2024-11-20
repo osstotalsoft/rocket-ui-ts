@@ -24,7 +24,7 @@ import {
   Tooltip
 } from 'chart.js'
 import Divider from '@mui/material/Divider'
-import { StatsIconColor, StatsChartProps } from './types'
+import { OldStatsIconColor, OldStatsChartProps } from './types'
 
 ChartJS.register(CategoryScale, LinearScale, LineController, PointElement, LineElement, BarElement, BarController, Tooltip)
 
@@ -33,7 +33,7 @@ ChartJS.register(CategoryScale, LinearScale, LineController, PointElement, LineE
  * Use `StatsChart` instead.
  */
 
-const StatsChart: React.FC<StatsChartProps> = ({
+const StatsChart: React.FC<OldStatsChartProps> = ({
   chartColor = 'info',
   iconColor = 'grey',
   title,
@@ -57,7 +57,7 @@ const StatsChart: React.FC<StatsChartProps> = ({
           <Divider />
           <CardActions>
             <CardStatContainer>
-              {StatIcon && <StatIcon style={statIconStyle} color={iconColor as StatsIconColor} />}
+              {StatIcon && <StatIcon style={statIconStyle} color={iconColor as OldStatsIconColor} />}
               {statText}
             </CardStatContainer>
             <StatAction>{statAction}</StatAction>
