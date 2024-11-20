@@ -12,6 +12,10 @@ const meta: Meta<typeof StatsChart> = {
   component: StatsChart
 } satisfies Meta<typeof StatsChart>
 
+/**
+ * The StatsChart component provides a customizable and rich card component that combines
+ * multiple elements to display different chart types with their corresponding statistical information
+ */
 export default meta
 type Story = StoryObj<typeof StatsChart>
 
