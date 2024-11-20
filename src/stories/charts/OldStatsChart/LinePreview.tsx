@@ -2,7 +2,7 @@
 // This source code is licensed under the MIT license.
 
 import React from 'react'
-import { Button, StatsChart } from 'components'
+import { Button, OldStatsChart } from 'components'
 import AccessTime from '@mui/icons-material/AccessTime'
 import Grid from '@mui/material/Grid2'
 import { statsChartData, statsChartOptions } from './_mocks'
@@ -11,7 +11,7 @@ const LinePreview = () => {
   return (
     <Grid container spacing={2}>
       <Grid size={6}>
-        <StatsChart
+        <OldStatsChart
           type="line"
           data={statsChartData}
           chartColor={'info'}
@@ -23,7 +23,7 @@ const LinePreview = () => {
         />
       </Grid>
       <Grid size={6}>
-        <StatsChart
+        <OldStatsChart
           type="line"
           data={statsChartData}
           chartColor={'info'}
