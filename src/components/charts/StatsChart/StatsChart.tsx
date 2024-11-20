@@ -56,12 +56,11 @@ const StatsChart: React.FC<StatsChartProps> = ({
 
 StatsChart.propTypes = {
   /**
-   * Chart properties. For more information about chart properties see https://mui.com/x/react-charts/. They depend on the specified type.
-   * Example: {type: 'pie', series: [{data: [1, 2, 3]}], width: 450, height: 300}}. 'type' property is mandatory
+   * Chart properties. For more information about chart properties see https://mui.com/x/react-charts/, because they depend on the specified type.
    */
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
-  chart: PropTypes.object,
+  chart: PropTypes.object.isRequired,
   /**
    * @default 'info'
    * Chart color
