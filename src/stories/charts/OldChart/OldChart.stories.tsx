@@ -5,17 +5,17 @@ import { Meta, StoryObj } from '@storybook/react'
 import ShowChart from '@mui/icons-material/ShowChart'
 import BarChart from '@mui/icons-material/BarChart'
 import RadioButtonUnchecked from '@mui/icons-material/RadioButtonUnchecked'
-import { Chart } from 'components'
+import { OldChart } from 'components'
 import { barChartData, chartOptions, doughnutChartData, lineChartData } from './_mocks'
 
-const meta: Meta<typeof Chart> = {
-  title: 'Components/Charts/Chart',
-  component: Chart,
+const meta: Meta<typeof OldChart> = {
+  title: 'Components/Charts/OldChart',
+  component: OldChart,
   args: {
     width: 500,
     height: 200
   }
-} satisfies Meta<typeof Chart>
+} satisfies Meta<typeof OldChart>
 
 export default meta
 type Story = StoryObj<typeof meta>
@@ -40,7 +40,7 @@ export const Line: Story = {
     docs: {
       source: {
         code: `
-        <Chart
+        <OldChart
           title='Line chart'
           subheader={'Chart infos'}
           type='line'
@@ -66,7 +66,7 @@ export const Bar: Story = {
     docs: {
       source: {
         code: `
-            <Chart
+            <OldChart
               title='Bar chart'
               subheader={'Chart infos'}
               type='bar'
@@ -101,7 +101,7 @@ export const Doughnut: Story = {
     docs: {
       source: {
         code: `
-            <Chart
+            <OldChart
               title='Doughnut chart'
               subheader={'Chart infos'}
               type='doughnut'

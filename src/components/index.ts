@@ -12,11 +12,11 @@ export * from './buttons/BackToButton'
 export { default as UploadButton } from './buttons/UploadButton'
 export * from './buttons/UploadButton'
 
-export { default as StatsChart } from './charts/StatChart'
-export * from './charts/StatChart'
+export { default as OldStatsChart } from './charts/OldStatChart'
+export * from './charts/OldChart'
 
-export { default as Chart } from './charts/Chart'
-export * from './charts/Chart'
+export { default as OldChart } from './charts/OldChart'
+export * from './charts/OldChart'
 
 export { default as Typography } from './dataDisplay/Typography'
 export * from './dataDisplay/Typography'

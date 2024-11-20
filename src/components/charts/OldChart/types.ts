@@ -2,10 +2,10 @@
 // This source code is licensed under the MIT license.
 
 import { SvgIconComponent } from '@mui/icons-material'
-import { CardProps } from '../../../components'
-import { ChartProps as Chart } from 'react-chartjs-2'
+import { CardProps } from '../..'
+import { ChartProps as OldChart } from 'react-chartjs-2'
 
-export interface ChartProps extends Omit<Chart, 'title'> {
+export interface ChartProps extends Omit<OldChart, 'title'> {
   /**
    * Chart subtitle.
    */

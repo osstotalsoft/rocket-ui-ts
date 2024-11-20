@@ -33,10 +33,11 @@ ChartJS.register(
 )
 
 /**
- * The Chart component provides a set of frequently and customizable used chart types (`line` and `bar`).
+ * @deprecated: The `OldChart`  component is deprecated and will be removed in a future release.
+ * We recommend using se Mui X Chart components instead: https://mui.com/x/react-charts/
  */
 
-const Chart: React.FC<ChartProps> = ({
+const OldChart: React.FC<ChartProps> = ({
   title,
   subheader,
   Icon,
@@ -53,7 +54,7 @@ const Chart: React.FC<ChartProps> = ({
   )
 }
 
-Chart.propTypes = {
+OldChart.propTypes = {
   /**
    * Chart title.
    */
@@ -85,4 +86,4 @@ Chart.propTypes = {
   cardProps: PropTypes.object
 }
 
-export default Chart
+export default OldChart

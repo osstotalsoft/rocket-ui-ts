@@ -10,7 +10,7 @@ import {
   CardTitle,
   statIconStyle,
   StatAction
-} from './StatsChartStyles'
+} from './OldStatsChartStyles'
 import { Chart } from 'react-chartjs-2'
 import {
   Chart as ChartJS,
@@ -29,7 +29,8 @@ import { StatsIconColor, StatsChartProps } from './types'
 ChartJS.register(CategoryScale, LinearScale, LineController, PointElement, LineElement, BarElement, BarController, Tooltip)
 
 /**
- * The StatsChart component provides a set of frequently and customizable used chart types (`line` and `bar`).
+ * @deprecated: The `OldStatsChart` component is deprecated and it would be removed in a future release.
+ * Use `StatsChart` instead.
  */
 
 const StatsChart: React.FC<StatsChartProps> = ({
