@@ -3,9 +3,9 @@
 
 import { SvgIconComponent } from '@mui/icons-material'
 import { CardProps } from '../..'
-import { ChartProps as OldChart } from 'react-chartjs-2'
+import { ChartProps as DeprecatedChart } from 'react-chartjs-2'
 
-export interface OldChartProps extends Omit<OldChart, 'title'> {
+export interface DeprecatedChartProps extends Omit<DeprecatedChart, 'title'> {
   /**
    * Chart subtitle.
    */

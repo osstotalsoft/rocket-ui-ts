@@ -15,7 +15,7 @@ import {
   Legend,
   ArcElement
 } from 'chart.js'
-import { OldChartProps } from './types'
+import { DeprecatedChartProps } from './types'
 import { Card, CardColor } from '../../surfaces/Card'
 
 ChartJS.register(
@@ -33,11 +33,11 @@ ChartJS.register(
 )
 
 /**
- * @deprecated: The `OldChart`  component is deprecated and will be removed in a future release.
+ * @deprecated: The `DeprecatedChart`  component is deprecated and will be removed in a future release.
  * We recommend using se Mui X Chart components instead: https://mui.com/x/react-charts/
  */
 
-const OldChart: React.FC<OldChartProps> = ({
+const DeprecatedChart: React.FC<DeprecatedChartProps> = ({
   title,
   subheader,
   Icon,
@@ -54,7 +54,7 @@ const OldChart: React.FC<OldChartProps> = ({
   )
 }
 
-OldChart.propTypes = {
+DeprecatedChart.propTypes = {
   /**
    * Chart title.
    */
@@ -86,4 +86,4 @@ OldChart.propTypes = {
   cardProps: PropTypes.object
 }
 
-export default OldChart
+export default DeprecatedChart

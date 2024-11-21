@@ -12,9 +12,9 @@ export interface DataSetsChart {
   borderColor: string
 }
 
-export type OldStatsIconColor = Exclude<Color, 'default' | 'white' | 'transparent' | 'dark' | 'rose'>
+export type DeprecatedStatsIconColor = Exclude<Color, 'default' | 'white' | 'transparent' | 'dark' | 'rose'>
 
-export interface OldStatsChartProps extends Omit<ChartProps, 'type' | 'data'> {
+export interface DeprecatedStatsChartProps extends Omit<ChartProps, 'type' | 'data'> {
   /**
    * Chart type.
    */
@@ -31,7 +31,7 @@ export interface OldStatsChartProps extends Omit<ChartProps, 'type' | 'data'> {
    * @default 'grey'
    * Chart icon color.
    */
-  iconColor?: OldStatsIconColor
+  iconColor?: DeprecatedStatsIconColor
   /**
    * @default 'info'
    * Chart color.

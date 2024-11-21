@@ -15,11 +15,11 @@ export * from './buttons/UploadButton'
 export { default as StatsChart } from './charts/StatsChart'
 export * from './charts/StatsChart'
 
-export { default as OldStatsChart } from './charts/OldStatsChart'
-export * from './charts/OldStatsChart'
+export { default as DeprecatedStatsChart } from './charts/DeprecatedStatsChart'
+export * from './charts/DeprecatedStatsChart'
 
-export { default as OldChart } from './charts/OldChart'
-export * from './charts/OldChart'
+export { default as DeprecatedChart } from './charts/DeprecatedChart'
+export * from './charts/DeprecatedChart'
 
 export { default as Typography } from './dataDisplay/Typography'
 export * from './dataDisplay/Typography'
