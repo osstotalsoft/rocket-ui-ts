@@ -50,7 +50,7 @@ export const Line: Story = {
           chartColor="secondary"
           iconColor="info"
           text={'This is a line chart'}
-          statAction: 'View',
+          statAction='View',
           chart={{
             type: 'line',
             xAxis: [{ data: [1, 2, 3, 5, 8, 10] }],
@@ -149,7 +149,7 @@ export const Pie: Story = {
           chartColor="info"
           iconColor="error"
           text={'This is a pie chart with action button'}
-          statAction: <Button size="tiny">Ok</Button>,
+          statAction= <Button size="tiny">Ok</Button>,
           chart={{
             type: 'pie',
             series: [
