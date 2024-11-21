@@ -18,13 +18,13 @@ export type ChartProps =
   | ({ type: 'gauge' } & GaugeContainerProps)
 
 export type StatsChartProps = {
-  chartColor: Color
-  iconColor: StatsIconColor
+  chartColor?: Color
+  iconColor?: StatsIconColor
   title: string
   text: string
-  StatIcon: SvgIconComponent
-  statText: string
-  statAction: React.ReactNode
+  StatIcon?: SvgIconComponent
+  statText?: string
+  statAction?: React.ReactNode
   chart: ChartProps
 }
 

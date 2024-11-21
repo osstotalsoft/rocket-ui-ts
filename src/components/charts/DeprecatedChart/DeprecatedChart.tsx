@@ -34,7 +34,7 @@ ChartJS.register(
 
 /**
  * @deprecated: The `DeprecatedChart`  component is deprecated and will be removed in a future release.
- * We recommend using se Mui X Chart components instead: https://mui.com/x/react-charts/
+ * We recommend using the Mui X Chart components instead: https://mui.com/x/react-charts/
  */
 
 const DeprecatedChart: React.FC<DeprecatedChartProps> = ({
