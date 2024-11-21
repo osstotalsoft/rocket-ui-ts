@@ -16,7 +16,6 @@ describe('Stats Chart tests', () => {
     render(
       <StatsChart
         title={title}
-        chartColor="info"
         text={'This is a line chart'}
         chart={{
           type: 'line',
@@ -37,7 +36,6 @@ describe('Stats Chart tests', () => {
     render(
       <StatsChart
         title={title}
-        chartColor="info"
         text={'This is a bar chart'}
         chart={{
           type: 'bar',
@@ -57,7 +55,6 @@ describe('Stats Chart tests', () => {
     render(
       <StatsChart
         title={title}
-        chartColor="info"
         text={'This is a pie chart'}
         chart={{
           type: 'pie',
@@ -77,7 +74,6 @@ describe('Stats Chart tests', () => {
     render(
       <StatsChart
         title={title}
-        chartColor="info"
         text={'This is a scatter chart'}
         chart={{
           type: 'scatter',
@@ -97,7 +93,6 @@ describe('Stats Chart tests', () => {
     render(
       <StatsChart
         title={title}
-        chartColor="info"
         text={'This is a gauge chart'}
         chart={{
           type: 'gauge',
