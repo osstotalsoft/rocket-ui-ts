@@ -24,7 +24,6 @@ describe('Stats Chart tests', () => {
       />
     )
     // act
-    // act
     const chart = screen.getByTestId('line-chart')
     // assert
     expect(chart).toBeInTheDocument()
