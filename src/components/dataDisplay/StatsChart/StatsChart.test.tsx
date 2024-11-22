@@ -8,100 +8,48 @@ import {
   pieChartOptions,
   scatterChartOptions
 } from 'components/surfaces/StatsCard/_mocks'
+import { ChartProps } from './types'
+
+type ChartOption = {
+  chartOptions: ChartProps
+  testId: string
+  text: string
+}
+const chartOptionsArray: ChartOption[] = [
+  {
+    chartOptions: { type: 'line', ...lineChartOptions },
+    testId: 'line-chart',
+    text: 'This is a line chart'
+  },
+  {
+    chartOptions: { type: 'bar', ...barChartOptions },
+    testId: 'bar-chart',
+    text: 'This is a bar chart'
+  },
+  {
+    chartOptions: { type: 'pie', ...pieChartOptions },
+    testId: 'pie-chart',
+    text: 'This is a pie chart'
+  },
+  {
+    chartOptions: { type: 'scatter', ...scatterChartOptions },
+    testId: 'scatter-chart',
+    text: 'This is a scatter chart'
+  },
+  {
+    chartOptions: { type: 'gauge', ...gaugeChartOptions },
+    testId: 'gauge-chart',
+    text: 'This is a gauge chart'
+  }
+]
 
 describe('Stats Chart tests', () => {
-  test('renders the line chart', () => {
-    const title = 'Line Chart'
+  it.each(chartOptionsArray)('renders the correct type of chart', chart => {
     // arrange
-    render(
-      <StatsChart
-        title={title}
-        text={'This is a line chart'}
-        chart={{
-          type: 'line',
-          ...lineChartOptions
-        }}
-      />
-    )
+    render(<StatsChart title={chart.text} text={chart.text} chart={chart.chartOptions} />)
     // act
-    const chart = screen.getByTestId('line-chart')
+    const element = screen.getByTestId(chart.testId)
     // assert
-    expect(chart).toBeInTheDocument()
-  })
-
-  test('renders the bar chart', () => {
-    const title = 'Bar Chart'
-    // arrange
-    render(
-      <StatsChart
-        title={title}
-        text={'This is a bar chart'}
-        chart={{
-          type: 'bar',
-          ...barChartOptions
-        }}
-      />
-    )
-    // act
-    const chart = screen.getByTestId('bar-chart')
-    // assert
-    expect(chart).toBeInTheDocument()
-  })
-
-  test('renders the pie chart', () => {
-    const title = 'Pie Chart'
-    // arrange
-    render(
-      <StatsChart
-        title={title}
-        text={'This is a pie chart'}
-        chart={{
-          type: 'pie',
-          ...pieChartOptions
-        }}
-      />
-    )
-    // act
-    const chart = screen.getByTestId('pie-chart')
-    // assert
-    expect(chart).toBeInTheDocument()
-  })
-
-  test('renders the scatter chart', () => {
-    const title = 'Scatter Chart'
-    // arrange
-    render(
-      <StatsChart
-        title={title}
-        text={'This is a scatter chart'}
-        chart={{
-          type: 'scatter',
-          ...scatterChartOptions
-        }}
-      />
-    )
-    // act
-    const chart = screen.getByTestId('scatter-chart')
-    // assert
-    expect(chart).toBeInTheDocument()
-  })
-
-  test('renders the gauge chart', () => {
-    const title = 'Gauge Chart'
-    // arrange
-    render(
-      <StatsChart
-        title={title}
-        text={'This is a gauge chart'}
-        chart={{
-          type: 'gauge',
-          ...gaugeChartOptions
-        }}
-      />
-    )
-    // act
-    const chart = screen.getByTestId('gauge-chart')
-    // assert
-    expect(chart).toBeInTheDocument()
+    expect(element).toBeInTheDocument()
   })
 })
