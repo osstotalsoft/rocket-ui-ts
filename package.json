@@ -64,6 +64,7 @@
     "@mui/material": "^6.1.6",
     "@mui/system": "^6.1.6",
     "@mui/types": "^7.2.19",
+    "@mui/x-charts": "^7.22.2",
     "@mui/x-date-pickers": "^7.22.2",
     "attr-accept": "^2.2.5",
     "chart.js": "4.4.6",
