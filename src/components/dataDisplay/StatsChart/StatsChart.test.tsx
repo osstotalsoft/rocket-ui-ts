@@ -44,11 +44,11 @@ const chartOptionsArray: ChartOption[] = [
 ]
 
 describe('Stats Chart tests', () => {
-  it.each(chartOptionsArray)('renders the correct type of chart', chart => {
+  it.each(chartOptionsArray)('renders the correct type of chart', ({ text, chartOptions, testId }) => {
     // arrange
-    render(<StatsChart title={chart.text} text={chart.text} chart={chart.chartOptions} />)
+    render(<StatsChart title={text} text={text} chart={chartOptions} />)
     // act
-    const element = screen.getByTestId(chart.testId)
+    const element = screen.getByTestId(testId)
     // assert
     expect(element).toBeInTheDocument()
   })
