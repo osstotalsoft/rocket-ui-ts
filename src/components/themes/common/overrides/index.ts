@@ -9,6 +9,6 @@ const componentsOverride = (theme: Theme): CustomComponents => ({
   ...Card(theme),
   ...Button(theme),
   ...Divider(),
-  ...TextField()
+  ...TextField(theme)
 })
 export default componentsOverride

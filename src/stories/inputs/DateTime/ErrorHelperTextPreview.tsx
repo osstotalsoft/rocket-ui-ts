@@ -10,44 +10,33 @@ const ErrorHelperTextPreview = () => {
     <Grid container spacing={4} justifyItems={'flex-start'}>
       {/** Error */}
       <Grid size={4}>
-        <DateTime showPicker="date" label="Date Picker" mask="__.__.____" error={true} />
+        <DateTime showPicker="date" label="Date Picker" error={true} />
       </Grid>
       <Grid size={4}>
-        <DateTime showPicker="dateTime" label="Date Time Picker" mask="__.__.____ __:__" error={true} />
+        <DateTime showPicker="dateTime" label="Date Time Picker" error={true} />
       </Grid>
       <Grid size={4}>
-        <DateTime showPicker="time" label="Time Picker" mask="__:__" error={true} />
+        <DateTime showPicker="time" label="Time Picker" error={true} />
       </Grid>
       {/** Helper Text */}
       <Grid size={4}>
-        <DateTime showPicker="date" label="Date Picker" mask="__.__.____" helperText="This is a helper text!" />
+        <DateTime showPicker="date" label="Date Picker" helperText="This is a helper text!" />
       </Grid>
       <Grid size={4}>
-        <DateTime
-          showPicker="dateTime"
-          label="Date Time Picker"
-          mask="__.__.____ __:__"
-          helperText="This is a helper text!"
-        />
+        <DateTime showPicker="dateTime" label="Date Time Picker" helperText="This is a helper text!" />
       </Grid>
       <Grid size={4}>
-        <DateTime showPicker="time" label="Time Picker" mask="__:__" helperText="This is a helper text!" />
+        <DateTime showPicker="time" label="Time Picker" helperText="This is a helper text!" />
       </Grid>
       {/** Error & Helper Text */}
       <Grid size={4}>
-        <DateTime showPicker="date" label="Date Picker" mask="__.__.____" error={true} helperText="This is a helper text!" />
+        <DateTime showPicker="date" label="Date Picker" error={true} helperText="This is a helper text!" />
       </Grid>
       <Grid size={4}>
-        <DateTime
-          showPicker="dateTime"
-          label="Date Time Picker"
-          mask="__.__.____ __:__"
-          error={true}
-          helperText="This is a helper text!"
-        />
+        <DateTime showPicker="dateTime" label="Date Time Picker" error={true} helperText="This is a helper text!" />
       </Grid>
       <Grid size={4}>
-        <DateTime showPicker="time" label="Time Picker" mask="__:__" error={true} helperText="This is a helper text!" />
+        <DateTime showPicker="time" label="Time Picker" error={true} helperText="This is a helper text!" />
       </Grid>
     </Grid>
   )

@@ -10,11 +10,6 @@ export const classes = {
 }
 
 export const TextField = styled(MuiTextField)(({ theme }) => ({
-  [`& .${classes.label}`]: {
-    ...theme.typography.defaultFont,
-    fontWeight: '400',
-    lineHeight: '1.42857'
-  },
   [`& .${classes.input}`]: {
     '&,&::placeholder': {
       ...theme.typography.defaultFont,

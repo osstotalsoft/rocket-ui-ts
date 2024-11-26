@@ -1,9 +1,9 @@
 import React from 'react'
 import { fireEvent, screen, waitFor } from '@testing-library/react'
-import DateTime from './DateTime'
 import { render, userClick } from 'testingUtils'
+import DateTime from './DateTime'
 
-const value = '2022-03-14 16:35:25.123'
+const value = new Date('2022-03-14 16:35:25.123')
 
 describe('Standard Date Picker', () => {
   it('renders a Date component by default', () => {
@@ -48,7 +48,7 @@ describe('Standard Date Picker', () => {
 describe('Date Picker Formats', () => {
   it('renders the date in french', () => {
     // arrange
-    render(<DateTime showPicker="dateTime" value={value} format="fr" />)
+    render(<DateTime showPicker="dateTime" value={value} localeFormat="fr" />)
 
     // act
     const pickers = screen.getAllByDisplayValue('14/03/2022 16:35')
@@ -59,10 +59,10 @@ describe('Date Picker Formats', () => {
 
   it('renders the date in united states', () => {
     // arrange
-    render(<DateTime showPicker="dateTime" value={value} format="en-US" />)
+    render(<DateTime showPicker="dateTime" value={value} localeFormat="en-US" />)
 
     // act
-    const picker = screen.getAllByDisplayValue('03/14/2022 04:35 pm')
+    const picker = screen.getAllByDisplayValue('03/14/2022 04:35 PM')
 
     // assert
     expect(picker).toHaveLength(1)
@@ -70,7 +70,7 @@ describe('Date Picker Formats', () => {
 
   it('renders the date in romanian', () => {
     // arrange
-    render(<DateTime showPicker="dateTime" value={value} format="ro" />)
+    render(<DateTime showPicker="dateTime" value={value} localeFormat="ro" />)
 
     // act
     const picker = screen.getAllByDisplayValue('14.03.2022 16:35')
@@ -86,7 +86,7 @@ describe('Date Time buttons work', () => {
     render(<DateTime value={value} isClearable={true} />)
 
     // act
-    await waitFor(() => fireEvent.click(screen.getByLabelText('Clear')))
+    await waitFor(() => fireEvent.click(screen.getByTitle('Clear')))
 
     // assert
     expect(() => screen.getAllByDisplayValue('14.03.2022')).toThrow()
@@ -94,11 +94,11 @@ describe('Date Time buttons work', () => {
 
   it('opens dialog to choose date', async () => {
     // arrange
-    render(<DateTime value={value} />)
+    render(<DateTime value={null} />)
     expect(() => screen.getByRole('dialog')).toThrow()
 
     // act
-    await waitFor(() => fireEvent.click(screen.getByLabelText('Open')))
+    await waitFor(() => fireEvent.click(screen.getByLabelText('Choose date')))
 
     // assert
     expect(() => screen.getByRole('dialog')).not.toThrow()

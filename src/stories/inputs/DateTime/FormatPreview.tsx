@@ -5,24 +5,10 @@ import React, { useCallback, useState } from 'react'
 import { Grid2 as Grid, ToggleButton, ToggleButtonGroup } from '@mui/material'
 import { DateTime, DateTimeProps } from 'components'
 
-const maskMap = {
-  fr: { date: '__/__/____', dateTime: '__/__/____ __:__', time: '__:__' },
-  ['en-US']: { date: '__/__/____', dateTime: '__/__/____ __:__ _M', time: '__:__ _M' },
-  ru: { date: '__.__.____', dateTime: '__.__.____ __:__', time: '__:__' },
-  ro: { date: '__.__.____', dateTime: '__.__.____ __:__', time: '__:__' },
-  de: { date: '__.__.____', dateTime: '__.__.____ __:__', time: '__:__' }
-}
-
-type LocaleMapType = {
-  de: Locale
-  ['en-US']: Locale
-  fr: Locale
-  ro: Locale
-  ru: Locale
-}
+const formatMap = ['fr', 'en-US', 'ro', 'de']
 
 const FormatPreview = () => {
-  const [format, setFormat] = useState<DateTimeProps['format']>('en-US')
+  const [format, setFormat] = useState<DateTimeProps<Date, string>['localeFormat']>('en-US')
 
   const handleClick = useCallback((e: any) => {
     setFormat(e.target.value)
@@ -32,7 +18,7 @@ const FormatPreview = () => {
     <Grid container spacing={4} justifyItems={'flex-start'}>
       <Grid size={12}>
         <ToggleButtonGroup value={format} exclusive sx={{ mb: 2, display: 'block' }}>
-          {Object.keys(maskMap).map(localeItem => (
+          {formatMap.map(localeItem => (
             <ToggleButton key={localeItem} value={localeItem} onClick={handleClick}>
               {localeItem}
             </ToggleButton>
@@ -40,18 +26,13 @@ const FormatPreview = () => {
         </ToggleButtonGroup>
       </Grid>
       <Grid size={4}>
-        <DateTime showPicker="date" label="Date Picker" format={format} mask={maskMap[format as keyof LocaleMapType].date} />
+        <DateTime showPicker="date" label="Date Picker" localeFormat={format} />
       </Grid>
       <Grid size={4}>
-        <DateTime
-          showPicker="dateTime"
-          label="Date Time Picker"
-          format={format}
-          mask={maskMap[format as keyof LocaleMapType].dateTime}
-        />
+        <DateTime showPicker="dateTime" label="Date Time Picker" localeFormat={format} />
       </Grid>
       <Grid size={4}>
-        <DateTime showPicker="time" label="Time Picker" format={format} mask={maskMap[format as keyof LocaleMapType].time} />
+        <DateTime showPicker="time" label="Time Picker" localeFormat={format} />
       </Grid>
     </Grid>
   )

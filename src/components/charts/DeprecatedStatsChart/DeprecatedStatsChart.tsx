@@ -10,7 +10,7 @@ import {
   CardTitle,
   statIconStyle,
   StatAction
-} from './StatsChartStyles'
+} from './DeprecatedStatsChartStyles'
 import { Chart } from 'react-chartjs-2'
 import {
   Chart as ChartJS,
@@ -24,15 +24,16 @@ import {
   Tooltip
 } from 'chart.js'
 import Divider from '@mui/material/Divider'
-import { StatsIconColor, StatsChartProps } from './types'
+import { DeprecatedStatsIconColor, DeprecatedStatsChartProps } from './types'
 
 ChartJS.register(CategoryScale, LinearScale, LineController, PointElement, LineElement, BarElement, BarController, Tooltip)
 
 /**
- * The StatsChart component provides a set of frequently and customizable used chart types (`line` and `bar`).
+ * @deprecated: The `DeprecatedStatsChart` component is deprecated and it would be removed in a future release.
+ * Use `StatsChart` instead.
  */
 
-const StatsChart: React.FC<StatsChartProps> = ({
+const StatsChart: React.FC<DeprecatedStatsChartProps> = ({
   chartColor = 'info',
   iconColor = 'grey',
   title,
@@ -56,7 +57,7 @@ const StatsChart: React.FC<StatsChartProps> = ({
           <Divider />
           <CardActions>
             <CardStatContainer>
-              {StatIcon && <StatIcon style={statIconStyle} color={iconColor as StatsIconColor} />}
+              {StatIcon && <StatIcon style={statIconStyle} color={iconColor as DeprecatedStatsIconColor} />}
               {statText}
             </CardStatContainer>
             <StatAction>{statAction}</StatAction>
