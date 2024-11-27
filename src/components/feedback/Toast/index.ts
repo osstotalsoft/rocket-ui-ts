@@ -1,3 +1,5 @@
-export { default as ToastContainer } from './ToastContainer'
-export { default as useToast } from './useToast'
-export { default as usePromiseToast } from './usePromiseToast'
+import ToastContainer from './ToastContainer'
+import useToast from './useToast'
+import usePromiseToast from './usePromiseToast'
+export default { ToastContainer, useToast, usePromiseToast }
+export * from './types'
