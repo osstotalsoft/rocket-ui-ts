@@ -9,8 +9,8 @@ const TransitionsPreview = () => {
   const addToast = useToast()
 
   return (
-    <Grid container spacing={2} justifyItems={'flex-start'}>
-      <Grid size={2}>
+    <Grid container spacing={2} justifyContent={'space-evenly'}>
+      <Grid>
         <Button
           size={'small'}
           color={'primary'}
@@ -19,7 +19,7 @@ const TransitionsPreview = () => {
           {'Slide transition'}
         </Button>
       </Grid>
-      <Grid size={2}>
+      <Grid>
         <Button
           size={'small'}
           color={'primary'}
@@ -28,7 +28,7 @@ const TransitionsPreview = () => {
           {'Zoom transition'}
         </Button>
       </Grid>
-      <Grid size={2}>
+      <Grid>
         <Button
           size={'small'}
           color={'primary'}
@@ -37,7 +37,7 @@ const TransitionsPreview = () => {
           {'Bounce transition'}
         </Button>
       </Grid>
-      <Grid size={2}>
+      <Grid>
         <Button
           size={'small'}
           color={'primary'}

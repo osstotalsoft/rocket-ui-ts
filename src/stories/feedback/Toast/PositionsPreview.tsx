@@ -10,7 +10,7 @@ const PositionsPreview = () => {
 
   return (
     <Grid container spacing={2} justifyItems={'flex-start'}>
-      <Grid size={2}>
+      <Grid>
         <Button
           size={'small'}
           color={'primary'}
@@ -19,7 +19,7 @@ const PositionsPreview = () => {
           {'Top Left Position'}
         </Button>
       </Grid>
-      <Grid size={2}>
+      <Grid>
         <Button
           size={'small'}
           color={'primary'}
@@ -28,7 +28,7 @@ const PositionsPreview = () => {
           {'Top Center Position'}
         </Button>
       </Grid>
-      <Grid size={2}>
+      <Grid>
         <Button
           size={'small'}
           color={'primary'}
@@ -37,7 +37,7 @@ const PositionsPreview = () => {
           {'Top Right Position'}
         </Button>
       </Grid>
-      <Grid size={2}>
+      <Grid>
         <Button
           size={'small'}
           color={'primary'}
@@ -46,7 +46,7 @@ const PositionsPreview = () => {
           {'Bottom Right Position'}
         </Button>
       </Grid>
-      <Grid size={2}>
+      <Grid>
         <Button
           size={'small'}
           color={'primary'}
@@ -55,7 +55,7 @@ const PositionsPreview = () => {
           {'Bottom Center Position'}
         </Button>
       </Grid>
-      <Grid size={2}>
+      <Grid>
         <Button
           size={'small'}
           color={'primary'}

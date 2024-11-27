@@ -7,10 +7,11 @@ import { ToastContainer } from 'components'
 import VariantsPreview from './VariantsPreview'
 import PositionsPreview from './PositionsPreview'
 import TransitionsPreview from './TransitionsPreview'
+import ActionsPreview from './ActionsPreview'
 
 const meta: Meta<typeof ToastContainer> = {
   title: 'Components/Feedback/Toast',
-  component: ToastContainer,
+  component: ToastContainer
 } satisfies Meta<typeof ToastContainer>
 
 export default meta
@@ -45,4 +46,11 @@ export const Positions: Story = {
  */
 export const Transitions: Story = {
   render: () => <TransitionsPreview />
+}
+
+/**
+ * You can add customized actions to the toast.
+ */
+export const Actions: Story = {
+  render: () => <ActionsPreview />
 }

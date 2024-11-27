@@ -4,6 +4,8 @@ import useToast from './useToast'
 import { render } from 'testingUtils'
 import Button from 'components/buttons/Button'
 import usePromiseToast from './usePromiseToast'
+import Grid from '@mui/material/Grid2'
+import { emptyFunction } from 'components/utils/constants'
 
 describe('Toast', () => {
   it.each([
@@ -113,5 +115,42 @@ describe('Promise toast', () => {
     await waitFor(() => expect(screen.getByRole('alert').parentNode).toHaveClass('Toastify__toast--error'), {
       timeout: 4000
     })
+  })
+})
+
+describe('Actions toast', () => {
+  it('Should render a toast with actions', async () => {
+    const { result } = renderHook(() => useToast())
+
+    const CustomMessageWithActions = () => (
+      <Grid container spacing={2} justifyItems={'flex-start'}>
+        <Grid>{'This is a custom toast with actions'}</Grid>
+        <Grid>
+          <Button size={'small'} color={'primary'} onClick={emptyFunction}>
+            {'Button 1'}
+          </Button>
+        </Grid>
+        <Grid>
+          <Button size={'small'} color={'primary'} onClick={emptyFunction}>
+            {'Button 2'}
+          </Button>
+        </Grid>
+      </Grid>
+    )
+
+    render(<Button onClick={() => result.current(CustomMessageWithActions, 'error', { closeOnClick: false })} />)
+
+    const actionsToastButton = screen.getByRole('button')
+
+    await act(async () => fireEvent.click(actionsToastButton))
+
+    const toastMessage = await screen.findByText('This is a custom toast with actions')
+    expect(toastMessage).toBeInTheDocument()
+
+    const button1 = screen.getByRole('button', { name: 'Button 1' })
+    const button2 = screen.getByRole('button', { name: 'Button 2' })
+
+    expect(button1).toBeInTheDocument()
+    expect(button2).toBeInTheDocument()
   })
 })
