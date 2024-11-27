@@ -12,7 +12,7 @@ export const classes = {
 }
 
 const Container = styled('div')(({ theme }) => ({
-  [`& .${classes.default}`]: { borderRadius: '6px', padding: '6px 20px' },
+  [`& .${classes.default}`]: { borderRadius: '6px' },
   [`& .${classes.success}`]: {
     '--toastify-color-success': theme.palette.success.main,
     '--toastify-text-color-success': theme.palette.success.contrastText,
@@ -51,6 +51,13 @@ const Container = styled('div')(({ theme }) => ({
     opacity: 1,
     transition: '0.3s ease',
     alignSelf: 'auto'
+  },
+  ['.Toastify__toast-icon']: {
+    position: 'absolute',
+    left: 10
+  },
+  ['.Toastify__toast-body']: {
+    paddingLeft: 30
   }
 }))
 

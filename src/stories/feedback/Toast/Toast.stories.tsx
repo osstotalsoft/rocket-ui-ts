@@ -52,5 +52,39 @@ export const Transitions: Story = {
  * You can add customized actions to the toast.
  */
 export const Actions: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `const ActionsPreview = () => {
+  const addToast = useToast()
+
+  const CustomMessageWithActions = () => (
+    <Grid container spacing={2} justifyItems={'flex-start'}>
+      <Grid>{'This is a custom toast with actions'}</Grid>
+      <Grid>
+        <Button size={'small'} color={'primary'} onClick={emptyFunction}>
+          {'Button 1'}
+        </Button>
+      </Grid>
+      <Grid>
+        <Button size={'small'} color={'primary'} onClick={emptyFunction}>
+          {'Button 2'}
+        </Button>
+      </Grid>
+    </Grid>
+  )
+
+  return (
+    <Grid container spacing={2} justifyItems={'flex-start'}>
+      <Button size={'medium'} color={'primary'} onClick={() => addToast(CustomMessageWithActions, 'success')}>
+        {'Actions toast'}
+      </Button>
+    </Grid>
+  )
+}`,
+        format: true
+      }
+    }
+  },
   render: () => <ActionsPreview />
 }

@@ -8,7 +8,7 @@ import {
 import { classes } from './ToastStyles'
 import cx from 'classnames'
 import { getTransitionType, ToastContainerProps } from './types'
-
+import { renderEnrichedMessage } from './utils'
 
 const useToast = () => {
   return useCallback(
@@ -18,7 +18,7 @@ const useToast = () => {
      * @param {('success'|'info'|'warning'|'error')} variant The type of the toast
      * @param {ToastOptions} options Additional options passed to the toast
      */
-    (message: ToastContent, variant?: ToastifyTypeOptions, { transitionType, ...restOptions } = {} as ToastContainerProps) => {
+    (message: ToastContent, variant?: ToastifyTypeOptions, { transitionType, actions, textProps, ...restOptions } = {} as ToastContainerProps) => {
       const toastClasses = cx({
         [classes[variant]]: variant,
         [classes['default']]: true
@@ -27,24 +27,27 @@ const useToast = () => {
       const options: ToastOptions = {
         ...restOptions,
         transition: getTransitionType(transitionType),
-        className: toastClasses
+        className: toastClasses,
+        autoClose: false
       }
+
+      const enrichedMessage = renderEnrichedMessage(message, actions, textProps)
 
       switch (variant) {
         case 'error':
-          toast.error(message, options)
+          toast.error(enrichedMessage, options)
           break
         case 'info':
-          toast.info(message, options)
+          toast.info(enrichedMessage, options)
           break
         case 'success':
-          toast.success(message, options)
+          toast.success(enrichedMessage, options)
           break
         case 'warning':
-          toast.warn(message, options)
+          toast.warn(enrichedMessage, options)
           break
         default:
-          toast(message, options)
+          toast(enrichedMessage, options)
           break
       }
     },

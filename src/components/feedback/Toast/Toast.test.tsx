@@ -1,9 +1,7 @@
 import { fireEvent, renderHook, screen, waitFor } from '@testing-library/react'
 import React, { act } from 'react'
-import useToast from './useToast'
 import { render } from 'testingUtils'
-import Button from 'components/buttons/Button'
-import usePromiseToast from './usePromiseToast'
+import { Button, useToast, usePromiseToast } from 'components'
 import Grid from '@mui/material/Grid2'
 import { emptyFunction } from 'components/utils/constants'
 
