@@ -7,15 +7,9 @@ import {
 } from 'react-toastify'
 import { classes } from './ToastStyles'
 import cx from 'classnames'
-import { getTransitionType } from './types'
+import { getTransitionType, ToastOptions } from './types'
 import { renderEnrichedMessage } from './utils'
-import { TypographyProps } from 'components/dataDisplay/Typography'
 
-type ToastOptions = Omit<ToastOptionsBase, 'transition'> & {
-  transitionType?: 'Slide' | 'Bounce' | 'Zoom' | 'Flip',
-  actions?: React.ReactNode,
-  textProps?: TypographyProps
-}
 
 const useToast = () => {
   return useCallback(
@@ -25,7 +19,7 @@ const useToast = () => {
      * @param {('success'|'info'|'warning'|'error')} variant The type of the toast
      * @param {ToastOptions} options Additional options passed to the toast
      */
-    (message: ToastContent, variant?: ToastifyTypeOptions, { transitionType, actions, textProps, ...restOptions } = {} as ToastOptions) => {
+    (message: ToastContent, variant?: ToastifyTypeOptions, { transitionType, actions, ...restOptions } = {} as ToastOptions) => {
       const toastClasses = cx({
         [classes[variant]]: variant,
         [classes['default']]: true
@@ -37,7 +31,7 @@ const useToast = () => {
         className: toastClasses
       }
 
-      const enrichedMessage = renderEnrichedMessage(message, actions, textProps)
+      const enrichedMessage = renderEnrichedMessage(message, actions)
 
       switch (variant) {
         case 'error':

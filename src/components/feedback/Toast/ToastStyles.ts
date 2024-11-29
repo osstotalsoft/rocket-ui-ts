@@ -1,4 +1,7 @@
 import { styled } from '@mui/material/styles'
+import { maxHeight } from '@mui/system'
+import { white } from 'components/themes/common/palette/basicColors'
+import { includes } from 'ramda'
 
 const PREFIX = 'StyledToast'
 
@@ -11,8 +14,10 @@ export const classes = {
   toastWrapper: `${PREFIX}-toastWrapper`
 }
 
-const Container = styled('div')(({ theme }) => ({
-  [`& .${classes.default}`]: { borderRadius: '6px' },
+const Container: any = styled('div', {
+  shouldForwardProp: prop => !includes(prop, ['textSize'])
+})(({ theme, textSize }: any) => ({
+  [`& .${classes.default}`]: { borderRadius: '6px', padding: '6px 20px' },
   [`& .${classes.success}`]: {
     '--toastify-color-success': theme.palette.success.main,
     '--toastify-text-color-success': theme.palette.success.contrastText,
@@ -40,7 +45,13 @@ const Container = styled('div')(({ theme }) => ({
   [`& .${classes.toastWrapper}`]: {
     borderRadius: '6px',
     width: '350px',
-    overflowWrap: 'anywhere'
+    overflowWrap: 'anywhere',
+    // whiteSpace: 'noWrap',
+    // maxHeight: '100%',
+    textOverflow: 'scroll'
+  },
+  ['.Toastify__toast-icon']: {
+    alignSelf: 'auto'
   },
   ['.Toastify__close-button']: {
     background: 'transparent',
@@ -52,12 +63,9 @@ const Container = styled('div')(({ theme }) => ({
     transition: '0.3s ease',
     alignSelf: 'auto'
   },
-  ['.Toastify__toast-icon']: {
-    position: 'absolute',
-    left: 10
-  },
-  ['.Toastify__toast-body']: {
-    paddingLeft: 30
+  ['.Toastify__toast']: {
+    // ...theme.typography.defaultFont,
+    // fontSize: theme.typography.h6.fontSize
   }
 }))
 
