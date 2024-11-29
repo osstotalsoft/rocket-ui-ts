@@ -10,7 +10,7 @@ const withThemeProvider = (Story, context) => {
   const theme = getTheme(context)
   return (
     <ThemeProvider theme={theme}>
-      <ToastContainer />
+      <ToastContainer textSize='medium' />
       <Story />
     </ThemeProvider>
   )
