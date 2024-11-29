@@ -5,7 +5,7 @@ import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import { BackToButton as BackToButtonComponent } from 'components'
 import { Box } from '@mui/material'
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter } from 'react-router'
 
 const meta: Meta<typeof BackToButtonComponent> = {
   title: 'Components/Buttons/BackToButton',
@@ -30,8 +30,8 @@ export const BackToButton: Story = {
     }
   },
   render: args => (
-    <BrowserRouter future={{ v7_relativeSplatPath: true, v7_startTransition: true }}>
-      <BackToButtonComponent tooltip="redirect to provided path" path="/buttons/icon-button" {...args} />
+    <BrowserRouter>
+      <BackToButtonComponent tooltip="redirect to provided path" path={-1} {...args} />
     </BrowserRouter>
   )
 }
@@ -53,10 +53,10 @@ export const Sizes: Story = {
   },
   render: () => (
     <Box columnGap="15px" display="flex">
-      <BrowserRouter future={{ v7_relativeSplatPath: true, v7_startTransition: true }}>
-        <BackToButtonComponent size="small" tooltip="small" path="/buttons/icon-button" />
-        <BackToButtonComponent size="medium" tooltip="medium (default)" path="/buttons/icon-button" />
-        <BackToButtonComponent size="large" tooltip="large" path="/buttons/icon-button" />
+      <BrowserRouter>
+        <BackToButtonComponent size="small" tooltip="small" path={-1} />
+        <BackToButtonComponent size="medium" tooltip="medium (default)" path={-1} />
+        <BackToButtonComponent size="large" tooltip="large" path={-1} />
       </BrowserRouter>
     </Box>
   )
@@ -79,10 +79,10 @@ export const FontSizes: Story = {
   },
   render: () => (
     <Box columnGap="15px" display="flex">
-      <BrowserRouter future={{ v7_relativeSplatPath: true, v7_startTransition: true }}>
-        <BackToButtonComponent tooltip="small (default)" path="/buttons/icon-button" />
-        <BackToButtonComponent tooltip="medium" fontSize="medium" path="/buttons/icon-button" />
-        <BackToButtonComponent tooltip="large" fontSize="large" path="/buttons/icon-button" />
+      <BrowserRouter>
+        <BackToButtonComponent tooltip="small (default)" path={-1} />
+        <BackToButtonComponent tooltip="medium" fontSize="medium" path={-1} />
+        <BackToButtonComponent tooltip="large" fontSize="large" path={-1} />
       </BrowserRouter>
     </Box>
   )

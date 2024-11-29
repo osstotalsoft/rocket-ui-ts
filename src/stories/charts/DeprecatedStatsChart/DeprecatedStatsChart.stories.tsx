@@ -6,16 +6,16 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { statsChartData, statsChartOptions } from './_mocks'
 import BarPreview from './BarPreview'
 import LinePreview from './LinePreview'
-import { StatsChart } from 'components'
+import { DeprecatedStatsChart } from 'components'
 
-const meta: Meta<typeof StatsChart> = {
-  title: 'Components/Charts/StatsChart',
-  component: StatsChart,
+const meta: Meta<typeof DeprecatedStatsChart> = {
+  title: 'Components/Charts/DeprecatedStatsChart',
+  component: DeprecatedStatsChart,
   args: {
     width: 500,
     height: 200
   }
-} satisfies Meta<typeof StatsChart>
+} satisfies Meta<typeof DeprecatedStatsChart>
 
 export default meta
 type Story = StoryObj<typeof meta>
@@ -28,7 +28,7 @@ export const Default: Story = {
   parameters: {
     docs: {
       source: {
-        code: `<StatsChart
+        code: `<DeprecatedStatsChart
             data={{
                     labels: ['january', 'february], 
                     datasets: [{
@@ -59,7 +59,7 @@ export const Line: Story = {
     docs: {
       source: {
         code: `
-        <StatsChart
+        <DeprecatedStatsChart
           type="line"
           title={'Line Chart'}
           chartColor={'info'}
@@ -85,7 +85,7 @@ export const Bar: Story = {
     docs: {
       source: {
         code: `
-        <StatsChart
+        <DeprecatedStatsChart
           type="bar"
           title={'Bar Chart'}
           chartColor={'info'}
