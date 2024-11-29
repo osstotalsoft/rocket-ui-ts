@@ -48,7 +48,6 @@ const Container: any = styled('div', {
       '--toastify-color-progress-warning': theme.palette.warning.main
     },
     [`& .${classes.toastWrapper}`]: {
-      borderRadius: '6px',
       width: '350px',
       overflowWrap: 'anywhere',
     },
