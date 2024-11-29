@@ -1,7 +1,11 @@
 import { useCallback } from 'react'
-import { toast, ToastOptions } from 'react-toastify'
+import { toast, ToastOptions as ToastOptionsBase } from 'react-toastify'
 import { classes } from './ToastStyles'
-import { getTransitionType, ToastContainerProps } from './types'
+import { getTransitionType } from './types'
+
+type ToastOptions = Omit<ToastOptionsBase, 'transition'> & {
+  transitionType?: 'Slide' | 'Bounce' | 'Zoom' | 'Flip'
+}
 
 const usePromiseToast = () => {
   return useCallback(
@@ -13,9 +17,9 @@ const usePromiseToast = () => {
      * @param {(String|Object)} error The message to be shown when promise was rejected or the entire object with all the configurations
      * @param {ToastOptions} options Additional options passed to the toast
      */
-    (promise: Promise<unknown>, pending: string | object, success: string | object, error: string | object, { transitionType, ...restOptions } = {} as ToastContainerProps) => {
+    (promise: Promise<unknown>, pending: string | object, success: string | object, error: string | object, { transitionType, ...restOptions } = {} as ToastOptions) => {
 
-      const localOptions: ToastOptions = {
+      const localOptions: ToastOptionsBase = {
         ...restOptions,
         transition: getTransitionType(transitionType)
       }

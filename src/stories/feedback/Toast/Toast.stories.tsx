@@ -59,19 +59,14 @@ export const Actions: Story = {
   const addToast = useToast()
 
   const CustomMessageWithActions = () => (
-    <Grid container spacing={2} justifyItems={'flex-start'}>
-      <Grid>{'This is a custom toast with actions'}</Grid>
-      <Grid>
-        <Button size={'small'} color={'primary'} onClick={emptyFunction}>
-          {'Button 1'}
-        </Button>
-      </Grid>
-      <Grid>
-        <Button size={'small'} color={'primary'} onClick={emptyFunction}>
-          {'Button 2'}
-        </Button>
-      </Grid>
-    </Grid>
+    <Stack direction="row" alignItems="flex-end" justifyContent="flex-end" gap={1}>
+      <Button size={'small'} onClick={emptyFunction} variant="text" capitalize={false}>
+        <Typography>{'Button 1'}</Typography>
+      </Button>
+      <Button size={'small'} onClick={emptyFunction} variant="text" capitalize={false}>
+        <Typography>{'Button 2'}</Typography>
+      </Button>
+    </Stack>
   )
 
   return (

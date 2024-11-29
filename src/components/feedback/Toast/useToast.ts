@@ -2,13 +2,20 @@ import { useCallback } from 'react'
 import {
   toast,
   ToastContent,
-  ToastOptions,
+  ToastOptions as ToastOptionsBase,
   TypeOptions as ToastifyTypeOptions
 } from 'react-toastify'
 import { classes } from './ToastStyles'
 import cx from 'classnames'
-import { getTransitionType, ToastContainerProps } from './types'
+import { getTransitionType } from './types'
 import { renderEnrichedMessage } from './utils'
+import { TypographyProps } from 'components/dataDisplay/Typography'
+
+type ToastOptions = Omit<ToastOptionsBase, 'transition'> & {
+  transitionType?: 'Slide' | 'Bounce' | 'Zoom' | 'Flip',
+  actions?: React.ReactNode,
+  textProps?: TypographyProps
+}
 
 const useToast = () => {
   return useCallback(
@@ -18,17 +25,16 @@ const useToast = () => {
      * @param {('success'|'info'|'warning'|'error')} variant The type of the toast
      * @param {ToastOptions} options Additional options passed to the toast
      */
-    (message: ToastContent, variant?: ToastifyTypeOptions, { transitionType, actions, textProps, ...restOptions } = {} as ToastContainerProps) => {
+    (message: ToastContent, variant?: ToastifyTypeOptions, { transitionType, actions, textProps, ...restOptions } = {} as ToastOptions) => {
       const toastClasses = cx({
         [classes[variant]]: variant,
         [classes['default']]: true
       })
 
-      const options: ToastOptions = {
+      const options: ToastOptionsBase = {
         ...restOptions,
         transition: getTransitionType(transitionType),
-        className: toastClasses,
-        autoClose: false
+        className: toastClasses
       }
 
       const enrichedMessage = renderEnrichedMessage(message, actions, textProps)
