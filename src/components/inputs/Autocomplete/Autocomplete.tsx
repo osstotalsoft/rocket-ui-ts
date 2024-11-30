@@ -17,7 +17,7 @@ import {
   TextField
 } from '@mui/material'
 import { both, concat, eqBy, has, identity, prop } from 'ramda'
-import { extractFirstValue, internalLabel, internalValue } from './utils'
+import { convertValueToOption, extractFirstValue, internalLabel, internalValue } from './utils'
 import Option from './Option'
 import { emptyArray, emptyString } from 'components/utils/constants'
 import { useTrackVisibility } from 'react-intersection-observer-hook'
@@ -59,6 +59,12 @@ const Autocomplete: React.FC<
   ...rest
 }) => {
   /**
+   * Handle the internal options to aid lazy loading.
+   */
+  const [internalOptions, setInternalOptions] = useState<readonly unknown[]>(emptyArray)
+  const allOptions = concat(options, internalOptions)
+
+  /**
    * Handle get option value.
    * Handle valueKey and labelKey as functions.
    * Show internal label if it's called from renderOption and internal value if it's called from the input field.
@@ -76,9 +82,15 @@ const Autocomplete: React.FC<
       const getValue = valueKey instanceof Function ? valueKey : prop(valueKey)
       const getLabel = labelKey instanceof Function ? labelKey : prop(labelKey)
 
-      return extractFirstValue([getLabel, getValue, label, identity], option)
+      const convertedOption = convertValueToOption(
+        option,
+        allOptions,
+        extractFirstValue([getValue, internalValue, identity])
+      )
+
+      return extractFirstValue([getLabel, getValue, label, identity], convertedOption)
     },
-    [getOptionLabel, labelKey, valueKey]
+    [allOptions, getOptionLabel, labelKey, valueKey]
   )
 
   /**
@@ -90,9 +102,7 @@ const Autocomplete: React.FC<
    */
   const [internalLoading, setInternalLoading] = useState(false)
   const [internalOpen, setInternalOpen] = useState(false)
-  const [internalOptions, setInternalOptions] = useState<readonly unknown[]>(emptyArray)
   const [internalInputValue, setInternalInputValue] = useState(emptyString)
-  const allOptions = concat(options, internalOptions)
   const [ref, { isVisible }] = useTrackVisibility()
   const [loadMore, setLoadMore] = useState(false)
   const [nextPageData, setNextPageData] = useState(null)
