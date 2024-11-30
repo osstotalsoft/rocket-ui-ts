@@ -82,7 +82,7 @@ const Autocomplete: React.FC<
       const getValue = valueKey instanceof Function ? valueKey : prop(valueKey)
       const getLabel = labelKey instanceof Function ? labelKey : prop(labelKey)
 
-      const convertedOption = convertValueToOption(
+      const convertedOption: unknown = convertValueToOption(
         option,
         allOptions,
         extractFirstValue([getValue, internalValue, identity])
@@ -334,12 +334,19 @@ const Autocomplete: React.FC<
       >
     ) => {
       return value.map((option, index) => {
+        const getValue = valueKey instanceof Function ? valueKey : prop(valueKey)
+
+        const convertedOption = convertValueToOption(
+          option,
+          allOptions,
+          extractFirstValue([getValue, internalValue, identity])
+        )
         const { key, ...tagProps } = getTagProps({ index })
-        const isDisabled: boolean = has('isDisabled', option) && Boolean(option.isDisabled)
+        const isDisabled: boolean = has('isDisabled', convertedOption) && Boolean(convertedOption.isDisabled)
         return (
           <Chip
             key={key}
-            label={handleGetOptionLabel(option, true)}
+            label={handleGetOptionLabel(convertedOption, true)}
             {...tagProps}
             disabled={isDisabled || ownerState.disabled}
           />
