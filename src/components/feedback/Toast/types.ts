@@ -3,7 +3,7 @@
 import { always, cond, equals, T } from 'ramda'
 import { Bounce, Flip, ToastOptions as ToastOptionsBase, ToastContainerProps as ToastContainerPropsBase, Slide, Zoom } from 'react-toastify'
 
-export type FontSize = 'small' | 'medium' | 'large'
+export type TextFontSize = 'small' | 'medium' | 'large'
 
 export interface ToastContainerProps extends Omit<ToastContainerPropsBase, 'transition' | 'textSize'> {
   /**
@@ -15,7 +15,7 @@ export interface ToastContainerProps extends Omit<ToastContainerPropsBase, 'tran
   * The size of the toast content text.
   * @default 'small'
  */
-  textSize?: FontSize
+  textSize?: TextFontSize
 }
 
 export type ToastOptions = Omit<ToastOptionsBase, 'transition'> & {
