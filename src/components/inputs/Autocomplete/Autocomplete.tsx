@@ -16,7 +16,7 @@ import {
   Autocomplete as MuiAutocomplete,
   TextField
 } from '@mui/material'
-import { both, concat, eqBy, has, identity, prop } from 'ramda'
+import { both, concat, eqBy, has, identity, map, prop } from 'ramda'
 import { convertValueToOption, extractFirstValue, internalLabel, internalValue } from './utils'
 import Option from './Option'
 import { emptyArray, emptyString } from 'components/utils/constants'
@@ -308,14 +308,16 @@ const Autocomplete: React.FC<
       details?: AutocompleteChangeDetails<unknown>
     ) => {
       if (onChange) {
-        if (both(has('__internalInputValue'), has('__internalDisplay'))(value)) {
-          onChange(value.__internalInputValue, event, 'createOption', details)
-        } else {
-          onChange(value, event, reason, details)
-        }
+        let calcReason = reason
+        const checkInternalNewOption = both(has('__internalInputValue'), has('__internalDisplay'))
+        const transformValue = (v: unknown) =>
+          checkInternalNewOption(v) ? ((calcReason = 'createOption'), v.__internalInputValue) : v
+        const newValue = (isMultiSelection ? map(transformValue) : transformValue)(value)
+
+        onChange(newValue, event, calcReason, details)
       }
     },
-    [onChange]
+    [isMultiSelection, onChange]
   )
 
   /**
@@ -353,7 +355,7 @@ const Autocomplete: React.FC<
         )
       })
     },
-    [handleGetOptionLabel]
+    [allOptions, handleGetOptionLabel, valueKey]
   )
 
   /**
@@ -454,7 +456,6 @@ Autocomplete.propTypes = {
   onOpen: PropTypes.func,
   onClose: PropTypes.func,
   onInputChange: PropTypes.func,
-  renderTags: PropTypes.func,
   isPaginated: PropTypes.bool
 }
 

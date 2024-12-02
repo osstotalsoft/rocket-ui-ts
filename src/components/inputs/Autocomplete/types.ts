@@ -79,28 +79,28 @@ export interface AutocompleteProps<
    */
   getOptionLabel?: (option: T) => string
   /**
-   * @default "id"
    * The key of values from options.
+   * @default "id"
    */
   valueKey?: string | ((option: T) => string)
   /**
-   * @default "name"
    * Which property of our option object will be displayed as label.
+   * @default "name"
    */
   labelKey?: string | ((option: T) => string)
   /**
-   * @default false
    * If true, the user can select multiple values from list.
+   * @default false
    */
   isMultiSelection?: boolean
   /**
-   * @default false
    * If true, the options list will have checkboxes.
+   * @default false
    */
   withCheckboxes?: boolean
   /**
-   * @default false
    * If true, the user can clear the selected value.
+   * @default false
    */
   isClearable?: boolean
   /**
@@ -119,9 +119,9 @@ export interface AutocompleteProps<
     ownerState: AutocompleteOwnerState<T, Multiple, DisableClearable, FreeSolo, ChipComponent>
   ) => React.ReactNode
   /**
-   * @default false
    * If true, the Autocomplete is free solo, meaning that the user input is not bound to provided options and can add
    * his own values.
+   * @default false
    */
   creatable?: boolean
   /**
@@ -151,8 +151,8 @@ export interface AutocompleteProps<
    */
   placeholder?: string
   /**
-   * @default false
    * If true, the helper text is displayed when an error pops up.
+   * @default false
    */
   error?: boolean
   /**
@@ -165,8 +165,8 @@ export interface AutocompleteProps<
    */
   required?: boolean
   /**
-   * @default true
    * If false, the user cannot type in Autocomplete, filter options or create new ones.
+   * @default true
    */
   isSearchable?: boolean
   /**
@@ -220,8 +220,8 @@ export interface AutocompleteProps<
    */
   onInputChange?: (event: React.SyntheticEvent, value: string, reason: AutocompleteInputChangeReason) => void
   /**
-   * @default false
    * If true, the options list will be loaded incrementally using the paginated loadOptions callback
+   * @default false
    */
   isPaginated?: boolean
   /**
