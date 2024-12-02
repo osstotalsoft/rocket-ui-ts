@@ -1,23 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Grid from '@mui/material/Grid2'
-import ControlledCheckbox from './components/ControlledCheckBox'
 import FormattedJson from './components/FormattedJson'
 import ColumnHeader from './components/ColumnHeader'
 import { options, primitiveStringOptions, primitiveNumericOptions, numericOptions } from './_mocks'
-import { Autocomplete } from 'components'
+import { Autocomplete, Typography } from 'components'
 
 export const CreatablePreview = () => {
-  const [simpleValueBasic, setSimpleValueBasic] = useState(false)
-  const [basicValue, setBasicValue] = useState()
-
-  const [primitiveStringValue, setPrimitiveStringValue] = useState()
-  const [primitiveNumericValue, setPrimitiveNumericValue] = useState()
-
-  const [simpleValueNumeric, setSimpleValueNumeric] = useState(false)
-  const [numericValue, setNumericValue] = useState()
-
-  useEffect(() => setBasicValue(null), [simpleValueBasic])
-  useEffect(() => setNumericValue(null), [simpleValueNumeric])
+  const [basicValue, setBasicValue] = useState(null)
+  const [primitiveStringValue, setPrimitiveStringValue] = useState(null)
+  const [primitiveNumericValue, setPrimitiveNumericValue] = useState(null)
+  const [numericValue, setNumericValue] = useState(null)
 
   return (
     <Grid container spacing={2}>
@@ -39,13 +31,12 @@ export const CreatablePreview = () => {
             value={basicValue}
             onChange={setBasicValue}
             creatable
-            simpleValue={simpleValueBasic}
-            isClearable={true}
+            isClearable
             options={options}
           />
         </Grid>
         <Grid container alignContent={'flex-start'} size={3}>
-          <ControlledCheckbox value={simpleValueBasic} onChange={setSimpleValueBasic} label={'simpleValue'} />
+          <Typography variant={'body1'}>{'Object: { id: number, name: string }'}</Typography>
         </Grid>
         <Grid size={3}>
           <FormattedJson>{basicValue}</FormattedJson>
@@ -57,12 +48,14 @@ export const CreatablePreview = () => {
             label="Primitive String Autocomplete"
             value={primitiveStringValue}
             creatable
+            isClearable
             onChange={setPrimitiveStringValue}
-            isClearable={true}
             options={primitiveStringOptions}
           />
         </Grid>
-        <Grid size={3}></Grid>
+        <Grid size={3}>
+          <Typography variant={'body1'}>{'String'}</Typography>
+        </Grid>
         <Grid size={3}>
           <FormattedJson>{primitiveStringValue}</FormattedJson>
         </Grid>
@@ -73,12 +66,14 @@ export const CreatablePreview = () => {
             label="Primitive Numeric Autocomplete"
             value={primitiveNumericValue}
             creatable
+            isClearable
             onChange={setPrimitiveNumericValue}
-            isClearable={true}
             options={primitiveNumericOptions}
           />
         </Grid>
-        <Grid size={3}></Grid>
+        <Grid size={3}>
+          <Typography variant={'body1'}>{'Number'}</Typography>
+        </Grid>
         <Grid size={3}>
           <FormattedJson>{primitiveNumericValue}</FormattedJson>
         </Grid>
@@ -90,15 +85,14 @@ export const CreatablePreview = () => {
             value={numericValue}
             onChange={setNumericValue}
             creatable
+            isClearable
             labelKey={'period'}
             valueKey={'period'}
-            simpleValue={simpleValueNumeric}
             options={numericOptions}
-            isClearable={true}
           />
         </Grid>
         <Grid size={3}>
-          <ControlledCheckbox value={simpleValueNumeric} onChange={setSimpleValueNumeric} label={'simpleValue'} />
+          <Typography variant={'body1'}>{'Object: { period: number }'}</Typography>
         </Grid>
         <Grid size={3}>
           <FormattedJson>{numericValue}</FormattedJson>

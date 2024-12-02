@@ -5,6 +5,13 @@ import React, { useState } from 'react'
 import { Autocomplete, Typography } from 'components'
 import Box from '@mui/material/Box'
 
+type OptionType = {
+  id: number
+  name: string
+  icon: React.ElementType
+  description: string
+}
+
 export const CustomOptionPreview = (props: any) => {
   const [value, setValue] = useState()
 
@@ -13,7 +20,7 @@ export const CustomOptionPreview = (props: any) => {
       {...props}
       value={value}
       onChange={setValue}
-      renderOption={(props, option) => (
+      renderOption={(props, option: OptionType) => (
         <li {...props}>
           <Box component={option.icon} width={25} height={25} marginRight="15px" />
           <Box>
