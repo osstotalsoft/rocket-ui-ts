@@ -3,9 +3,7 @@ import {
   AutocompleteChangeReason,
   AutocompleteCloseReason,
   AutocompleteInputChangeReason,
-  AutocompleteOwnerState,
   AutocompleteRenderInputParams,
-  AutocompleteRenderOptionState,
   AutocompleteValue,
   ChipTypeMap,
   AutocompleteProps as MuiAutocompleteProps
@@ -56,7 +54,6 @@ export interface AutocompleteProps<
     MuiAutocompleteProps<T, Multiple, DisableClearable, FreeSolo, ChipComponent>,
     | 'options'
     | 'getOptionLabel'
-    | 'renderOption'
     | 'onChange'
     | 'loadingText'
     | 'loading'
@@ -104,21 +101,6 @@ export interface AutocompleteProps<
    */
   isClearable?: boolean
   /**
-   * Render the option, use `getOptionLabel` by default.
-   *
-   * @param {object} props The props to apply on the li element.
-   * @param {T} option The option to render.
-   * @param {object} state The state of each option.
-   * @param {object} ownerState The state of the Autocomplete component.
-   * @returns {ReactNode}
-   */
-  renderOption?: (
-    props: React.HTMLAttributes<HTMLLIElement> & { key: any },
-    option: T,
-    state: AutocompleteRenderOptionState,
-    ownerState: AutocompleteOwnerState<T, Multiple, DisableClearable, FreeSolo, ChipComponent>
-  ) => React.ReactNode
-  /**
    * If true, the Autocomplete is free solo, meaning that the user input is not bound to provided options and can add
    * his own values.
    * @default false
@@ -142,37 +124,6 @@ export interface AutocompleteProps<
     reason: AutocompleteChangeReason,
     details?: AutocompleteChangeDetails<T>
   ) => void
-  /**
-   * Label to be displayed in the heading component.
-   */
-  label?: string
-  /**
-   * Text to be displayed as a placeholder in the text field.
-   */
-  placeholder?: string
-  /**
-   * If true, the helper text is displayed when an error pops up.
-   * @default false
-   */
-  error?: boolean
-  /**
-   * The content of the helper under the input.
-   */
-  helperText?: React.ReactNode
-  /**
-   * If `true`, the label is displayed as required and the `input` element is required.
-   * @default false
-   */
-  required?: boolean
-  /**
-   * If false, the user cannot type in Autocomplete, filter options or create new ones.
-   * @default true
-   */
-  isSearchable?: boolean
-  /**
-   *  Properties that will be passed to the rendered input. This is a TextField.
-   */
-  inputTextFieldProps?: Partial<TextFieldProps>
   /**
    * Text to display when in a loading state.
    *
@@ -231,4 +182,35 @@ export interface AutocompleteProps<
    * @returns {ReactNode}
    */
   renderInput?: (params: AutocompleteRenderInputParams) => React.ReactNode
+  /**
+   * Label to be displayed in the heading component.
+   */
+  label?: string
+  /**
+   * Text to be displayed as a placeholder in the text field.
+   */
+  placeholder?: string
+  /**
+   * If true, the helper text is displayed when an error pops up.
+   * @default false
+   */
+  error?: boolean
+  /**
+   * The content of the helper under the input.
+   */
+  helperText?: React.ReactNode
+  /**
+   * If `true`, the label is displayed as required and the `input` element is required.
+   * @default false
+   */
+  required?: boolean
+  /**
+   * If false, the user cannot type in Autocomplete, filter options or create new ones.
+   * @default true
+   */
+  isSearchable?: boolean
+  /**
+   *  Properties that will be passed to the rendered input. This is a TextField.
+   */
+  inputTextFieldProps?: Partial<TextFieldProps>
 }

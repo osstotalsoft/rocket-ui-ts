@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import PropTypes from 'prop-types'
 import {
   AutocompleteChangeDetails,
@@ -35,10 +35,17 @@ const Autocomplete: React.FC<
   isMultiSelection = false,
   withCheckboxes = false,
   isClearable = false,
-  renderOption,
   creatable = false,
   createdLabel = 'Add',
   onChange,
+  loadingText = <LinearProgress />,
+  loading,
+  loadOptions,
+  open,
+  onOpen,
+  onClose,
+  onInputChange,
+  isPaginated,
   // ---------------- input field props ----------------
   label,
   placeholder,
@@ -48,16 +55,13 @@ const Autocomplete: React.FC<
   isSearchable = true,
   inputTextFieldProps,
   // ---------------------------------------------------
-  loadingText = <LinearProgress />,
-  loading,
-  loadOptions,
-  open,
-  onOpen,
-  onClose,
-  onInputChange,
-  isPaginated,
   ...rest
 }) => {
+  /**
+   * handle both string and function from valueKey and labelKey.
+   */
+  const getValue = useMemo(() => (valueKey instanceof Function ? valueKey : prop(valueKey)), [valueKey])
+  const getLabel = useMemo(() => (labelKey instanceof Function ? labelKey : prop(labelKey)), [labelKey])
   /**
    * Handle the internal options to aid lazy loading.
    */
@@ -79,8 +83,6 @@ const Autocomplete: React.FC<
     (option: unknown, showLabel?: boolean | never) => {
       if (getOptionLabel) return getOptionLabel(option)
       const label = showLabel ? internalLabel : internalValue
-      const getValue = valueKey instanceof Function ? valueKey : prop(valueKey)
-      const getLabel = labelKey instanceof Function ? labelKey : prop(labelKey)
 
       const convertedOption: unknown = convertValueToOption(
         option,
@@ -90,7 +92,7 @@ const Autocomplete: React.FC<
 
       return extractFirstValue([getLabel, getValue, label, identity], convertedOption)
     },
-    [allOptions, getOptionLabel, labelKey, valueKey]
+    [allOptions, getLabel, getOptionLabel, getValue]
   )
 
   /**
@@ -200,7 +202,7 @@ const Autocomplete: React.FC<
       liProps: React.HTMLAttributes<HTMLLIElement> & { key: any },
       option: unknown,
       state: AutocompleteRenderOptionState,
-      ownerState: AutocompleteOwnerState<
+      _ownerState: AutocompleteOwnerState<
         unknown,
         boolean | undefined,
         boolean | undefined,
@@ -230,8 +232,7 @@ const Autocomplete: React.FC<
       /**
        * This is the default option rendering that can handle new created options.
        */
-      const getValue = valueKey instanceof Function ? valueKey : prop(valueKey)
-      const result = (
+      return (
         <Option
           key={extractFirstValue([getValue, internalValue, identity], option)}
           label={handleGetOptionLabel(option, true)}
@@ -241,12 +242,8 @@ const Autocomplete: React.FC<
           option={option}
         />
       )
-      /**
-       * If a custom renderOption is provided we will use it.
-       */
-      return renderOption ? renderOption(liProps, option, state, ownerState) : result
     },
-    [handleGetOptionLabel, loadingText, ref, renderOption, valueKey, withCheckboxes]
+    [getValue, handleGetOptionLabel, loadingText, ref, withCheckboxes]
   )
 
   const handleFilterOptions = useCallback(
@@ -289,11 +286,10 @@ const Autocomplete: React.FC<
    */
   const handleOptionEqualToValue = useCallback(
     (option: unknown, value: unknown) => {
-      const getValue = valueKey instanceof Function ? valueKey : prop(valueKey)
       const equalFn = extractFirstValue([getValue, internalValue, identity])
       return eqBy(equalFn, option, value)
     },
-    [valueKey]
+    [getValue]
   )
 
   /**
@@ -336,8 +332,6 @@ const Autocomplete: React.FC<
       >
     ) => {
       return value.map((option, index) => {
-        const getValue = valueKey instanceof Function ? valueKey : prop(valueKey)
-
         const convertedOption = convertValueToOption(
           option,
           allOptions,
@@ -355,20 +349,12 @@ const Autocomplete: React.FC<
         )
       })
     },
-    [allOptions, handleGetOptionLabel, valueKey]
+    [allOptions, getValue, handleGetOptionLabel]
   )
 
   /**
    * Handle the default input field.
    */
-  const handleClick = useCallback(
-    (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-      if (inputTextFieldProps?.onClick) {
-        inputTextFieldProps.onClick(event)
-      }
-    },
-    [inputTextFieldProps]
-  )
   const handleRenderInput = useCallback(
     (params: AutocompleteRenderInputParams) => (
       <TextField
@@ -380,10 +366,9 @@ const Autocomplete: React.FC<
         required={required}
         {...inputTextFieldProps}
         slotProps={{ htmlInput: { ...params.inputProps, readOnly: !isSearchable } }}
-        onClick={handleClick}
       />
     ),
-    [error, handleClick, helperText, inputTextFieldProps, isSearchable, label, placeholder, required]
+    [error, helperText, inputTextFieldProps, isSearchable, label, placeholder, required]
   )
 
   /**
@@ -436,19 +421,9 @@ Autocomplete.propTypes = {
   isMultiSelection: PropTypes.bool,
   withCheckboxes: PropTypes.bool,
   isClearable: PropTypes.bool,
-  renderOption: PropTypes.func,
   creatable: PropTypes.bool,
   createdLabel: PropTypes.string,
   onChange: PropTypes.func,
-  // ---------------- input field props ----------------
-  label: PropTypes.string,
-  placeholder: PropTypes.string,
-  error: PropTypes.bool,
-  helperText: PropTypes.string,
-  required: PropTypes.bool,
-  isSearchable: PropTypes.bool,
-  inputTextFieldProps: PropTypes.object,
-  // ---------------------------------------------------
   loadingText: PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
   loading: PropTypes.bool,
   loadOptions: PropTypes.func,
@@ -456,7 +431,16 @@ Autocomplete.propTypes = {
   onOpen: PropTypes.func,
   onClose: PropTypes.func,
   onInputChange: PropTypes.func,
-  isPaginated: PropTypes.bool
+  isPaginated: PropTypes.bool,
+  // ---------------- input field props ----------------
+  label: PropTypes.string,
+  placeholder: PropTypes.string,
+  error: PropTypes.bool,
+  helperText: PropTypes.string,
+  required: PropTypes.bool,
+  isSearchable: PropTypes.bool,
+  inputTextFieldProps: PropTypes.object
+  // ---------------------------------------------------
 }
 
 export default Autocomplete
