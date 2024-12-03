@@ -5,8 +5,3 @@
 .sbdocs .sbdocs-content {
   max-width: 1300px;
 }
-
-.docs-story div:first-of-type div:first-of-type {
-  transform: unset;
-  -moz-transform: unset;
-}

@@ -1,23 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import Grid from '@mui/material/Grid2'
-import ControlledCheckbox from './components/ControlledCheckBox'
 import FormattedJson from './components/FormattedJson'
 import ColumnHeader from './components/ColumnHeader'
-import { options, primitiveStringOptions, numericOptions } from './_mocks'
 import { Autocomplete } from 'components'
+import { options, primitiveNumericOptions, primitiveStringOptions } from './_mocks'
+import Typography from 'components/dataDisplay/Typography/TypographyStyles'
 
 export const OptionTypesPreview = () => {
-  const [simpleValueBasic, setSimpleValueBasic] = useState(false)
-  const [basicValue, setBasicValue] = useState()
-
-  const [creatablePrimitive, setCreatablePrimitive] = useState(false)
-  const [primitiveValue, setPrimitiveValue] = useState()
-
-  const [simpleValueNumeric, setSimpleValueNumeric] = useState(false)
-  const [numericValue, setNumericValue] = useState()
-
-  useEffect(() => setBasicValue(null), [simpleValueBasic])
-  useEffect(() => setNumericValue(null), [simpleValueNumeric])
+  const [value, setValue] = React.useState(null)
+  const [numericValue, setNumericValue] = React.useState(null)
+  const [stringValue, setStringValue] = React.useState(null)
 
   return (
     <Grid container spacing={2}>
@@ -26,7 +18,7 @@ export const OptionTypesPreview = () => {
           <ColumnHeader>{'Component'}</ColumnHeader>
         </Grid>
         <Grid size={3}>
-          <ColumnHeader>{'Simple Value'}</ColumnHeader>
+          <ColumnHeader>{'Option Type'}</ColumnHeader>
         </Grid>
         <Grid size={3}>
           <ColumnHeader>{'Value'}</ColumnHeader>
@@ -34,39 +26,13 @@ export const OptionTypesPreview = () => {
       </Grid>
       <Grid container spacing={4} size={12}>
         <Grid size={3}>
-          <Autocomplete
-            label="Autocomplete"
-            value={basicValue}
-            onChange={setBasicValue}
-            simpleValue={simpleValueBasic}
-            valueKey={simpleValueBasic ? 'Name' : 'Id'}
-            isClearable={true}
-            options={options}
-          />
+          <Autocomplete label="Autocomplete" value={value} onChange={setValue} isClearable={true} options={options} />
         </Grid>
         <Grid container alignContent={'flex-start'} size={3}>
-          <ControlledCheckbox value={simpleValueBasic} onChange={setSimpleValueBasic} label={'simpleValue'} />
+          <Typography variant={'body1'}>{'Object: { id: number, name: string }'}</Typography>
         </Grid>
         <Grid size={3}>
-          <FormattedJson>{basicValue}</FormattedJson>
-        </Grid>
-      </Grid>
-      <Grid container spacing={4} size={12}>
-        <Grid size={3}>
-          <Autocomplete
-            label="Primitive Autocomplete"
-            value={primitiveValue}
-            creatable={creatablePrimitive}
-            onChange={setPrimitiveValue}
-            isClearable={true}
-            options={primitiveStringOptions}
-          />
-        </Grid>
-        <Grid size={3}>
-          <ControlledCheckbox value={creatablePrimitive} onChange={setCreatablePrimitive} label={'creatable'} />
-        </Grid>
-        <Grid size={3}>
-          <FormattedJson>{primitiveValue}</FormattedJson>
+          <FormattedJson>{value}</FormattedJson>
         </Grid>
       </Grid>
       <Grid container spacing={4} size={12}>
@@ -75,18 +41,32 @@ export const OptionTypesPreview = () => {
             label="Numeric Autocomplete"
             value={numericValue}
             onChange={setNumericValue}
-            simpleValue={simpleValueNumeric}
-            options={numericOptions}
-            labelKey={'period'}
-            valueKey={'period'}
+            isClearable={true}
+            options={primitiveNumericOptions}
+          />
+        </Grid>
+        <Grid size={3}>
+          <Typography variant={'body1'}>{'Number'}</Typography>
+        </Grid>
+        <Grid size={3}>
+          <FormattedJson>{numericValue}</FormattedJson>
+        </Grid>
+      </Grid>
+      <Grid container spacing={4} size={12}>
+        <Grid size={3}>
+          <Autocomplete
+            label="String Autocomplete"
+            value={stringValue}
+            onChange={setStringValue}
+            options={primitiveStringOptions}
             isClearable={true}
           />
         </Grid>
         <Grid size={3}>
-          <ControlledCheckbox value={simpleValueNumeric} onChange={setSimpleValueNumeric} label={'simpleValue'} />
+          <Typography variant={'body1'}>{'String'}</Typography>
         </Grid>
         <Grid size={3}>
-          <FormattedJson>{numericValue}</FormattedJson>
+          <FormattedJson>{stringValue}</FormattedJson>
         </Grid>
       </Grid>
     </Grid>

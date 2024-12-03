@@ -78,13 +78,13 @@ export const loadFilteredOptions = async (input: any) => {
 }
 
 let prevInput: string = undefined
-export const loadFilteredOptionsPaginated: LoadOptionsPaginated = async (
+export const loadFilteredOptionsPaginated: LoadOptionsPaginated<any> = async (
   input: string,
   _: ReadonlyArray<any>,
   additional?: any
 ) => {
   await sleep(1e3)
-  const currentPage = prevInput !== input ? 0 : additional?.page ?? 0
+  const currentPage = prevInput !== input ? 0 : (additional?.page ?? 0)
   const filteredOptions = input ? optionsLong.filter(o => includes(input, o.name)) : optionsLong
   const paginatedOptions = take(15, drop(currentPage * 15, filteredOptions))
   prevInput = input
@@ -97,7 +97,7 @@ export const loadFilteredOptionsPaginated: LoadOptionsPaginated = async (
   )
 }
 
-export const loadOptions = async () => {
+export const loadOptions = async (): Promise<unknown[]> => {
   await sleep(1e3)
   return new Promise(res => res(options))
 }
