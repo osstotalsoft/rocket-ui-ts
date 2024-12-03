@@ -3,7 +3,7 @@
 
 import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
-import { Autocomplete as AutocompleteComponent } from 'components'
+import { Autocomplete as AutocompleteComponent, Typography } from 'components'
 import { CreatablePreview } from './CreatablePreview'
 import { DefaultPreview } from './DefaultPreview'
 import { OptionTypesPreview } from './OptionTypesPreview'
@@ -12,6 +12,9 @@ import { customOptions, loadFilteredOptionsPaginated, loadOptions, options } fro
 import { RequiredPreview } from './RequiredPreview'
 import { CustomOptionPreview } from './CustomOptionPreview'
 import { GroupedPreview } from './GroupedPreview'
+import { Stack } from '@mui/material'
+import { all, has } from 'ramda'
+import FormattedJson from './components/FormattedJson'
 
 const meta: Meta<typeof AutocompleteComponent> = {
   title: 'Components/Inputs/Autocomplete',
@@ -410,11 +413,55 @@ export const GroupedPreview = (props: any) => {
     }
   },
   args: {
-    label: 'Grouped Options',
-    onChange: null,
-    onClose: null,
-    onInputChange: null,
-    onOpen: null
+    label: 'Grouped Options'
   },
   render: args => <GroupedPreview {...args} />
+}
+
+/**
+ * You can give your autocomplete both the option or just it's `valueKey` in the `value` prop.
+ * This will render the option from the `options` array when found, otherwise it will render the value as it is.
+ * When you have multiple selection enabled, the `value` array can be a mix between.
+ */
+export const MixedValue: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `
+        <Autocomplete
+          label="Autocomplete"
+          value={optionsArray[0].id}
+          options={optionsArray}
+        />
+        <Autocomplete
+          label="Multiple Selection"
+          value={[optionsArray[0].id, optionsArray[1]]}
+          options={optionsArray}
+          isMultiSelection
+        />
+        `,
+        format: true
+      }
+    }
+  },
+  args: {
+    options
+  },
+  render: args => {
+    const options: readonly any[] = args.options
+    const value = options[0].id
+    const values = [options[0].id, options[1]]
+    return (
+      <Stack spacing={2}>
+        <Stack spacing={2} direction="row" alignItems="flex-end">
+          <AutocompleteComponent label="Autocomplete" value={value} options={options} />
+          <Typography variant={'body1'}>{`value={${value}}`}</Typography>
+        </Stack>
+        <Stack spacing={2} direction="row" alignItems="flex-end">
+          <AutocompleteComponent label="Multiple Selection" value={values} options={options} isMultiSelection />
+          <Typography variant={'body1'}>{`value={${JSON.stringify(values)}}`}</Typography>
+        </Stack>
+      </Stack>
+    )
+  }
 }
