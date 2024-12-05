@@ -1,3 +1,5 @@
+// Copyright (c) TotalSoft.
+// This source code is licensed under the MIT license.
 import { useCallback } from 'react'
 import { toast, ToastOptions as ToastOptionsBase } from 'react-toastify'
 import { classes } from './ToastStyles'
@@ -28,7 +30,8 @@ const usePromiseToast = () => {
         { pending, success, error },
         {
           className: `${classes.default} ${classes.success} ${classes.info} ${classes.error} ${classes.warning} ${classes.toastWrapper} `,
-          ...localOptions
+          closeButton: true,
+          ...localOptions,
         }
       )
     },

@@ -4,6 +4,7 @@
 import React from 'react'
 import Grid from '@mui/material/Grid2'
 import { Button, usePromiseToast, useToast } from 'components'
+import { Icons } from 'react-toastify'
 
 const VariantsPreview = () => {
   const addToast = useToast()
@@ -53,10 +54,33 @@ The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for t
         <Button
           size={'small'}
           color={'primary'}
+
           onClick={() =>
-            addPromiseToast(resolveAfter3Sec(), 'Promise is pending', 'Promise resolved 👌', 'Promise rejected 🤯', {
-              draggable: true
-            })
+            addPromiseToast(
+              resolveAfter3Sec(),
+              {
+                render() {
+                  return 'Promise is pending'
+                },
+                icon: Icons.spinner
+              },
+              {
+                render() {
+                  return 'Promise resolved 👌'
+                },
+                icon: Icons.success
+              },
+              {
+                render() {
+                  return 'Promise rejected 🤯'
+                },
+                icon: Icons.error
+              },
+
+              {
+                draggable: true
+              }
+            )
           }
         >
           {'Promise toast'}

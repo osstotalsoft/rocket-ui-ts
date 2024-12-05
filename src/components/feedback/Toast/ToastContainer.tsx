@@ -14,8 +14,10 @@ const ToastContainer: React.FC<ToastContainerProps> = ({
   newestOnTop = true,
   transitionType = 'Slide',
   closeOnClick = true,
+  closeButton = false,
+  icon = false,
   limit = 5,
-  textSize = 'small',
+  textSize = 'large',
   ...rest
 }) => {
   return (
@@ -24,7 +26,9 @@ const ToastContainer: React.FC<ToastContainerProps> = ({
         className={classes.toastWrapper}
         position={position}
         closeOnClick={closeOnClick}
+        closeButton={closeButton}
         newestOnTop={newestOnTop}
+        icon={icon}
         transition={transitionType as any}
         theme="colored"
         limit={limit}

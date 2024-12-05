@@ -22,7 +22,7 @@ const Container: any = styled('div', {
   ])(textSize)
 
   return {
-    [`& .${classes.default}`]: { borderRadius: '6px', padding: '6px 20px' },
+    [`& .${classes.default}`]: { borderRadius: '6px' },
     [`& .${classes.success}`]: {
       '--toastify-color-success': theme.palette.success.main,
       '--toastify-text-color-success': theme.palette.success.contrastText,
@@ -47,13 +47,6 @@ const Container: any = styled('div', {
       '--toastify-icon-color-warning': theme.palette.warning.main,
       '--toastify-color-progress-warning': theme.palette.warning.main
     },
-    [`& .${classes.toastWrapper}`]: {
-      width: '350px',
-      overflowWrap: 'anywhere',
-    },
-    ['.Toastify__toast-icon']: {
-      alignSelf: 'auto'
-    },
     ['.Toastify__close-button']: {
       background: 'transparent',
       outline: 'none',
@@ -62,7 +55,8 @@ const Container: any = styled('div', {
       cursor: 'pointer',
       opacity: 1,
       transition: '0.3s ease',
-      alignSelf: 'auto'
+      alignSelf: 'auto',
+      marginRight: '6px'
     },
     ['.Toastify__toast']: {
       ...theme.typography.defaultFont,
