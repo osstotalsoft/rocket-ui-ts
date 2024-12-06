@@ -19,11 +19,10 @@ import {
 import { both, concat, eqBy, has, identity, map, prop } from 'ramda'
 import { convertValueToOption, extractFirstValue, internalLabel, internalValue } from './utils'
 import Option from './Option'
-import { emptyArray, emptyString } from '../../utils/constants'
 import { useTrackVisibility } from 'react-intersection-observer-hook'
 import { AutocompleteProps, LoadOptionsPaginatedResult } from './types'
 import LinearProgress from '../../feedback/LinearProgress'
-
+import { emptyArray, emptyString } from '../../utils/constants'
 const baseFilter = createFilterOptions()
 
 const Autocomplete: React.FC<
@@ -212,7 +211,7 @@ const Autocomplete: React.FC<
       >
     ) => {
       /**
-       * Display the loading text and attach a reference to monitor the visibility this option.
+       * Display the loading text and attach a reference to monitor the visibility of this option.
        * This should be the last option in the list. And it should only be added from the internal mechanism.
        * The visibility will be used to trigger the loadOptions function.
        */
