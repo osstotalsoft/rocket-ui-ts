@@ -1,9 +1,9 @@
 import React, { useCallback, useMemo, useState } from 'react'
 import { TagsInputProps } from './types'
-import { TextField } from 'components'
+import { TextField } from '../../index'
 import { Chip } from '@mui/material'
 import { append, dropLast, equals, filter, includes, map } from 'ramda'
-import { emptyString } from 'components/utils/constants'
+import { emptyString } from '../../utils/constants'
 
 /**
  * TagsInput component provides a user-friendly interface for entering and managing tags or keywords,
