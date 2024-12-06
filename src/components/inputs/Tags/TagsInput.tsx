@@ -12,7 +12,7 @@ import { emptyString } from 'components/utils/constants'
 export default function TagsInput({
   onChange,
   value = [],
-  textFieldProps,
+  textFieldProps: { slotProps, ...restTextFieldProps } = {},
   size = 'small',
   placeholder,
   ...other
@@ -58,11 +58,13 @@ export default function TagsInput({
       onKeyDown={handleKeyDown}
       placeholder={placeholder}
       slotProps={{
+        ...slotProps,
         input: {
+          ...slotProps?.input,
           startAdornment: valueTags
         }
       }}
-      {...textFieldProps}
+      {...restTextFieldProps}
     />
   )
 }
