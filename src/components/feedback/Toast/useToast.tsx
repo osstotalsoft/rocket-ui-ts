@@ -5,7 +5,7 @@ import { toast, ToastContent, ToastOptions as ToastOptionsBase, TypeOptions as T
 import { classes } from './ToastStyles'
 import cx from 'classnames'
 import { getTransitionType, ToastOptions } from './types'
-import MyToast from './utils'
+import Toast from './utils'
 import React from 'react'
 
 const useToast = () => {
@@ -34,19 +34,19 @@ const useToast = () => {
 
       switch (variant) {
         case 'error':
-          toast.error(<MyToast message={message} variant={variant} actions={actions} />, options)
+          toast.error(<Toast message={message} variant={variant} actions={actions} />, options)
           break
         case 'info':
-          toast.info(<MyToast message={message} variant={variant} actions={actions} />, options)
+          toast.info(<Toast message={message} variant={variant} actions={actions} />, options)
           break
         case 'success':
-          toast.success(<MyToast message={message} variant={variant} actions={actions} />, options)
+          toast.success(<Toast message={message} variant={variant} actions={actions} />, options)
           break
         case 'warning':
-          toast.warn(<MyToast message={message} variant={variant} actions={actions} />, options)
+          toast.warn(<Toast message={message} variant={variant} actions={actions} />, options)
           break
         default:
-          toast(<MyToast message={message} variant={variant} actions={actions} />, options)
+          toast(<Toast message={message} variant={variant} actions={actions} />, options)
           break
       }
     },

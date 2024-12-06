@@ -1,4 +1,4 @@
-import { emptyString } from 'components/utils/constants'
+import { emptyString } from '../../utils/constants'
 import { any, curry, either, equals, find, head, isEmpty, isNil, prop, type } from 'ramda'
 
 export const isNilOrEmpty = either(isNil, isEmpty)

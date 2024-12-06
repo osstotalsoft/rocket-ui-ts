@@ -19,10 +19,11 @@ import {
 import { both, concat, eqBy, has, identity, map, prop } from 'ramda'
 import { convertValueToOption, extractFirstValue, internalLabel, internalValue } from './utils'
 import Option from './Option'
-import { emptyArray, emptyString } from 'components/utils/constants'
+import { emptyArray, emptyString } from '../../utils/constants'
 import { useTrackVisibility } from 'react-intersection-observer-hook'
 import { AutocompleteProps, LoadOptionsPaginatedResult } from './types'
-import LinearProgress from 'components/feedback/LinearProgress'
+import LinearProgress from '../../feedback/LinearProgress'
+
 const baseFilter = createFilterOptions()
 
 const Autocomplete: React.FC<

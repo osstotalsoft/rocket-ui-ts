@@ -17,7 +17,7 @@ const ToastContainer: React.FC<ToastContainerProps> = ({
   closeButton = false,
   icon = false,
   limit = 5,
-  textSize = 'large',
+  textSize = 'small',
   ...rest
 }) => {
   return (
@@ -76,7 +76,7 @@ ToastContainer.propTypes = {
   newestOnTop: PropTypes.bool,
   /**
    * @default 'small'
-   * Size of the button.
+   * The content font size
    */
   textSize: PropTypes.oneOf(['small', 'medium', 'large'])
 }

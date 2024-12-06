@@ -5,15 +5,23 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle'
 import InfoIcon from '@mui/icons-material/Info'
 import WarningIcon from '@mui/icons-material/Warning'
 import ErrorIcon from '@mui/icons-material/Error'
-import Typography from 'components/dataDisplay/Typography'
+import Typography from '../../dataDisplay/Typography'
 import CloseIcon from '@mui/icons-material/Close'
 import { cond, equals, always, T, includes } from 'ramda'
+import { styled, AppBar as MuiAppBar } from '@mui/material'
 
-type MyIconProps = {
+type IconProps = {
   myVariant?: TypeOptions
 }
 
-const MyIcon = ({ myVariant }: MyIconProps) => {
+const AppBar = styled(MuiAppBar)(() => ({
+  transition: 'all 0.33s cubic-bezier(0.685, 0.0473, 0.346, 1)',
+  bottom: 0,
+  top: 'auto',
+  marginTop: '8px'
+}))
+
+const Icon = ({ myVariant }: IconProps) => {
   const iconStyle = {
     position: 'sticky',
     top: '50%',
@@ -52,35 +60,33 @@ const toastStyle = {
   }
 }
 
-const MyToast = (props: any) => {
+const Toast = (props: any) => {
   const { message, closeToast, variant, actions } = props
 
   return (
     <>
       <Stack direction="row" justifyContent="space-between" alignItems="center" sx={toastStyle}>
-        <MyIcon myVariant={variant} />
+        <Icon myVariant={variant} />
         <Typography sx={{ maxHeight: '450px' }}>{message}</Typography>
-        {includes(variant, ['success', 'info', 'error', 'warning']) ? (
-          <IconButton
-            sx={{ position: 'sticky', top: '50%', padding: 0, margin: '0px 6px' }}
-            onClick={closeToast}
-            aria-label="close"
-          >
+        <IconButton
+          sx={{ position: 'sticky', top: '50%', padding: 0, margin: '0px 6px' }}
+          onClick={closeToast}
+          aria-label="close"
+        >
+          {includes(variant, ['success', 'info', 'error', 'warning']) ? (
             <CloseIcon fontSize="small" htmlColor="white" />
-          </IconButton>
-        ) : (
-          <IconButton
-            sx={{ position: 'sticky', top: '50%', padding: 0, margin: '0px 6px' }}
-            onClick={closeToast}
-            aria-label="close"
-          >
+          ) : (
             <CloseIcon fontSize="small" color="primary" />
-          </IconButton>
-        )}
+          )}
+        </IconButton>
       </Stack>
-      {actions}
+      {actions ? (
+        <AppBar position="sticky" color="transparent">
+          {actions}
+        </AppBar>
+      ) : null}
     </>
   )
 }
 
-export default MyToast
+export default Toast
