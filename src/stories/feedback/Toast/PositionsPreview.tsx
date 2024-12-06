@@ -5,7 +5,7 @@ import React from 'react'
 import Grid from '@mui/material/Grid2'
 import { Button, useToast } from 'components'
 
-const PositionsPreview = () => {
+const PositionsPreview = (args: any) => {
   const addToast = useToast()
 
   return (
@@ -14,7 +14,7 @@ const PositionsPreview = () => {
         <Button
           size={'small'}
           color={'primary'}
-          onClick={() => addToast('This is a success message!', 'success', { position: 'top-left' })}
+          onClick={() => addToast('This is a success message!', 'success', { ...args, position: 'top-left' })}
         >
           {'Top Left Position'}
         </Button>
@@ -23,7 +23,7 @@ const PositionsPreview = () => {
         <Button
           size={'small'}
           color={'primary'}
-          onClick={() => addToast('This the default position!', 'info', { position: 'top-center' })}
+          onClick={() => addToast('This the default position!', 'info', { ...args, position: 'top-center' })}
         >
           {'Top Center Position'}
         </Button>
@@ -32,7 +32,7 @@ const PositionsPreview = () => {
         <Button
           size={'small'}
           color={'primary'}
-          onClick={() => addToast('This is a warning message!', 'warning', { position: 'top-right' })}
+          onClick={() => addToast('This is a warning message!', 'warning', { ...args, position: 'top-right' })}
         >
           {'Top Right Position'}
         </Button>
@@ -41,7 +41,7 @@ const PositionsPreview = () => {
         <Button
           size={'small'}
           color={'primary'}
-          onClick={() => addToast('This is an error message!', 'error', { position: 'bottom-right' })}
+          onClick={() => addToast('This is an error message!', 'error', { ...args, position: 'bottom-right' })}
         >
           {'Bottom Right Position'}
         </Button>
@@ -50,7 +50,7 @@ const PositionsPreview = () => {
         <Button
           size={'small'}
           color={'primary'}
-          onClick={() => addToast('This is a default message!', 'success', { position: 'bottom-center' })}
+          onClick={() => addToast('This is a default message!', 'success', { ...args, position: 'bottom-center' })}
         >
           {'Bottom Center Position'}
         </Button>
@@ -59,7 +59,7 @@ const PositionsPreview = () => {
         <Button
           size={'small'}
           color={'primary'}
-          onClick={() => addToast('This is a default message!', 'warning', { position: 'bottom-left' })}
+          onClick={() => addToast('This is a default message!', 'warning', { ...args, position: 'bottom-left' })}
         >
           {'Bottom Left Position'}
         </Button>

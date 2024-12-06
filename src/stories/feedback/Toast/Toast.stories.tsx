@@ -113,7 +113,7 @@ export const Variants: Story = {
       }
     }
   },
-  render: () => <VariantsPreview />
+  render: args => <VariantsPreview {...args}  />
 }
 /**
  * Different positions are available for rendering toast.
@@ -188,7 +188,7 @@ export const Positions: Story = {
       }
     }
   },
-  render: () => <PositionsPreview />
+  render: args => <PositionsPreview {...args}/>
 }
 
 /**
@@ -246,7 +246,7 @@ export const Transitions: Story = {
       }
     }
   },
-  render: () => <TransitionsPreview />
+  render: args => <TransitionsPreview {...args} />
 }
 
 /**
@@ -256,53 +256,46 @@ export const Actions: Story = {
   parameters: {
     docs: {
       source: {
-        code: `const TransitionsPreview = () => {
+        code: `const ActionsPreview = () => {
   const addToast = useToast()
 
+  const AppBar = styled(MuiAppBar)(() => ({
+    transition: 'all 0.33s cubic-bezier(0.685, 0.0473, 0.346, 1)',
+    bottom: 0,
+    top: 'auto',
+    marginTop: '8px'
+  }))
+
+  const CustomMessageWithActions = () => (
+    <AppBar position="sticky" color="transparent">
+      <Stack direction="row" alignItems="flex-end" justifyContent="flex-end" gap={1}>
+        <Button size={'small'} onClick={emptyFunction} variant="text" capitalize={false}>
+          <Typography>{'Button 1'}</Typography>
+        </Button>
+        <Button size={'small'} onClick={emptyFunction} variant="text" capitalize={false}>
+          <Typography>{'Button 2'}</Typography>
+        </Button>
+      </Stack>
+    </AppBar>
+  )
+
   return (
-    <Grid container spacing={2} justifyContent={'space-evenly'}>
-      <Grid>
-        <Button
-          size={'small'}
-          color={'primary'}
-          onClick={() => addToast('This is a success message!', 'success', { transitionType: 'Slide' })}
-        >
-          {'Slide transition'}
-        </Button>
-      </Grid>
-      <Grid>
-        <Button
-          size={'small'}
-          color={'primary'}
-          onClick={() => addToast('This is an info message!', 'info', { transitionType: 'Zoom' })}
-        >
-          {'Zoom transition'}
-        </Button>
-      </Grid>
-      <Grid>
-        <Button
-          size={'small'}
-          color={'primary'}
-          onClick={() => addToast('This is a warning message!', 'warning', { transitionType: 'Bounce' })}
-        >
-          {'Bounce transition'}
-        </Button>
-      </Grid>
-      <Grid>
-        <Button
-          size={'small'}
-          color={'primary'}
-          onClick={() => addToast('This is an error message!', 'error', { transitionType: 'Flip' })}
-        >
-          {'Flip transition'}
-        </Button>
-      </Grid>
-    </Grid>
+    <Button
+      size={'medium'}
+      color={'primary'}
+      onClick={() =>
+        addToast('This is a custom toast with actions!', 'success', {
+          actions: <CustomMessageWithActions />
+        })
+      }
+    >
+      {'Actions toast'}
+    </Button>
   )
 }`,
         format: true
       }
     }
   },
-  render: () => <ActionsPreview />
+  render: args => <ActionsPreview {...args} />
 }

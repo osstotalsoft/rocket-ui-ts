@@ -7,7 +7,7 @@ import { emptyFunction } from 'components/utils/constants'
 import { Stack } from '@mui/material'
 import { styled, AppBar as MuiAppBar } from '@mui/material'
 
-const ActionsPreview = () => {
+const ActionsPreview = (args: any) => {
   const addToast = useToast()
 
   const AppBar = styled(MuiAppBar)(() => ({
@@ -35,9 +35,7 @@ const ActionsPreview = () => {
       size={'medium'}
       color={'primary'}
       onClick={() =>
-        addToast('This is a custom toast with actions!', 'success', {
-          actions: <CustomMessageWithActions />
-        })
+        addToast('This is a custom toast with actions!', 'success', { ...args, actions: <CustomMessageWithActions /> })
       }
     >
       {'Actions toast'}
