@@ -12,7 +12,7 @@ import { emptyString } from 'components/utils/constants'
 export default function TagsInput({
   onChange,
   value = [],
-  textFieldProps: { slotProps, ...restTextFieldProps } = {},
+  textFieldProps: { slotProps = {}, ...restTextFieldProps } = {},
   size = 'small',
   placeholder,
   ...other
