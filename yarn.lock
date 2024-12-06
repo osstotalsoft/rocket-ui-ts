@@ -2581,6 +2581,7 @@ __metadata:
     react: "npm:^18.3.1"
     react-chartjs-2: "npm:5.2.0"
     react-dom: "npm:18.3.1"
+    react-intersection-observer-hook: "npm:^3.0.1"
     react-number-format: "npm:^4.9.2"
     react-router: "npm:^7.0.1"
     react-syntax-highlighter: "npm:^15.6.1"
@@ -8826,6 +8827,16 @@ __metadata:
     react: ^0.14.8 || ^15.0.1 || ^16.0.0 || ^17.0.1 || ^18.0.0
     react-dom: ^0.14.8 || ^15.0.1 || ^16.0.0 || ^17.0.1 || ^18.0.0
   checksum: 10c0/0d60a0ea758529c32a706d0c69d70b69fb94de3c46442fffdee34f08f51ffceddbb5395b41dfd1565895653e9f60f98ca525835be9d5db1f16d6b22be12f4cd4
+  languageName: node
+  linkType: hard
+
+"react-intersection-observer-hook@npm:^3.0.1":
+  version: 3.0.1
+  resolution: "react-intersection-observer-hook@npm:3.0.1"
+  peerDependencies:
+    react: ">=16.8.0"
+    react-dom: ">=16.8.0"
+  checksum: 10c0/fbb90405d62c4e345057f62f55a603e361f3ecc7ba095a5abefd2e8eb3242444c92012ed6e803bf795b29c678be4ac585726989c4ee478141e27003d58fe36ec
   languageName: node
   linkType: hard
 

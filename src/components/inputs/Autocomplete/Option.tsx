@@ -1,50 +1,45 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { forwardRef, useEffect, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
-import { is } from 'ramda'
 import { Checkbox, Tooltip } from '@mui/material'
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank'
 import CheckBoxIcon from '@mui/icons-material/CheckBox'
-import { Option as BaseOption } from './AutocompleteStyles'
-import Typography from '../../dataDisplay/Typography'
 import { OptionProps } from './types'
 
-const Option = ({ optionLabel, createdLabel, selected, withCheckboxes, option, ...rest }: OptionProps) => {
+const Option = forwardRef<HTMLLIElement, OptionProps>(function Option(props, ref) {
   const optionRef = useRef(null)
   const [isOverflow, setIsOverflow] = useState(false)
-
-  const label = createdLabel ? `${createdLabel} "${optionLabel}"` : optionLabel
-
   useEffect(() => {
     setIsOverflow(optionRef?.current?.scrollWidth > optionRef?.current?.clientWidth)
   }, [])
 
-  return withCheckboxes ? (
-    <li {...rest}>
-      <Checkbox
-        icon={<CheckBoxOutlineBlankIcon fontSize="small" />}
-        checkedIcon={<CheckBoxIcon fontSize="small" />}
-        style={{ marginRight: 8 }}
-        checked={selected}
-      />
-      {optionLabel}
-    </li>
-  ) : (
-    <Tooltip title={optionLabel} disableHoverListener={!isOverflow}>
-      <li {...rest} aria-disabled={is(String, option) ? false : option?.isDisabled}>
-        <BaseOption ref={optionRef}>
-          <Typography>{label}</Typography>
-        </BaseOption>
+  const { label, liProps, selected, withCheckboxes, option } = props
+  const { key, ...rest } = liProps // Warning: key must be passed directly to a JSX element and not by a spread operator
+
+  return (
+    <Tooltip title={label} disableHoverListener={!isOverflow} placement="right">
+      <li key={key} {...rest} aria-disabled={option?.isDisabled} ref={ref}>
+        <div ref={optionRef}>
+          {withCheckboxes && (
+            <Checkbox
+              icon={<CheckBoxOutlineBlankIcon fontSize="small" />}
+              checkedIcon={<CheckBoxIcon fontSize="small" />}
+              style={{ marginRight: 8 }}
+              checked={selected}
+            />
+          )}
+          {label}
+        </div>
       </li>
     </Tooltip>
   )
-}
+})
 
 Option.propTypes = {
-  optionLabel: PropTypes.string.isRequired,
+  label: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
+  liProps: PropTypes.object.isRequired as PropTypes.Validator<React.HTMLAttributes<HTMLLIElement> & { key: any }>,
   selected: PropTypes.bool,
   withCheckboxes: PropTypes.bool,
-  createdLabel: PropTypes.string,
-  option: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
+  option: PropTypes.any.isRequired
 }
 
 export default Option

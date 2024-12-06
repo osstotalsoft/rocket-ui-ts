@@ -48,6 +48,8 @@ export * from './inputs/DateTime'
 export { default as Slider } from './inputs/Slider'
 export * from './inputs/Slider'
 
+export * from './inputs/Tags'
+
 export { default as NavPills } from './navigation/NavPills'
 export * from './navigation/NavPills'
 

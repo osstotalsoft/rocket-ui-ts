@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo } from 'react'
 import PropTypes from 'prop-types'
-import { Autocomplete, DateTime, TextField } from '../../index'
+import { Autocomplete, DateTime, LoadOptions, LoadOptionsPaginated, TextField } from '../../index'
 import { ControlType, DynamicFieldProps } from './types'
 import { Checkbox } from '@mui/material'
 import { FormControlLabel } from '@mui/material'
@@ -18,7 +18,7 @@ import { emptyString } from '../../utils/constants'
  * For Custom rendering, CustomComponent must be defined, and only the properties in
  * customComponentProps will be forwarded
  */
-function DynamicField<TCustomComponentProps extends object = any, TAutocompleteOptions = any>(
+function DynamicField<TCustomComponentProps extends object = any, TAutocompleteOptions = unknown>(
   props: DynamicFieldProps<TCustomComponentProps, TAutocompleteOptions>
 ) {
   const {
@@ -46,6 +46,8 @@ function DynamicField<TCustomComponentProps extends object = any, TAutocompleteO
     () => <TextField id={id} value={String(value)} label={label} error={error} helperText={helperText} disabled />,
     [id, value, label, error, helperText]
   )
+
+  const castLoadOptions = loadOptions as LoadOptions<unknown> | LoadOptionsPaginated<unknown>
 
   switch (controlType) {
     case ControlType.Text:
@@ -109,7 +111,7 @@ function DynamicField<TCustomComponentProps extends object = any, TAutocompleteO
           label={label}
           onChange={onChange}
           options={options}
-          loadOptions={loadOptions}
+          loadOptions={castLoadOptions}
           fullWidth
           error={error}
           helperText={helperText}

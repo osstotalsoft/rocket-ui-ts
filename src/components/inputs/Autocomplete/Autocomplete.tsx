@@ -1,551 +1,446 @@
-/* eslint-disable */
-// @ts-nocheck
-import React, { useCallback, useRef, useEffect, useMemo, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import PropTypes from 'prop-types'
-import { Autocomplete as MuiAutocomplete, NoOptionsText, classes } from './AutocompleteStyles'
-import Option from './Option'
-import LinearProgress from '@mui/material/LinearProgress'
-import Chip from '@mui/material/Chip'
-import { is, isNil, equals, isEmpty, any, prop } from 'ramda'
 import {
-  filterOptions,
-  getSimpleValue,
-  findFirstNotNil,
-  isStringOrNumber,
-  computeChangedMultiValue,
-  computeChangedSingleValue,
-  stopPropagation
-} from './utils'
-import TextField from '../TextField'
-import { AutocompleteProps, OptionProps, LoadOptions, LoadOptionsPaginated } from './types'
-import {
+  AutocompleteChangeDetails,
   AutocompleteChangeReason,
   AutocompleteCloseReason,
   AutocompleteInputChangeReason,
+  AutocompleteOwnerState,
+  AutocompleteRenderGetTagProps,
+  AutocompleteRenderInputParams,
   AutocompleteRenderOptionState,
-  TextFieldProps
+  AutocompleteValue,
+  Chip,
+  createFilterOptions,
+  FilterOptionsState,
+  Autocomplete as MuiAutocomplete,
+  TextField
 } from '@mui/material'
-import { AutocompleteRenderGetTagProps } from '@mui/material'
-import { throttle } from 'lodash'
-/**
- *
- * The autocomplete is a normal text input enhanced by a panel of suggested options.
- *
- * The widget is useful for setting the value of a single-line textbox in one of two types of scenarios:
- *
- * The value for the textbox must be chosen from a predefined set of allowed values, e.g., a location field must contain a valid location name.
- * The textbox may contain any arbitrary value, but it is advantageous to suggest possible values to the user, e.g., a search field may suggest similar or previous searches to save the user time.
- * It's meant to be an improved version of the "react-select" and "downshift" packages.
- */
-const Autocomplete: React.FC<AutocompleteProps<any, any, any, any>> = ({
-  options: receivedOptions,
-  defaultOptions = [],
-  loadOptions,
-  loading: receivedLoading,
-  loadingText,
-  noOptionsText = 'No options',
+import { both, concat, eqBy, has, identity, map, prop } from 'ramda'
+import { convertValueToOption, extractFirstValue, internalLabel, internalValue } from './utils'
+import Option from './Option'
+import { emptyArray, emptyString } from 'components/utils/constants'
+import { useTrackVisibility } from 'react-intersection-observer-hook'
+import { AutocompleteProps, LoadOptionsPaginatedResult } from './types'
+import LinearProgress from 'components/feedback/LinearProgress'
+const baseFilter = createFilterOptions()
+
+const Autocomplete: React.FC<
+  AutocompleteProps<unknown, boolean | undefined, boolean | undefined, boolean | undefined, React.ElementType>
+> = ({
+  options = [],
   getOptionLabel,
-  onChange,
-  onInputChange,
-  creatable = false,
-  onOpen,
-  onClose,
-  value = null,
+  valueKey = 'id',
+  labelKey = 'name',
   isMultiSelection = false,
   withCheckboxes = false,
   isClearable = false,
-  disabled = false,
-  simpleValue = false,
-  label,
-  valueKey = 'id',
-  labelKey = 'name',
-  error = false,
-  helperText,
-  required = false,
+  creatable = false,
   createdLabel = 'Add',
-  typographyContentColor = 'textSecondary',
-  inputSelectedColor,
-  isSearchable = true,
-  getOptionDisabled,
-  placeholder,
-  inputTextFieldProps,
+  onChange,
+  loadingText = <LinearProgress />,
+  loading,
+  loadOptions,
+  open,
+  onOpen,
+  onClose,
+  onInputChange,
   isPaginated,
-  ListboxProps,
-  stopEventPropagation = false,
-  renderGroup,
-  ...other
+  // ---------------- input field props ----------------
+  label,
+  placeholder,
+  error,
+  helperText,
+  required,
+  isSearchable = true,
+  inputTextFieldProps,
+  // ---------------------------------------------------
+  ...rest
 }) => {
-  const [options, setOptions] = useState(receivedOptions ?? [])
-  const [asyncOptions, setAsyncOptions] = useState<ReadonlyArray<any>>(is(Array, defaultOptions) ? defaultOptions : [])
-  const [additionalPageData, setAdditionalPageData] = useState(null)
-  const [hasMore, setHasMore] = useState<boolean>(true)
+  /**
+   * handle both string and function from valueKey and labelKey.
+   */
+  const getValue = useMemo(() => (valueKey instanceof Function ? valueKey : prop(valueKey)), [valueKey])
+  const getLabel = useMemo(() => (labelKey instanceof Function ? labelKey : prop(labelKey)), [labelKey])
+  /**
+   * Handle the internal options to aid lazy loading.
+   */
+  const [internalOptions, setInternalOptions] = useState<readonly unknown[]>(emptyArray)
+  const allOptions = concat(options, internalOptions)
 
-  const [localLoading, setLocalLoading] = useState(false)
-  const loading = receivedLoading || localLoading
+  /**
+   * Handle get option value.
+   * Handle valueKey and labelKey as functions.
+   * Show internal label if it's called from renderOption and internal value if it's called from the input field.
+   */
 
-  const [localInput, setLocalInput] = useState<string>()
-
-  const disabledOptions = useMemo(
-    () => (getOptionDisabled ? options.filter(getOptionDisabled) : []),
-    [getOptionDisabled, options]
-  )
-  const disabledValues = disabledOptions.map(prop(valueKey))
-  const isValueDisabled = getOptionDisabled ? any(equals(value), disabledValues) : false
-
-  const handleLoadOptionsPaginated = useCallback(
-    (input?: string) => {
-      if (hasMore) {
-        if (asyncOptions.length === 0) setLocalLoading(true)
-        ;(loadOptions as LoadOptionsPaginated)(input, options, additionalPageData).then(
-          ({ loadedOptions, more, additional }) => {
-            if (input != localInput) setAsyncOptions(loadedOptions || [])
-            else setAsyncOptions(prevAsyncOptions => [...prevAsyncOptions, ...loadedOptions])
-            setAdditionalPageData(additional)
-            if (hasMore !== more && input === localInput) setHasMore(more)
-            setLocalLoading(false)
-          }
-        )
-        return
-      }
-      setLocalLoading(false)
-    },
-    [additionalPageData, asyncOptions.length, hasMore, loadOptions, localInput, options]
-  )
-
-  const handleLoadOptions = useCallback(
-    async (input?: string) => {
-      if (!loadOptions) return
-      if (!isPaginated) {
-        setLocalLoading(true)
-        const loadedOptions = await (loadOptions as LoadOptions)(input)
-        setAsyncOptions(loadedOptions || [])
-        setLocalLoading(false)
-      } else handleLoadOptionsPaginated(input)
-    },
-    [handleLoadOptionsPaginated, isPaginated, loadOptions]
-  )
-
-  const handleMenuOpen = useCallback(
-    async (event: React.SyntheticEvent<Element, Event>) => {
-      if (onOpen) onOpen(event)
-      await handleLoadOptions(localInput)
-    },
-    [handleLoadOptions, localInput, onOpen]
-  )
-
-  const handleMenuClose = useCallback(
-    (event: React.SyntheticEvent<Element, Event>, reason: AutocompleteCloseReason) => {
-      setLocalInput('')
-      setAsyncOptions([])
-      if (onClose) onClose(event, reason)
-    },
-    [onClose]
-  )
-
-  const renderInput = useCallback(
-    (params: any) => {
-      params.inputProps.className = `${params.inputProps.className} ${classes.input}`
-      if (inputSelectedColor) params.inputProps.style = { color: inputSelectedColor }
-      params.inputProps.readOnly = !isSearchable
-
-      const stopPropagationProps = stopEventPropagation ? { onClick: stopPropagation, onFocus: stopPropagation } : {}
-      const textFieldProps = {
-        label,
-        error,
-        helperText,
-        required,
-        placeholder,
-        ...stopPropagationProps,
-        ...inputTextFieldProps
-      } as Partial<TextFieldProps>
-
-      return (
-        <TextField
-          fullWidth
-          {...params}
-          startAdornment={params.InputProps.startAdornment}
-          endAdornment={params.InputProps.endAdornment}
-          {...textFieldProps}
-          InputProps={{ ...params.InputProps, margin: 'none', onClick: stopPropagation }}
-          InputLabelProps={{ ...params.InputLabelProps, margin: null }}
-        />
-      )
-    },
-    [
-      inputSelectedColor,
-      isSearchable,
-      stopEventPropagation,
-      label,
-      error,
-      helperText,
-      required,
-      placeholder,
-      inputTextFieldProps
-    ]
-  )
-
-  const handleOptionLabel = useCallback(
-    (option: any) => {
+  const handleGetOptionLabel = useCallback(
+    /**
+     * Second parameter is a flag to show the label or the value
+     * The input field will never ask for the label as it is a custom convention.
+     * Only handleRenderOption will ask for the label.
+     */
+    (option: unknown, showLabel?: boolean | never) => {
       if (getOptionLabel) return getOptionLabel(option)
-      if (isStringOrNumber(option)) return option.toString()
+      const label = showLabel ? internalLabel : internalValue
 
-      const label = option?._primitiveValue ? option?._primitiveValue : findFirstNotNil([labelKey, valueKey], option)
-      return label?.toString() ?? ''
+      const convertedOption: unknown = convertValueToOption(
+        option,
+        allOptions,
+        extractFirstValue([getValue, internalValue, identity])
+      )
+
+      return extractFirstValue([getLabel, getValue, label, identity], convertedOption)
     },
-    [getOptionLabel, labelKey, valueKey]
+    [allOptions, getLabel, getOptionLabel, getValue]
   )
 
-  const renderOption = useCallback(
-    (props: OptionProps, option: any, { selected }: AutocompleteRenderOptionState) => {
-      const optionLabel = handleOptionLabel(option)
+  /**
+   * Implementing loadOptions requiring the following internal handling:
+   * - loading state
+   * - open state
+   * - options
+   * - input change
+   */
+  const [internalLoading, setInternalLoading] = useState(false)
+  const [internalOpen, setInternalOpen] = useState(false)
+  const [internalInputValue, setInternalInputValue] = useState(emptyString)
+  const [ref, { isVisible }] = useTrackVisibility()
+  const [loadMore, setLoadMore] = useState(false)
+  const [nextPageData, setNextPageData] = useState(null)
 
+  useEffect(() => {
+    if (isVisible) {
+      setInternalLoading(true)
+    }
+  }, [isVisible])
+
+  const handleOpen = useCallback(
+    (event: React.SyntheticEvent) => {
+      if (onOpen) onOpen(event)
+      setInternalOpen(true)
+      if (loadOptions) {
+        setInternalLoading(true)
+      }
+    },
+    [loadOptions, onOpen]
+  )
+  const handleClose = useCallback(
+    (event: React.SyntheticEvent, reason: AutocompleteCloseReason) => {
+      if (onClose) onClose(event, reason)
+      setInternalOpen(false)
+      if (loadOptions) {
+        setInternalLoading(false)
+        setInternalInputValue(emptyString)
+        setInternalOptions(emptyArray)
+        setLoadMore(false)
+        setNextPageData(null)
+      }
+    },
+    [loadOptions, onClose]
+  )
+  const handleInputChange = useCallback(
+    (event: React.SyntheticEvent, value: string, reason: AutocompleteInputChangeReason) => {
+      if (onInputChange) onInputChange(event, value, reason)
+      setInternalInputValue(value)
+      if (reason === 'reset') return
+      if (loadOptions) {
+        setInternalOptions(emptyArray)
+        setInternalLoading(true)
+        setLoadMore(false)
+        setNextPageData(null)
+      }
+    },
+    [loadOptions, onInputChange]
+  )
+
+  useEffect(() => {
+    if (!internalLoading) {
+      return
+    }
+
+    let cancellationRequested = false
+    loadOptions(internalInputValue, allOptions, nextPageData)
+      .then((result: readonly unknown[] | LoadOptionsPaginatedResult<unknown>) => {
+        if (cancellationRequested) {
+          return
+        }
+
+        const newOptions = isPaginated
+          ? (result as LoadOptionsPaginatedResult<unknown>)?.loadedOptions
+          : (result as readonly unknown[])
+        const hasMoreData = isPaginated ? (result as LoadOptionsPaginatedResult<unknown>)?.more : false
+        const nextPageData = isPaginated ? (result as LoadOptionsPaginatedResult<unknown>)?.additional : null
+        setInternalOptions((oldOptions: readonly unknown[]) => concat(oldOptions, newOptions))
+        setLoadMore(hasMoreData)
+        setNextPageData(nextPageData)
+      })
+      .catch(error => {
+        console.error(error)
+      })
+      .finally(() => {
+        if (cancellationRequested) {
+          return
+        }
+
+        setInternalLoading(false)
+      })
+
+    return () => {
+      cancellationRequested = true
+    }
+  }, [allOptions, internalInputValue, internalLoading, isPaginated, loadOptions, nextPageData])
+
+  const handleRenderOption = useCallback(
+    /**
+     * props: React.HTMLAttributes<HTMLLIElement> & { key: any },
+    option: T,
+    state: AutocompleteRenderOptionState,
+    ownerState: AutocompleteOwnerState<T, Multiple, DisableClearable, FreeSolo, ChipComponent>
+     */
+    (
+      liProps: React.HTMLAttributes<HTMLLIElement> & { key: any },
+      option: unknown,
+      state: AutocompleteRenderOptionState,
+      _ownerState: AutocompleteOwnerState<
+        unknown,
+        boolean | undefined,
+        boolean | undefined,
+        boolean | undefined,
+        React.ElementType
+      >
+    ) => {
+      /**
+       * Display the loading text and attach a reference to monitor the visibility this option.
+       * This should be the last option in the list. And it should only be added from the internal mechanism.
+       * The visibility will be used to trigger the loadOptions function.
+       */
+      if (has('__internalShowLoadingOption', option) && option.__internalShowLoadingOption) {
+        return (
+          <Option
+            ref={ref}
+            key={liProps.key}
+            label={loadingText}
+            liProps={liProps}
+            selected={false}
+            withCheckboxes={false}
+            option={option}
+          />
+        )
+      }
+
+      /**
+       * This is the default option rendering that can handle new created options.
+       */
       return (
         <Option
-          createdLabel={option?._createdOption ? createdLabel : ''}
-          optionLabel={optionLabel}
-          selected={selected}
+          key={extractFirstValue([getValue, internalValue, identity], option)}
+          label={handleGetOptionLabel(option, true)}
+          liProps={liProps}
+          selected={state.selected}
           withCheckboxes={withCheckboxes}
           option={option}
-          {...props}
         />
       )
     },
-    [handleOptionLabel, createdLabel, withCheckboxes]
+    [getValue, handleGetOptionLabel, loadingText, ref, withCheckboxes]
   )
 
-  const renderTags = useCallback(
-    (value: any, getTagProps: AutocompleteRenderGetTagProps) =>
-      value.map((option: any, index: number) => (
-        <Chip
-          key={index}
-          label={handleOptionLabel(option)}
-          {...getTagProps({ index })}
-          disabled={option?.isDisabled || disabled || isValueDisabled}
-        />
-      )),
-    [handleOptionLabel, disabled, isValueDisabled]
+  const handleFilterOptions = useCallback(
+    (options: unknown[], state: FilterOptionsState<unknown>) => {
+      const result = baseFilter(options, state)
+
+      if (creatable) {
+        /**
+         * There is no way to know what kind of type is "option".
+         * We will make our own convention where the new added option will have the following shape:
+         * { __internalDisplay: `${createdLabel} "inputValue"`, __internalInputValue: inputValue }
+         * This way we can distinguish between the options that were already in the list and the new added ones.
+         * We will use __internalDisplay to display the new added option and __internalInputValue to get the actual value.
+         * On the onChange event we will send the __internalInputValue as the value and the reason will be "createOption".
+         */
+
+        const contender = state.inputValue
+        const exactMatch = result.find(option => handleGetOptionLabel(option) === contender)
+        if (contender && !exactMatch)
+          result.push({ __internalDisplay: `${createdLabel} "${contender}"`, __internalInputValue: contender })
+      }
+
+      if (isPaginated && loadMore) {
+        /**
+         * For paginated loading we will add a special option at the end of the list.
+         * This option will be used to trigger the loadOptions function.
+         * Our convention for this option will be:
+         * { __internalShowLoadingOption: true, isDisabled: true }
+         */
+        result.push({ __internalShowLoadingOption: true, isDisabled: true })
+      }
+
+      return result
+    },
+    [creatable, createdLabel, handleGetOptionLabel, isPaginated, loadMore]
   )
 
-  const isOptionEqualToValue = useCallback(
-    (option: any, value: any): any =>
-      !is(Object, option) && !is(Object, value)
-        ? equals(option, value)
-        : simpleValue
-          ? equals(option[valueKey], value) || equals(option?.[valueKey], value?.[valueKey])
-          : equals(option?.[valueKey], value?.[valueKey]),
-    [simpleValue, valueKey]
+  /**
+   * Because of our convention for disabled options we need to handle the isOptionEqualToValue.
+   */
+  const handleOptionEqualToValue = useCallback(
+    (option: unknown, value: unknown) => {
+      const equalFn = extractFirstValue([getValue, internalValue, identity])
+      return eqBy(equalFn, option, value)
+    },
+    [getValue]
   )
 
+  /**
+   * Handle change event to switch event and value.
+   * Handle the internal convention for the new added options.
+   */
   const handleChange = useCallback(
-    (event: React.SyntheticEvent, inputValue: any, reason: AutocompleteChangeReason) => {
-      if (stopEventPropagation) event.stopPropagation()
-      // when multi-value and clearable, doesn't clear disabled options that have already been selected
-      if (reason === 'clear' && getOptionDisabled && isMultiSelection) {
-        return onChange(computeChangedMultiValue(disabledOptions, simpleValue, valueKey, labelKey), event, reason)
+    (
+      event: React.SyntheticEvent,
+      value: AutocompleteValue<unknown, boolean | undefined, boolean | undefined, boolean | undefined>,
+      reason: AutocompleteChangeReason,
+      details?: AutocompleteChangeDetails<unknown>
+    ) => {
+      if (onChange) {
+        let calcReason = reason
+        const checkInternalNewOption = both(has('__internalInputValue'), has('__internalDisplay'))
+        const transformValue = (v: unknown) =>
+          checkInternalNewOption(v) ? ((calcReason = 'createOption'), v.__internalInputValue) : v
+        const newValue = (isMultiSelection ? map(transformValue) : transformValue)(value)
+
+        onChange(newValue, event, calcReason, details)
       }
-
-      setLocalInput(handleOptionLabel(inputValue))
-      // for multi-value Autocomplete, options dialog remains open after selection and we do not want to display a loading state
-      if (loadOptions && !isMultiSelection) setLocalLoading(true)
-
-      if (isNil(inputValue) || isStringOrNumber(inputValue)) return onChange(inputValue, event, reason)
-
-      if (isMultiSelection) {
-        return onChange(computeChangedMultiValue(inputValue, simpleValue, valueKey, labelKey), event, reason)
-      }
-
-      return onChange(computeChangedSingleValue(inputValue, simpleValue, valueKey, labelKey), event, reason)
     },
-    [
-      disabledOptions,
-      getOptionDisabled,
-      handleOptionLabel,
-      isMultiSelection,
-      labelKey,
-      loadOptions,
-      onChange,
-      simpleValue,
-      stopEventPropagation,
-      valueKey
-    ]
+    [isMultiSelection, onChange]
   )
 
-  const handleInputChange = useCallback(
-    async (event: React.SyntheticEvent, value: string, reason: AutocompleteInputChangeReason) => {
-      setLocalInput(value ? value : '')
-      if (onInputChange) onInputChange(event, value, reason)
-
-      // this prevents the component from calling loadOptions again when the user clicks outside it and the menu closes
-      if (event?.nativeEvent?.type === 'focusout') {
-        return
-      }
-
-      await handleLoadOptions(value)
+  /**
+   * Handle disabled chips.
+   */
+  const handleRenderTags = useCallback(
+    (
+      value: unknown[],
+      getTagProps: AutocompleteRenderGetTagProps,
+      ownerState: AutocompleteOwnerState<
+        unknown,
+        boolean | undefined,
+        boolean | undefined,
+        boolean | undefined,
+        React.ElementType
+      >
+    ) => {
+      return value.map((option, index) => {
+        const convertedOption = convertValueToOption(
+          option,
+          allOptions,
+          extractFirstValue([getValue, internalValue, identity])
+        )
+        const { key, ...tagProps } = getTagProps({ index })
+        const isDisabled: boolean = has('isDisabled', convertedOption) && Boolean(convertedOption.isDisabled)
+        return (
+          <Chip
+            key={key}
+            label={handleGetOptionLabel(convertedOption, true)}
+            {...tagProps}
+            disabled={isDisabled || ownerState.disabled}
+          />
+        )
+      })
     },
-    [handleLoadOptions, onInputChange]
+    [allOptions, getValue, handleGetOptionLabel]
   )
 
-  useEffect(() => {
-    // when simpleValue is false, loadOptions has already been called at this point by handleInputChange
-    if (!simpleValue || !loadOptions) return
-    if (is(Array, defaultOptions) && !isEmpty(defaultOptions)) return
-    if (defaultOptions === false) return
+  /**
+   * Handle the default input field.
+   */
+  const handleRenderInput = useCallback(
+    (params: AutocompleteRenderInputParams) => (
+      <TextField
+        {...params}
+        label={label}
+        placeholder={placeholder}
+        error={error}
+        helperText={helperText}
+        required={required}
+        {...inputTextFieldProps}
+        slotProps={{ htmlInput: { ...params.inputProps, readOnly: !isSearchable } }}
+      />
+    ),
+    [error, helperText, inputTextFieldProps, isSearchable, label, placeholder, required]
+  )
 
-    const hasInitialValue = is(Array, value) ? !isEmpty(value) : value
-    // when simpleValue is true, we need to previously load a set of options in order to match the value with one of them
-    if (defaultOptions === true || hasInitialValue) {
-      handleLoadOptions()
-    }
-    // this effect should run only at component mount
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+  /**
+   * Our component should not propagate the click event to the parent.
+   */
+  const handleStopPropagation = useCallback((e: React.SyntheticEvent) => {
+    e.stopPropagation()
   }, [])
 
-  useEffect(() => {
-    setOptions(receivedOptions || [])
-  }, [receivedOptions])
-
-  const localNoOptionsText = useMemo(() => {
-    if (!noOptionsText || typeof noOptionsText !== 'function') return noOptionsText as React.ReactNode
-    return noOptionsText(localInput, localLoading)
-  }, [noOptionsText, localInput, localLoading])
-
-  const listBoxProps = useMemo(
-    () =>
-      isPaginated
-        ? {
-            ...ListboxProps,
-            onScroll: (event: React.SyntheticEvent) => {
-              const listboxNode = event.currentTarget
-              if (listboxNode.scrollTop + listboxNode.clientHeight >= listboxNode.scrollHeight - 1 && hasMore) {
-                handleLoadOptions(localInput)
-              }
-            }
-          }
-        : ListboxProps,
-    [ListboxProps, handleLoadOptions, hasMore, isPaginated, localInput]
-  )
-
-  const localValue = useMemo(() => {
-    return simpleValue ? getSimpleValue(loadOptions ? asyncOptions : options, value, valueKey, isMultiSelection) : value
-  }, [simpleValue, loadOptions, asyncOptions, options, value, valueKey, isMultiSelection])
-
-  const inputChangeRef = useRef(throttle(handleInputChange, 500))
-  const throttledOnInputChange = inputChangeRef.current
-
-  useEffect(() => {
-    inputChangeRef.current = throttle(handleInputChange, 500)
-  }, [handleInputChange])
-
   return (
-    <MuiAutocomplete
-      noOptionsText={<NoOptionsText color={typographyContentColor}>{localNoOptionsText}</NoOptionsText>}
-      typographyContentColor={typographyContentColor}
-      forcePopupIcon
-      label={label}
-      disabled={disabled || isValueDisabled}
-      loading={loading}
-      loadingText={loadingText ?? <LinearProgress />}
-      onOpen={handleMenuOpen}
-      onClose={handleMenuClose}
-      clearOnBlur={true}
-      freeSolo={creatable}
-      options={loading ? [] : loadOptions ? asyncOptions : options || []}
-      autoHighlight
-      handleHomeEndKeys
-      selectOnFocus
-      disableCloseOnSelect={isMultiSelection}
-      filterSelectedOptions={simpleValue && isMultiSelection && !withCheckboxes}
-      filterOptions={filterOptions(labelKey, valueKey, creatable)}
-      getOptionLabel={handleOptionLabel}
-      isOptionEqualToValue={isOptionEqualToValue}
-      getOptionDisabled={getOptionDisabled}
-      value={localValue}
-      multiple={isMultiSelection}
-      onChange={handleChange}
-      onInputChange={throttledOnInputChange}
-      disableClearable={!isClearable}
-      renderInput={renderInput}
-      renderTags={renderTags}
-      ListboxProps={listBoxProps}
-      {...other}
-      {...(renderGroup ? { renderGroup } : { renderOption })}
-    />
+    /**
+     * Our component should not propagate the click event to the parent.
+     */
+    <div onClick={handleStopPropagation}>
+      <MuiAutocomplete
+        forcePopupIcon
+        clearOnBlur
+        selectOnFocus
+        handleHomeEndKeys
+        autoHighlight
+        renderInput={handleRenderInput}
+        options={allOptions}
+        getOptionLabel={handleGetOptionLabel}
+        multiple={isMultiSelection}
+        disableCloseOnSelect={isMultiSelection}
+        disableClearable={!isClearable}
+        renderOption={handleRenderOption}
+        freeSolo={creatable}
+        filterOptions={handleFilterOptions}
+        onChange={handleChange}
+        loadingText={loadingText}
+        loading={loading || internalLoading}
+        open={open || internalOpen}
+        onOpen={handleOpen}
+        onClose={handleClose}
+        onInputChange={handleInputChange}
+        renderTags={handleRenderTags}
+        isOptionEqualToValue={handleOptionEqualToValue}
+        {...rest}
+      />
+    </div>
   )
 }
 
 Autocomplete.propTypes = {
-  /**
-   * @default []
-   * The array of options from which the client can select a value.
-   */
   options: PropTypes.array,
-  /**
-   * Function that returns a promise, which resolves to the set of options to be used once the promise resolves.
-   */
-  loadOptions: PropTypes.func,
-  /**
-   * If true, the component is in a loading state.
-   * By default, this shows a linear progress instead of options.
-   * This can be changed by sending the loadingText prop to Autocomplete.
-   */
-  loading: PropTypes.bool,
-  /**
-   * @default '<LinearProgress />'
-   * Text/component to display when in a loading state.
-   */
-  loadingText: PropTypes.node,
-  /**
-   * @default 'No options'
-   * Text to display when there are no options.
-   */
-  noOptionsText: PropTypes.node,
-  /**
-   * Used to determine the string value for a given option.
-   */
   getOptionLabel: PropTypes.func,
-  /**
-   * @default null
-   * The selected value from list of options.
-   */
-  value: PropTypes.oneOfType([PropTypes.object, PropTypes.array, PropTypes.number, PropTypes.string, PropTypes.bool]),
-  /**
-   * Handle change events on the autocomplete.
-   */
-  onChange: PropTypes.func.isRequired,
-  /**
-   * Callback fired when the input value changes.
-   */
-  onInputChange: PropTypes.func,
-  /**
-   * Handle the menu opening.
-   */
-  onOpen: PropTypes.func,
-  /**
-   * Handle the menu closing.
-   */
-  onClose: PropTypes.func,
-  /**
-   * @default false
-   * If true, the user can select multiple values from list.
-   */
+  valueKey: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  labelKey: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   isMultiSelection: PropTypes.bool,
-  /**
-   * @default false
-   * If true, the options list will have checkboxes.
-   */
   withCheckboxes: PropTypes.bool,
-  /**
-   * @default false
-   * If true, the user can clear the selected value.
-   */
   isClearable: PropTypes.bool,
-  /**
-   * @default true
-   * If false, the user cannot type in Autocomplete, filter options or create new ones.
-   */
-  isSearchable: PropTypes.bool,
-  /**
-   * @default false
-   * If true, the Autocomplete is free solo, meaning that the user input is not bound to provided options and can add
-   * his own values.
-   */
   creatable: PropTypes.bool,
-  /**
-   * @default false
-   * If true, the Autocomplete is disabled.
-   */
-  disabled: PropTypes.bool,
-  /**
-   * Used to determine the disabled state for a given option.
-   */
-  getOptionDisabled: PropTypes.func,
-  /**
-   * @default false
-   * If true, options will be an array of simple values, instead of objects.
-   */
-  simpleValue: PropTypes.bool,
-  /**
-   * Label to be displayed in the heading component.
-   */
-  label: PropTypes.string,
-  /**
-   * @default 'id'
-   * The key of values from options.
-   */
-  valueKey: PropTypes.string,
-  /**
-   * @default 'name'
-   * The key of the displayed label for each option.
-   */
-  labelKey: PropTypes.string,
-  /**
-   * The content of the helper under the input.
-   */
-  helperText: PropTypes.node,
-  /**
-   * @default false
-   * If true, the helper text is displayed when an error pops up.
-   */
-  error: PropTypes.bool,
-  /**
-   * Text to be displayed as a placeholder in the text field.
-   */
-  placeholder: PropTypes.string,
-  /**
-   * @default false
-   * Marks the input field as required (with an *).
-   */
-  required: PropTypes.bool,
-  /**
-   * The value of label when a new option is added.
-   */
   createdLabel: PropTypes.string,
-  /**
-   * @default []
-   * The default set of options to show before the user starts searching. When set to true, the results for loadOptions('') will be autoloaded.
-   */
-  defaultOptions: PropTypes.oneOfType([PropTypes.bool, PropTypes.array]),
-  /**
-   * @default 'textSecondary'
-   * The color of both the text displayed when there are no options and placeholder. It supports those theme colors that make sense for this component.
-   */
-  typographyContentColor: PropTypes.oneOf([
-    'initial',
-    'inherit',
-    'primary',
-    'secondary',
-    'textPrimary',
-    'textSecondary',
-    'error'
-  ]),
-  /**
-   * The color of selected input.
-   */
-  inputSelectedColor: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.oneOf(['primary', 'secondary', 'error', 'info', 'success', 'warning'])
-  ]),
-  /**
-   *  Properties that will be passed to the rendered input. This is a TextField.
-   */
-  inputTextFieldProps: PropTypes.object,
-  /**
-   * @default false
-   * If true, the options list will be loaded incrementally using the paginated loadOptions callback
-   */
+  onChange: PropTypes.func,
+  loadingText: PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
+  loading: PropTypes.bool,
+  loadOptions: PropTypes.func,
+  open: PropTypes.bool,
+  onOpen: PropTypes.func,
+  onClose: PropTypes.func,
+  onInputChange: PropTypes.func,
   isPaginated: PropTypes.bool,
-  /**
-   * @default false
-   * Stops click and change event propagation.
-   */
-  stopEventPropagation: PropTypes.bool,
-  /**
-   * Render the group.
-   *
-   * @param {AutocompleteRenderGroupParams} params The group to render.
-   * @returns {ReactNode}
-   */
-  renderGroup: PropTypes.func
+  // ---------------- input field props ----------------
+  label: PropTypes.string,
+  placeholder: PropTypes.string,
+  error: PropTypes.bool,
+  helperText: PropTypes.string,
+  required: PropTypes.bool,
+  isSearchable: PropTypes.bool,
+  inputTextFieldProps: PropTypes.object
+  // ---------------------------------------------------
 }
 
 export default Autocomplete

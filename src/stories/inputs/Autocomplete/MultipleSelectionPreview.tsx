@@ -1,28 +1,32 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import Grid from '@mui/material/Grid2'
-import ControlledCheckbox from './components/ControlledCheckBox'
 import FormattedJson from './components/FormattedJson'
 import ColumnHeader from './components/ColumnHeader'
-import { options, primitiveStringOptions, numericOptions } from './_mocks'
+import { options, primitiveStringOptions, primitiveNumericOptions } from './_mocks'
 import { Autocomplete } from 'components'
-import { emptyArray } from 'components/utils/constants'
+import { emptyArray, emptyString } from 'components/utils/constants'
 
 export const MultipleSelectionPreview = () => {
-  const [simpleValueBasic, setSimpleValueBasic] = useState(false)
-  const [creatableBasic, setCreatableBasic] = useState(false)
-  const [basicValue, setBasicValue] = useState(emptyArray)
-  const [disabledBasic, setDisabledBasic] = useState(false)
+  const [basicReason, setBasicReason] = useState<string>(emptyString)
+  const [basicValue, setBasicValue] = useState<any>(emptyArray)
+  const handleBasicChange = useCallback((value: any, _env: React.SyntheticEvent, reason: string) => {
+    setBasicValue(value)
+    setBasicReason(reason)
+  }, [])
 
-  const [creatablePrimitive, setCreatablePrimitive] = useState(false)
-  const [primitiveValue, setPrimitiveValue] = useState(emptyArray)
+  const [stringReason, setStringReason] = useState<string>(emptyString)
+  const [stringValue, setStringValue] = useState<any>(emptyArray)
+  const handleStringChange = useCallback((value: any, _env: React.SyntheticEvent, reason: string) => {
+    setStringValue(value)
+    setStringReason(reason)
+  }, [])
 
-  const [simpleValueNumeric, setSimpleValueNumeric] = useState(false)
-  const [creatableNumeric, setCreatableNumeric] = useState(false)
-  const [numericValue, setNumericValue] = useState(emptyArray)
-
-  useEffect(() => setPrimitiveValue(emptyArray), [creatablePrimitive])
-  useEffect(() => setNumericValue(emptyArray), [simpleValueNumeric, creatableNumeric])
-  useEffect(() => setBasicValue(emptyArray), [simpleValueBasic, creatableBasic])
+  const [numericReason, setNumericReason] = useState<any>(emptyArray)
+  const [numericValue, setNumericValue] = useState<any>(emptyArray)
+  const handleNumericChange = useCallback((value: any, _env: React.SyntheticEvent, reason: string) => {
+    setNumericValue(value)
+    setNumericReason(reason)
+  }, [])
 
   return (
     <Grid container spacing={2}>
@@ -31,7 +35,7 @@ export const MultipleSelectionPreview = () => {
           <ColumnHeader>{'Component'}</ColumnHeader>
         </Grid>
         <Grid size={3}>
-          <ColumnHeader>{'Type'}</ColumnHeader>
+          <ColumnHeader>{'Reason'}</ColumnHeader>
         </Grid>
         <Grid size={3}>
           <ColumnHeader>{'Value'}</ColumnHeader>
@@ -42,19 +46,13 @@ export const MultipleSelectionPreview = () => {
           <Autocomplete
             label="Autocomplete"
             value={basicValue}
-            onChange={setBasicValue}
-            creatable={creatableBasic}
-            simpleValue={simpleValueBasic}
+            onChange={handleBasicChange}
             options={options}
             isMultiSelection
-            disabled={disabledBasic}
+            creatable
           />
         </Grid>
-        <Grid container alignContent={'flex-start'} size={3}>
-          <ControlledCheckbox value={creatableBasic} onChange={setCreatableBasic} label={'creatable'} />
-          <ControlledCheckbox value={simpleValueBasic} onChange={setSimpleValueBasic} label={'simpleValue'} />
-          <ControlledCheckbox value={disabledBasic} onChange={setDisabledBasic} label={'disabled'} />
-        </Grid>
+        <Grid size={3}>{basicReason}</Grid>
         <Grid size={3}>
           <FormattedJson>{basicValue}</FormattedJson>
         </Grid>
@@ -63,18 +61,16 @@ export const MultipleSelectionPreview = () => {
         <Grid size={6}>
           <Autocomplete
             label="Primitive Autocomplete"
-            value={primitiveValue}
-            creatable={creatablePrimitive}
-            onChange={setPrimitiveValue}
+            value={stringValue}
+            onChange={handleStringChange}
             options={primitiveStringOptions}
             isMultiSelection
+            creatable
           />
         </Grid>
+        <Grid size={3}>{stringReason}</Grid>
         <Grid size={3}>
-          <ControlledCheckbox value={creatablePrimitive} onChange={setCreatablePrimitive} label={'creatable'} />
-        </Grid>
-        <Grid size={3}>
-          <FormattedJson>{primitiveValue}</FormattedJson>
+          <FormattedJson>{stringValue}</FormattedJson>
         </Grid>
       </Grid>
       <Grid container spacing={4} size={12}>
@@ -82,19 +78,13 @@ export const MultipleSelectionPreview = () => {
           <Autocomplete
             label="Numeric Autocomplete"
             value={numericValue}
-            onChange={setNumericValue}
-            creatable={creatableNumeric}
-            simpleValue={simpleValueNumeric}
-            options={numericOptions}
-            labelKey={'period'}
-            valueKey={'period'}
+            onChange={handleNumericChange}
+            options={primitiveNumericOptions}
             isMultiSelection
+            creatable
           />
         </Grid>
-        <Grid size={3}>
-          <ControlledCheckbox value={creatableNumeric} onChange={setCreatableNumeric} label={'creatable'} />
-          <ControlledCheckbox value={simpleValueNumeric} onChange={setSimpleValueNumeric} label={'simpleValue'} />
-        </Grid>
+        <Grid size={3}>{numericReason}</Grid>
         <Grid size={3}>
           <FormattedJson>{numericValue}</FormattedJson>
         </Grid>

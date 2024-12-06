@@ -3,18 +3,16 @@
 
 import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
-import { Autocomplete as AutocompleteComponent } from 'components'
+import { Autocomplete as AutocompleteComponent, Typography } from 'components'
 import { CreatablePreview } from './CreatablePreview'
 import { DefaultPreview } from './DefaultPreview'
 import { OptionTypesPreview } from './OptionTypesPreview'
 import { MultipleSelectionPreview } from './MultipleSelectionPreview'
-import { CheckboxesPreview } from './CheckboxesPreview'
 import { customOptions, loadFilteredOptionsPaginated, loadOptions, options } from './_mocks'
-import { StylingPreview } from './StylingPreview'
 import { RequiredPreview } from './RequiredPreview'
 import { CustomOptionPreview } from './CustomOptionPreview'
-import { Stack } from '@mui/material'
 import { GroupedPreview } from './GroupedPreview'
+import { Stack } from '@mui/material'
 
 const meta: Meta<typeof AutocompleteComponent> = {
   title: 'Components/Inputs/Autocomplete',
@@ -47,11 +45,7 @@ export const Default: Story = {
   },
   args: {
     label: 'Basic Autocomplete',
-    options,
-    onChange: null,
-    onClose: null,
-    onInputChange: null,
-    onOpen: null
+    options
   },
   render: args => <DefaultPreview {...args} />
 }
@@ -64,7 +58,7 @@ interface AutocompleteOption {
   id: any
   name: string
 }
-// or by setting `simpleValue` property to true
+// or
 type AutocompleteOption = string;
 ```
 for instance:
@@ -74,7 +68,7 @@ const options = [
   { name: 'The Godfather', id: 1 },
   { name: 'Pulp Fiction', id: 2 },
 ]
-// or with `simpleValue` property to true
+// or
 const options = ['The Godfather', 'Pulp Fiction']
 ```
 */
@@ -84,13 +78,23 @@ export const OptionTypes: Story = {
     docs: {
       source: {
         code: `
-        <Autocomplete
+        <>
+          <Autocomplete
+            label="Autocomplete"
+            value={{ id: 1, name: 'Cat' }}
+            options={[{ id: 1, name: 'Cat' }, { id: 2, name: 'Dog' }, { id: 3, name: 'Turtle' }]}
+          />
+          <Autocomplete
             label="Numeric Autocomplete"
             value={1}
-            onChange={setNumericValue}
-            simpleValue={true}
             options={[1,2,3]}
           />
+          <Autocomplete
+            label="String Autocomplete"
+            value={"first option"}
+            options={["first option", "second option", "third option"]}
+          />
+        </>
         `,
         format: true
       }
@@ -103,11 +107,19 @@ export const OptionTypes: Story = {
  * To customize the rendering of the object, the user can use the `renderOption` function property. See its definition 
  *
  * ```javascript
- renderOption?: (
-  props: React.HTMLAttributes<HTMLLIElement>, // @param {object} props The props to apply on the li element.
-    option: T, // @param {T} option The option to render.
-    state: AutocompleteRenderOptionState, // @param {object} state The state of the component.
-  ) => React.ReactNode;
+   // Render the option, use `getOptionLabel` by default.
+   //
+   // @param {object} props The props to apply on the li element.
+   // @param {T} option The option to render.
+   // @param {object} state The state of each option.
+   // @param {object} ownerState The state of the Autocomplete component.
+   // @returns {ReactNode}
+  renderOption?: (
+    props: React.HTMLAttributes<HTMLLIElement> & { key: any },
+    option: T,
+    state: AutocompleteRenderOptionState,
+    ownerState: AutocompleteOwnerState<T, Multiple, DisableClearable, FreeSolo, ChipComponent>
+  ) => React.ReactNode
   ```
 * Assuming the options array looks as follows, check-out the custom rendering function presented in the next example.
 ```
@@ -149,11 +161,7 @@ export const OptionRendering: Story = {
   },
   args: {
     label: 'Custom Options',
-    options: customOptions,
-    onChange: null,
-    onClose: null,
-    onInputChange: null,
-    onOpen: null
+    options: customOptions
   },
   render: args => <CustomOptionPreview {...args} />
 }
@@ -233,16 +241,12 @@ export const Checkboxes: Story = {
     }
   },
   args: {
-    label: 'Multiple Selection',
+    label: 'Multiple Selection with Checkboxes',
     options,
     isMultiSelection: true,
-    withCheckboxes: true,
-    onChange: null,
-    onClose: null,
-    onInputChange: null,
-    onOpen: null
+    withCheckboxes: true
   },
-  render: args => <CheckboxesPreview {...args} />
+  render: args => <AutocompleteComponent {...args} />
 }
 
 /**
@@ -268,18 +272,9 @@ export const LazyLoading: Story = {
   },
   args: {
     label: 'Lazy Loading',
-    loadOptions,
-    onChange: null,
-    onClose: null,
-    onInputChange: null,
-    onOpen: null
+    loadOptions
   },
-  render: args => (
-    <Stack spacing={3} direction={'row'}>
-      <DefaultPreview {...args} value={{ id: 1, name: 'Cat' }} />
-      <DefaultPreview {...args} label={`${args.label} with simpleValue`} simpleValue value={1} />
-    </Stack>
-  )
+  render: args => <DefaultPreview {...args} value={{ id: 1, name: 'Cat' }} />
 }
 
 /**
@@ -311,40 +306,9 @@ export const LazyLoadingPaginated: Story = {
   args: {
     label: 'Lazy Loading',
     loadOptions: loadFilteredOptionsPaginated,
-    onChange: null,
-    onClose: null,
-    onInputChange: null,
-    onOpen: null,
     isPaginated: true
   },
   render: args => <DefaultPreview {...args} />
-}
-
-export const Styling: Story = {
-  parameters: {
-    controls: { hideNoControlsWarning: true },
-    docs: {
-      source: {
-        code: `
-        <Autocomplete
-          open
-          value={value}
-          onChange={onChange}
-          placeholder={'Placeholder'}
-          typographyContentColor={'error'}
-        />
-        <Autocomplete
-          options=[...]
-          inputSelectedColor={'#26C6DA'}
-          value={value}
-          onChange={onChange}
-        />
-        `,
-        format: true
-      }
-    }
-  },
-  render: () => <StylingPreview />
 }
 
 /**
@@ -359,28 +323,20 @@ export const TextFieldInheritance: Story = {
         <Autocomplete 
           required 
           label="Required" 
-          value={requiredValue} 
-          onChange={setRequiredValue} 
           options={options} 
         />
         <Autocomplete 
           error 
           label="Error" 
-          value={errorValue} 
-          onChange={setErrorValue} 
           options={options} 
         />
         <Autocomplete
           helperText="Please, select an option."
           label="Helper text"
-          value={helperValue}
-          onChange={setHelperValue}
           options={options}
         />
         <Autocomplete
           label="Variant outlined"
-          value={helperValue}
-          onChange={setHelperValue}
           options={options}
           inputTextFieldProps={{ variant: 'outlined' }}
         />
@@ -394,7 +350,7 @@ export const TextFieldInheritance: Story = {
 
 /**
  * You can group the options with the `groupBy` prop. If you do so, make sure that the options are also sorted with the same dimension that they are grouped by, otherwise, you will notice duplicate headers.
- * 
+ *
  * To control how the groups are rendered, provide a custom renderGroup prop. This is a function that accepts an object with two fields:
  * - `group` — a string representing a group name
  * - `children` — a collection of list items that belong to the group
@@ -455,11 +411,55 @@ export const GroupedPreview = (props: any) => {
     }
   },
   args: {
-    label: 'Grouped Options',
-    onChange: null,
-    onClose: null,
-    onInputChange: null,
-    onOpen: null
+    label: 'Grouped Options'
   },
   render: args => <GroupedPreview {...args} />
+}
+
+/**
+ * You can give your autocomplete both the option or just it's `valueKey` in the `value` prop.
+ * This will render the option from the `options` array when found, otherwise it will render the value as it is.
+ * When you have multiple selection enabled, the `value` array can be a mix between.
+ */
+export const MixedValue: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `
+        <Autocomplete
+          label="Autocomplete"
+          value={optionsArray[0].id}
+          options={optionsArray}
+        />
+        <Autocomplete
+          label="Multiple Selection"
+          value={[optionsArray[0].id, optionsArray[1]]}
+          options={optionsArray}
+          isMultiSelection
+        />
+        `,
+        format: true
+      }
+    }
+  },
+  args: {
+    options
+  },
+  render: args => {
+    const options: readonly any[] = args.options
+    const value = options[0].id
+    const values = [options[0].id, options[1]]
+    return (
+      <Stack spacing={2}>
+        <Stack spacing={2} direction="row" alignItems="flex-end">
+          <AutocompleteComponent label="Autocomplete" value={value} options={options} />
+          <Typography variant={'body1'}>{`value={${value}}`}</Typography>
+        </Stack>
+        <Stack spacing={2} direction="row" alignItems="flex-end">
+          <AutocompleteComponent label="Multiple Selection" value={values} options={options} isMultiSelection />
+          <Typography variant={'body1'}>{`value={${JSON.stringify(values)}}`}</Typography>
+        </Stack>
+      </Stack>
+    )
+  }
 }
