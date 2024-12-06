@@ -13,8 +13,6 @@ import { RequiredPreview } from './RequiredPreview'
 import { CustomOptionPreview } from './CustomOptionPreview'
 import { GroupedPreview } from './GroupedPreview'
 import { Stack } from '@mui/material'
-import { all, has } from 'ramda'
-import FormattedJson from './components/FormattedJson'
 
 const meta: Meta<typeof AutocompleteComponent> = {
   title: 'Components/Inputs/Autocomplete',
@@ -193,7 +191,7 @@ export const Creatable: Story = {
       }
     }
   },
-  render: () => <CreatablePreview />
+  render: args => <CreatablePreview {...args} />
 }
 
 /**
@@ -218,7 +216,7 @@ export const MultipleSelection: Story = {
       }
     }
   },
-  render: () => <MultipleSelectionPreview />
+  render: args => <MultipleSelectionPreview {...args} />
 }
 
 /**
@@ -347,7 +345,7 @@ export const TextFieldInheritance: Story = {
       }
     }
   },
-  render: () => <RequiredPreview />
+  render: args => <RequiredPreview {...args} />
 }
 
 /**
