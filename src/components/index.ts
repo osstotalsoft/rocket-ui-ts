@@ -48,6 +48,8 @@ export * from './inputs/DateTime'
 export { default as Slider } from './inputs/Slider'
 export * from './inputs/Slider'
 
+export * from './inputs/Tags'
+
 export { default as NavPills } from './navigation/NavPills'
 export * from './navigation/NavPills'
 
@@ -84,9 +86,6 @@ export * from './feedback/NotFound'
 export { default as FakeText } from './feedback/FakeText'
 export * from './feedback/FakeText'
 
-export { default as ToastContainer } from './feedback/Toast/ToastContainer'
-export { default as useToast } from './feedback/Toast/useToast'
-export { default as usePromiseToast } from './feedback/Toast/usePromiseToast'
 export * from './feedback/Toast'
 
 export { default as getTheme } from './themes/index'
