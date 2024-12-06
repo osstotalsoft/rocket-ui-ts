@@ -5,43 +5,43 @@ import React from 'react'
 import Grid from '@mui/material/Grid2'
 import { Button, useToast } from 'components'
 
-const TransitionsPreview = () => {
+const TransitionsPreview = (args: any) => {
   const addToast = useToast()
 
   return (
-    <Grid container spacing={2} justifyItems={'flex-start'}>
-      <Grid size={2}>
+    <Grid container spacing={2} justifyContent={'space-evenly'}>
+      <Grid>
         <Button
           size={'small'}
           color={'primary'}
-          onClick={() => addToast('This is a success message!', 'success', { transitionType: 'Slide' })}
+          onClick={() => addToast('This is a success message!', 'success', { ...args, transitionType: 'Slide' })}
         >
           {'Slide transition'}
         </Button>
       </Grid>
-      <Grid size={2}>
+      <Grid>
         <Button
           size={'small'}
           color={'primary'}
-          onClick={() => addToast('This is an info message!', 'info', { transitionType: 'Zoom' })}
+          onClick={() => addToast('This is an info message!', 'info', { ...args, transitionType: 'Zoom' })}
         >
           {'Zoom transition'}
         </Button>
       </Grid>
-      <Grid size={2}>
+      <Grid>
         <Button
           size={'small'}
           color={'primary'}
-          onClick={() => addToast('This is a warning message!', 'warning', { transitionType: 'Bounce' })}
+          onClick={() => addToast('This is a warning message!', 'warning', { ...args, transitionType: 'Bounce' })}
         >
           {'Bounce transition'}
         </Button>
       </Grid>
-      <Grid size={2}>
+      <Grid>
         <Button
           size={'small'}
           color={'primary'}
-          onClick={() => addToast('This is an error message!', 'error', { transitionType: 'Flip' })}
+          onClick={() => addToast('This is an error message!', 'error', { ...args, transitionType: 'Flip' })}
         >
           {'Flip transition'}
         </Button>

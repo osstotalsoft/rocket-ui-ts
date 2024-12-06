@@ -86,6 +86,7 @@ export * from './feedback/NotFound'
 export { default as FakeText } from './feedback/FakeText'
 export * from './feedback/FakeText'
 
+export { ToastContainer, useToast, usePromiseToast } from './feedback/Toast'
 export * from './feedback/Toast'
 
 export { default as getTheme } from './themes/index'

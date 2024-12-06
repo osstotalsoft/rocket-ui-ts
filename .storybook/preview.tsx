@@ -45,7 +45,6 @@ const preview: Preview = {
   },
   decorators: [withThemeProvider],
   tags: ['autodocs']
-
 }
 
 export default preview
