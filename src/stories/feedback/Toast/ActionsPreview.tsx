@@ -35,7 +35,7 @@ const ActionsPreview = () => {
       size={'medium'}
       color={'primary'}
       onClick={() =>
-        addToast('This is an action toast!', 'success', {
+        addToast('This is a custom toast with actions!', 'success', {
           actions: <CustomMessageWithActions />
         })
       }

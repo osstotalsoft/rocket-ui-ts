@@ -1,9 +1,9 @@
 import { fireEvent, renderHook, screen, waitFor } from '@testing-library/react'
 import React, { act } from 'react'
 import { render } from 'testingUtils'
-import { Button, useToast, usePromiseToast } from 'components'
-import Grid from '@mui/material/Grid2'
+import { Button, useToast, usePromiseToast, Typography } from 'components'
 import { emptyFunction } from 'components/utils/constants'
+import { Stack } from '@mui/material'
 
 describe('Toast', () => {
   it.each([
@@ -121,29 +121,28 @@ describe('Actions toast', () => {
     const { result } = renderHook(() => useToast())
 
     const CustomMessageWithActions = () => (
-      <Grid container spacing={2} justifyItems={'flex-start'}>
-        <Grid>{'This is a custom toast with actions'}</Grid>
-        <Grid>
-          <Button size={'small'} color={'primary'} onClick={emptyFunction}>
-            {'Button 1'}
-          </Button>
-        </Grid>
-        <Grid>
-          <Button size={'small'} color={'primary'} onClick={emptyFunction}>
-            {'Button 2'}
-          </Button>
-        </Grid>
-      </Grid>
+      <Stack direction="row" alignItems="flex-end" justifyContent="flex-end" gap={1}>
+        <Button size={'small'} onClick={emptyFunction} variant="text" capitalize={false} >
+          <Typography>{'Button 1'}</Typography>
+        </Button>
+        <Button size={'small'} onClick={emptyFunction} variant="text" capitalize={false}>
+          <Typography>{'Button 2'}</Typography>
+        </Button>
+      </Stack>
     )
 
-    render(<Button onClick={() => result.current(CustomMessageWithActions, 'error', { closeOnClick: false })} />)
+    render(
+      <Button
+        onClick={() =>
+          result.current('This is a custom toast with actions!', 'success', {
+            actions: <CustomMessageWithActions />
+          })
+        }
+      />
+    )
 
-    const actionsToastButton = screen.getByRole('button')
-
-    await act(async () => fireEvent.click(actionsToastButton))
-
-    const toastMessage = await screen.findByText('This is a custom toast with actions')
-    expect(toastMessage).toBeInTheDocument()
+    await act(async () => fireEvent.click(screen.getByRole('button')))
+    await waitFor(() => expect(screen.getByRole('alert')).toBeInTheDocument())
 
     const button1 = screen.getByRole('button', { name: 'Button 1' })
     const button2 = screen.getByRole('button', { name: 'Button 2' })

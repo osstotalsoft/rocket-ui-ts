@@ -54,7 +54,6 @@ The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for t
         <Button
           size={'small'}
           color={'primary'}
-
           onClick={() =>
             addPromiseToast(
               resolveAfter3Sec(),

@@ -61,11 +61,19 @@ const MyToast = (props: any) => {
         <MyIcon myVariant={variant} />
         <Typography sx={{ maxHeight: '450px' }}>{message}</Typography>
         {includes(variant, ['success', 'info', 'error', 'warning']) ? (
-          <IconButton sx={{ position: 'sticky', top: '50%', padding: 0, margin: '0px 6px' }} onClick={closeToast}>
+          <IconButton
+            sx={{ position: 'sticky', top: '50%', padding: 0, margin: '0px 6px' }}
+            onClick={closeToast}
+            aria-label="close"
+          >
             <CloseIcon fontSize="small" htmlColor="white" />
           </IconButton>
         ) : (
-          <IconButton sx={{ position: 'sticky', top: '50%', padding: 0, margin: '0px 6px' }} onClick={closeToast}>
+          <IconButton
+            sx={{ position: 'sticky', top: '50%', padding: 0, margin: '0px 6px' }}
+            onClick={closeToast}
+            aria-label="close"
+          >
             <CloseIcon fontSize="small" color="primary" />
           </IconButton>
         )}
