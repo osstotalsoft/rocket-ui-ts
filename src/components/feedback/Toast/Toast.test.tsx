@@ -1,8 +1,8 @@
 import { fireEvent, renderHook, screen, waitFor } from '@testing-library/react'
 import React, { act } from 'react'
 import { render } from 'testingUtils'
-import { Button, useToast, usePromiseToast, Typography } from 'components'
-import { emptyFunction } from 'components/utils/constants'
+import { Button, useToast, usePromiseToast, Typography } from '../../index'
+import { emptyFunction } from '../../utils/constants'
 import { Stack } from '@mui/material'
 
 describe('Toast', () => {
