@@ -102,7 +102,7 @@ describe('Promise toast', () => {
     render(
       <Button
         onClick={() =>
-          result.current(resolveAfter3Sec(), 'Promise is pending', 'Promise resolved 👌', 'Promise rejected 🤯')
+          result.current(resolveAfter3Sec(), 'Promise is pending', 'Promise resolved 👌', 'Promise rejected 🤯', {})
         }
       />
     )
@@ -122,7 +122,7 @@ describe('Actions toast', () => {
 
     const CustomMessageWithActions = () => (
       <Stack direction="row" alignItems="flex-end" justifyContent="flex-end" gap={1}>
-        <Button size={'small'} onClick={emptyFunction} variant="text" capitalize={false} >
+        <Button size={'small'} onClick={emptyFunction} variant="text" capitalize={false}>
           <Typography>{'Button 1'}</Typography>
         </Button>
         <Button size={'small'} onClick={emptyFunction} variant="text" capitalize={false}>

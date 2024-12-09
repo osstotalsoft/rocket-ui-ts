@@ -2,8 +2,8 @@
 // This source code is licensed under the MIT license.
 
 import React from 'react'
-import { Button, Typography, useToast } from 'components'
-import { emptyFunction } from 'components/utils/constants'
+import { Button, Typography, useToast } from '../../../components/index'
+import { emptyFunction } from '../../../components/utils/constants'
 import { Stack } from '@mui/material'
 
 const ActionsPreview = (args: any) => {
