@@ -13,15 +13,22 @@ const ToastContainer: React.FC<ToastContainerProps> = ({
   position = 'top-center',
   newestOnTop = true,
   transitionType = 'Slide',
+  closeOnClick = true,
+  closeButton = false,
+  icon = false,
   limit = 5,
+  textSize = 'small',
   ...rest
 }) => {
   return (
-    <Container>
+    <Container textSize={textSize}>
       <ReactToastify
         className={classes.toastWrapper}
         position={position}
+        closeOnClick={closeOnClick}
+        closeButton={closeButton}
         newestOnTop={newestOnTop}
+        icon={icon}
         transition={transitionType as any}
         theme="colored"
         limit={limit}
@@ -46,6 +53,11 @@ ToastContainer.propTypes = {
    */
   limit: PropTypes.number,
   /**
+   * Close the toast when clicked.
+   * @default true
+   */
+  closeOnClick: PropTypes.bool,
+  /**
    * Set the position to use.
    * @default 'top-center'
    */
@@ -61,7 +73,12 @@ ToastContainer.propTypes = {
    * Whether or not to display the newest toast on top.
    * @default true
    */
-  newestOnTop: PropTypes.bool
+  newestOnTop: PropTypes.bool,
+  /**
+   * @default 'small'
+   * The content font size
+   */
+  textSize: PropTypes.oneOf(['small', 'medium', 'large'])
 }
 
 export default ToastContainer

@@ -1,9 +1,9 @@
 import { fireEvent, renderHook, screen, waitFor } from '@testing-library/react'
 import React, { act } from 'react'
-import useToast from './useToast'
 import { render } from 'testingUtils'
-import Button from 'components/buttons/Button'
-import usePromiseToast from './usePromiseToast'
+import { Button, useToast, usePromiseToast, Typography } from '../../index'
+import { emptyFunction } from '../../utils/constants'
+import { Stack } from '@mui/material'
 
 describe('Toast', () => {
   it.each([
@@ -113,5 +113,41 @@ describe('Promise toast', () => {
     await waitFor(() => expect(screen.getByRole('alert').parentNode).toHaveClass('Toastify__toast--error'), {
       timeout: 4000
     })
+  })
+})
+
+describe('Actions toast', () => {
+  it('Should render a toast with actions', async () => {
+    const { result } = renderHook(() => useToast())
+
+    const CustomMessageWithActions = () => (
+      <Stack direction="row" alignItems="flex-end" justifyContent="flex-end" gap={1}>
+        <Button size={'small'} onClick={emptyFunction} variant="text" capitalize={false}>
+          <Typography>{'Button 1'}</Typography>
+        </Button>
+        <Button size={'small'} onClick={emptyFunction} variant="text" capitalize={false}>
+          <Typography>{'Button 2'}</Typography>
+        </Button>
+      </Stack>
+    )
+
+    render(
+      <Button
+        onClick={() =>
+          result.current('This is a custom toast with actions!', 'success', {
+            actions: <CustomMessageWithActions />
+          })
+        }
+      />
+    )
+
+    await act(async () => fireEvent.click(screen.getByRole('button')))
+    await waitFor(() => expect(screen.getByRole('alert')).toBeInTheDocument())
+
+    const button1 = screen.getByRole('button', { name: 'Button 1' })
+    const button2 = screen.getByRole('button', { name: 'Button 2' })
+
+    expect(button1).toBeInTheDocument()
+    expect(button2).toBeInTheDocument()
   })
 })
