@@ -102,7 +102,7 @@ describe('Promise toast', () => {
     render(
       <Button
         onClick={() =>
-          result.current(resolveAfter3Sec(), 'Promise is pending', 'Promise resolved 👌', 'Promise rejected 🤯', {})
+          result.current(resolveAfter3Sec(), 'Promise is pending', 'Promise resolved 👌', 'Promise rejected 🤯')
         }
       />
     )
