@@ -57,6 +57,7 @@ export const Default: Story = {
  * Stats Card component allows displaying any type of data, string, numeric, React Node, etc.
  */
 export const VariousContents: Story = {
+  args: { icon, title, footer },
   parameters: {
     controls: { hideNoControlsWarning: true },
     docs: {
@@ -86,11 +87,11 @@ export const VariousContents: Story = {
       }
     }
   },
-  render: () => (
+  render: args => (
     <>
-      <StatsCardComponent {...Default.args} description={'4.39 $'} />
+      <StatsCardComponent {...args} description={'4.39 $'} />
       <StatsCardComponent
-        {...Default.args}
+        {...args}
         icon={Group}
         description={
           <>

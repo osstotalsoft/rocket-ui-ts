@@ -8,10 +8,17 @@ import VariantsPreview from './VariantsPreview'
 import PositionsPreview from './PositionsPreview'
 import TransitionsPreview from './TransitionsPreview'
 import ActionsPreview from './ActionsPreview'
+import { TextSizeLargePreview, TextSizeMediumPreview, TextSizeSmallPreview } from './TextSizePreview'
 
 const meta: Meta<typeof ToastContainer> = {
   title: 'Components/Feedback/Toast',
-  component: ToastContainer
+  component: ToastContainer,
+  argTypes: {
+    textSize: {
+      options: ['small', 'medium', 'large'],
+      control: { type: 'select' }
+    }
+  }
 } satisfies Meta<typeof ToastContainer>
 
 export default meta
@@ -113,7 +120,14 @@ export const Variants: Story = {
       }
     }
   },
-  render: args => <VariantsPreview {...args}  />
+  render: args => {
+    return (
+      <>
+        <ToastContainer {...args} />
+        <VariantsPreview {...args} />
+      </>
+    )
+  }
 }
 /**
  * Different positions are available for rendering toast.
@@ -188,7 +202,7 @@ export const Positions: Story = {
       }
     }
   },
-  render: args => <PositionsPreview {...args}/>
+  render: args => <PositionsPreview {...args} />
 }
 
 /**
@@ -289,4 +303,14 @@ export const Actions: Story = {
     }
   },
   render: args => <ActionsPreview {...args} />
+}
+
+export const TextSize: Story = {
+  render: () => (
+    <>
+      <TextSizeSmallPreview />
+      <TextSizeMediumPreview />
+      <TextSizeLargePreview />
+    </>
+  )
 }

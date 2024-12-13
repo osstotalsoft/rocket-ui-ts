@@ -32,7 +32,6 @@ const ActionsPreview = () => {
               options={options}
               value={value}
               onChange={handleChange}
-              stopEventPropagation
               isClearable
             />
             <Typography>{`Selected value: ${JSON.stringify(value)}`}</Typography>

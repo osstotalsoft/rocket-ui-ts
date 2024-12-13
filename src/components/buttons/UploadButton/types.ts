@@ -4,7 +4,7 @@
 import { IconButtonProps } from '../IconButton/types'
 import { SvgIconComponent } from '@mui/icons-material'
 import { F } from 'ts-toolbelt'
-export interface UploadButtonProps extends IconButtonProps {
+export interface UploadButtonProps extends Omit<IconButtonProps, 'type'> {
   /**
    * @default BackupIcon
    * The Icon to display.

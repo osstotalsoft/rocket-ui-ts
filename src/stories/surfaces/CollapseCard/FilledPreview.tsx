@@ -3,7 +3,7 @@ import { Button, IconButton, Typography, CollapseCard } from 'components'
 import QuestionMark from '@mui/icons-material/QuestionMark'
 import { Grid2 as Grid, TextField } from '@mui/material'
 
-const FilledPreview = () => {
+const FilledPreview = (args: any) => {
   return (
     <CollapseCard
       filled
@@ -18,6 +18,7 @@ const FilledPreview = () => {
           <QuestionMark fontSize="small" />
         </IconButton>
       }
+      {...args}
     >
       <Grid container rowSpacing={3} justifyContent="center">
         <Grid size={8}>
