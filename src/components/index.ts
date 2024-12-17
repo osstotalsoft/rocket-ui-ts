@@ -33,6 +33,9 @@ export * from './dataDisplay/ExpandingText'
 export { default as Autocomplete } from './inputs/Autocomplete'
 export * from './inputs/Autocomplete'
 
+export { default as DeprecatedAutocomplete } from './inputs/DeprecatedAutocomplete'
+export * from './inputs/DeprecatedAutocomplete'
+
 export { default as DynamicField } from './inputs/DynamicField'
 export * from './inputs/DynamicField'
 
