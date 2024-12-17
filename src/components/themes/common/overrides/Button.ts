@@ -22,12 +22,6 @@ export default function Button({ palette, customShadows }: Theme): CustomCompone
             backgroundColor: palette.grey[400]
           }
         },
-        containedPrimary: {
-          boxShadow: customShadows.primary
-        },
-        containedSecondary: {
-          boxShadow: customShadows.secondary
-        },
         outlinedInherit: {
           border: `1px solid ${palette.grey[500_32]}`,
           '&:hover': {
