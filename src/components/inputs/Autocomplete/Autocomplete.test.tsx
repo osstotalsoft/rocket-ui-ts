@@ -122,7 +122,7 @@ describe('Single-value Autocomplete', () => {
       act(() => userClick(screen.getByText('Add "new"')))
 
       await waitFor(() => {
-        expect(mockOnChange).toBeCalledWith('new', expect.anything(), 'createOption', expect.anything())
+        expect(mockOnChange).toHaveBeenCalledWith('new', expect.anything(), 'createOption', expect.anything())
       })
     })
   })
@@ -166,7 +166,7 @@ describe('Single-value Autocomplete', () => {
       const options = screen.getAllByRole('option')
       act(() => userClick(options[0]))
 
-      expect(mockOnChange).toBeCalledWith(basicOptions[0], expect.anything(), 'selectOption', expect.anything())
+      expect(mockOnChange).toHaveBeenCalledWith(basicOptions[0], expect.anything(), 'selectOption', expect.anything())
     })
 
     test('can display a value that is number', () => {
@@ -187,7 +187,7 @@ describe('Single-value Autocomplete', () => {
       const options = screen.getAllByRole('option')
       act(() => userClick(options[0]))
 
-      expect(mockOnChange).toBeCalledWith(basicOptions[0], expect.anything(), 'selectOption', expect.anything())
+      expect(mockOnChange).toHaveBeenCalledWith(basicOptions[0], expect.anything(), 'selectOption', expect.anything())
     })
   })
 
@@ -203,7 +203,7 @@ describe('Single-value Autocomplete', () => {
       const options = screen.getAllByRole('option')
       act(() => userClick(options[0]))
 
-      expect(mockOnChange).toBeCalledWith('first option', expect.anything(), 'selectOption', expect.anything())
+      expect(mockOnChange).toHaveBeenCalledWith('first option', expect.anything(), 'selectOption', expect.anything())
     })
 
     test('displays selected option in input for numeric options', () => {
@@ -216,7 +216,7 @@ describe('Single-value Autocomplete', () => {
       render(<Autocomplete open options={numericOptions} onChange={mockOnChange} />)
       const options = screen.getAllByRole('option')
       act(() => userClick(options[0]))
-      expect(mockOnChange).toBeCalledWith(1, expect.anything(), 'selectOption', expect.anything())
+      expect(mockOnChange).toHaveBeenCalledWith(1, expect.anything(), 'selectOption', expect.anything())
     })
 
     test('does not show "Add" option for the one that already exist with numeric options', () => {
@@ -262,7 +262,7 @@ describe('Multi-value Autocomplete', () => {
     act(() => userClick(screen.getByTitle('Clear')))
 
     await waitFor(() => {
-      expect(mockOnChange).toBeCalledWith([basicOptions[1].id], expect.anything(), 'clear', expect.anything())
+      expect(mockOnChange).toHaveBeenCalledWith([basicOptions[1].id], expect.anything(), 'clear', expect.anything())
     })
   })
 
@@ -279,7 +279,7 @@ describe('Multi-value Autocomplete', () => {
       const options = screen.getAllByRole('option')
       act(() => userClick(options[0]))
 
-      expect(mockOnChange).toBeCalledWith([basicOptions[0]], expect.anything(), 'selectOption', expect.anything())
+      expect(mockOnChange).toHaveBeenCalledWith([basicOptions[0]], expect.anything(), 'selectOption', expect.anything())
     })
   })
 
@@ -307,7 +307,7 @@ describe('Multi-value Autocomplete', () => {
       const options = screen.getAllByRole('option')
       act(() => userClick(options[0]))
 
-      expect(mockOnChange).toBeCalledWith(
+      expect(mockOnChange).toHaveBeenCalledWith(
         [{ id: 1, name: 'first option', displayName: 'First Option' }],
         expect.anything(),
         'selectOption',
@@ -323,9 +323,9 @@ describe('Async Autocomplete', () => {
     const mockLoadOptions = jest.fn(() => promise)
     render(<Autocomplete loadOptions={mockLoadOptions} onChange={jest.fn()} />)
 
-    expect(mockLoadOptions).not.toBeCalled()
+    expect(mockLoadOptions).not.toHaveBeenCalled()
     act(() => userClick(screen.getByTitle('Open')))
-    expect(mockLoadOptions).toBeCalled()
+    expect(mockLoadOptions).toHaveBeenCalled()
   })
 
   // not yet implemented
@@ -334,7 +334,7 @@ describe('Async Autocomplete', () => {
     const mockLoadOptions = jest.fn(() => promise)
     render(<Autocomplete loadOptions={mockLoadOptions} value={1} onChange={jest.fn()} />)
 
-    await waitFor(() => expect(mockLoadOptions).toBeCalled())
+    await waitFor(() => expect(mockLoadOptions).toHaveBeenCalled())
   })
 
   test('has loading state', async () => {
@@ -353,7 +353,7 @@ describe('Async Autocomplete', () => {
     render(<Autocomplete loadOptions={mockLoadOptions} value={'first option'} onChange={jest.fn()} isPaginated />)
 
     fireEvent.click(screen.getByRole('button'))
-    expect(mockLoadOptions).toBeCalledWith('first option', [], null)
+    expect(mockLoadOptions).toHaveBeenCalledWith('first option', [], null)
     expect(mockLoadOptions.mock.calls[0]).toHaveLength(3)
   })
 
@@ -371,8 +371,26 @@ describe('Async Autocomplete', () => {
       render(<Autocomplete loadOptions={mockLoadOptions} value={basicOptions[0]} onChange={jest.fn()} />)
 
       fireEvent.click(screen.getByRole('button'))
-      expect(mockLoadOptions).toBeCalledWith('first option', expect.anything(), null)
+      expect(mockLoadOptions).toHaveBeenCalledWith('first option', expect.anything(), null)
       expect(mockLoadOptions.mock.calls[0]).toHaveLength(3)
+    })
+    test('loadOptions should be called only once, even if Autocomplete was opened multiple times', async () => {
+      const promise = Promise.resolve(basicOptions)
+      const mockLoadOptions = jest.fn(() => promise)
+      render(<Autocomplete loadOptions={mockLoadOptions} onChange={jest.fn()} />)
+
+      // open the Autocomplete
+      act(() => userClick(screen.getByTitle('Open')))
+      await waitFor(() => expect(screen.getAllByRole('option')).toHaveLength(3))
+
+      // change the input value
+      const options = screen.getAllByRole('option')
+      act(() => userClick(options[0]))
+
+      // open the Autocomplete again
+      act(() => userClick(screen.getByTitle('Open')))
+
+      await waitFor(() => expect(mockLoadOptions).toHaveBeenCalledTimes(1))
     })
   })
 })
