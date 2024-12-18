@@ -136,7 +136,6 @@ export const Actions: Story = {
                       options={options}
                       value={value}
                       onChange={handleChange}
-                      stopEventPropagation
                     />
                   </Grid>
                   <Grid size={{ lg: 1 }}>

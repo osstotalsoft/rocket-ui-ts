@@ -33,7 +33,7 @@ const uncontrolled = `
   }
 `
 
-const ControlledPreview = () => {
+const ControlledPreview = (args: any) => {
   const [expanded, setExpanded] = useState(false)
   const handleToggle = useCallback(() => setExpanded(current => !current), [])
 
@@ -55,6 +55,7 @@ const ControlledPreview = () => {
               <QuestionMark fontSize="small" />
             </IconButton>
           }
+          {...args}
         />
       </Grid>
       <Grid size={4}>

@@ -8,6 +8,7 @@ import VariantsPreview from './VariantsPreview'
 import PositionsPreview from './PositionsPreview'
 import TransitionsPreview from './TransitionsPreview'
 import ActionsPreview from './ActionsPreview'
+import TextSizePreview from './TextSizePreview'
 
 const meta: Meta<typeof ToastContainer> = {
   title: 'Components/Feedback/Toast',
@@ -113,7 +114,7 @@ export const Variants: Story = {
       }
     }
   },
-  render: args => <VariantsPreview {...args}  />
+  render: args => <VariantsPreview {...args} />
 }
 /**
  * Different positions are available for rendering toast.
@@ -188,7 +189,7 @@ export const Positions: Story = {
       }
     }
   },
-  render: args => <PositionsPreview {...args}/>
+  render: args => <PositionsPreview {...args} />
 }
 
 /**
@@ -289,4 +290,35 @@ export const Actions: Story = {
     }
   },
   render: args => <ActionsPreview {...args} />
+}
+
+/**
+ * You can change the content font size by changing the ToastContainer textSize parameter of the application
+ * Available options are:
+ * - small
+ * - medium
+ * - large
+ * Default is set to 'small'.
+ */
+export const TextSize: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `      <ToastContainer textSize={textSize} />
+      <Button
+        size={'small'}
+        color={'primary'}
+        onClick={() =>
+          addToast('This message font will change if you change textSize property of ToastContainer!', 'success', {
+            ...args
+          })
+        }
+      >
+        {'Change text size from controls.'}
+      </Button>`,
+        format: true
+      }
+    }
+  },
+  render: args => <TextSizePreview {...args} />
 }

@@ -142,7 +142,7 @@ export const Filled: Story = {
       }
     }
   },
-  render: () => <FilledPreview />
+  render: args => <FilledPreview {...args} />
 }
 
 /**
@@ -178,7 +178,7 @@ export const Controlled: Story = {
       }
     }
   },
-  render: () => <ControlledPreview />
+  render: args => <ControlledPreview {...args} />
 }
 
 /**

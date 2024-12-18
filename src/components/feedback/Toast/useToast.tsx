@@ -25,7 +25,6 @@ const useToast = () => {
         [classes[variant]]: variant,
         [classes['default']]: true
       })
-
       const options: ToastOptionsBase = {
         ...restOptions,
         transition: getTransitionType(transitionType),

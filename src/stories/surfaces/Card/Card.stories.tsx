@@ -46,7 +46,6 @@ const actions = (
  */
 export const Card: Story = {
   args: { title, subheader, children, icon: People, footer, actions },
-
   parameters: {
     docs: {
       source: {
