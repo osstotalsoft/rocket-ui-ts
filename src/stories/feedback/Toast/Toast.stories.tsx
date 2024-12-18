@@ -12,7 +12,7 @@ import TextSizePreview from './TextSizePreview'
 
 const meta: Meta<typeof ToastContainer> = {
   title: 'Components/Feedback/Toast',
-  component: ToastContainer
+  component: ToastContainer,
 } satisfies Meta<typeof ToastContainer>
 
 export default meta
@@ -114,7 +114,9 @@ export const Variants: Story = {
       }
     }
   },
-  render: args => <VariantsPreview {...args} />
+  render: args => {
+    return <VariantsPreview {...args} />
+  }
 }
 /**
  * Different positions are available for rendering toast.
