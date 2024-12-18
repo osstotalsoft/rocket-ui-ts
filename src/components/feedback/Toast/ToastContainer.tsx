@@ -40,14 +40,6 @@ const ToastContainer: React.FC<ToastContainerProps> = ({
 
 ToastContainer.propTypes = {
   /**
-   * Set the delay in ms to close the toast automatically.
-   * Use `false` to prevent the toast from closing.
-   * @default false
-   */
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  autoClose: PropTypes.oneOf([PropTypes.number, false]),
-  /**
    * Limit the number of toast displayed at the same time
    * @default 5
    */
