@@ -15,11 +15,10 @@ export type LocaleMapType = {
   ro: Locale
 }
 
-export type DateTimeProps<TDate, TError> = (
-  | Omit<DatePickerProps<Date>, 'onChange'>
-  | Omit<DateTimePickerProps<Date>, 'onChange'>
-  | Omit<TimePickerProps<Date>, 'onChange'>
-) &
+export type DateTimeProps<TDate, TError> = Omit<
+  DatePickerProps<Date> | DateTimePickerProps<Date> | TimePickerProps<Date>,
+  'value' | 'onChange' | 'minDate' | 'maxDate'
+> &
   Omit<LocalizationProviderProps<Date, Locale>, 'adapterLocale'> & {
     /**
      * Date library adapter class function.
@@ -62,4 +61,19 @@ export type DateTimeProps<TDate, TError> = (
      * The helper text content.
      */
     helperText?: React.ReactNode
+
+    /**
+     *The value currently displayed in the field
+     */
+    value: string | Date
+
+    /**
+     * The minimum selectable date.
+     */
+    minDate?: string | Date
+
+    /**
+     * The maximum selectable date.
+     */
+    maxDate?: string | Date
   }
