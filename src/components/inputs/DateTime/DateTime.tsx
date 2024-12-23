@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, { useCallback, useMemo } from 'react'
 import PropTypes from 'prop-types'
 import {
   DatePicker,
@@ -33,10 +33,15 @@ const DateTime: React.FC<DateTimeProps<Date, string>> = ({
   slots = {},
   localeFormat = 'ro',
   helperText,
+  timezone = 'UTC',
+  minDate,
+  maxDate,
   error,
   ...rest
 }) => {
   const locale = useMemo(() => adapterLocale ?? localeMap[localeFormat] ?? ro, [adapterLocale, localeFormat])
+  const getValidDate = useCallback((value: any) => (value ? new Date(value) : null), [])
+
   const commonSlotProps = useMemo(
     () => ({
       ...slotProps,
@@ -53,10 +58,13 @@ const DateTime: React.FC<DateTimeProps<Date, string>> = ({
           equals('date'),
           () => (
             <DatePicker
-              value={value}
+              value={getValidDate(value)}
               onChange={onChange}
               slotProps={commonSlotProps as DatePickerSlotProps<Date, false>}
               slots={slots as DatePickerSlots<Date>}
+              timezone={timezone}
+              minDate={getValidDate(minDate)}
+              maxDate={getValidDate(maxDate)}
               {...(rest as DatePickerProps<Date>)}
             />
           )
@@ -65,10 +73,13 @@ const DateTime: React.FC<DateTimeProps<Date, string>> = ({
           equals('dateTime'),
           () => (
             <DateTimePicker
-              value={value}
+              value={getValidDate(value)}
               onChange={onChange}
               slotProps={commonSlotProps as DateTimePickerSlotProps<Date, false>}
               slots={slots as DateTimePickerSlots<Date>}
+              timezone={timezone}
+              minDate={getValidDate(minDate)}
+              maxDate={getValidDate(maxDate)}
               {...(rest as DateTimePickerProps<Date>)}
             />
           )
@@ -77,16 +88,17 @@ const DateTime: React.FC<DateTimeProps<Date, string>> = ({
           equals('time'),
           () => (
             <TimePicker
-              value={value}
+              value={getValidDate(value)}
               onChange={onChange}
               slotProps={commonSlotProps as TimePickerSlotProps<Date, false>}
               slots={slots as TimePickerSlots<Date>}
+              timezone={timezone}
               {...(rest as TimePickerProps<Date>)}
             />
           )
         ]
       ])(showPicker),
-    [commonSlotProps, onChange, rest, showPicker, slots, value]
+    [showPicker, getValidDate, value, onChange, commonSlotProps, slots, timezone, minDate, maxDate, rest]
   )
 
   return (
@@ -112,7 +124,7 @@ DateTime.propTypes = {
    * @default null
    * Value of the picker
    */
-  value: PropTypes.instanceOf(Date),
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]),
   /**
    * Callback fired when the value (the selected date) changes @DateIOType.
    */
@@ -144,7 +156,20 @@ DateTime.propTypes = {
   /**
    * The helper text content.
    */
-  helperText: PropTypes.node
+  helperText: PropTypes.node,
+  /**
+   * @default 'UTC'
+   * The timezone used for the picker.
+   */
+  timezone: PropTypes.oneOf(['UTC', 'default', 'system']),
+  /**
+   * The minimum selectable date.
+   */
+  minDate: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]),
+  /**
+   * The maximum selectable date.
+   */
+  maxDate: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)])
 }
 
 export default DateTime
