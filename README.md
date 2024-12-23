@@ -12,9 +12,10 @@
 </p>
 
 <p align="center">
-  <a href="https://osstotalsoft.github.io/rocket-ui-ts">Rocket UI Components Collection</a>
+  <a href="https://osstotalsoft.github.io/rocket-ui-ts">Rocket UI Components Collection</a> 
 </p>
 
+[![npm version](https://badge.fury.io/js/@totalsoft%2Frocket-ui.svg)](https://badge.fury.io/js/@totalsoft%2Frocket-ui)
 > A set of reusable and composable React components built on top of Material UI core for developing fast and friendly web applications interfaces.
 
 # Installation
