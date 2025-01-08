@@ -54,6 +54,10 @@ export interface CardHeaderProps extends Omit<MuiCardHeaderProps, 'action'> {
    */
   filled?: boolean
   /**
+   * Indicates if the parent Card component contains an header element or not
+   */
+  hasHeader?: boolean
+  /**
    * Indicates if the parent Card component contains an icon element or not
    */
   hasIcon?: boolean

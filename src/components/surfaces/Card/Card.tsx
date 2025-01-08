@@ -68,6 +68,7 @@ const Card: React.FC<CardProps> = ({
     <MuiCard color={color} hasIcon={hasIcon} variant={variant} {...props}>
       {hasHeader && (
         <CardHeader
+          hasHeader={hasHeader}
           hasIcon={hasIcon}
           iconColor={hasIcon ? (iconColor as CardColor) : undefined}
           avatarProps={avatarProps}
