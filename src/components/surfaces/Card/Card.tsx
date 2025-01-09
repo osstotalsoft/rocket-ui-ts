@@ -3,7 +3,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import MuiCard, { CardContent, iconStyle as baseIconStyle } from './CardStyles'
 import CardMedia from '@mui/material/CardMedia'
-import { any, isNil, omit } from 'ramda'
+import { any, isNil } from 'ramda'
 import { CardProps, CardColor } from './types'
 import CardHeader from './CardHeader'
 import CardActions from './CardActions'
@@ -60,7 +60,7 @@ const Card: React.FC<CardProps> = ({
     filled,
     ...headerProps
   }
-  const hasHeader = any(x => !isNil(x), Object.values(omit(['avatar'], cardHeaderProps)))
+  const hasHeader = any(x => !isNil(x), Object.values(cardHeaderProps))
 
   const { size, ...standardMediaProps } = mediaProps || {}
 
@@ -68,7 +68,6 @@ const Card: React.FC<CardProps> = ({
     <MuiCard color={color} hasIcon={hasIcon} variant={variant} {...props}>
       {hasHeader && (
         <CardHeader
-          hasHeader={hasHeader}
           hasIcon={hasIcon}
           iconColor={hasIcon ? (iconColor as CardColor) : undefined}
           avatarProps={avatarProps}

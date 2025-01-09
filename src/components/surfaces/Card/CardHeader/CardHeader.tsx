@@ -44,10 +44,6 @@ CardHeader.propTypes = {
    */
   title: PropTypes.node,
   /**
-   * Indicates if the parent Card component contains an header element or not
-   */
-  hasHeader: PropTypes.bool,
-  /**
    * Indicates if the parent Card component contains an icon element or not
    */
   hasIcon: PropTypes.bool,
