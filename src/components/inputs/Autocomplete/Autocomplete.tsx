@@ -165,10 +165,7 @@ const Autocomplete: React.FC<
   )
 
   useEffect(() => {
-    if (!internalLoading) {
-      return
-    }
-    if (processingLoad.current === requestLoad.current) {
+    if (!internalLoading || processingLoad.current === requestLoad.current) {
       return
     }
 
