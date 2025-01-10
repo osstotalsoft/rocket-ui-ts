@@ -124,7 +124,6 @@ const Autocomplete: React.FC<
       if (onOpen) onOpen(event)
       setInternalOpen(true)
       if (loadOptions) {
-        // TODO: add option for load on first open only. this is a "live data" option.
         setInternalLoading(true)
         requestLoad.current = uuid.v7()
       }
@@ -140,7 +139,7 @@ const Autocomplete: React.FC<
         setInternalLoading(false)
         requestLoad.current = uuid.NIL
         setInternalInputValue(emptyString)
-        setInternalOptions(emptyArray) // TODO: add option for load on first open only. this is a "live data" option.
+        setInternalOptions(emptyArray)
         setLoadMore(false)
         setNextPageData(null)
       }
