@@ -374,7 +374,7 @@ describe('Async Autocomplete', () => {
       expect(mockLoadOptions).toHaveBeenCalledWith('first option', expect.anything(), null)
       expect(mockLoadOptions.mock.calls[0]).toHaveLength(3)
     })
-    test('loadOptions should be called only once, even if Autocomplete was opened multiple times', async () => {
+    test('loadOptions should be called each time the Autocomplete opens', async () => {
       const promise = Promise.resolve(basicOptions)
       const mockLoadOptions = jest.fn(() => promise)
       render(<Autocomplete loadOptions={mockLoadOptions} onChange={jest.fn()} />)
@@ -390,7 +390,7 @@ describe('Async Autocomplete', () => {
       // open the Autocomplete again
       act(() => userClick(screen.getByTitle('Open')))
 
-      await waitFor(() => expect(mockLoadOptions).toHaveBeenCalledTimes(1))
+      await waitFor(() => expect(mockLoadOptions).toHaveBeenCalledTimes(2))
     })
   })
 })

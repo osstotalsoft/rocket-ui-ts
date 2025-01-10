@@ -16,14 +16,14 @@ import {
   Autocomplete as MuiAutocomplete,
   TextField
 } from '@mui/material'
-import { both, concat, eqBy, has, identity, includes, isEmpty, map, prop } from 'ramda'
+import { both, concat, eqBy, has, identity, map, prop } from 'ramda'
 import { convertValueToOption, extractFirstValue, internalLabel, internalValue } from './utils'
 import Option from './Option'
 import { useTrackVisibility } from 'react-intersection-observer-hook'
 import { AutocompleteProps, LoadOptionsPaginatedResult } from './types'
 import LinearProgress from '../../feedback/LinearProgress'
 import { emptyArray, emptyString } from '../../utils/constants'
-import { v7 } from 'uuid'
+import * as uuid from 'uuid'
 const baseFilter = createFilterOptions()
 
 const Autocomplete: React.FC<
@@ -104,60 +104,31 @@ const Autocomplete: React.FC<
    * - input change
    */
   const [internalLoading, setInternalLoading] = useState(false)
+  const requestLoad = useRef<string>(uuid.NIL)
+  const processingLoad = useRef<string>(uuid.NIL)
   const [internalOpen, setInternalOpen] = useState(false)
   const [internalInputValue, setInternalInputValue] = useState(emptyString)
   const [ref, { isVisible }] = useTrackVisibility()
   const [loadMore, setLoadMore] = useState(false)
   const [nextPageData, setNextPageData] = useState(null)
 
-  const refGuid = useRef(null)
-
-  const handleLoadOptions = useCallback(
-    (callId: string | null) => {
-      if (refGuid.current !== callId) {
-        return
-      }
-      loadOptions(internalInputValue, allOptions, nextPageData)
-        .then((result: readonly unknown[] | LoadOptionsPaginatedResult<unknown>) => {
-          const newOptions = isPaginated
-            ? (result as LoadOptionsPaginatedResult<unknown>)?.loadedOptions
-            : (result as readonly unknown[])
-          const hasMoreData = isPaginated ? (result as LoadOptionsPaginatedResult<unknown>)?.more : false
-          const nextPageData = isPaginated ? (result as LoadOptionsPaginatedResult<unknown>)?.additional : null
-          setInternalOptions((oldOptions: readonly unknown[]) => concat(oldOptions, newOptions))
-          setLoadMore(hasMoreData)
-          setNextPageData(nextPageData)
-        })
-        .catch(error => {
-          console.error(error)
-        })
-    },
-    [allOptions, internalInputValue, isPaginated, loadOptions, nextPageData]
-  )
-
   useEffect(() => {
     if (isVisible) {
-      const callId = v7()
-      refGuid.current = callId
-      handleLoadOptions(callId)
+      setInternalLoading(true)
+      requestLoad.current = uuid.v7()
     }
-
-    //TODO: Fix the exhaustive-deps rule
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isVisible])
 
   const handleOpen = useCallback(
     (event: React.SyntheticEvent) => {
       if (onOpen) onOpen(event)
       setInternalOpen(true)
-      if (loadOptions && isEmpty(internalOptions)) {
-        const callId = v7()
-        refGuid.current = callId
-        handleLoadOptions(callId)
+      if (loadOptions) {
         setInternalLoading(true)
+        requestLoad.current = uuid.v7()
       }
     },
-    [handleLoadOptions, internalOptions, loadOptions, onOpen]
+    [loadOptions, onOpen]
   )
 
   const handleClose = useCallback(
@@ -166,29 +137,69 @@ const Autocomplete: React.FC<
       setInternalOpen(false)
       if (loadOptions) {
         setInternalLoading(false)
+        requestLoad.current = uuid.NIL
         setInternalInputValue(emptyString)
+        setInternalOptions(emptyArray)
         setLoadMore(false)
         setNextPageData(null)
       }
     },
     [loadOptions, onClose]
   )
+
   const handleInputChange = useCallback(
     (event: React.SyntheticEvent, value: string, reason: AutocompleteInputChangeReason) => {
       if (onInputChange) onInputChange(event, value, reason)
       setInternalInputValue(value)
-      if (includes(reason, ['reset', 'selectOption'])) return
-      if (loadOptions) {
-        const callId = v7()
-        refGuid.current = callId
-        handleLoadOptions(callId)
+      if (reason === 'reset') return
+      if (loadOptions && (open || internalOpen)) {
         setInternalOptions(emptyArray)
+        setInternalLoading(true)
+        requestLoad.current = uuid.v7()
         setLoadMore(false)
         setNextPageData(null)
       }
     },
-    [handleLoadOptions, loadOptions, onInputChange]
+    [internalOpen, loadOptions, onInputChange, open]
   )
+
+  useEffect(() => {
+    if (!internalLoading || processingLoad.current === requestLoad.current) {
+      return
+    }
+
+    processingLoad.current = requestLoad.current
+    const closureRequestLoad = requestLoad.current
+    loadOptions(internalInputValue, allOptions, nextPageData)
+      .then((result: readonly unknown[] | LoadOptionsPaginatedResult<unknown>) => {
+        if (closureRequestLoad !== requestLoad.current) {
+          return
+        }
+
+        const newOptions = isPaginated
+          ? (result as LoadOptionsPaginatedResult<unknown>)?.loadedOptions
+          : (result as readonly unknown[])
+        const hasMoreData = isPaginated ? (result as LoadOptionsPaginatedResult<unknown>)?.more : false
+        const nextPageData = isPaginated ? (result as LoadOptionsPaginatedResult<unknown>)?.additional : null
+        setInternalOptions(oldOptions => concat(oldOptions, newOptions))
+        setLoadMore(hasMoreData)
+        setNextPageData(nextPageData)
+      })
+      .catch(error => {
+        console.error(error)
+      })
+      .finally(() => {
+        if (closureRequestLoad !== requestLoad.current) {
+          if (requestLoad.current === uuid.NIL) {
+            processingLoad.current = uuid.NIL
+          }
+          return
+        }
+        setInternalLoading(false)
+        requestLoad.current = uuid.NIL
+        processingLoad.current = uuid.NIL
+      })
+  }, [allOptions, internalInputValue, internalLoading, isPaginated, loadOptions, nextPageData, requestLoad])
 
   const handleRenderOption = useCallback(
     /**
