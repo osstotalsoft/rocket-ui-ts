@@ -1,0 +1,33 @@
+# Copyright (c) TotalSoft.
+# This source code is licensed under the MIT license.
+
+name: Build and Deploy Storybook
+on:
+  push:
+    branches:
+      - master
+    paths: ['src/stories/**', 'src/components/**'] # Trigger the action only when files change in the folders defined here
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  storybook-build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+      - name: Install 🔧
+        run: yarn install
+      - name: Run tests ⚠️
+        run: yarn test
+      - name: Build 🔧
+        run: yarn run build-storybook
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@3.6.2
+        with:
+          GITHUB_TOKEN: ${{ secrets.STORYBOOK_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: storybuild # The folder that the build-storybook script generates files.
+          CLEAN: true # Automatically remove deleted files from the deploy branch
