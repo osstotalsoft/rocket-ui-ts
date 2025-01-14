@@ -9,6 +9,7 @@ categories:
     label: chore
 change-template: '- $TITLE @$AUTHOR (#$NUMBER)'
 commitish: 'support/0.x'
+filter-by-commitish: true
 template: |
   ## Changes
   $CHANGES
