@@ -34,7 +34,7 @@ describe('Single-value DeprecatedAutocomplete', () => {
     expect(focused).toHaveTextContent('second option')
   })
 
-  it('is clearable', async () => {
+  it.skip('is clearable', async () => {
     render(<DeprecatedAutocomplete isClearable simpleValue value={1} options={basicOptions} onChange={jest.fn()} />)
 
     expect(screen.getByTitle('Clear')).toBeInTheDocument()

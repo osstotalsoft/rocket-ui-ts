@@ -1,7 +1,7 @@
 import React from 'react'
 import { CardProps } from '../Card'
 
-export interface CollapseCardProps extends Omit<CardProps, 'content'> {
+export interface CollapseCardProps extends Omit<CardProps, 'content' | 'onToggle'> {
   /**
    * Content of the component.
    */

@@ -2,7 +2,7 @@ import { debounce } from 'lodash'
 import { useMemo, useRef } from 'react'
 
 const useDebouncedCallback = (callback: (...args: any[]) => any, debounceBy: number) => {
-  const debouncedCallbackRef = useRef<any>()
+  const debouncedCallbackRef = useRef<any>(undefined)
 
   const debouncedCallback = useMemo(() => {
     if (debounceBy) {

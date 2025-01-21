@@ -8,7 +8,6 @@ import Grid from '@mui/material/Grid2'
 const NumericPreview = () => {
   const [numberValue, setNumberValue] = useState()
   const [internationalValue, setInternationalValue] = useState(50)
-  const [phoneNumberValue, setPhoneNumberValue] = useState()
 
   const handleValue = (value: any) => {
     setNumberValue(value)
@@ -16,10 +15,6 @@ const NumericPreview = () => {
 
   const handleInternationalValue = (value: any) => {
     setInternationalValue(value)
-  }
-
-  const handlePhoneValue = (value: any) => {
-    setPhoneNumberValue(value)
   }
 
   return (
@@ -53,16 +48,6 @@ const NumericPreview = () => {
           value={internationalValue}
           onChange={handleInternationalValue}
           currency="EUR"
-          fullWidth
-        />
-      </Grid>
-      <Grid size={3}>
-        <TextField
-          label="Custom phone number format"
-          value={phoneNumberValue}
-          onChange={handlePhoneValue}
-          isNumeric
-          inputProps={{ format: '+40 (###) ### ###', mask: '_', allowEmptyFormatting: true }}
           fullWidth
         />
       </Grid>

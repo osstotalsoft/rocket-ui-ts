@@ -1,6 +1,6 @@
 import { FilledInputProps, InputProps, TextFieldProps as MuiTextFieldProps, OutlinedInputProps } from '@mui/material'
 import { InputBaseComponentProps } from '@mui/material'
-import { NumberFormatProps } from 'react-number-format'
+import { NumericFormatProps } from 'react-number-format'
 
 export type TextFieldVariant = 'standard' | 'outlined' | 'filled'
 
@@ -18,7 +18,7 @@ export interface SubtractButtonProps {
 }
 
 export type NumberTextFieldProps = InputBaseComponentProps &
-  Omit<NumberFormatProps, 'onChange'> & {
+  Omit<NumericFormatProps, 'onChange'> & {
     //InputPropsVariant & NumericFormatCustomProps & PatternFormatProps
     /**
      * Callback fired when the value is changed.
