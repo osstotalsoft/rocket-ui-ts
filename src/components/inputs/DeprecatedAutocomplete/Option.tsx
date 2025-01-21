@@ -9,7 +9,7 @@ import Typography from '../../dataDisplay/Typography'
 import { DeprecatedOptionProps } from './types'
 
 const Option = ({ optionLabel, createdLabel, selected, withCheckboxes, option, ...rest }: DeprecatedOptionProps) => {
-  const optionRef = useRef(null)
+  const optionRef = useRef(undefined)
   const [isOverflow, setIsOverflow] = useState(false)
 
   const label = createdLabel ? `${createdLabel} "${optionLabel}"` : optionLabel

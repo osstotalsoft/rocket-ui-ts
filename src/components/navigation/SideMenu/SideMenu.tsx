@@ -11,7 +11,7 @@ import { SideMenuProps } from './types'
  */
 const SideMenu: React.FC<SideMenuProps> = ({ icon, content, buttonProps, contentProps, iconProps }) => {
   const [show, setShow] = useState(false)
-  const sideMenuRef = useRef<any>()
+  const sideMenuRef = useRef<any>(undefined)
 
   const handleClickOutside = useCallback((e: MouseEvent) => {
     if (sideMenuRef.current && !sideMenuRef?.current?.contains(e.target)) {

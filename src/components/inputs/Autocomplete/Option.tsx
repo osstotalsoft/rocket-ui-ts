@@ -6,7 +6,7 @@ import CheckBoxIcon from '@mui/icons-material/CheckBox'
 import { OptionProps } from './types'
 
 const Option = forwardRef<HTMLLIElement, OptionProps>(function Option(props, ref) {
-  const optionRef = useRef(null)
+  const optionRef = useRef(undefined)
   const [isOverflow, setIsOverflow] = useState(false)
   useEffect(() => {
     setIsOverflow(optionRef?.current?.scrollWidth > optionRef?.current?.clientWidth)
