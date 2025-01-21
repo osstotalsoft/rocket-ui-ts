@@ -69,7 +69,7 @@ const Dialog: React.FC<DialogProps> = ({
     </>
   )
   const closeButtonSx = useMemo(
-    () => ({ ...justifyRight, ...closeButtonProps?.sx } as SystemStyleObject),
+    () => ({ ...justifyRight, ...closeButtonProps?.sx }) as SystemStyleObject,
     [closeButtonProps?.sx]
   )
 
@@ -103,7 +103,9 @@ const Dialog: React.FC<DialogProps> = ({
         {textContent && <DialogContentText {...textContentProps}>{textContent}</DialogContentText>}
         {content}
       </DialogContent>
-      <DialogActions {...actionsProps}>{defaultActions ? defaultActionsComp : actions}</DialogActions>
+      {!defaultActions && !actions ? null : (
+        <DialogActions {...actionsProps}>{defaultActions ? defaultActionsComp : actions}</DialogActions>
+      )}
     </MuiDialog>
   )
 }
