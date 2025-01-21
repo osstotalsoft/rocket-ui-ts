@@ -1,6 +1,6 @@
 import React, { useCallback, useLayoutEffect, useMemo, useState } from 'react'
 import PropTypes from 'prop-types'
-import NumberFormat, { NumberFormatValues, SourceInfo } from 'react-number-format'
+import { NumericFormat, NumberFormatValues, SourceInfo } from 'react-number-format'
 import { TextField as MuiTextField, StepButton, classes } from './TextFieldStyles'
 import InputAdornment from '@mui/material/InputAdornment'
 import CloseIcon from '@mui/icons-material/Close'
@@ -23,21 +23,20 @@ const NumberTextField = React.forwardRef<HTMLElement, NumberTextFieldProps>(func
     isStepper,
     minValue,
     maxValue,
-    format,
     ...other
   } = props
 
   const isAllowed = useCallback(
-    ({ formattedValue, floatValue, value }: NumberFormatValues) => {
+    ({ formattedValue, floatValue }: NumberFormatValues) => {
       if (floatValue && floatValue.toString().includes('e')) return false
 
       if (isNil(floatValue)) {
-        return format ? value === '' : formattedValue === ''
+        return formattedValue === ''
       } else {
         return floatValue <= maxValue && floatValue >= minValue
       }
     },
-    [maxValue, minValue, format]
+    [maxValue, minValue]
   )
 
   const formatter = new Intl.NumberFormat(language)
@@ -51,14 +50,13 @@ const NumberTextField = React.forwardRef<HTMLElement, NumberTextFieldProps>(func
 
   const handleValueChange = useCallback(
     (values: NumberFormatValues, sourceInfo: SourceInfo) => {
-      if (format) onChange(values.value, sourceInfo.event)
-      else onChange(values.floatValue, sourceInfo.event)
+      onChange(values.floatValue, sourceInfo.event)
     },
-    [onChange, format]
+    [onChange]
   )
 
   return (
-    <NumberFormat
+    <NumericFormat
       style={{ textAlign: isStepper ? 'center' : 'right' }}
       value={value}
       getInputRef={ref}
@@ -69,8 +67,7 @@ const NumberTextField = React.forwardRef<HTMLElement, NumberTextFieldProps>(func
       thousandSeparator={thousandSep}
       decimalSeparator={decimalSep}
       prefix={currencySymbol}
-      isNumericString={valueIsNumericString}
-      format={format}
+      valueIsNumericString={valueIsNumericString}
       {...other}
     />
   )
