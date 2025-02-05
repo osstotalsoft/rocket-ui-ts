@@ -161,7 +161,8 @@ export const OptionRendering: Story = {
   },
   args: {
     label: 'Custom Options',
-    options: customOptions
+    options: customOptions,
+    loadOptions: loadFilteredOptionsPaginated
   },
   render: args => <CustomOptionPreview {...args} />
 }

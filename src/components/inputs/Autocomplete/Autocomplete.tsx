@@ -16,7 +16,7 @@ import {
   Autocomplete as MuiAutocomplete,
   TextField
 } from '@mui/material'
-import { both, concat, eqBy, has, identity, map, prop } from 'ramda'
+import { both, concat, eqBy, has, identity, map, pipe, prop } from 'ramda'
 import { convertValueToOption, extractFirstValue, internalLabel, internalValue } from './utils'
 import Option from './Option'
 import { useTrackVisibility } from 'react-intersection-observer-hook'
@@ -46,6 +46,7 @@ const Autocomplete: React.FC<
   onOpen,
   onClose,
   onInputChange,
+  renderOption,
   isPaginated,
   // ---------------- input field props ----------------
   label,
@@ -212,7 +213,7 @@ const Autocomplete: React.FC<
       liProps: React.HTMLAttributes<HTMLLIElement> & { key: any },
       option: unknown,
       state: AutocompleteRenderOptionState,
-      _ownerState: AutocompleteOwnerState<
+      ownerState: AutocompleteOwnerState<
         unknown,
         boolean | undefined,
         boolean | undefined,
@@ -241,19 +242,26 @@ const Autocomplete: React.FC<
 
       /**
        * This is the default option rendering that can handle new created options.
+       * If the option has __internalDisplay and __internalInputValue we will render it as a new created option.
+       * Else we will use the default rendering or the custom rendering if it's provided.
        */
-      return (
-        <Option
-          key={extractFirstValue([getValue, internalValue, identity], option)}
-          label={handleGetOptionLabel(option, true)}
-          liProps={liProps}
-          selected={state.selected}
-          withCheckboxes={withCheckboxes}
-          option={option}
-        />
-      )
+      const hasInternalDisplay = both(has('__internalDisplay'), pipe(prop('__internalDisplay'), Boolean))
+      const hasInternalInputValue = both(has('__internalInputValue'), pipe(prop('__internalInputValue'), Boolean))
+      if ((hasInternalDisplay(option) && hasInternalInputValue(option)) || !renderOption) {
+        return (
+          <Option
+            key={extractFirstValue([getValue, internalValue, identity], option)}
+            label={handleGetOptionLabel(option, true)}
+            liProps={liProps}
+            selected={state.selected}
+            withCheckboxes={withCheckboxes}
+            option={option}
+          />
+        )
+      }
+      return renderOption(liProps, option, state, ownerState)
     },
-    [getValue, handleGetOptionLabel, loadingText, ref, withCheckboxes]
+    [getValue, handleGetOptionLabel, loadingText, ref, renderOption, withCheckboxes]
   )
 
   const handleFilterOptions = useCallback(
@@ -441,6 +449,7 @@ Autocomplete.propTypes = {
   onOpen: PropTypes.func,
   onClose: PropTypes.func,
   onInputChange: PropTypes.func,
+  renderOption: PropTypes.func,
   isPaginated: PropTypes.bool,
   // ---------------- input field props ----------------
   label: PropTypes.string,
