@@ -17,7 +17,6 @@ type OptionType = {
 export const CustomOptionPreview = (props: any) => {
   const [value, setValue] = useState<unknown>()
   const { label, options, loadOptions } = props as AutocompleteProps<unknown>
-  // const loadUnknownOptions = loadOptions as LoadOptionsPaginated<unknown>
 
   return (
     <Grid container spacing={2}>
