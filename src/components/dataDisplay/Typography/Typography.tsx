@@ -46,7 +46,7 @@ const parseEmphasis = (emphasis?: Emphasis | Emphasis[]): React.CSSProperties =>
 /**
  * Use typography to present your design and content as clearly and efficiently as possible.
  */
-const Typography: React.FC<TypographyProps> = ({ tooltip, emphasis, style, variant = 'inherit', ...rest }) => {
+const Typography: React.FC<TypographyProps> = ({ tooltip, emphasis, style, variant, ...rest }) => {
   const base = <MuiTypography style={{ ...style, ...parseEmphasis(emphasis) }} variant={variant} {...rest} />
   return tooltip ? (
     <Tooltip title={tooltip} placement="bottom-start">
@@ -81,7 +81,7 @@ Typography.propTypes = {
     PropTypes.arrayOf(PropTypes.oneOf(['bold', 'italic', 'underline', 'line-through', 'overline'] as Emphasis[]).isRequired)
   ]),
   /**
-   * @default 'inherit'
+   * @default 'body1'
    * Applies the theme typography styles.
    */
   variant: PropTypes.oneOf([
