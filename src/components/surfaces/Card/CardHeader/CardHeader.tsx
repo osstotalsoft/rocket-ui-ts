@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import MuiCardHeader from './CardHeaderStyles'
-import Box from '@mui/material/Box'
 import { isValidElement } from 'react'
 import Typography from '../../../dataDisplay/Typography'
 import { CardHeaderProps } from '../types'
@@ -9,15 +8,7 @@ import { CardHeaderProps } from '../types'
 const CardHeader: React.FC<CardHeaderProps> = ({ actions, title, ...rest }) => {
   return (
     <MuiCardHeader
-      action={
-        Array.isArray(actions)
-          ? actions.map((a, index) => (
-              <Box key={index} ml={1}>
-                {a}
-              </Box>
-            ))
-          : actions
-      }
+      action={actions}
       title={
         title ? (
           isValidElement(title) ? (

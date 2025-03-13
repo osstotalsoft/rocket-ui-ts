@@ -34,11 +34,23 @@ const subheader = 'Subheader'
 const children =
   'Cards are surfaces that display content and actions on a single topic. They should be easy to scan for relevant and actionable information. Elements, like text and images, should be placed on them in a way that clearly indicates hierarchy. Although cards can support multiple actions, UI controls, and an overflow menu, use restraint and remember that cards are entry points to more complex and detailed information.'
 const footer = <Button variant="text">SUBMIT</Button>
-const actions = (
-  <IconButton color="info" variant="text" size="small">
-    <QuestionMark fontSize="small" />
-  </IconButton>
-)
+const actions = [
+  <Button key="1" variant="text" color="info">
+    {'test 1'}
+  </Button>,
+  <Button key="2" variant="text" color="info">
+    {'test 2'}
+  </Button>,
+  <Button key="3" variant="text" color="info">
+    {'test 3'}
+  </Button>,
+  <Button key="4" variant="text" color="info">
+    {'test 4'}
+  </Button>,
+  <Button key="5" variant="text" color="info">
+    {'test 5'}
+  </Button>
+]
 
 /**
  * Although cards can support multiple actions, UI controls, and an overflow menu,

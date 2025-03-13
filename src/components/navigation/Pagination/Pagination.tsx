@@ -6,12 +6,12 @@ import { RefreshButtonContainer } from './PaginationStyles'
 import RefreshIcon from '@mui/icons-material/Refresh'
 import { PaginationProps, DisplayedRows } from './types'
 import IconButton from '../../buttons/IconButton'
-import { T, always, cond, equals } from 'ramda'
+import { T, always, cond, equals, isNil } from 'ramda'
 
 const displayedRows =
-  (rowsOfText: string) =>
-  ({ from, to, count }: DisplayedRows) => {
-    return `${from}-${to} ${rowsOfText} ${count}`
+  (rowsOfText: string, pageSize: number) =>
+  ({ from, to, count, page }: DisplayedRows) => {
+    return count ? `${from}-${to} ${rowsOfText} ${count}` : `${from}-${(page + 1) * pageSize}`
   }
 
 const contentAlignment = cond([
@@ -28,7 +28,7 @@ const contentAlignment = cond([
  */
 const Pagination: React.FC<PaginationProps> = ({
   loading,
-  count = 1,
+  count = null,
   page,
   pageSize,
   onPageChange,
@@ -38,6 +38,8 @@ const Pagination: React.FC<PaginationProps> = ({
   rowsOfText = 'of',
   rowsPerPageOptions = [10, 25, 50, 100],
   align,
+  hasNextPage,
+  hasPreviousPage,
   ...rest
 }) => {
   const handlePageChange = useCallback(
@@ -58,6 +60,9 @@ const Pagination: React.FC<PaginationProps> = ({
 
   const handleRefresh = useCallback(() => onRefresh && onRefresh(), [onRefresh])
 
+  const nextButton = isNil(hasNextPage) ? {} : { nextButton: { disabled: !hasNextPage } }
+  const previousButton = isNil(hasPreviousPage) ? {} : { previousButton: { disabled: !hasPreviousPage } }
+
   return (
     <Grid container alignItems="center" justifyContent={contentAlignment(align)}>
       {!loading && (
@@ -69,8 +74,14 @@ const Pagination: React.FC<PaginationProps> = ({
           rowsPerPage={pageSize}
           onRowsPerPageChange={handleRowsPerPageChange}
           labelRowsPerPage={rowsPerPageText}
-          labelDisplayedRows={displayedRows(rowsOfText)}
+          labelDisplayedRows={displayedRows(rowsOfText, pageSize)}
           rowsPerPageOptions={rowsPerPageOptions}
+          slotProps={{
+            actions: {
+              ...nextButton,
+              ...previousButton
+            }
+          }}
           {...rest}
         />
       )}
@@ -91,10 +102,10 @@ Pagination.propTypes = {
    */
   loading: PropTypes.bool,
   /**
-   * @default 1
-   * The total number of pages. This property is required.
+   * @default null
+   * The total number of pages.
    */
-  count: PropTypes.number.isRequired,
+  count: PropTypes.number,
   /**
    * The zero-based index of the current page.
    */
@@ -149,7 +160,17 @@ Pagination.propTypes = {
    * Align container.
    * @default 'right'
    */
-  align: PropTypes.oneOf(['left', 'right', 'center'])
+  align: PropTypes.oneOf(['left', 'right', 'center']),
+  /**
+   * If 'true', the next page button will be disabled.
+   * @default false
+   */
+  hasNextPage: PropTypes.bool,
+  /**
+   * If 'true', the previous page button will be disabled.
+   * @default false
+   */
+  hasPreviousPage: PropTypes.bool
 }
 
 export default Pagination

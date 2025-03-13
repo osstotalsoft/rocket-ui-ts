@@ -2,11 +2,17 @@ import { TablePaginationProps as MuiTablePaginationProps } from '@mui/material'
 import React from 'react'
 
 export interface PaginationProps
-  extends Omit<MuiTablePaginationProps, 'onPageChange' | 'rowsPerPage' | 'onRowsPerPageChange'> {
+  extends Omit<MuiTablePaginationProps, 'onPageChange' | 'count' | 'rowsPerPage' | 'onRowsPerPageChange'> {
   /**
    * If the page is loading, this property is set to true
    */
   loading?: boolean
+  /**
+   * The total number of rows.
+   *
+   *  @default null
+   */
+  count?: number
   /**
    * The number of rows per page. This property is required.
    */
@@ -39,10 +45,21 @@ export interface PaginationProps
    * @param {number} value The selected rows per page value
    */
   onRowsPerPageChange: (value: number) => void
+  /**
+   * If 'true', the next page button will be disabled.
+   * @default false
+   */
+  hasNextPage?: boolean
+  /**
+   * If 'true', the previous page button will be disabled.
+   * @default false
+   */
+  hasPreviousPage?: boolean
 }
 
 export interface DisplayedRows {
   from: number
   to: number
   count: number
+  page: number
 }
