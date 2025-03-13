@@ -5,7 +5,7 @@ import { styled } from '@mui/material/styles'
 
 export const justifyRight = {
   position: 'absolute',
-  top: 16,
+  top: 'auto',
   right: 14
 }
 
@@ -15,7 +15,8 @@ export const DialogContent = styled(MuiDialogContent)(({ theme }) => ({
 }))
 
 export const DialogTitle = styled(MuiDialogTitle)(({ theme }) => ({
-  fontFamily: theme.typography.defaultFont.fontFamily
+  fontFamily: theme.typography.defaultFont.fontFamily,
+  padding: 0
 }))
 
 export const TransparentBackdrop = styled(Backdrop)(() => ({

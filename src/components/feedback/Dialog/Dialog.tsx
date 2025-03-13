@@ -11,6 +11,7 @@ import CloseIcon from '@mui/icons-material/Close'
 import { TransparentBackdrop, DialogContent, DialogTitle, justifyRight } from './DialogStyles'
 import { Button, IconButton } from '../../index'
 import { DialogCloseReason, DialogProps } from './types'
+import { Stack } from '@mui/material'
 
 /**
  * Dialogs inform users about a task and can contain critical information, require decisions, or involve multiple tasks.
@@ -78,13 +79,15 @@ const Dialog: React.FC<DialogProps> = ({
       onClose={handleClose}
       aria-labelledby={dialogTitleId}
       fullScreen={R.isNil(fullScreen) ? smallScreen : fullScreen}
-      BackdropComponent={transparentBackdrop && TransparentBackdrop}
+      slots={{ backdrop: transparentBackdrop && TransparentBackdrop }}
       fullWidth={fullWidth}
       open={open}
       {...rest}
     >
-      <DialogTitle id={dialogTitleId} {...titleProps}>
-        {title}
+      <Stack alignItems="center" direction="row" p="16px 24px">
+        <DialogTitle id={dialogTitleId} {...titleProps}>
+          {title}
+        </DialogTitle>
         {showX && (
           <IconButton
             color="default"
@@ -98,7 +101,7 @@ const Dialog: React.FC<DialogProps> = ({
             <CloseIcon />
           </IconButton>
         )}
-      </DialogTitle>
+      </Stack>
       <DialogContent dividers={dividers} {...contentProps}>
         {textContent && <DialogContentText {...textContentProps}>{textContent}</DialogContentText>}
         {content}
