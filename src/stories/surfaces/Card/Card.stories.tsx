@@ -3,10 +3,9 @@
 
 import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
-import { Button, Card as CardComponent, IconButton } from 'components'
+import { Button, Card as CardComponent } from 'components'
 import BasicCardsPreview from './BasicCardsPreview'
 import People from '@mui/icons-material/People'
-import QuestionMark from '@mui/icons-material/QuestionMark'
 import FilledPreview from './FilledPreview'
 import MediaPreview from './MediaPreview'
 
