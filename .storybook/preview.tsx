@@ -27,8 +27,7 @@ const preview: Preview = {
         language: 'tsx',
         excludeDecorators: true
       }
-    },
-    layout: 'centered'
+    }
   },
   globalTypes: {
     theme: {

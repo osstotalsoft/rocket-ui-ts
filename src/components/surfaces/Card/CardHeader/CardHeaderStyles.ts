@@ -46,8 +46,11 @@ const CardHeader = styled(MuiCardHeader, {
       ...headerContentProps
     },
     ['& .MuiCardHeader-action']: {
+      gap: '0.5rem',
       display: 'flex',
-      alignItems: 'center'
+      flex: '0 1 auto',
+      flexWrap: 'wrap',
+      justifyContent: 'flex-end'
     }
   })
 )
