@@ -13,10 +13,22 @@ import SaveIcon from '@mui/icons-material/Save'
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward'
 import ExpandLessIcon from '@mui/icons-material/ExpandLess'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+import { IconProps } from '@mui/material'
 
 export type FontSize = 'inherit' | 'small' | 'medium' | 'large'
 
-export type ButtonType = 'add' | 'cancel' | 'delete' | 'download' | 'downward' | 'edit' | 'view' | 'save' | 'upward' | 'expandLess' | 'expandMore'
+export type ButtonType =
+  | 'add'
+  | 'cancel'
+  | 'delete'
+  | 'download'
+  | 'downward'
+  | 'edit'
+  | 'view'
+  | 'save'
+  | 'upward'
+  | 'expandLess'
+  | 'expandMore'
 
 export const iconType = {
   add: AddIcon,
@@ -29,13 +41,17 @@ export const iconType = {
   save: SaveIcon,
   upward: ArrowUpwardIcon,
   expandLess: ExpandLessIcon,
-  expandMore: ExpandMoreIcon,
+  expandMore: ExpandMoreIcon
 }
 
 export type IconTypeKey = keyof typeof iconType
 
 export interface IconButtonProps extends Omit<ButtonProps, 'type'> {
   type?: ButtonType
+  /**
+   * @deprecated Use the `iconProps` prop instead.
+   */
   fontSize?: FontSize
+  iconProps?: IconProps
   loading?: boolean
 }

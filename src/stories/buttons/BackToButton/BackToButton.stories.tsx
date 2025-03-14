@@ -63,15 +63,15 @@ export const Sizes: Story = {
 }
 
 /**
- * A BackToButton supports `inherit`, `small`, `medium`, `large` size. Default size is `small`.
+ * The icon display on the BackToButton can be customized as desired.
  */
-export const FontSizes: Story = {
+export const IconProps: Story = {
   parameters: {
     controls: { hideNoControlsWarning: true },
     docs: {
       source: {
         code: `
-        <BackToButton fontSize="size-code-here"/>
+        <BackToButton iconProps={{ fontSize:"font-size-here", color: "error" }}/>
         `,
         format: true
       }
@@ -81,8 +81,8 @@ export const FontSizes: Story = {
     <Box columnGap="15px" display="flex">
       <BrowserRouter>
         <BackToButtonComponent tooltip="small (default)" path={-1} />
-        <BackToButtonComponent tooltip="medium" fontSize="medium" path={-1} />
-        <BackToButtonComponent tooltip="large" fontSize="large" path={-1} />
+        <BackToButtonComponent tooltip="medium" iconProps={{ fontSize: 'medium' }} path={-1} />
+        <BackToButtonComponent tooltip="large" iconProps={{ fontSize: 'large' }} path={-1} />
       </BrowserRouter>
     </Box>
   )

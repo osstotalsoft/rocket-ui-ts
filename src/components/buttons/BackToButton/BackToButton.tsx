@@ -10,14 +10,21 @@ import IconButton from '../IconButton'
  *
  * Props of the [Material-UI Button](https://mui.com/material-ui/api/button/#props) component are also available.
  */
-const BackToButton: React.FC<BackToButtonProps> = ({ path, options, fontSize = 'small', size = 'medium', ...rest }) => {
+const BackToButton: React.FC<BackToButtonProps> = ({
+  path,
+  options,
+  fontSize = 'small',
+  iconProps = {},
+  size = 'medium',
+  ...rest
+}) => {
   const navigate = useNavigate()
 
   const onBackTo = useCallback(() => navigate(path as any, options), [navigate, options, path])
 
   return (
     <IconButton aria-label="back" onClick={onBackTo} size={size} {...rest}>
-      <ArrowBackIcon fontSize={fontSize as any} />
+      <ArrowBackIcon fontSize={fontSize as any} {...(iconProps as any)} />
     </IconButton>
   )
 }
@@ -29,10 +36,15 @@ BackToButton.propTypes = {
    */
   size: PropTypes.oneOf(['tiny', 'small', 'medium', 'large']),
   /**
+   * @deprecated Use `iconProps` instead
    * @default 'small'
    * Size of the icon.
    */
   fontSize: PropTypes.oneOf(['inherit', 'small', 'medium', 'large']),
+  /**
+   * The properties of the icon.
+   */
+  iconProps: PropTypes.object,
   /**
    * Path where browser will be directed to when the button is clicked.
    */
