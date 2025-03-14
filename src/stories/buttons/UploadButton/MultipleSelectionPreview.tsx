@@ -7,9 +7,15 @@ export const MultipleSelectionPreview = () => {
   const [file, setFile] = useState('')
   const [files, setFiles] = useState('')
 
-  const handleFileSelected = useCallback((files: FileList) => setFile(prop<string>('name', head([...files]))), [])
+  const handleFileSelected = useCallback((files: FileList) => setFile(prop('name', head([...files])) as string), [])
   const handleFilesSelected = useCallback(
-    (files: FileList) => setFiles(join('; ', map(prop<string>('name'), [...files]))),
+    (files: FileList) =>
+      setFiles(
+        join(
+          '; ',
+          map((file: File) => file.name, [...files])
+        )
+      ),
     []
   )
 

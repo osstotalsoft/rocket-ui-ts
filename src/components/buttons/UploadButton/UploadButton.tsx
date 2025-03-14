@@ -15,6 +15,7 @@ import { FilesValidator, UploadButtonProps } from './types'
 const UploadButton: React.FC<UploadButtonProps> = ({
   fontSize = 'small',
   Icon = BackupIcon,
+  iconProps = {},
   accept,
   capture,
   multiple,
@@ -60,7 +61,7 @@ const UploadButton: React.FC<UploadButtonProps> = ({
         onClick={handleClick}
         onAbort={handleFileSelected}
       />
-      <Icon fontSize={fontSize} />
+      <Icon fontSize={fontSize} {...(iconProps as any)} />
     </IconButton>
   )
 }
@@ -74,10 +75,15 @@ UploadButton.propTypes = {
   // @ts-ignore
   Icon: PropTypes.object,
   /**
+   * @deprecated Use `iconProps` instead
    * @default 'small'
    * Size of the icon.
    */
   fontSize: PropTypes.oneOf(['inherit', 'small', 'medium', 'large']),
+  /**
+   * The properties of the icon.
+   */
+  iconProps: PropTypes.object,
   /**
    * The accept attribute takes as its value a comma-separated list of one or more file types,
    * or unique file type specifiers, describing which file types to allow.

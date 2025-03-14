@@ -6,7 +6,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { UploadButton as UploadButtonComponent } from 'components'
 import { InputTypesPreview } from './InputTypesPreview'
 import { MobileCapturePreview } from './MobileCapturePreview'
-import { FontSizePreview } from './FontSizePreview'
+import { IconPropsPreview } from './IconPropsPreview'
 import { SizesPreview } from './SizesPreview'
 import { MultipleSelectionPreview } from './MultipleSelectionPreview'
 import { CustomIconsPreview } from './CustomIconsPreview'
@@ -60,19 +60,19 @@ export const Sizes: Story = {
 }
 
 /**
- * A button supports `small`, `medium` and `large` size. Default size is `small`.
+ * The icon display on the upload button can be customized as desired.
  */
-export const FontSize: Story = {
+export const IconProps: Story = {
   parameters: {
     controls: { hideNoControlsWarning: true },
     docs: {
       source: {
-        code: '<UploadButton fontSize="font-size-here" />',
+        code: '<UploadButton iconProps={{ fontSize:"font-size-here", color: "error" }} />',
         format: true
       }
     }
   },
-  render: () => <FontSizePreview />
+  render: () => <IconPropsPreview />
 }
 
 /**
