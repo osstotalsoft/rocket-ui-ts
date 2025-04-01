@@ -39,7 +39,7 @@ const Dialog: React.FC<DialogProps> = ({
   fullScreen,
   showX = true,
   transparentBackdrop,
-  dividers = false,
+  dividers,
   fullWidth = true,
   open = false,
   ...rest
