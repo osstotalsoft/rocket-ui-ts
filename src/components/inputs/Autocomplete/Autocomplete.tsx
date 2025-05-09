@@ -106,7 +106,6 @@ const Autocomplete: React.FC<
    */
   const [internalLoading, setInternalLoading] = useState(false)
   const requestLoad = useRef<string>(uuid.NIL)
-  const processingLoad = useRef<string>(uuid.NIL)
   const [internalOpen, setInternalOpen] = useState(false)
   const [internalInputValue, setInternalInputValue] = useState(emptyString)
   const [ref, { isVisible }] = useTrackVisibility()
@@ -165,18 +164,12 @@ const Autocomplete: React.FC<
   )
 
   useEffect(() => {
-    if (!internalLoading || processingLoad.current === requestLoad.current) {
-      return
-    }
+    if (!internalLoading || !loadOptions) return
+    const abortController = new AbortController()
 
-    processingLoad.current = requestLoad.current
-    const closureRequestLoad = requestLoad.current
-    loadOptions(internalInputValue, allOptions, nextPageData)
+    loadOptions(internalInputValue, allOptions, nextPageData, abortController.signal)
       .then((result: readonly unknown[] | LoadOptionsPaginatedResult<unknown>) => {
-        if (closureRequestLoad !== requestLoad.current) {
-          return
-        }
-
+        if (abortController.signal.aborted) return
         const newOptions = isPaginated
           ? (result as LoadOptionsPaginatedResult<unknown>)?.loadedOptions
           : (result as readonly unknown[])
@@ -190,16 +183,14 @@ const Autocomplete: React.FC<
         console.error(error)
       })
       .finally(() => {
-        if (closureRequestLoad !== requestLoad.current) {
-          if (requestLoad.current === uuid.NIL) {
-            processingLoad.current = uuid.NIL
-          }
-          return
-        }
+        if (abortController.signal.aborted) return
         setInternalLoading(false)
         requestLoad.current = uuid.NIL
-        processingLoad.current = uuid.NIL
       })
+
+    return () => {
+      abortController.abort('Aborted by Rocket UI. New LoadOption was issued!')
+    }
   }, [allOptions, internalInputValue, internalLoading, isPaginated, loadOptions, nextPageData, requestLoad])
 
   const handleRenderOption = useCallback(

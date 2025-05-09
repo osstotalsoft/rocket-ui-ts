@@ -3,8 +3,8 @@ import EmojiNature from '@mui/icons-material/EmojiNature'
 import BugReport from '@mui/icons-material/BugReport'
 import BedroomBaby from '@mui/icons-material/BedroomBaby'
 import { includes, take, drop } from 'ramda'
-import { LoadOptionsPaginated } from '../../../components'
 import * as R from 'ramda'
+import { LoadOptions, LoadOptionsPaginatedResult } from '../../../components'
 
 export const options = [
   { id: 1, name: 'Cat' },
@@ -72,34 +72,63 @@ function sleep(delay = 0) {
 
 const filterResults = (input: any) => options.filter(o => includes(input, o.name))
 
-export const loadFilteredOptions = async (input: any) => {
+export const loadFilteredOptions = async (
+  input: any,
+  _currentOptions?: ReadonlyArray<any>,
+  _additional?: any,
+  signal?: AbortSignal
+) => {
   await sleep(1e3)
-  return new Promise(res => (input ? res(filterResults(input)) : res(options)))
+  return new Promise((res, rej) => {
+    if (signal?.aborted) {
+      rej(signal.reason)
+      return
+    }
+
+    if (input) res(filterResults(input))
+    else res(options)
+  })
 }
 
 let prevInput: string = undefined
-export const loadFilteredOptionsPaginated: LoadOptionsPaginated<any> = async (
+export const loadFilteredOptionsPaginated: LoadOptions<any> = async (
   input: string,
   _: ReadonlyArray<any>,
-  additional?: any
+  additional?: any,
+  signal?: AbortSignal
 ) => {
   await sleep(1e3)
   const currentPage = prevInput !== input ? 0 : (additional?.page ?? 0)
   const filteredOptions = input ? optionsLong.filter(o => includes(input, o.name)) : optionsLong
   const paginatedOptions = take(15, drop(currentPage * 15, filteredOptions))
   prevInput = input
-  return new Promise(res =>
+  return new Promise<any[] | LoadOptionsPaginatedResult<any>>((res, rej) => {
+    if (signal?.aborted) {
+      rej(signal.reason)
+      return
+    }
     res({
       loadedOptions: paginatedOptions,
       more: paginatedOptions.length === 15,
       additional: { page: prevInput !== input ? 0 : currentPage + 1 }
     })
-  )
+  })
 }
 
-export const loadOptions = async (): Promise<unknown[]> => {
+export const loadOptions = async (
+  _input: string,
+  _currentOptions?: ReadonlyArray<any>,
+  _additional?: any,
+  signal?: AbortSignal
+): Promise<unknown[]> => {
   await sleep(1e3)
-  return new Promise(res => res(options))
+  return new Promise((res, rej) => {
+    if (signal?.aborted) {
+      rej(signal.reason)
+      return
+    }
+    res(options)
+  })
 }
 
 export const getOptionDisabled = (option: { isDisabled: any }) => option.isDisabled

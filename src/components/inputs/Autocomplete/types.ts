@@ -38,13 +38,12 @@ export interface OptionProps {
 
 export type LoadOptionsPaginatedResult<T> = { loadedOptions: ReadonlyArray<T>; more: boolean; additional: unknown }
 
-export type LoadOptionsPaginated<T> = (
+export type LoadOptions<T> = (
   input: string,
-  options: ReadonlyArray<T>,
-  additional?: any
-) => Promise<LoadOptionsPaginatedResult<T>>
-
-export type LoadOptions<T> = (input: string) => Promise<T[]>
+  options?: ReadonlyArray<T>,
+  additional?: unknown,
+  signal?: AbortSignal
+) => Promise<T[] | LoadOptionsPaginatedResult<T>>
 
 export interface AutocompleteProps<
   T,
@@ -143,7 +142,7 @@ export interface AutocompleteProps<
   /**
    * Function that returns a promise, which resolves to the set of options to be used once the promise resolves.
    */
-  loadOptions?: LoadOptions<T> | LoadOptionsPaginated<T>
+  loadOptions?: LoadOptions<T>
   /**
    * If `true`, the component is shown.
    */
