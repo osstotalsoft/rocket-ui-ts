@@ -23,7 +23,7 @@ import { useTrackVisibility } from 'react-intersection-observer-hook'
 import { AutocompleteProps, LoadOptionsPaginatedResult } from './types'
 import LinearProgress from '../../feedback/LinearProgress'
 import { emptyArray, emptyString } from '../../utils/constants'
-import { debounce } from 'lodash'
+import debounce from 'lodash/debounce'
 const baseFilter = createFilterOptions()
 
 const Autocomplete: React.FC<
@@ -171,7 +171,8 @@ const Autocomplete: React.FC<
         setNextPageData(nextPageData)
       })
       .catch(error => {
-        console.error(error)
+        if (error instanceof DOMException && error.name === 'AbortError') console.warn(error)
+        else console.error(error)
       })
       .finally(() => {
         if (abortController.signal.aborted) return
@@ -179,7 +180,9 @@ const Autocomplete: React.FC<
       })
 
     return () => {
-      abortController.abort(`Aborted by Rocket UI for: "${internalInputValue}". New LoadOption was issued!`)
+      abortController.abort(
+        new DOMException(`Aborted by Rocket UI for: "${internalInputValue}". New LoadOption was issued!`, 'AbortError')
+      )
     }
   }, [internalInputValue, internalLoading, isPaginated, loadOptions, nextPageData])
 
