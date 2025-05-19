@@ -2,7 +2,7 @@
 // This source code is licensed under the MIT license.
 
 import React, { useState } from 'react'
-import { Autocomplete, AutocompleteProps, LoadOptionsPaginated, Typography } from 'components'
+import { Autocomplete, AutocompleteProps, Typography } from 'components'
 import Box from '@mui/material/Box'
 import { Grid2 as Grid } from '@mui/material'
 import CheckIcon from '@mui/icons-material/Check'
