@@ -173,6 +173,12 @@ export interface AutocompleteProps<
    */
   onInputChange?: (event: React.SyntheticEvent, value: string, reason: AutocompleteInputChangeReason) => void
   /**
+   * Debounce time in milliseconds for the input change.
+   * This is useful when using the `loadOptions` prop to avoid sending too many requests.
+   * @default 500
+   */
+  debouncedBy?: number
+  /**
    * If true, the options list will be loaded incrementally using the paginated loadOptions callback
    * @default false
    */
