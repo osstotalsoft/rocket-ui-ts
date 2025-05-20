@@ -16,7 +16,7 @@ import {
   Autocomplete as MuiAutocomplete,
   TextField
 } from '@mui/material'
-import { both, concat, eqBy, has, identity, map, pipe, prop } from 'ramda'
+import { both, concat, defaultTo, eqBy, has, identity, map, pipe, prop } from 'ramda'
 import { convertValueToOption, extractFirstValue, internalLabel, internalValue } from './utils'
 import Option from './Option'
 import { useTrackVisibility } from 'react-intersection-observer-hook'
@@ -46,6 +46,7 @@ const Autocomplete: React.FC<
   onOpen,
   onClose,
   onInputChange,
+  inputValue,
   debouncedBy = 500,
   renderOption,
   isPaginated,
@@ -108,10 +109,14 @@ const Autocomplete: React.FC<
    */
   const [internalLoading, setInternalLoading] = useState(false)
   const [internalOpen, setInternalOpen] = useState(false)
-  const [internalInputValue, setInternalInputValue] = useState(emptyString)
+  const [internalInputValue, setInternalInputValue] = useState(inputValue || emptyString)
   const [ref, { isVisible }] = useTrackVisibility()
   const [loadMore, setLoadMore] = useState(false)
   const [nextPageData, setNextPageData] = useState(null)
+
+  useEffect(() => {
+    setInternalInputValue(defaultTo(emptyString, inputValue))
+  }, [inputValue])
 
   useEffect(() => {
     if (isVisible) setInternalLoading(true)
@@ -141,23 +146,26 @@ const Autocomplete: React.FC<
     [loadOptions, onClose]
   )
 
-  const handleInputChange = debounce((event: React.SyntheticEvent, value: string, reason: AutocompleteInputChangeReason) => {
-    if (onInputChange) onInputChange(event, value, reason)
-    setInternalInputValue(value)
-    if (reason === 'reset') return
-    if (loadOptions && (open || internalOpen)) {
-      setInternalOptions(emptyArray)
-      setInternalLoading(true)
-      setLoadMore(false)
-      setNextPageData(null)
-    }
-  }, debouncedBy)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const handleInputChange = useCallback(
+    debounce((event: React.SyntheticEvent, value: string, reason: AutocompleteInputChangeReason) => {
+      if (onInputChange) onInputChange(event, value, reason)
+      setInternalInputValue(value)
+      if (reason === 'reset') return
+      if (loadOptions && (open || internalOpen)) {
+        setInternalOptions(emptyArray)
+        setInternalLoading(true)
+        setLoadMore(false)
+        setNextPageData(null)
+      }
+    }, debouncedBy),
+    [debouncedBy, internalOpen, loadOptions, onInputChange, open]
+  )
 
   useEffect(() => {
     if (!internalLoading || !loadOptions) return
 
     const abortController = new AbortController()
-
     loadOptions(internalInputValue, allOptions.current, nextPageData, abortController.signal)
       .then((result: readonly unknown[] | LoadOptionsPaginatedResult<unknown>) => {
         if (abortController.signal.aborted) return
