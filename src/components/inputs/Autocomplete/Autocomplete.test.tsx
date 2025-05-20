@@ -14,6 +14,11 @@ const stringOptions = ['first option', 'second option', 'third option']
 
 const numericOptions = [1, 2, 3]
 
+afterEach(() => {
+  jest.clearAllMocks()
+  jest.useRealTimers()
+})
+
 describe('Single-value Autocomplete', () => {
   it('renders open button', () => {
     render(<Autocomplete options={basicOptions} onChange={jest.fn()} />)
@@ -69,13 +74,15 @@ describe('Single-value Autocomplete', () => {
   })
 
   describe('creatable', () => {
-    test('displays created label text after typing some characters', () => {
-      render(<Autocomplete open creatable createdLabel={'Add'} onChange={jest.fn()} options={basicOptions} />)
+    test('displays created label text after typing some characters', async () => {
+      render(
+        <Autocomplete open creatable createdLabel={'Add'} onChange={jest.fn()} options={basicOptions} debouncedBy={0} />
+      )
       fireEvent.change(screen.getByRole('combobox'), { target: { value: 'new' } })
-      expect(screen.getByText('Add "new"')).toBeInTheDocument()
+      await waitFor(() => expect(screen.getByText('Add "new"')).toBeInTheDocument())
     })
 
-    test('displays created label text after typing some characters with multi select', () => {
+    test('displays created label text after typing some characters with multi select', async () => {
       render(
         <Autocomplete
           isMultiSelection
@@ -84,25 +91,43 @@ describe('Single-value Autocomplete', () => {
           value={[]}
           options={basicOptions}
           onChange={jest.fn()}
+          debouncedBy={0}
         />
       )
       fireEvent.change(screen.getByRole('combobox'), { target: { value: 'new option' } })
-      expect(screen.getByText('Add "new option"')).toBeInTheDocument()
+      await waitFor(() => expect(screen.getByText('Add "new option"')).toBeInTheDocument())
     })
 
     test('displays created label text after typing some characters with load options', async () => {
       const promise = Promise.resolve(basicOptions)
       const mockLoadOptions = jest.fn(() => promise)
-      render(<Autocomplete open creatable={true} createdLabel={'Add'} onChange={jest.fn()} loadOptions={mockLoadOptions} />)
+      render(
+        <Autocomplete
+          open
+          creatable={true}
+          createdLabel={'Add'}
+          onChange={jest.fn()}
+          loadOptions={mockLoadOptions}
+          debouncedBy={0}
+        />
+      )
 
       fireEvent.change(screen.getByRole('combobox'), { target: { value: 'new' } })
-      expect(screen.getByText('Add "new"')).toBeInTheDocument()
+      await waitFor(() => expect(screen.getByText('Add "new"')).toBeInTheDocument())
     })
 
-    test('does not show "Add" option for the ones that already exist', () => {
-      render(<Autocomplete open creatable createdLabel={'Add'} onChange={jest.fn()} options={basicOptions} />)
+    test('does not show "Add" option for the ones that already exist', async () => {
+      render(
+        <Autocomplete open creatable createdLabel={'Add'} onChange={jest.fn()} options={basicOptions} debouncedBy={0} />
+      )
       fireEvent.change(screen.getByRole('combobox'), { target: { value: 'first option' } })
-      expect(screen.queryByText('Add "first option"')).not.toBeInTheDocument()
+      await waitFor(() => {
+        expect(screen.queryByText('first option')).toBeInTheDocument()
+        expect(screen.queryByText('second option')).not.toBeInTheDocument()
+        expect(screen.queryByText('third option')).not.toBeInTheDocument()
+
+        expect(screen.queryByText('Add "first option"')).not.toBeInTheDocument()
+      })
     })
 
     test('calls onChange with the new option', async () => {
@@ -116,9 +141,12 @@ describe('Single-value Autocomplete', () => {
           createdLabel={'Add'}
           onChange={mockOnChange}
           options={basicOptions}
+          debouncedBy={0}
         />
       )
       fireEvent.change(screen.getByRole('combobox'), { target: { value: 'new' } })
+      await waitFor(() => expect(screen.getByText('Add "new"')).toBeInTheDocument())
+
       act(() => userClick(screen.getByText('Add "new"')))
 
       await waitFor(() => {
@@ -347,14 +375,14 @@ describe('Async Autocomplete', () => {
     expect(screen.getByText(loadingText)).toBeInTheDocument()
   })
 
-  test('calls loadOptions with three parameters - when isPaginated is true', async () => {
-    const promise = Promise.resolve(basicOptions)
+  test('calls loadOptions with four parameters - when isPaginated is true', async () => {
+    const promise = Promise.resolve({ loadedOptions: basicOptions, more: false, additional: null })
     const mockLoadOptions = jest.fn(() => promise)
-    render(<Autocomplete loadOptions={mockLoadOptions} value={'first option'} onChange={jest.fn()} isPaginated />)
+    render(<Autocomplete loadOptions={mockLoadOptions} inputValue={'first option'} onChange={jest.fn()} isPaginated />)
 
     fireEvent.click(screen.getByRole('button'))
-    expect(mockLoadOptions).toHaveBeenCalledWith('first option', [], null)
-    expect(mockLoadOptions.mock.calls[0]).toHaveLength(3)
+    expect(mockLoadOptions).toHaveBeenCalledWith('first option', [], null, expect.any(AbortSignal))
+    expect(mockLoadOptions.mock.calls[0]).toHaveLength(4)
   })
 
   describe('loadOptions', () => {
@@ -368,12 +396,13 @@ describe('Async Autocomplete', () => {
     test('calls loadOptions with input value', async () => {
       const promise = Promise.resolve(basicOptions)
       const mockLoadOptions = jest.fn(() => promise)
-      render(<Autocomplete loadOptions={mockLoadOptions} value={basicOptions[0]} onChange={jest.fn()} />)
+      render(<Autocomplete loadOptions={mockLoadOptions} inputValue={'first option'} onChange={jest.fn()} />)
 
       fireEvent.click(screen.getByRole('button'))
-      expect(mockLoadOptions).toHaveBeenCalledWith('first option', expect.anything(), null)
-      expect(mockLoadOptions.mock.calls[0]).toHaveLength(3)
+      expect(mockLoadOptions).toHaveBeenCalledWith('first option', expect.anything(), null, expect.any(AbortSignal))
+      expect(mockLoadOptions.mock.calls[0]).toHaveLength(4)
     })
+
     test('loadOptions should be called each time the Autocomplete opens', async () => {
       const promise = Promise.resolve(basicOptions)
       const mockLoadOptions = jest.fn(() => promise)
@@ -391,6 +420,125 @@ describe('Async Autocomplete', () => {
       act(() => userClick(screen.getByTitle('Open')))
 
       await waitFor(() => expect(mockLoadOptions).toHaveBeenCalledTimes(2))
+    })
+
+    test('aborts previous request when a new one is triggered by input change', async () => {
+      // Mock loadOptions to capture the signal and allow controlled resolution
+      const mockLoadOptions = jest.fn()
+      mockLoadOptions.mockImplementationOnce((_inputValue, _options, _nextPageData, signal) => {
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+            if (signal.aborted) {
+              reject(new Error('Request aborted'))
+            }
+            resolve(basicOptions)
+          }, 500)
+        })
+      })
+      mockLoadOptions.mockImplementationOnce((inputValue, _options, _nextPageData, signal) => {
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+            if (signal.aborted) {
+              reject(new Error('Request aborted: ' + inputValue))
+            }
+            resolve(basicOptions)
+          }, 50)
+        })
+      })
+
+      // Render with shorter debounce time for testing
+      render(<Autocomplete loadOptions={mockLoadOptions} onChange={jest.fn()} debouncedBy={100} />)
+
+      // Open the dropdown
+      act(() => userClick(screen.getByTitle('Open')))
+
+      // First input change
+      act(() => {
+        fireEvent.change(screen.getByRole('combobox'), { target: { value: 'first' } })
+      })
+
+      // Wait for debounce
+      await new Promise(resolve => setTimeout(resolve, 150))
+
+      // Second input change before first request completes
+      act(() => {
+        fireEvent.change(screen.getByRole('combobox'), { target: { value: 'second' } })
+      })
+
+      // Wait for promises to resolve
+      await waitFor(() => {
+        expect(mockLoadOptions).toHaveBeenCalledTimes(2)
+      })
+    })
+
+    test('aborts pending requests when component is unmounted', async () => {
+      // Mock loadOptions to capture the signal and verify it's aborted on unmount
+      const mockLoadOptions = jest.fn().mockImplementation((_inputValue, _options, _nextPageData, signal) => {
+        // Capture the abort handler
+        return new Promise<unknown[]>((resolve, reject) => {
+          setTimeout(() => {
+            if (signal?.aborted) {
+              reject(new Error('Request aborted'))
+            }
+            resolve(basicOptions)
+          }, 150)
+        })
+      })
+      jest.useFakeTimers()
+      const wrapper = render(<Autocomplete loadOptions={mockLoadOptions} onChange={jest.fn()} debouncedBy={100} />)
+
+      // Open the dropdown to trigger loadOptions
+      act(() => userClick(screen.getByTitle('Open')))
+
+      // Unmount the component
+      wrapper.unmount()
+      act(() => jest.runOnlyPendingTimers())
+      // Verify abort was called
+      expect(mockLoadOptions).rejects.toThrow('Request aborted')
+    })
+
+    test('debounces input changes to avoid excessive loadOptions calls', async () => {
+      // Mock loadOptions
+      const mockLoadOptions = jest.fn(() => Promise.resolve(basicOptions))
+
+      // Render with longer debounce time for testing
+      render(<Autocomplete loadOptions={mockLoadOptions} onChange={jest.fn()} debouncedBy={300} />)
+
+      // Open the dropdown
+      act(() => userClick(screen.getByTitle('Open')))
+      expect(mockLoadOptions).toHaveBeenCalledTimes(1) // Only the initial call on open
+
+      // Multiple rapid input changes within debounce period
+      act(() => {
+        fireEvent.change(screen.getByRole('combobox'), { target: { value: 'a' } })
+      })
+
+      await new Promise(resolve => setTimeout(resolve, 50))
+      expect(mockLoadOptions).toHaveBeenCalledTimes(1) // Only the initial call on open
+
+      act(() => {
+        fireEvent.change(screen.getByRole('combobox'), { target: { value: 'ab' } })
+      })
+
+      await new Promise(resolve => setTimeout(resolve, 50))
+      expect(mockLoadOptions).toHaveBeenCalledTimes(1) // Only the initial call on open
+
+      act(() => {
+        fireEvent.change(screen.getByRole('combobox'), { target: { value: 'abc' } })
+      })
+
+      // Wait for just under debounce time - loadOptions should not be called yet
+      await new Promise(resolve => setTimeout(resolve, 250))
+      expect(mockLoadOptions).toHaveBeenCalledTimes(1) // Only the initial call on open
+
+      // Wait for full debounce period to complete
+      await new Promise(resolve => setTimeout(resolve, 100))
+
+      // Now loadOptions should have been called again with the final value
+      await waitFor(() => {
+        expect(mockLoadOptions).toHaveBeenCalledTimes(2)
+        expect(mockLoadOptions).toHaveBeenCalledWith('abc', expect.anything(), null, expect.anything())
+      })
     })
   })
 })

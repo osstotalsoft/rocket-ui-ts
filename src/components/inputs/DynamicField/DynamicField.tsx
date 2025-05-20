@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo } from 'react'
 import PropTypes from 'prop-types'
-import { Autocomplete, DateTime, LoadOptions, LoadOptionsPaginated, TextField } from '../../index'
+import { Autocomplete, DateTime, LoadOptions, TextField } from '../../index'
 import { ControlType, DynamicFieldProps } from './types'
 import { Checkbox } from '@mui/material'
 import { FormControlLabel } from '@mui/material'
@@ -47,7 +47,7 @@ function DynamicField<TCustomComponentProps extends object = any, TAutocompleteO
     [id, value, label, error, helperText]
   )
 
-  const castLoadOptions = loadOptions as LoadOptions<unknown> | LoadOptionsPaginated<unknown>
+  const castLoadOptions = loadOptions as LoadOptions<unknown>
 
   switch (controlType) {
     case ControlType.Text:

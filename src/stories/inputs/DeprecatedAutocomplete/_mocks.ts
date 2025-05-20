@@ -3,7 +3,7 @@ import EmojiNature from '@mui/icons-material/EmojiNature'
 import BugReport from '@mui/icons-material/BugReport'
 import BedroomBaby from '@mui/icons-material/BedroomBaby'
 import { includes, take, drop } from 'ramda'
-import { LoadOptionsPaginated } from '../../../components'
+import { LoadOptions } from '../../../components'
 import * as R from 'ramda'
 
 export const options = [
@@ -78,13 +78,13 @@ export const loadFilteredOptions = async (input: any) => {
 }
 
 let prevInput: string = undefined
-export const loadFilteredOptionsPaginated: LoadOptionsPaginated = async (
+export const loadFilteredOptionsPaginated: LoadOptions<unknown> = async (
   input: string,
   _: ReadonlyArray<any>,
   additional?: any
 ) => {
   await sleep(1e3)
-  const currentPage = prevInput !== input ? 0 : additional?.page ?? 0
+  const currentPage = prevInput !== input ? 0 : (additional?.page ?? 0)
   const filteredOptions = input ? optionsLong.filter(o => includes(input, o.name)) : optionsLong
   const paginatedOptions = take(15, drop(currentPage * 15, filteredOptions))
   prevInput = input

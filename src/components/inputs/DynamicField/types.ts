@@ -1,5 +1,5 @@
 import React from 'react'
-import { LoadOptions, LoadOptionsPaginated } from '../Autocomplete'
+import { LoadOptions } from '../Autocomplete'
 
 export enum ControlType {
   Text = 'Text',
@@ -18,7 +18,7 @@ export type DynamicFieldProps<TCustomComponentProps extends object = any, TAutoc
   label?: string
   onChange?: (value: unknown) => void
   options?: readonly TAutocompleteOptions[]
-  loadOptions?: LoadOptions<TAutocompleteOptions> | LoadOptionsPaginated<TAutocompleteOptions>
+  loadOptions?: LoadOptions<TAutocompleteOptions>
   isPaginated?: boolean
   error?: boolean
   helperText?: React.ReactNode

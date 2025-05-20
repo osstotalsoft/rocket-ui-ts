@@ -16,14 +16,14 @@ import {
   Autocomplete as MuiAutocomplete,
   TextField
 } from '@mui/material'
-import { both, concat, eqBy, has, identity, map, pipe, prop } from 'ramda'
+import { both, concat, defaultTo, eqBy, has, identity, map, pipe, prop } from 'ramda'
 import { convertValueToOption, extractFirstValue, internalLabel, internalValue } from './utils'
 import Option from './Option'
 import { useTrackVisibility } from 'react-intersection-observer-hook'
 import { AutocompleteProps, LoadOptionsPaginatedResult } from './types'
 import LinearProgress from '../../feedback/LinearProgress'
 import { emptyArray, emptyString } from '../../utils/constants'
-import * as uuid from 'uuid'
+import debounce from 'lodash/debounce'
 const baseFilter = createFilterOptions()
 
 const Autocomplete: React.FC<
@@ -46,6 +46,8 @@ const Autocomplete: React.FC<
   onOpen,
   onClose,
   onInputChange,
+  inputValue,
+  debouncedBy = 500,
   renderOption,
   isPaginated,
   // ---------------- input field props ----------------
@@ -68,7 +70,8 @@ const Autocomplete: React.FC<
    * Handle the internal options to aid lazy loading.
    */
   const [internalOptions, setInternalOptions] = useState<readonly unknown[]>(emptyArray)
-  const allOptions = useMemo(() => concat(options, internalOptions), [internalOptions, options])
+  const allOptions = useRef<readonly unknown[]>(emptyArray)
+  allOptions.current = concat(options, internalOptions)
 
   /**
    * Handle get option value.
@@ -88,13 +91,13 @@ const Autocomplete: React.FC<
 
       const convertedOption: unknown = convertValueToOption(
         option,
-        allOptions,
+        allOptions.current,
         extractFirstValue([getValue, internalValue, identity])
       )
 
       return extractFirstValue([getLabel, getValue, label, identity], convertedOption)
     },
-    [allOptions, getLabel, getOptionLabel, getValue]
+    [getLabel, getOptionLabel, getValue]
   )
 
   /**
@@ -105,29 +108,25 @@ const Autocomplete: React.FC<
    * - input change
    */
   const [internalLoading, setInternalLoading] = useState(false)
-  const requestLoad = useRef<string>(uuid.NIL)
-  const processingLoad = useRef<string>(uuid.NIL)
   const [internalOpen, setInternalOpen] = useState(false)
-  const [internalInputValue, setInternalInputValue] = useState(emptyString)
+  const [internalInputValue, setInternalInputValue] = useState(inputValue || emptyString)
   const [ref, { isVisible }] = useTrackVisibility()
   const [loadMore, setLoadMore] = useState(false)
   const [nextPageData, setNextPageData] = useState(null)
 
   useEffect(() => {
-    if (isVisible) {
-      setInternalLoading(true)
-      requestLoad.current = uuid.v7()
-    }
+    setInternalInputValue(defaultTo(emptyString, inputValue))
+  }, [inputValue])
+
+  useEffect(() => {
+    if (isVisible) setInternalLoading(true)
   }, [isVisible])
 
   const handleOpen = useCallback(
     (event: React.SyntheticEvent) => {
       if (onOpen) onOpen(event)
       setInternalOpen(true)
-      if (loadOptions) {
-        setInternalLoading(true)
-        requestLoad.current = uuid.v7()
-      }
+      if (loadOptions) setInternalLoading(true)
     },
     [loadOptions, onOpen]
   )
@@ -138,7 +137,6 @@ const Autocomplete: React.FC<
       setInternalOpen(false)
       if (loadOptions) {
         setInternalLoading(false)
-        requestLoad.current = uuid.NIL
         setInternalInputValue(emptyString)
         setInternalOptions(emptyArray)
         setLoadMore(false)
@@ -148,35 +146,29 @@ const Autocomplete: React.FC<
     [loadOptions, onClose]
   )
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleInputChange = useCallback(
-    (event: React.SyntheticEvent, value: string, reason: AutocompleteInputChangeReason) => {
+    debounce((event: React.SyntheticEvent, value: string, reason: AutocompleteInputChangeReason) => {
       if (onInputChange) onInputChange(event, value, reason)
       setInternalInputValue(value)
       if (reason === 'reset') return
       if (loadOptions && (open || internalOpen)) {
         setInternalOptions(emptyArray)
         setInternalLoading(true)
-        requestLoad.current = uuid.v7()
         setLoadMore(false)
         setNextPageData(null)
       }
-    },
-    [internalOpen, loadOptions, onInputChange, open]
+    }, debouncedBy),
+    [debouncedBy, internalOpen, loadOptions, onInputChange, open]
   )
 
   useEffect(() => {
-    if (!internalLoading || processingLoad.current === requestLoad.current) {
-      return
-    }
+    if (!internalLoading || !loadOptions) return
 
-    processingLoad.current = requestLoad.current
-    const closureRequestLoad = requestLoad.current
-    loadOptions(internalInputValue, allOptions, nextPageData)
+    const abortController = new AbortController()
+    loadOptions(internalInputValue, allOptions.current, nextPageData, abortController.signal)
       .then((result: readonly unknown[] | LoadOptionsPaginatedResult<unknown>) => {
-        if (closureRequestLoad !== requestLoad.current) {
-          return
-        }
-
+        if (abortController.signal.aborted) return
         const newOptions = isPaginated
           ? (result as LoadOptionsPaginatedResult<unknown>)?.loadedOptions
           : (result as readonly unknown[])
@@ -187,20 +179,20 @@ const Autocomplete: React.FC<
         setNextPageData(nextPageData)
       })
       .catch(error => {
-        console.error(error)
+        if (error instanceof DOMException && error.name === 'AbortError') console.warn(error)
+        else console.error(error)
       })
       .finally(() => {
-        if (closureRequestLoad !== requestLoad.current) {
-          if (requestLoad.current === uuid.NIL) {
-            processingLoad.current = uuid.NIL
-          }
-          return
-        }
+        if (abortController.signal.aborted) return
         setInternalLoading(false)
-        requestLoad.current = uuid.NIL
-        processingLoad.current = uuid.NIL
       })
-  }, [allOptions, internalInputValue, internalLoading, isPaginated, loadOptions, nextPageData, requestLoad])
+
+    return () => {
+      abortController.abort(
+        new DOMException(`Aborted by Rocket UI for: "${internalInputValue}". New LoadOption was issued!`, 'AbortError')
+      )
+    }
+  }, [internalInputValue, internalLoading, isPaginated, loadOptions, nextPageData])
 
   const handleRenderOption = useCallback(
     /**
@@ -266,7 +258,8 @@ const Autocomplete: React.FC<
 
   const handleFilterOptions = useCallback(
     (options: unknown[], state: FilterOptionsState<unknown>) => {
-      const result = baseFilter(options, state)
+      const debouncedState = { ...state, inputValue: internalInputValue }
+      const result = baseFilter(options, debouncedState)
 
       if (creatable) {
         /**
@@ -278,7 +271,7 @@ const Autocomplete: React.FC<
          * On the onChange event we will send the __internalInputValue as the value and the reason will be "createOption".
          */
 
-        const contender = state.inputValue
+        const contender = debouncedState.inputValue
         const exactMatch = result.find(option => handleGetOptionLabel(option) === contender)
         if (contender && !exactMatch)
           result.push({ __internalDisplay: `${createdLabel} "${contender}"`, __internalInputValue: contender })
@@ -296,7 +289,7 @@ const Autocomplete: React.FC<
 
       return result
     },
-    [creatable, createdLabel, handleGetOptionLabel, isPaginated, loadMore]
+    [creatable, createdLabel, handleGetOptionLabel, internalInputValue, isPaginated, loadMore]
   )
 
   /**
@@ -352,7 +345,7 @@ const Autocomplete: React.FC<
       return value.map((option, index) => {
         const convertedOption = convertValueToOption(
           option,
-          allOptions,
+          allOptions.current,
           extractFirstValue([getValue, internalValue, identity])
         )
         const { key, ...tagProps } = getTagProps({ index })
@@ -367,7 +360,7 @@ const Autocomplete: React.FC<
         )
       })
     },
-    [allOptions, getValue, handleGetOptionLabel]
+    [getValue, handleGetOptionLabel]
   )
 
   /**
@@ -408,7 +401,7 @@ const Autocomplete: React.FC<
         handleHomeEndKeys
         autoHighlight
         renderInput={handleRenderInput}
-        options={allOptions}
+        options={allOptions.current}
         getOptionLabel={handleGetOptionLabel}
         multiple={isMultiSelection}
         disableCloseOnSelect={isMultiSelection}
@@ -449,6 +442,7 @@ Autocomplete.propTypes = {
   onOpen: PropTypes.func,
   onClose: PropTypes.func,
   onInputChange: PropTypes.func,
+  debouncedBy: PropTypes.number,
   renderOption: PropTypes.func,
   isPaginated: PropTypes.bool,
   // ---------------- input field props ----------------
