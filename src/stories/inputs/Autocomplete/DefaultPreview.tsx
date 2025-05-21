@@ -6,7 +6,7 @@ import { Autocomplete, Typography } from 'components'
 import { Stack } from '@mui/material'
 
 export const DefaultPreview = (props: any) => {
-  const [value, setValue] = useState(props?.value)
+  const [value, setValue] = useState(props?.value || null)
 
   return (
     <Stack spacing={1}>
