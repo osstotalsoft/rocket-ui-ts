@@ -163,7 +163,7 @@ const Autocomplete: React.FC<
   )
 
   useEffect(() => {
-    if (!internalLoading || !loadOptions) return
+    if (!internalLoading || !loadOptions || !(open || internalOpen)) return
 
     const abortController = new AbortController()
     loadOptions(internalInputValue, allOptions.current, nextPageData, abortController.signal)
@@ -192,7 +192,7 @@ const Autocomplete: React.FC<
         new DOMException(`Aborted by Rocket UI for: "${internalInputValue}". New LoadOption was issued!`, 'AbortError')
       )
     }
-  }, [internalInputValue, internalLoading, isPaginated, loadOptions, nextPageData])
+  }, [internalInputValue, internalLoading, internalOpen, isPaginated, loadOptions, nextPageData, open])
 
   const handleRenderOption = useCallback(
     /**
