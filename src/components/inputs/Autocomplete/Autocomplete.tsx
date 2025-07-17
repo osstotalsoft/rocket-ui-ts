@@ -155,8 +155,8 @@ const Autocomplete: React.FC<
         setInternalOpen(false)
         return
       }
-      setInternalInputValue(value)
       if (reason === 'reset') return
+      setInternalInputValue(value)
 
       if (loadOptions && (open || internalOpen)) {
         setInternalOptions(emptyArray)
