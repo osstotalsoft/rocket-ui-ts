@@ -78,7 +78,6 @@ const Autocomplete: React.FC<
    * Handle valueKey and labelKey as functions.
    * Show internal label if it's called from renderOption and internal value if it's called from the input field.
    */
-
   const handleGetOptionLabel = useCallback(
     /**
      * Second parameter is a flag to show the label or the value
@@ -150,8 +149,15 @@ const Autocomplete: React.FC<
   const handleInputChange = useCallback(
     debounce((event: React.SyntheticEvent, value: string, reason: AutocompleteInputChangeReason) => {
       if (onInputChange) onInputChange(event, value, reason)
+
+      // Only update internalInputValue if it's from user input, not from selection reset
+      if (reason === 'selectOption') {
+        setInternalOpen(false)
+        return
+      }
       setInternalInputValue(value)
       if (reason === 'reset') return
+
       if (loadOptions && (open || internalOpen)) {
         setInternalOptions(emptyArray)
         setInternalLoading(true)
