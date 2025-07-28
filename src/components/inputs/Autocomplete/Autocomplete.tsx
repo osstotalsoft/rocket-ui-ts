@@ -180,17 +180,17 @@ const Autocomplete: React.FC<
           : (result as readonly unknown[])
         const hasMoreData = isPaginated ? (result as LoadOptionsPaginatedResult<unknown>)?.more : false
         const nextPageData = isPaginated ? (result as LoadOptionsPaginatedResult<unknown>)?.additional : null
+        setInternalLoading(false)
         setInternalOptions(oldOptions => concat(oldOptions, newOptions))
         setLoadMore(hasMoreData)
         setNextPageData(nextPageData)
       })
       .catch(error => {
         if (error instanceof DOMException && error.name === 'AbortError') console.warn(error)
-        else console.error(error)
-      })
-      .finally(() => {
-        if (abortController.signal.aborted) return
-        setInternalLoading(false)
+        else {
+          console.error(error)
+          setInternalLoading(false)
+        }
       })
 
     return () => {
