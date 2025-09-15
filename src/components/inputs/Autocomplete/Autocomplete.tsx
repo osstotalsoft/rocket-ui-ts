@@ -399,34 +399,33 @@ const Autocomplete: React.FC<
     /**
      * Our component should not propagate the click event to the parent.
      */
-    <div onClick={handleStopPropagation}>
-      <MuiAutocomplete
-        forcePopupIcon
-        clearOnBlur
-        selectOnFocus
-        handleHomeEndKeys
-        autoHighlight
-        renderInput={handleRenderInput}
-        options={allOptions.current}
-        getOptionLabel={handleGetOptionLabel}
-        multiple={isMultiSelection}
-        disableCloseOnSelect={isMultiSelection}
-        disableClearable={!isClearable}
-        renderOption={handleRenderOption}
-        freeSolo={creatable}
-        filterOptions={handleFilterOptions}
-        onChange={handleChange}
-        loadingText={loadingText}
-        loading={loading || internalLoading}
-        open={open || internalOpen}
-        onOpen={handleOpen}
-        onClose={handleClose}
-        onInputChange={handleInputChange}
-        renderTags={handleRenderTags}
-        isOptionEqualToValue={handleOptionEqualToValue}
-        {...rest}
-      />
-    </div>
+    <MuiAutocomplete
+      forcePopupIcon
+      clearOnBlur
+      selectOnFocus
+      handleHomeEndKeys
+      autoHighlight
+      renderInput={handleRenderInput}
+      options={allOptions.current}
+      getOptionLabel={handleGetOptionLabel}
+      multiple={isMultiSelection}
+      disableCloseOnSelect={isMultiSelection}
+      disableClearable={!isClearable}
+      renderOption={handleRenderOption}
+      freeSolo={creatable}
+      filterOptions={handleFilterOptions}
+      onChange={handleChange}
+      loadingText={loadingText}
+      loading={loading || internalLoading}
+      open={open || internalOpen}
+      onOpen={handleOpen}
+      onClose={handleClose}
+      onInputChange={handleInputChange}
+      renderTags={handleRenderTags}
+      isOptionEqualToValue={handleOptionEqualToValue}
+      onClick={handleStopPropagation}
+      {...rest}
+    />
   )
 }
 
