@@ -164,7 +164,11 @@ const Autocomplete: React.FC<AutocompleteProps<any, any, any, any>> = ({
           startAdornment={params.InputProps.startAdornment}
           endAdornment={params.InputProps.endAdornment}
           {...textFieldProps}
-          InputProps={{ ...params.InputProps, margin: 'none', onClick: stopPropagation }}
+          InputProps={{
+            ...params.InputProps,
+            margin: 'none',
+            ...(stopEventPropagation && { onClick: stopPropagation })
+          }}
           InputLabelProps={{ ...params.InputLabelProps, margin: null }}
         />
       )
