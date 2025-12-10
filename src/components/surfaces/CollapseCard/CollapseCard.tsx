@@ -27,13 +27,17 @@ const CollapseCard: React.FC<CollapseCardProps> = ({
   const exp = expanded || localExpanded
 
   const toggleCard = useCallback(
-    (event: React.SyntheticEvent<Element, Event>) =>
-      onToggle ? onToggle(event, expanded) : setLocalExpanded(current => !current),
+    (event: React.SyntheticEvent<Element, Event>) => {
+      if (event.currentTarget.id === 'toggel-button' && toggleOnHeaderClick == true) {
+        return
+      }
+      return onToggle ? onToggle(event, expanded) : setLocalExpanded(current => !current)
+    },
     [expanded, onToggle]
   )
 
   const iconButton = (
-    <IconButton size="small" variant="text" color="primary" onClick={toggleCard}>
+    <IconButton id="toggel-button" size="small" variant="text" color="primary" onClick={toggleCard}>
       {exp ? <ExpandLessIcon /> : <ExpandMoreIcon />}
     </IconButton>
   )
@@ -43,20 +47,11 @@ const CollapseCard: React.FC<CollapseCardProps> = ({
     return { sx: { cursor: 'pointer' }, onClick: toggleCard }
   }, [toggleOnHeaderClick, toggleCard])
 
-  const handleActionsClick = useCallback(
-    (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-      /* Stop click event propagation on card actions to prevent card toggle (if toggleOnHeaderClick is enabled) */
-      if (!toggleOnHeaderClick) return
-      event.stopPropagation()
-    },
-    [toggleOnHeaderClick]
-  )
-
   return (
     <Card
       disablePadding
       actions={
-        <Stack direction="row" spacing={1} onClick={handleActionsClick}>
+        <Stack direction="row" spacing={1}>
           {(Array.isArray(actions) ? [...actions, iconButton] : [actions, iconButton]).map((action, index) => (
             <React.Fragment key={index}>{action}</React.Fragment>
           ))}
