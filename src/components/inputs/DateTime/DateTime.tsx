@@ -126,7 +126,7 @@ const DateTime: React.FC<DateTimeProps> = ({
     ]
   )
 
-  const localeUsed = useMemo(() => localeMap[format] ?? adapterLocale ?? localeMap.ro, [format, adapterLocale])
+  const localeUsed = useMemo(() => adapterLocale ?? localeMap[format] ?? localeMap.ro, [format, adapterLocale])
 
   const commonProps = { renderInput, open, onClose: handleClose, value, onChange: handleChange, disabled }
   const renderPicker = () => {
