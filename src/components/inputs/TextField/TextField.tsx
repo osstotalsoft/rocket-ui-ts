@@ -229,6 +229,7 @@ const TextField: React.FC<TextFieldProps> = ({
 
   // attributes applied to the input element
   const customReactInputProps = {
+    autoComplete: `${Date.now()}-${Math.random().toString(36).slice(2)}`, // will disable autofill for browsers
     ...(isNumeric && numericProps),
     ...inputProps,
     className: `${classes.input} ${inputProps?.className ? inputProps.className : ''}`
