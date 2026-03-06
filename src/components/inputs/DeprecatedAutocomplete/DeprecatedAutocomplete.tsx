@@ -17,7 +17,12 @@ import {
   stopPropagation
 } from './utils'
 import TextField from '../TextField'
-import { DeprecatedAutocompleteProps, DeprecatedOptionProps, DeprecatedLoadOptions, DeprecatedLoadOptionsPaginated } from './types'
+import {
+  DeprecatedAutocompleteProps,
+  DeprecatedOptionProps,
+  DeprecatedLoadOptions,
+  DeprecatedLoadOptionsPaginated
+} from './types'
 import {
   AutocompleteChangeReason,
   AutocompleteCloseReason,
@@ -26,7 +31,7 @@ import {
   TextFieldProps
 } from '@mui/material'
 import { AutocompleteRenderGetTagProps } from '@mui/material'
-import { throttle } from 'lodash'
+import throttle from 'lodash/throttle'
 
 /**
  * @deprecated Use the Autocomplete component instead.
@@ -291,7 +296,6 @@ const DeprecatedAutocomplete: React.FC<DeprecatedAutocompleteProps<any, any, any
       handleLoadOptions()
     }
     // this effect should run only at component mount
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {
