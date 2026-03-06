@@ -5,7 +5,8 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import { AccordionSummary } from './AccordionStyles'
 import Typography from '../../dataDisplay/Typography'
 import { AccordionProps, AccordionVariant } from './types'
-import { isArray, isBoolean } from 'lodash'
+import isArray from 'lodash/isArray'
+import isBoolean from 'lodash/isBoolean'
 
 const AccordionItem: React.FC<AccordionProps> = ({
   title,
