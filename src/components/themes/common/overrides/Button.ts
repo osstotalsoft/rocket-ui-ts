@@ -39,7 +39,25 @@ export default function Button({ palette, customShadows }: Theme): CustomCompone
             backgroundColor: palette.action.hover
           }
         }
-      }
+      },
+    variants: [
+      {
+        props: { variant: 'selectedActive' },
+        style: {
+          backgroundColor: palette.secondary.main,          
+          '&:hover': { backgroundColor: palette.secondary.dark },
+          '&.Mui-disabled': { backgroundColor: palette.secondary.main, color: palette.common.white, opacity: 0.7 },
+        },
+      },
+      {
+        props: { variant: 'selectedDefault' },
+        style: {
+          backgroundColor: palette.primary.main,          
+          '&:hover': { backgroundColor: palette.primary.dark },
+          '&.Mui-disabled': { backgroundColor: palette.primary.main, color: palette.common.white, opacity: 0.7 },
+        },
+      },
+    ],      
     }
   }
 }

@@ -123,6 +123,9 @@ export type SideMenuOptions = CSSProperties & {
   hoverBgColor?: string
   hoverTextColor?: string
   bgOpacity?: string
+  focusBgColor?: string    
+  activeBgColor?: string   
+  activeColor?: string   
 }
 
 export type SideMenu = CSSProperties & {
@@ -130,4 +133,14 @@ export type SideMenu = CSSProperties & {
   hoverBgColor: string
   hoverTextColor: string
   bgOpacity: string
+  focusBgColor: string
+  activeBgColor: string
+  activeColor: string
+}
+
+declare module '@mui/material/Button' {
+  interface ButtonPropsVariantOverrides {
+    selectedActive: true
+    selectedDefault: true
+  }
 }
