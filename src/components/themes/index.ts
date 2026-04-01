@@ -5,6 +5,7 @@ import lightBlueTheme from './lightBlueTheme'
 import orangeTheme from './orangeTheme'
 import redTheme from './redTheme'
 import vividOrangeTheme from './vividOrangeTheme'
+import yellowTheme from './yellowTheme'
 import { Theme } from '@mui/material'
 
 const defaultCtx = { globals: { theme: 'default' } }
@@ -22,10 +23,12 @@ const getTheme = (context = defaultCtx): Theme => {
       return vividOrangeTheme
     case 'lightBlue':
       return lightBlueTheme
+    case 'yellow':
+      return yellowTheme
     default:
       return defaultTheme
   }
 }
 
 export default getTheme
-export { defaultTheme, blueTheme, greenTheme, lightBlueTheme, orangeTheme, redTheme, vividOrangeTheme }
+export { defaultTheme, blueTheme, greenTheme, lightBlueTheme, orangeTheme, redTheme, vividOrangeTheme, yellowTheme }
