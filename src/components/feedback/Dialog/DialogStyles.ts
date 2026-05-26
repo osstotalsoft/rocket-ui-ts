@@ -11,7 +11,6 @@ export const DialogContent = styled(MuiDialogContent)(({ theme }) => ({
   export const DialogTitle = styled(MuiDialogTitle)(({theme }) => ({
     fontFamily: theme.typography.defaultFont.fontFamily,
     flex: 1,
-    minWidth: 0,
     padding: 0
   }))
 
