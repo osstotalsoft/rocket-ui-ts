@@ -90,7 +90,6 @@ const Dialog: React.FC<DialogProps> = ({
             aria-label="Close"
             onClick={handleClose as MouseEventHandler}
             {...closeButtonProps}
-            sx={closeButtonProps?.sx}
           >
             <CloseIcon />
           </IconButton>
