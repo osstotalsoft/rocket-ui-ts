@@ -1,5 +1,5 @@
 import React from 'react'
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-webpack5'
 import { Button as ButtonComponent } from 'components'
 import { Box } from '@mui/material'
 import { ColorsPreview } from './ColorsPreview'

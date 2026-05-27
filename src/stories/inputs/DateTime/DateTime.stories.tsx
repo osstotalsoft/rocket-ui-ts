@@ -2,7 +2,7 @@
 // This source code is licensed under the MIT license.
 
 import React from 'react'
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-webpack5'
 import { DateTime } from 'components'
 import FormatPreview from './FormatPreview'
 import ErrorHelperTextPreview from './ErrorHelperTextPreview'

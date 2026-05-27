@@ -1,6 +1,6 @@
 // Copyright (c) TotalSoft.
 // This source code is licensed under the MIT license.
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-webpack5'
 import { Slider } from 'components'
 
 const meta: Meta<typeof Slider> = {

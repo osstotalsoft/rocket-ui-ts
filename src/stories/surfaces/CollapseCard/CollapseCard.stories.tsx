@@ -2,7 +2,7 @@
 // This source code is licensed under the MIT license.
 
 import React from 'react'
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-webpack5'
 import { Button, CollapseCard as CollapseCardComponent, IconButton } from 'components'
 import People from '@mui/icons-material/People'
 import QuestionMark from '@mui/icons-material/QuestionMark'

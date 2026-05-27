@@ -5,10 +5,8 @@ import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin'
 const config: StorybookConfig = {
   stories: ['../src/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: [
-    getAbsolutePath('@storybook/addon-essentials'),
     getAbsolutePath('@storybook/addon-links'),
-    getAbsolutePath('@storybook/addon-interactions'),
-    getAbsolutePath('@storybook/preview-api'),
+    getAbsolutePath('@storybook/addon-docs'),
     getAbsolutePath('@storybook/addon-webpack5-compiler-swc')
   ],
   staticDirs: ['../public'],
@@ -24,7 +22,7 @@ const config: StorybookConfig = {
     check: false
   },
   webpackFinal: async (config: any) => {
-    config.resolve.plugins = [new TsconfigPathsPlugin()]
+    config.resolve.plugins = [new TsconfigPathsPlugin({ configFile: join(__dirname, '../tsconfig.json') })]
     return config
   }
 }

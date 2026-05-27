@@ -2,7 +2,7 @@
 // This source code is licensed under the MIT license.
 
 import React, { ComponentType } from 'react'
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-webpack5'
 import { DynamicField as DynamicFieldComponent, Typography, ControlType, DynamicFieldProps } from 'components'
 import DynamicControlPreview from './DynamicControlPreview'
 import ControlPreview from './ControlPreview'

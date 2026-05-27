@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import OrbitContainer from './_introduction/orbits/OrbitContainer'
 import AboutContainer from './_introduction/about/AboutContainer'
 import Grid from '@mui/material/Grid2'
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-webpack5'
 
 const LandingPage = () => {
   const [activeItem, setActiveItem] = useState(0)

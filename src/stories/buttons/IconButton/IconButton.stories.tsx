@@ -2,7 +2,7 @@
 // This source code is licensed under the MIT license.
 
 import React from 'react'
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-webpack5'
 import IconButtonComponent from '../../../components/buttons/IconButton'
 import { ColorsPreview } from './ColorsPreview'
 import { LoadingPreview } from './LoadingPreview'

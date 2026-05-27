@@ -1,7 +1,7 @@
 // Copyright (c) TotalSoft.
 // This source code is licensed under the MIT license.
 
-import { Meta, StoryObj } from '@storybook/react'
+import { Meta, StoryObj } from '@storybook/react-webpack5'
 import ShowChart from '@mui/icons-material/ShowChart'
 import BarChart from '@mui/icons-material/BarChart'
 import RadioButtonUnchecked from '@mui/icons-material/RadioButtonUnchecked'
