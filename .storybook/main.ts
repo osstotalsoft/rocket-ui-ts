@@ -14,7 +14,8 @@ const config: StorybookConfig = {
   addons: [
     getAbsolutePath('@storybook/addon-links'),
     getAbsolutePath('@storybook/addon-docs'),
-    getAbsolutePath('@storybook/addon-webpack5-compiler-swc')
+    getAbsolutePath('@storybook/addon-webpack5-compiler-swc'),
+    getAbsolutePath("@storybook/addon-mcp")
   ],
   staticDirs: ['../public'],
   framework: {
