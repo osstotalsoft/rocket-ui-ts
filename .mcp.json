@@ -3,6 +3,11 @@
     "storybook": {
       "type": "http",
       "url": "http://localhost:6006/mcp"
+    },
+    "mui-mcp": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@mui/mcp@latest"]
     }
   }
 }
