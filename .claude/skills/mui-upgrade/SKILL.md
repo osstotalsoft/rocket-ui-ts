@@ -41,7 +41,10 @@ Produce a single markdown plan with these sections. Show it to the user, get sig
 - **Breaking-change inventory** — per hop, per breaking change: severity (Low/Medium/High), file hit count, whether a codemod covers it, and any manual residue.
 - **Decision forks** — list every place where the migration admits more than one defensible choice. See `references/decision-forks.md` for the catalog of known forks. The user will be asked about each one when its component comes up; listing them upfront sets expectations.
 - **Effort estimate** — a rough day count, broken down by phase. Be honest about uncertainty.
-- **Risks** — things that go wrong silently (numeric formatting in custom `inputComponent`, visual regressions like `ListItemIcon` width changes, accessibility role changes like `Stepper` → `<ol role="tablist">`).
+- **Risks** — things that go wrong silently:
+  - Numeric formatting in custom `inputComponent` (react-number-format, masked inputs): the correct v9 migration is `slotProps.input.inputComponent`, NOT `slots.htmlInput`. Using `slots.htmlInput` bypasses `InputBaseInput`'s CSS injection and produces visually broken inputs that still compile and pass tests. See `references/breaking-changes-v8-to-v9.md` and Fork 2.
+  - Double-wrapped `InputAdornment` in stepper/clearable inputs: if helper components (`AddButton`, `SubtractButton`) each render their own `<InputAdornment>` and the parent also wraps them in `<InputAdornment>`, MUI v9's updated adornment margin makes the nesting visible. Remove the inner wrapper.
+  - Visual regressions like `ListItemIcon` width changes, accessibility role changes like `Stepper` → `<ol role="tablist">`.
 
 After the user approves the plan, **bump the package versions and lockfile**. Do NOT touch source code yet. The build will be red — that's expected and useful as a checklist for what's left.
 
@@ -69,7 +72,7 @@ This is the loop. Do every step. Don't skip step 4 even if the component looks t
 2. **Identify which breaking changes apply** by re-running the detection patterns scoped to this component's file paths.
 3. **Surface decision forks.** If `references/decision-forks.md` flags this component or this pattern as having multiple valid rewrites, stop and ask the user via AskUserQuestion. Examples:
    - Component re-exports a prop the new MUI version renames → keep old prop name + translate internally, or break and adopt the new name?
-   - `inputComponent` swap could become `slots.input` (direct) or `slotProps.input.slots.input` (nested) — which form does the user prefer?
+   - Third-party input wrapper (`inputComponent`): only ask if the component is a published library (see Fork 2). For internal usage, apply `InputProps.inputComponent` → `slotProps.input.inputComponent` without asking.
    - A codemod's output is correct but ugly — accept it, or hand-write a cleaner version?
 4. **Run applicable codemods** scoped to this component's files. Example:
    ```
@@ -80,6 +83,8 @@ This is the loop. Do every step. Don't skip step 4 even if the component looks t
    - Custom prop forwarding (the library wraps an MUI component and re-exposes its props)
    - Type definitions referencing renamed MUI types
    - Internal `styled(MuiThing)` wrappers — usually unaffected, but check that the wrapped component's slot names didn't change.
+   - **Third-party input wrappers** (`react-number-format`, `react-imask`, Stripe, etc.): if you see `slots.htmlInput = CustomComponent` anywhere in the diff (from a codemod or prior work), replace it with `slotProps.input.inputComponent = CustomComponent`. `slots.htmlInput` silently drops `InputBaseInput`'s CSS — the input looks wrong in the browser but tests still pass. This is a **visual-only regression** that only manifests at render time. See `references/decision-forks.md` Fork 2 for the full explanation.
+   - **Adornment double-wrapping in stepper/clearable inputs**: if `AddButton`, `SubtractButton`, or similar helpers each contain their own `<InputAdornment>`, and the parent `internalEndAdornment`/`internalStartAdornment` also wraps them in `<InputAdornment>`, remove the inner one. The nesting was harmless in v8 but MUI v9's updated adornment margin makes it visually noticeable.
 
    **TypeScript typing rules — read before writing any type annotation:**
 

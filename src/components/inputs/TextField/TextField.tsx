@@ -100,18 +100,14 @@ ClearButton.propTypes = {
 }
 
 const AddButton: React.FC<AddButtonProps> = ({ onAdd }) => (
-  <InputAdornment position="end">
-    <StepButton onClick={onAdd}>+</StepButton>
-  </InputAdornment>
+  <StepButton onClick={onAdd}>+</StepButton>
 )
 AddButton.propTypes = {
   onAdd: PropTypes.func
 }
 
 const SubtractButton: React.FC<SubtractButtonProps> = ({ onSubtract }) => (
-  <InputAdornment position="start">
-    <StepButton onClick={onSubtract}>-</StepButton>
-  </InputAdornment>
+  <StepButton onClick={onSubtract}>-</StepButton>
 )
 SubtractButton.propTypes = {
   onSubtract: PropTypes.func
@@ -198,9 +194,12 @@ const TextField: React.FC<TextFieldProps> = ({
 
   const { inputComponent: legacyInputComponent, ...restInputProps } = (InputProps || {}) as any
 
+  const effectiveInputComponent = isNumeric ? NumberTextField : legacyInputComponent || undefined
+
   const inputSlotProps = {
     className: `${isStepper && !fullWidth ? classes.stepperFixedWidth : ''}`,
     ...restInputProps,
+    ...(effectiveInputComponent && { inputComponent: effectiveInputComponent }),
     startAdornment: internalStartAdornment,
     endAdornment: internalEndAdornment,
     style: InputProps?.style
@@ -223,13 +222,6 @@ const TextField: React.FC<TextFieldProps> = ({
     ...inputProps,
     className: `${classes.input} ${inputProps?.className ? inputProps.className : ''}`
   }
-
-  // slots.htmlInput replaces the native <input>; used for numeric format and legacy inputComponent
-  const inputSlots = isNumeric
-    ? { htmlInput: NumberTextField }
-    : legacyInputComponent
-      ? { htmlInput: legacyInputComponent }
-      : undefined
 
   const handleChange = useCallback(
     (
@@ -254,7 +246,6 @@ const TextField: React.FC<TextFieldProps> = ({
       disabled={disabled}
       variant={variant}
       {...rest}
-      slots={inputSlots}
       slotProps={{
         input: inputSlotProps,
         htmlInput: htmlInputSlotProps,

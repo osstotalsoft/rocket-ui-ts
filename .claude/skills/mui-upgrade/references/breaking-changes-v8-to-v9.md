@@ -31,7 +31,14 @@ These v8 props are **removed** in v9; all move under `slotProps`:
 
 **Severity:** High. The codemod handles ~70% of cases; the remainder is hand work for components that re-export these props publicly (see `decision-forks.md` Fork 1).
 
-**Known gotcha:** `InputProps.inputComponent` does **not** move to `slotProps.input.inputComponent` — `inputComponent` itself was deprecated. The replacement is the nested `slots.input` pattern. See Fork 2.
+**Known gotcha — third-party input wrappers (react-number-format, react-imask, etc.):**
+`InputProps.inputComponent = CustomWrapper` moves to `slotProps.input.inputComponent = CustomWrapper`.
+
+**Do NOT** use `slots.htmlInput = CustomWrapper` for this case. `slots.htmlInput` replaces the `<input>` element directly, which bypasses `InputBaseInput` (MUI's styled input component). Because `InputBaseInput` is never rendered, its Emotion CSS (the `.MuiInputBase-input` rule covering `font: inherit`, `padding: 4px 0 5px`, `height: 1.4375em`, etc.) is never injected into the DOM. The result is an unstyled or visually broken input that passes tests but looks wrong.
+
+`slotProps.input.inputComponent = CustomWrapper` preserves the old `inputComponent` code path: MUI renders `InputBaseInput` with `as={CustomWrapper}`, injecting its CSS while delegating the actual element to your wrapper. This is the documented MUI v9 pattern for all third-party input libraries.
+
+See Fork 2 for the decision prompt and phrasing.
 
 ## System props removed from Box/Typography/Grid/Stack
 

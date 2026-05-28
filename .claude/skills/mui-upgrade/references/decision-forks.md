@@ -22,13 +22,25 @@ Present these as choices, recommend A for greenfield libraries, B for libraries 
 
 ## Fork 2 — `inputComponent` swap (v9-specific)
 
-**When it applies:** v6 `InputProps.inputComponent={CustomInput}` for native input replacement (common with `react-number-format`, masked inputs).
+**When it applies:** v8 `InputProps.inputComponent={CustomInput}` for native input replacement (common with `react-number-format`, `react-imask`, Stripe Elements, and similar libraries).
 
-**Options:**
-- **A — `slotProps.input.slots.input` (nested slots).** Most idiomatic v9. One indirection, well-documented.
-- **B — Pass-through via slot component on the outer Input.** Cleaner for components that already swap the whole Input.
+**The correct migration — no fork needed for third-party wrappers:**
 
-Ask only if the component is non-trivial (custom forwardRef, prop forwarding). For simple swaps, default to A and tell the user.
+`InputProps.inputComponent={CustomInput}` → `slotProps.input.inputComponent={CustomInput}`
+
+That is all. Do **not** use `slots.htmlInput = CustomInput`.
+
+**Why this matters:** `slots.htmlInput` replaces the `<input>` slot directly on `InputBase`, bypassing `InputBaseInput` (MUI's internal styled `<input>` component). Because `InputBaseInput` is never rendered, its Emotion CSS rule (`.MuiInputBase-input { font: inherit; padding: 4px 0 5px; height: 1.4375em; … }`) is never injected into the DOM. The rendered `<input>` inherits browser defaults instead of MUI's reset — producing an input that compiles, runs, and passes tests, but looks visually wrong (wrong font, wrong height, wrong padding).
+
+`slotProps.input.inputComponent` uses the legacy `inputComponent` prop on `InputBase`, which causes MUI to render `InputBaseInput` with `as={CustomInput}`. The CSS IS injected, and `CustomInput` gets the right props. This is [documented](https://mui.com/material-ui/react-text-field/#integration-with-3rd-party-input-libraries) as the correct v9 pattern.
+
+**When to actually fork (ask the user):**
+- The project is a published library and the `TextFieldProps` type publicly re-exports `InputProps.inputComponent` under that name. In that case, see Fork 1 (public API contract decision).
+- The custom input component does NOT use `React.forwardRef`. In that case it can't hold a ref, and MUI will warn. Ask the user whether to add forwardRef or refactor.
+
+For most internal usage and non-library projects: apply the fix mechanically (`InputProps.inputComponent` → `slotProps.input.inputComponent`) without asking.
+
+**Double-wrapped InputAdornment check:** When migrating stepper or clearable inputs, check that `AddButton`/`SubtractButton` and similar helper components don't wrap themselves in `<InputAdornment>` if the parent `internalStartAdornment`/`internalEndAdornment` already wraps them. MUI v9's `InputAdornment` adds enough visual margin that the nesting is now noticeable. Remove the inner `<InputAdornment>` from the helper component and keep only the outer one.
 
 ## Fork 3 — Lab → Material relocations (v7-specific)
 
