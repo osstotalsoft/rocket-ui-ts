@@ -30,7 +30,6 @@ import {
   AutocompleteRenderOptionState,
   TextFieldProps
 } from '@mui/material'
-import { AutocompleteRenderGetTagProps } from '@mui/material'
 import throttle from 'lodash/throttle'
 
 /**
@@ -143,9 +142,9 @@ const DeprecatedAutocomplete: React.FC<DeprecatedAutocompleteProps<any, any, any
 
   const renderInput = useCallback(
     (params: any) => {
-      params.inputProps.className = `${params.inputProps.className} ${classes.input}`
-      if (inputSelectedColor) params.inputProps.style = { color: inputSelectedColor }
-      params.inputProps.readOnly = !isSearchable
+      const inputSlotProps = params.slotProps?.input || {}
+      const htmlInputSlotProps = params.slotProps?.htmlInput || {}
+      const inputLabelSlotProps = params.slotProps?.inputLabel || {}
 
       const stopPropagationProps = stopEventPropagation ? { onClick: stopPropagation, onFocus: stopPropagation } : {}
       const textFieldProps = {
@@ -162,11 +161,17 @@ const DeprecatedAutocomplete: React.FC<DeprecatedAutocompleteProps<any, any, any
         <TextField
           fullWidth
           {...params}
-          startAdornment={params.InputProps.startAdornment}
-          endAdornment={params.InputProps.endAdornment}
+          startAdornment={inputSlotProps.startAdornment}
+          endAdornment={inputSlotProps.endAdornment}
           {...textFieldProps}
-          InputProps={{ ...params.InputProps, margin: 'none', onClick: stopPropagation }}
-          InputLabelProps={{ ...params.InputLabelProps, margin: null }}
+          InputProps={{ ...inputSlotProps, margin: 'none', onClick: stopPropagation }}
+          InputLabelProps={{ ...inputLabelSlotProps, margin: null }}
+          inputProps={{
+            ...htmlInputSlotProps,
+            className: `${htmlInputSlotProps.className || ''} ${classes.input}`,
+            ...(inputSelectedColor && { style: { color: inputSelectedColor } }),
+            readOnly: !isSearchable
+          }}
         />
       )
     },
@@ -212,16 +217,19 @@ const DeprecatedAutocomplete: React.FC<DeprecatedAutocompleteProps<any, any, any
     [handleOptionLabel, createdLabel, withCheckboxes]
   )
 
-  const renderTags = useCallback(
-    (value: any, getTagProps: DeprecatedAutocompleteRenderGetTagProps) =>
-      value.map((option: any, index: number) => (
-        <Chip
-          key={index}
-          label={handleOptionLabel(option)}
-          {...getTagProps({ index })}
-          disabled={option?.isDisabled || disabled || isValueDisabled}
-        />
-      )),
+  const renderValue = useCallback(
+    (value: any, getItemProps: any) =>
+      value.map((option: any, index: number) => {
+        const { key, ...chipProps } = getItemProps({ index })
+        return (
+          <Chip
+            key={key}
+            label={handleOptionLabel(option)}
+            {...chipProps}
+            disabled={option?.isDisabled || disabled || isValueDisabled}
+          />
+        )
+      }),
     [handleOptionLabel, disabled, isValueDisabled]
   )
 
@@ -285,15 +293,32 @@ const DeprecatedAutocomplete: React.FC<DeprecatedAutocompleteProps<any, any, any
   )
 
   useEffect(() => {
-    // when simpleValue is false, loadOptions has already been called at this point by handleInputChange
-    if (!simpleValue || !loadOptions) return
-    if (is(Array, defaultOptions) && !isEmpty(defaultOptions)) return
+    if (!loadOptions) return
     if (defaultOptions === false) return
 
     const hasInitialValue = is(Array, value) ? !isEmpty(value) : value
-    // when simpleValue is true, we need to previously load a set of options in order to match the value with one of them
-    if (defaultOptions === true || hasInitialValue) {
-      handleLoadOptions()
+
+    if (simpleValue) {
+      if (is(Array, defaultOptions) && !isEmpty(defaultOptions)) {
+        // defaultOptions pre-populates asyncOptions; call loadOptions with resolved label to refresh/paginate
+        if (hasInitialValue) {
+          const resolvedValue = getSimpleValue(defaultOptions, value, valueKey, false)
+          const initialLabel = resolvedValue ? handleOptionLabel(resolvedValue) : undefined
+          handleLoadOptions(initialLabel)
+        }
+        return
+      }
+      // when simpleValue is true, we need to load options first to resolve the primitive value to an option
+      if (defaultOptions === true || hasInitialValue) {
+        handleLoadOptions()
+      }
+    } else {
+      // In MUI v9, onInputChange is no longer called at mount when value is set (unlike v6).
+      // When defaultOptions is truthy, call loadOptions with the initial value's label.
+      if (defaultOptions === true || (is(Array, defaultOptions) && !isEmpty(defaultOptions))) {
+        const initialLabel = hasInitialValue ? handleOptionLabel(value) : undefined
+        handleLoadOptions(initialLabel)
+      }
     }
     // this effect should run only at component mount
   }, [])
@@ -363,7 +388,7 @@ const DeprecatedAutocomplete: React.FC<DeprecatedAutocompleteProps<any, any, any
       onInputChange={throttledOnInputChange}
       disableClearable={!isClearable}
       renderInput={renderInput}
-      renderTags={renderTags}
+      renderValue={isMultiSelection ? renderValue : undefined}
       ListboxProps={listBoxProps}
       {...other}
       {...(renderGroup ? { renderGroup } : { renderOption })}

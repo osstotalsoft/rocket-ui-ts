@@ -3,7 +3,7 @@
 
 import React, { useState } from 'react'
 import { TextField } from 'components'
-import Grid from '@mui/material/Grid2'
+import Grid from '@mui/material/Grid'
 
 const NumericPreview = () => {
   const [numberValue, setNumberValue] = useState()
@@ -18,7 +18,7 @@ const NumericPreview = () => {
   }
 
   return (
-    <Grid container spacing={4} justifyItems={'flex-start'}>
+    <Grid container spacing={4} sx={{ justifyItems: 'flex-start' }}>
       <Grid size={3}>
         <TextField
           isNumeric

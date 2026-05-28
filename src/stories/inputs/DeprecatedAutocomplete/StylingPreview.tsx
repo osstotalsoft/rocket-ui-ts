@@ -2,7 +2,7 @@
 // This source code is licensed under the MIT license.
 
 import React, { useState } from 'react'
-import Grid from '@mui/material/Grid2'
+import Grid from '@mui/material/Grid'
 import ColumnHeader from './components/ColumnHeader'
 import { DeprecatedAutocomplete, Typography } from 'components'
 

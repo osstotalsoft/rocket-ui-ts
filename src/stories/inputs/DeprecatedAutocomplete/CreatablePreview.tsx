@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Grid from '@mui/material/Grid2'
+import Grid from '@mui/material/Grid'
 import ControlledCheckbox from './components/ControlledCheckBox'
 import FormattedJson from './components/FormattedJson'
 import ColumnHeader from './components/ColumnHeader'
@@ -44,7 +44,7 @@ export const CreatablePreview = () => {
             options={options}
           />
         </Grid>
-        <Grid container alignContent={'flex-start'} size={3}>
+        <Grid container size={3} sx={{ alignContent: 'flex-start' }}>
           <ControlledCheckbox value={simpleValueBasic} onChange={setSimpleValueBasic} label={'simpleValue'} />
         </Grid>
         <Grid size={3}>

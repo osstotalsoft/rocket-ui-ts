@@ -1,5 +1,5 @@
 import React from 'react'
-import Grid from '@mui/material/Grid2'
+import Grid from '@mui/material/Grid'
 import { IconButton, IconButtonProps } from 'components'
 
 const sizeProps = { size: 'small', fontSize: 'medium' } satisfies IconButtonProps

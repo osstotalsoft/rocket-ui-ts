@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { fireEvent, screen, waitFor } from '@testing-library/react'
 import { render, userClick } from 'testingUtils'
 import DateTime from './DateTime'
@@ -82,8 +82,12 @@ describe('Date Picker Formats', () => {
 
 describe('Date Time buttons work', () => {
   it('clears the value', async () => {
-    // arrange
-    render(<DateTime value={value} isClearable={true} />)
+    // arrange — needs controlled state because MUI X v9 DatePicker requires onChange to update the displayed value
+    const TestWrapper = () => {
+      const [val, setVal] = useState<Date | null>(value)
+      return <DateTime value={val} isClearable={true} onChange={v => setVal(v as Date | null)} />
+    }
+    render(<TestWrapper />)
 
     // act
     await waitFor(() => fireEvent.click(screen.getByTitle('Clear')))

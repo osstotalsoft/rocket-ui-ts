@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
-import Grid from '@mui/material/Grid2'
+import Grid from '@mui/material/Grid'
 import TagsInput from 'components/inputs/Tags/TagsInput'
 import DisplayTags from 'components/inputs/Tags/DisplayTags'
 
 const DefaultPreview = (args: any) => {
   const [inputValue, setInputValue] = useState(['test'])
   return (
-    <Grid container spacing={4} justifyItems={'flex-start'}>
+    <Grid container spacing={4} sx={{ justifyItems: 'flex-start' }}>
       <Grid>
         <TagsInput
           value={inputValue}

@@ -115,7 +115,15 @@ If the user wants to pause, the leaf-first order means you're always in a consis
 3. **Update `browserslist`** in `package.json` if the new MUI major requires it (v9 dropped support for Chrome <117, Safari <17, etc.).
 4. **Update `@mui/icons-material`** to the matching major (it tracks core).
 5. **Sweep deprecated patterns** that aren't tied to a specific component — e.g., `createMuiTheme` → `createTheme`, deep imports, `@mui/lab` components that moved to `@mui/material`.
-6. **Produce a summary diff** for the user: file count changed, lines added/removed, decision forks resolved, anything intentionally left.
+6. **Verify the dev server starts without compilation errors.** Read the `scripts` field of `package.json` and identify the command that starts the local dev/preview server. Common keys in priority order: `storybook`, `start`, `dev`, `serve`. Run the command in the background with a generous timeout (at least 120 seconds for projects with many components) and watch its output for one of:
+   - A "compiled successfully" / "ready" / "Storybook started" message → success.
+   - Any `ERROR in` / `Module not found` / `Cannot resolve` line → compilation failure; fix the root cause before proceeding.
+
+   The goal is to catch issues that are invisible to the TypeScript compiler and test suite but break the bundler (e.g., trailing-slash directory imports blocked by a package's `exports` field, missing peer dependencies, SWC/Babel transform failures on new syntax). Kill the process once the outcome (success or failure) is clear.
+
+   If `package.json` has no recognizable dev-server script, note that in the summary and ask the user to start the project manually and confirm it opens without errors.
+
+7. **Produce a summary diff** for the user: file count changed, lines added/removed, decision forks resolved, anything intentionally left.
 
 ## Material UI MCP requirement
 

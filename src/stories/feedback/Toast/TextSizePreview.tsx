@@ -3,13 +3,13 @@
 
 import React from 'react'
 import { Button, ToastContainer, useToast } from 'components'
-import Grid from '@mui/material/Grid2'
+import Grid from '@mui/material/Grid'
 
 const TextSizePreview = (args: any) => {
   const addToast = useToast()
 
   return (
-    <Grid container spacing={2} justifyItems={'flex-start'}>
+    <Grid container spacing={2} sx={{ justifyItems: 'flex-start' }}>
       <ToastContainer {...args} />
       <Button
         size={'small'}

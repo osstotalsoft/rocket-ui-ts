@@ -1,4 +1,4 @@
-import { FilledInputProps, InputProps, TextFieldProps as MuiTextFieldProps, OutlinedInputProps } from '@mui/material'
+import { FilledInputProps, InputLabelProps as MuiInputLabelProps, InputProps, TextFieldProps as MuiTextFieldProps, OutlinedInputProps } from '@mui/material'
 import { InputBaseComponentProps } from '@mui/material'
 import { NumericFormatProps } from 'react-number-format'
 
@@ -63,7 +63,7 @@ export type NumberTextFieldProps = InputBaseComponentProps &
     thousandSeparator?: string | boolean
   }
 
-export type TextFieldProps = Omit<MuiTextFieldProps, 'onChange' | 'variant' | 'InputProps'> &
+export type TextFieldProps = Omit<MuiTextFieldProps, 'onChange' | 'variant'> &
   NumberTextFieldProps & {
     /**
      * Callback fired when the value is changed.
@@ -77,12 +77,20 @@ export type TextFieldProps = Omit<MuiTextFieldProps, 'onChange' | 'variant' | 'I
      */
     isNumeric?: boolean
     /**
-     * Props applied to the Input element.
+     * Props applied to the Input element (legacy API — translated internally to slotProps.input).
      */
     InputProps?:
       | Omit<Partial<FilledInputProps>, 'startAdornment' | 'endAdornment'>
       | Omit<Partial<OutlinedInputProps>, 'startAdornment' | 'endAdornment'>
       | Omit<Partial<InputProps>, 'startAdornment' | 'endAdornment'>
+    /**
+     * Attributes applied to the input element (legacy API — translated internally to slotProps.htmlInput).
+     */
+    inputProps?: InputBaseComponentProps
+    /**
+     * Props applied to the InputLabel element (legacy API — translated internally to slotProps.inputLabel).
+     */
+    InputLabelProps?: Partial<MuiInputLabelProps>
     /**
      * Start adornment of component.
      */

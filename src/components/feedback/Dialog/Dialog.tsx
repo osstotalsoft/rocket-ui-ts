@@ -84,7 +84,7 @@ const Dialog: React.FC<DialogProps> = ({
       open={open}
       {...rest}
     >
-      <Stack alignItems="center" direction="row" p="16px 24px">
+      <Stack direction="row" sx={{ alignItems: 'center', p: '16px 24px' }}>
         <DialogTitle id={dialogTitleId} {...titleProps}>
           {title}
         </DialogTitle>

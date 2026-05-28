@@ -3,7 +3,7 @@
 
 import React, { useState } from 'react'
 import { TextField } from 'components'
-import Grid from '@mui/material/Grid2'
+import Grid from '@mui/material/Grid'
 
 const StepperPreview = () => {
   const [stepperValue, setStepperValue] = useState('')
@@ -21,7 +21,7 @@ const StepperPreview = () => {
   }
 
   return (
-    <Grid container spacing={4} justifyItems={'flex-start'}>
+    <Grid container spacing={4} sx={{ justifyItems: 'flex-start' }}>
       <Grid size={4}>
         <TextField
           label="Basic stepper"

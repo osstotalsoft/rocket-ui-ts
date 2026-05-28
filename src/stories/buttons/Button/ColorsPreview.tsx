@@ -2,11 +2,11 @@
 // This source code is licensed under the MIT license.
 
 import React from 'react'
-import Grid from '@mui/material/Grid2'
+import Grid from '@mui/material/Grid'
 import { Button } from '../../../components'
 
 export const ColorsPreview: React.FunctionComponent = () => (
-  <Grid container spacing={3} justifyContent="center">
+  <Grid container spacing={3} sx={{ justifyContent: 'center' }}>
     <Grid container rowSpacing={2} columnSpacing={4} size={12}>
       <Grid size={{ xs: 3, md: 2 }}>
         <Button color="primary">Primary</Button>

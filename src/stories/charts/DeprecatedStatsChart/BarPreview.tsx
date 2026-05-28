@@ -4,7 +4,7 @@
 import React from 'react'
 import { Button, DeprecatedStatsChart } from 'components'
 import AccessTime from '@mui/icons-material/AccessTime'
-import Grid from '@mui/material/Grid2'
+import Grid from '@mui/material/Grid'
 import { statsChartData, statsChartOptions } from './_mocks'
 
 const BarPreview = () => {

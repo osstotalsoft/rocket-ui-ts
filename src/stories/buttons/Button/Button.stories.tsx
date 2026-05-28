@@ -28,7 +28,7 @@ export const Button: Story = {
 export const Disabled: Story = {
   args: { children: 'My button', disabled: true, tooltip: 'I have a tooltip' },
   render: args => (
-    <Box columnGap="15px" display="flex">
+    <Box sx={{ columnGap: '15px', display: 'flex' }}>
       <ButtonComponent {...args} gradient />
       <ButtonComponent {...args} variant="outlined" />
       <ButtonComponent {...args} variant="text" />
@@ -46,7 +46,7 @@ export const Disabled: Story = {
  */
 export const Variants: Story = {
   render: args => (
-    <Box columnGap="15px" display="flex">
+    <Box sx={{ columnGap: '15px', display: 'flex' }}>
       <ButtonComponent {...args} variant="contained" children="Variant contained" />
       <ButtonComponent {...args} variant="outlined" children="Variant outlined" />
       <ButtonComponent {...args} variant="text" children="Variant text" />

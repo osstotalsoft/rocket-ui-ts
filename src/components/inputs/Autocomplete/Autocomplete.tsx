@@ -6,7 +6,7 @@ import {
   AutocompleteCloseReason,
   AutocompleteInputChangeReason,
   AutocompleteOwnerState,
-  AutocompleteRenderGetTagProps,
+  AutocompleteRenderValueGetItemProps,
   AutocompleteRenderInputParams,
   AutocompleteRenderOptionState,
   AutocompleteValue,
@@ -333,10 +333,10 @@ const Autocomplete: React.FC<
     /**
      * Handle disabled chips.
      */
-    const handleRenderTags = useCallback(
+    const handleRenderValue = useCallback(
       (
-        value: unknown[],
-        getTagProps: AutocompleteRenderGetTagProps,
+        value: {} | unknown[],
+        getItemProps: AutocompleteRenderValueGetItemProps<boolean | undefined>,
         ownerState: AutocompleteOwnerState<
           unknown,
           boolean | undefined,
@@ -345,19 +345,19 @@ const Autocomplete: React.FC<
           React.ElementType
         >
       ) => {
-        return value.map((option, index) => {
+        return (Array.isArray(value) ? value : []).map((option, index) => {
           const convertedOption = convertValueToOption(
             option,
             allOptions.current,
             extractFirstValue([getValue, internalValue, identity])
           )
-          const { key, ...tagProps } = getTagProps({ index })
+          const { key, ...itemProps } = (getItemProps as (args: { index: number }) => any)({ index })
           const isDisabled: boolean = has('isDisabled', convertedOption) && Boolean(convertedOption.isDisabled)
           return (
             <Chip
               key={key}
               label={handleGetOptionLabel(convertedOption, true)}
-              {...tagProps}
+              {...itemProps}
               disabled={isDisabled || ownerState.disabled}
             />
           )
@@ -379,7 +379,7 @@ const Autocomplete: React.FC<
           helperText={helperText}
           required={required}
           {...inputTextFieldProps}
-          slotProps={{ htmlInput: { ...params.inputProps, readOnly: !isSearchable } }}
+          slotProps={{ ...params.slotProps, htmlInput: { ...params.slotProps.htmlInput, readOnly: !isSearchable } }}
         />
       ),
       [error, helperText, inputTextFieldProps, isSearchable, label, placeholder, required]
@@ -408,7 +408,7 @@ const Autocomplete: React.FC<
         onOpen={handleOpen}
         onClose={handleClose}
         onInputChange={handleInputChange}
-        renderTags={handleRenderTags}
+        renderValue={isMultiSelection ? handleRenderValue : undefined}
         isOptionEqualToValue={handleOptionEqualToValue}
         {...rest}
       />

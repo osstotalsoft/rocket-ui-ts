@@ -1,4 +1,4 @@
-import Grid from '@mui/material/Grid2'
+import Grid from '@mui/material/Grid'
 import { Button, Dialog, TextField } from 'components'
 import React, { useCallback, useState } from 'react'
 
@@ -18,7 +18,7 @@ const ActionsPreview = ({ button, ...props }: any) => {
         disableBackdropClick={true}
         disableEscapeKeyDown={true}
         content={
-          <Grid container spacing={2} justifyContent={'center'} sx={{ pt: 3 }}>
+          <Grid container spacing={2} sx={{ justifyContent: 'center', pt: 3 }}>
             <Grid size={10}>
               <TextField label="username" fullWidth />
             </Grid>

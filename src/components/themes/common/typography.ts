@@ -1,5 +1,5 @@
 import { PaletteOptions } from '@mui/material'
-import { TypographyOptions } from '@mui/material/styles/createTypography'
+import { TypographyVariantsOptions as TypographyOptions } from '@mui/material/styles'
 
 export const defaultFont = {
   fontFamily: 'Source Sans Pro',

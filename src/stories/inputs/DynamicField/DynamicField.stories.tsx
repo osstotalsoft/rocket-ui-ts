@@ -299,7 +299,7 @@ export const Custom: Story = {
   },
   args: {
     controlType: ControlType.Custom,
-    CustomComponent: CustomComponent as (props: object) => JSX.Element,
+    CustomComponent: CustomComponent as (props: object) => React.ReactElement,
     customComponentProps: {
       id: 'Rating',
       label: 'Dynamic (Custom):'

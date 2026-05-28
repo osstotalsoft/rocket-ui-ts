@@ -57,7 +57,7 @@ export const Colors: Story = {
  */
 export const Variants: Story = {
   render: args => (
-    <Box columnGap="15px" display="flex">
+    <Box sx={{ columnGap: '15px', display: 'flex' }}>
       <IconButtonComponent {...args} variant="contained" tooltip="Variant contained">
         <RocketIcon />
       </IconButtonComponent>

@@ -196,9 +196,11 @@ const TextField: React.FC<TextFieldProps> = ({
     )
   }, [disabled, endAdornment, handleAdd, handleClearInput, isClearable, isStepper])
 
-  const muiInputProps = {
+  const { inputComponent: legacyInputComponent, ...restInputProps } = (InputProps || {}) as any
+
+  const inputSlotProps = {
     className: `${isStepper && !fullWidth ? classes.stepperFixedWidth : ''}`,
-    ...InputProps,
+    ...restInputProps,
     startAdornment: internalStartAdornment,
     endAdornment: internalEndAdornment,
     style: InputProps?.style
@@ -216,20 +218,18 @@ const TextField: React.FC<TextFieldProps> = ({
     maxValue
   }
 
-  // props applied to the Input element
-  const customMuiInputProps = isNumeric
-    ? {
-        ...muiInputProps,
-        inputComponent: NumberTextField
-      }
-    : muiInputProps
-
-  // attributes applied to the input element
-  const customReactInputProps = {
+  const htmlInputSlotProps = {
     ...(isNumeric && numericProps),
     ...inputProps,
     className: `${classes.input} ${inputProps?.className ? inputProps.className : ''}`
   }
+
+  // slots.htmlInput replaces the native <input>; used for numeric format and legacy inputComponent
+  const inputSlots = isNumeric
+    ? { htmlInput: NumberTextField }
+    : legacyInputComponent
+      ? { htmlInput: legacyInputComponent }
+      : undefined
 
   const handleChange = useCallback(
     (
@@ -254,11 +254,11 @@ const TextField: React.FC<TextFieldProps> = ({
       disabled={disabled}
       variant={variant}
       {...rest}
-      InputProps={customMuiInputProps}
-      inputProps={customReactInputProps}
-      InputLabelProps={{
-        className: classes.label,
-        ...InputLabelProps
+      slots={inputSlots}
+      slotProps={{
+        input: inputSlotProps,
+        htmlInput: htmlInputSlotProps,
+        inputLabel: { className: classes.label, ...InputLabelProps }
       }}
     />
   )

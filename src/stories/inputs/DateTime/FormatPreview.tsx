@@ -2,7 +2,7 @@
 // This source code is licensed under the MIT license.
 
 import React, { useCallback, useState } from 'react'
-import { Grid2 as Grid, ToggleButton, ToggleButtonGroup } from '@mui/material'
+import { Grid, ToggleButton, ToggleButtonGroup } from '@mui/material'
 import { DateTime, DateTimeProps } from 'components'
 
 const formatMap = ['fr', 'en-US', 'ro', 'de']
@@ -15,7 +15,7 @@ const FormatPreview = () => {
   }, [])
 
   return (
-    <Grid container spacing={4} justifyItems={'flex-start'}>
+    <Grid container spacing={4} sx={{ justifyItems: 'flex-start' }}>
       <Grid size={12}>
         <ToggleButtonGroup value={format} exclusive sx={{ mb: 2, display: 'block' }}>
           {formatMap.map(localeItem => (
@@ -26,13 +26,13 @@ const FormatPreview = () => {
         </ToggleButtonGroup>
       </Grid>
       <Grid size={4}>
-        <DateTime showPicker="date" label="Date Picker" localeFormat={format} />
+        <DateTime showPicker="date" label="Date Picker" localeFormat={format} value={undefined as unknown as Date} />
       </Grid>
       <Grid size={4}>
-        <DateTime showPicker="dateTime" label="Date Time Picker" localeFormat={format} />
+        <DateTime showPicker="dateTime" label="Date Time Picker" localeFormat={format} value={undefined as unknown as Date} />
       </Grid>
       <Grid size={4}>
-        <DateTime showPicker="time" label="Time Picker" localeFormat={format} />
+        <DateTime showPicker="time" label="Time Picker" localeFormat={format} value={undefined as unknown as Date} />
       </Grid>
     </Grid>
   )
