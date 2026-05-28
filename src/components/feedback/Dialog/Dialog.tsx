@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, useCallback, useMemo } from 'react'
+import React, { MouseEventHandler, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import * as R from 'ramda'
 import MuiDialog from '@mui/material/Dialog'
@@ -6,9 +6,8 @@ import DialogActions from '@mui/material/DialogActions'
 import DialogContentText from '@mui/material/DialogContentText'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import { useTheme } from '@mui/material/styles'
-import { SystemStyleObject } from '@mui/system'
 import CloseIcon from '@mui/icons-material/Close'
-import { TransparentBackdrop, DialogContent, DialogTitle, justifyRight } from './DialogStyles'
+import { TransparentBackdrop, DialogContent, DialogTitle } from './DialogStyles'
 import { Button, IconButton } from '../../index'
 import { DialogCloseReason, DialogProps } from './types'
 import { Stack } from '@mui/material'
@@ -69,11 +68,6 @@ const Dialog: React.FC<DialogProps> = ({
       </Button>
     </>
   )
-  const closeButtonSx = useMemo(
-    () => ({ ...justifyRight, ...closeButtonProps?.sx }) as SystemStyleObject,
-    [closeButtonProps?.sx]
-  )
-
   return (
     <MuiDialog
       onClose={handleClose}
@@ -84,7 +78,7 @@ const Dialog: React.FC<DialogProps> = ({
       open={open}
       {...rest}
     >
-      <Stack alignItems="center" direction="row" p="16px 24px">
+      <Stack alignItems="center" direction="row" justifyContent="space-between" p="16px 24px">
         <DialogTitle id={dialogTitleId} {...titleProps}>
           {title}
         </DialogTitle>
@@ -96,7 +90,6 @@ const Dialog: React.FC<DialogProps> = ({
             aria-label="Close"
             onClick={handleClose as MouseEventHandler}
             {...closeButtonProps}
-            sx={closeButtonSx}
           >
             <CloseIcon />
           </IconButton>
