@@ -379,7 +379,11 @@ const Autocomplete: React.FC<
           helperText={helperText}
           required={required}
           {...inputTextFieldProps}
-          slotProps={{ ...params.slotProps, htmlInput: { ...params.slotProps.htmlInput, readOnly: !isSearchable } }}
+          slotProps={{
+            ...inputTextFieldProps?.slotProps,
+            ...params.slotProps,
+            htmlInput: { ...inputTextFieldProps?.slotProps?.htmlInput, ...params.slotProps?.htmlInput, readOnly: !isSearchable }
+          }}
         />
       ),
       [error, helperText, inputTextFieldProps, isSearchable, label, placeholder, required]
