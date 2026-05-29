@@ -28,7 +28,7 @@ const Chart: React.FC<ChartProps> = ({ type, ...props }) => {
     case 'scatter':
       return <ScatterChart data-testid="scatter-chart" {...(props as ScatterChartProps)} />
     case 'gauge':
-      return <Gauge data-testid="gauge-chart" {...(props as GaugeContainerProps)} />
+      return <Gauge data-testid="gauge-chart" {...(props as Omit<GaugeContainerProps, 'ref'>)} />
     default:
       return <p>Unsupported chart type</p>
   }

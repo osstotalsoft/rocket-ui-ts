@@ -2,7 +2,7 @@
 // This source code is licensed under the MIT license.
 
 import React from 'react'
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-webpack5'
 import PaginationComponent from '../../../components/navigation/Pagination'
 import WithFirstAndLastPreview from './WithFirstAndLastPreview'
 import DefaultPreview from './DefaultPreview'

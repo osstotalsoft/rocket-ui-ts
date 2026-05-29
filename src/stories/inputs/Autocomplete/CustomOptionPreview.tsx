@@ -4,7 +4,7 @@
 import React, { useState } from 'react'
 import { Autocomplete, AutocompleteProps, Typography } from 'components'
 import Box from '@mui/material/Box'
-import { Grid2 as Grid } from '@mui/material'
+import { Grid } from '@mui/material'
 import CheckIcon from '@mui/icons-material/Check'
 
 type OptionType = {
@@ -41,7 +41,7 @@ export const CustomOptionPreview = (props: any) => {
             const option = unknownOption as OptionType
             return (
               <li {...props}>
-                <Box component={option.icon} width={25} height={25} marginRight="15px" />
+                <Box component={option.icon} sx={{ width: 25, height: 25, marginRight: '15px' }}/>
                 <Box>
                   <Typography variant="body1">{option.name}</Typography>
                   <Typography variant="body2" color="error">
@@ -64,7 +64,7 @@ export const CustomOptionPreview = (props: any) => {
             const option = unknownOption as OptionType
             return (
               <li {...props}>
-                <Box component={CheckIcon} width={25} height={25} marginRight="15px" />
+                <Box component={CheckIcon} sx={{ width: 25, height: 25, marginRight: '15px' }}/>
                 <Box>
                   <Typography variant="body1">{option.name}</Typography>
                   <Typography variant="body2" color="error">

@@ -1,5 +1,5 @@
 import React from 'react'
-import Grid from '@mui/material/Grid2'
+import Grid from '@mui/material/Grid'
 import { NavPills } from 'components'
 import { tabs } from './_options'
 import SyntaxHighlighter from 'react-syntax-highlighter'

@@ -2,14 +2,14 @@
 // This source code is licensed under the MIT license.
 
 import React from 'react'
-import Grid from '@mui/material/Grid2'
+import Grid from '@mui/material/Grid'
 import { Button, useToast } from 'components'
 
 const PositionsPreview = (args: any) => {
   const addToast = useToast()
 
   return (
-    <Grid container spacing={2} justifyItems={'flex-start'}>
+    <Grid container spacing={2} sx={{ justifyItems: 'flex-start' }}>
       <Grid>
         <Button
           size={'small'}

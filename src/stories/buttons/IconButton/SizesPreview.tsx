@@ -1,5 +1,5 @@
 import React from 'react'
-import Grid from '@mui/material/Grid2'
+import Grid from '@mui/material/Grid'
 import RocketIcon from '@mui/icons-material/Rocket'
 import { IconButton } from 'components'
 

@@ -2,7 +2,7 @@
 // This source code is licensed under the MIT license.
 
 import React, { useState } from 'react'
-import { Grid2 as Grid, Stack } from '@mui/material'
+import { Grid, Stack } from '@mui/material'
 import { DynamicField, Typography, ControlType } from 'components'
 import LinkTo from '@storybook/addon-links/react'
 import { options } from '../Autocomplete/_mocks'
@@ -21,7 +21,7 @@ const ControlPreview = ({ controlType, ...rest }: ControlPreviewProps) => {
   const width = useContainerSizing()
 
   return (
-    <Grid container alignItems={'center'} spacing={2} minWidth={width}>
+    <Grid container spacing={2} sx={{ alignItems: 'center', minWidth: width }}>
       <Grid size={{ xs: 12, sm: 6 }}>
         <DynamicField
           controlType={controlType}
@@ -35,8 +35,8 @@ const ControlPreview = ({ controlType, ...rest }: ControlPreviewProps) => {
       </Grid>
       <Grid size={{ xs: 12, sm: 6 }}>
         {currentControlData.props.length > 0 && (
-          <Stack gap={2}>
-            <Typography fontWeight={700}>
+          <Stack sx={{ gap: 2 }}>
+            <Typography sx={{ fontWeight: 700 }}>
               Options
               {currentControlData.link && ' - for more, see '}
               {currentControlData.link && <InfoLink link={currentControlData.link} />}:

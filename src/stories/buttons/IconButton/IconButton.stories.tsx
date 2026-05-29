@@ -2,7 +2,7 @@
 // This source code is licensed under the MIT license.
 
 import React from 'react'
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-webpack5'
 import IconButtonComponent from '../../../components/buttons/IconButton'
 import { ColorsPreview } from './ColorsPreview'
 import { LoadingPreview } from './LoadingPreview'
@@ -57,7 +57,7 @@ export const Colors: Story = {
  */
 export const Variants: Story = {
   render: args => (
-    <Box columnGap="15px" display="flex">
+    <Box sx={{ columnGap: '15px', display: 'flex' }}>
       <IconButtonComponent {...args} variant="contained" tooltip="Variant contained">
         <RocketIcon />
       </IconButtonComponent>

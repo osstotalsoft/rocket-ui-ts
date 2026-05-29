@@ -1,5 +1,5 @@
 import React from 'react'
-import Grid from '@mui/material/Grid2'
+import Grid from '@mui/material/Grid'
 import TagsInput from 'components/inputs/Tags/TagsInput'
 import DisplayTags from 'components/inputs/Tags/DisplayTags'
 import Typography from 'components/dataDisplay/Typography/TypographyStyles'

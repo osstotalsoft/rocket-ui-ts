@@ -2,7 +2,7 @@
 // This source code is licensed under the MIT license.
 
 import React from 'react'
-import Grid from '@mui/material/Grid2'
+import Grid from '@mui/material/Grid'
 import { ExpandingText, Typography } from 'components'
 
 const text =
@@ -26,7 +26,7 @@ export const DisplayPreview: React.FunctionComponent = () => (
       <Typography variant="body2" emphasis="bold">
         display: flex; justify-content: flex-end
       </Typography>
-      <ExpandingText text={text} display="flex" justifyContent="flex-end" minLength={300} />
+      <ExpandingText text={text} display="flex" sx={{ justifyContent: 'flex-end' }} minLength={300} />
     </Grid>
   </Grid>
 )

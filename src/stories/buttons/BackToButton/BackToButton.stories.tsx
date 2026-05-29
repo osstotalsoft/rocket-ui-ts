@@ -2,7 +2,7 @@
 // This source code is licensed under the MIT license.
 
 import React from 'react'
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-webpack5'
 import { BackToButton as BackToButtonComponent } from 'components'
 import { Box } from '@mui/material'
 import { BrowserRouter } from 'react-router'
@@ -52,7 +52,7 @@ export const Sizes: Story = {
     }
   },
   render: () => (
-    <Box columnGap="15px" display="flex">
+    <Box sx={{ columnGap: '15px', display: 'flex' }}>
       <BrowserRouter>
         <BackToButtonComponent size="small" tooltip="small" path={-1} />
         <BackToButtonComponent size="medium" tooltip="medium (default)" path={-1} />
@@ -78,7 +78,7 @@ export const IconProps: Story = {
     }
   },
   render: () => (
-    <Box columnGap="15px" display="flex">
+    <Box sx={{ columnGap: '15px', display: 'flex' }}>
       <BrowserRouter>
         <BackToButtonComponent tooltip="small (default)" path={-1} />
         <BackToButtonComponent tooltip="medium" iconProps={{ fontSize: 'medium' }} path={-1} />

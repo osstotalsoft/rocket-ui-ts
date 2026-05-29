@@ -2,7 +2,7 @@
 // This source code is licensed under the MIT license.
 
 import React from 'react'
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-webpack5'
 import { Autocomplete as AutocompleteComponent, Typography } from 'components'
 import { CreatablePreview } from './CreatablePreview'
 import { DefaultPreview } from './DefaultPreview'
@@ -452,11 +452,11 @@ export const MixedValue: Story = {
     const values = [options[0].id, options[1]]
     return (
       <Stack spacing={2}>
-        <Stack spacing={2} direction="row" alignItems="flex-end">
+        <Stack spacing={2} direction="row" sx={{ alignItems: 'flex-end' }}>
           <AutocompleteComponent label="Autocomplete" value={value} options={options} />
           <Typography variant={'body1'}>{`value={${value}}`}</Typography>
         </Stack>
-        <Stack spacing={2} direction="row" alignItems="flex-end">
+        <Stack spacing={2} direction="row" sx={{ alignItems: 'flex-end' }}>
           <AutocompleteComponent label="Multiple Selection" value={values} options={options} isMultiSelection />
           <Typography variant={'body1'}>{`value={${JSON.stringify(values)}}`}</Typography>
         </Stack>

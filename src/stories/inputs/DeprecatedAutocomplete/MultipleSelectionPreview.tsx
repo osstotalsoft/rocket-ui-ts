@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Grid from '@mui/material/Grid2'
+import Grid from '@mui/material/Grid'
 import ControlledCheckbox from './components/ControlledCheckBox'
 import FormattedJson from './components/FormattedJson'
 import ColumnHeader from './components/ColumnHeader'
@@ -50,13 +50,13 @@ export const MultipleSelectionPreview = () => {
             disabled={disabledBasic}
           />
         </Grid>
-        <Grid container alignContent={'flex-start'} size={3}>
+        <Grid container size={3} sx={{ alignContent: 'flex-start' }}>
           <ControlledCheckbox value={creatableBasic} onChange={setCreatableBasic} label={'creatable'} />
           <ControlledCheckbox value={simpleValueBasic} onChange={setSimpleValueBasic} label={'simpleValue'} />
           <ControlledCheckbox value={disabledBasic} onChange={setDisabledBasic} label={'disabled'} />
         </Grid>
         <Grid size={3}>
-          <FormattedJson>{basicValue}</FormattedJson>
+          <FormattedJson>{basicValue as React.ReactNode}</FormattedJson>
         </Grid>
       </Grid>
       <Grid container spacing={4} size={12}>
@@ -74,7 +74,7 @@ export const MultipleSelectionPreview = () => {
           <ControlledCheckbox value={creatablePrimitive} onChange={setCreatablePrimitive} label={'creatable'} />
         </Grid>
         <Grid size={3}>
-          <FormattedJson>{primitiveValue}</FormattedJson>
+          <FormattedJson>{primitiveValue as React.ReactNode}</FormattedJson>
         </Grid>
       </Grid>
       <Grid container spacing={4} size={12}>
@@ -96,7 +96,7 @@ export const MultipleSelectionPreview = () => {
           <ControlledCheckbox value={simpleValueNumeric} onChange={setSimpleValueNumeric} label={'simpleValue'} />
         </Grid>
         <Grid size={3}>
-          <FormattedJson>{numericValue}</FormattedJson>
+          <FormattedJson>{numericValue as React.ReactNode}</FormattedJson>
         </Grid>
       </Grid>
     </Grid>

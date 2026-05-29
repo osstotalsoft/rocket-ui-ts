@@ -1,7 +1,7 @@
 import { render, fireEvent, renderHook, RenderOptions, RenderHookOptions } from '@testing-library/react'
 import TestingWrapper from './TestingWrapper'
 
-const customRender = (ui: JSX.Element, options?: RenderOptions<any, HTMLElement, HTMLElement> | undefined) =>
+const customRender = (ui: React.ReactElement, options?: RenderOptions<any, HTMLElement, HTMLElement> | undefined) =>
   render(ui, { wrapper: TestingWrapper, ...options })
 const customRenderHook = (
   hook: (initialProps: unknown) => unknown,
@@ -12,7 +12,7 @@ const customRenderHook = (
 const userClick = (element: any) => {
   fireEvent.mouseDown(element)
   fireEvent.mouseUp(element)
-  element.click()
+  fireEvent.click(element)
 }
 
 export * from '@testing-library/react'

@@ -7,7 +7,7 @@ import { UploadButton } from 'components'
 
 export const CustomIconsPreview = () => {
   return (
-    <Box gap="15px" display="flex">
+    <Box sx={{ gap: '15px', display: 'flex' }}>
       <UploadButton tooltip="Backup (default)" />
       <UploadButton Icon={BrowserUpdatedIcon} tooltip="BrowserUpdated" />
       <UploadButton Icon={ImageSearchIcon} tooltip="ImageSearch" />

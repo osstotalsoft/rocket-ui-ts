@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Grid from '@mui/material/Grid2'
+import Grid from '@mui/material/Grid'
 import { options } from './_mocks'
 import { DeprecatedAutocomplete } from 'components'
 

@@ -3,7 +3,7 @@
 
 import React, { useState } from 'react'
 import { TextField } from 'components'
-import Grid from '@mui/material/Grid2'
+import Grid from '@mui/material/Grid'
 
 const FormPropsPreview = () => {
   const [value, setValue] = useState()
@@ -13,7 +13,7 @@ const FormPropsPreview = () => {
   }
 
   return (
-    <Grid container spacing={4} justifyItems={'flex-start'}>
+    <Grid container spacing={4} sx={{ justifyItems: 'flex-start' }}>
       <Grid size={4}>
         <TextField required label="Required" value={value || ''} onChange={handleValueChange} debounceBy={1000} fullWidth />
       </Grid>

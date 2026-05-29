@@ -26,11 +26,11 @@ const ExpandingText: React.FC<ExpandingTextProps> = ({
 
   return (
     <>
-      <Typography style={{ whiteSpace: 'pre-wrap' }} display={display} {...textProps}>
+      <Typography style={{ whiteSpace: 'pre-wrap' }} sx={{ display }} {...textProps}>
         {displayedText + ' '}
       </Typography>
       {shouldCollapse && (
-        <ExpandAction display={display} onClick={toggleExpanded} {...expandingActionProps} {...rest}>
+        <ExpandAction sx={{ display }} onClick={toggleExpanded} {...expandingActionProps} {...rest}>
           {localExpanded ? showLessText : showMoreText}
         </ExpandAction>
       )}

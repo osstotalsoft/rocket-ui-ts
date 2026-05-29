@@ -1,7 +1,7 @@
 import React from 'react'
 import { Card, Button, IconButton, Typography } from 'components'
 import QuestionMark from '@mui/icons-material/QuestionMark'
-import { Grid2 as Grid, TextField } from '@mui/material'
+import { Grid, TextField } from '@mui/material'
 
 const FilledPreview = () => {
   return (
@@ -19,7 +19,7 @@ const FilledPreview = () => {
         </IconButton>
       }
     >
-      <Grid container rowSpacing={3} justifyContent="center">
+      <Grid container rowSpacing={3} sx={{ justifyContent: 'center' }}>
         <Grid size={8}>
           <Typography variant="body1">Please, fill in with your personal information.</Typography>
         </Grid>

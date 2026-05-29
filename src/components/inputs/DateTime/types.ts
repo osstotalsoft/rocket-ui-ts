@@ -16,10 +16,10 @@ export type LocaleMapType = {
 }
 
 export type DateTimeProps<TDate, TError> = Omit<
-  DatePickerProps<Date> | DateTimePickerProps<Date> | TimePickerProps<Date>,
+  DatePickerProps | DateTimePickerProps | TimePickerProps,
   'value' | 'onChange' | 'minDate' | 'maxDate'
 > &
-  Omit<LocalizationProviderProps<Date, Locale>, 'adapterLocale'> & {
+  Omit<LocalizationProviderProps<Locale>, 'adapterLocale'> & {
     /**
      * Date library adapter class function.
      * @see See the localization provider {@link https://mui.com/x/react-date-pickers/getting-started/#setup-your-date-library-adapter date adapter setup section} for more details.

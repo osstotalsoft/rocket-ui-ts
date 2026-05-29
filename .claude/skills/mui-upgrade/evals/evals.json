@@ -1,0 +1,39 @@
+{
+  "skill_name": "mui-upgrade",
+  "fixture_repo": "D:/Workspace/Projects/ossTotalSoft/rocket-ui-ts",
+  "notes": "All prompts target the rocket-ui-ts repo (a published @mui/* component library currently on @mui/material v6.4 targeting v9). Subagents run in worktree isolation so the fixture stays clean.",
+  "evals": [
+    {
+      "id": 1,
+      "name": "audit-and-plan",
+      "prompt": "We want to upgrade Material UI to the latest version (v9) in this repo. Audit what we have, fetch the migration guide(s), and give me a written plan with effort estimate. Don't change any code yet — I want to review the plan first.",
+      "expected_output": "A written plan covering: current @mui/* versions in package.json, the hops required (v6 → v7 → v8 → v9), per-hop breaking-change inventory with file hit counts, decision forks flagged (especially around public-API surfaces since this is a published library), a note on whether Storybook MCP is available (optional — if absent, visual validation will be manual), and an honest effort estimate broken down by phase.",
+      "files": [],
+      "assertions": []
+    },
+    {
+      "id": 2,
+      "name": "leaf-first-ordering",
+      "prompt": "Plan the MUI v6 → v9 migration of this repo as a task list, sorted so that I work on child components before their parents. For each component include its file path, its tests, its stories, and what it depends on.",
+      "expected_output": "A topologically-sorted list of components where leaves (Button, IconButton, etc.) come first and parents (Card composed of CardHeader/CardActions, PasswordField composed of IconButton+TextField) come last. Each entry includes the test file path and story file path. Should be produced via the build_dep_graph.py script the skill bundles.",
+      "files": [],
+      "assertions": []
+    },
+    {
+      "id": 3,
+      "name": "decision-fork-public-api",
+      "prompt": "Start the MUI v9 migration with the TextField component. This is a published library so be careful about anything that affects our public API.",
+      "expected_output": "The skill should NOT just start editing. It should detect that TextField currently re-exports InputProps/inputProps/InputLabelProps as part of its TextFieldProps type (these are removed in v9 in favor of slotProps), recognize this is a public-API breaking-change fork, and ask the user via AskUserQuestion which of the migration paths to take (break to v9 names / keep old names with internal translation / hybrid deprecate-and-migrate). Should not proceed with code changes until the user picks.",
+      "files": [],
+      "assertions": []
+    },
+    {
+      "id": 4,
+      "name": "proceed-without-storybook-mcp",
+      "prompt": "Go ahead and execute the MUI v9 upgrade now. I've approved the plan, start with the first leaf component.",
+      "expected_output": "The skill should check whether @storybook/addon-mcp (or equivalent Storybook MCP) is connected. Since this conversation has no Storybook MCP attached, the skill should note that visual validation will be manual (not halt), optionally suggest installing the addon if the project has Storybook, and proceed with Phase 3 component edits on the first leaf component. It should NOT block execution.",
+      "files": [],
+      "assertions": []
+    }
+  ]
+}
