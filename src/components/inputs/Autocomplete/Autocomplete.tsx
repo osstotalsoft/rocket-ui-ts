@@ -351,7 +351,10 @@ const Autocomplete: React.FC<
             allOptions.current,
             extractFirstValue([getValue, internalValue, identity])
           )
-          const { key, ...itemProps } = (getItemProps as (args: { index: number }) => any)({ index })
+          const result = (getItemProps as (args: { index: number }) => {
+            key: React.Key;[k: string]: unknown
+          })({ index })
+          const { key, ...itemProps } = result
           const isDisabled: boolean = has('isDisabled', convertedOption) && Boolean(convertedOption.isDisabled)
           return (
             <Chip

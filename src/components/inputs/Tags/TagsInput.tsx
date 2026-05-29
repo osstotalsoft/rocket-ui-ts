@@ -57,8 +57,8 @@ export default function TagsInput({
       onChange={handleInputChange}
       onKeyDown={handleKeyDown}
       placeholder={placeholder}
-      startAdornment={valueTags}
       {...textFieldProps}
+      startAdornment={valueTags}
     />
   )
 }
