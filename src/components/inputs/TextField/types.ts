@@ -90,7 +90,7 @@ export type TextFieldProps = Omit<MuiTextFieldProps, 'onChange' | 'variant'> &
     /**
      * Props applied to the InputLabel element (legacy API — translated internally to slotProps.inputLabel).
      */
-    InputLabelProps?: Partial<MuiInputLabelProps>
+    InputLabelProps?: Omit<Partial<MuiInputLabelProps>, 'ref'>
     /**
      * Start adornment of component.
      */
