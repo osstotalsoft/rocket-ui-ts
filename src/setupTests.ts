@@ -12,7 +12,7 @@ global.TextEncoder = TextEncoder
 
 // structuredClone polyfill for JSDOM (required by @mui/x-internal-gestures in MUI X v9)
 if (typeof globalThis.structuredClone === 'undefined') {
-  globalThis.structuredClone = (obj: unknown) => JSON.parse(JSON.stringify(obj))
+  globalThis.structuredClone = (obj: unknown) => (obj === undefined ? undefined : JSON.parse(JSON.stringify(obj)))
 }
 
 // Suppress known MUI v9 internal "not wrapped in act()" warnings.
