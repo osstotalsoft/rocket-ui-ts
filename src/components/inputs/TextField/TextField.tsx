@@ -246,10 +246,11 @@ const TextField: React.FC<TextFieldProps> = ({
       disabled={disabled}
       variant={variant}
       {...rest}
-      slotProps={{
-        input: inputSlotProps,
-        htmlInput: htmlInputSlotProps,
-        inputLabel: { className: classes.label, ...InputLabelProps }
+slotProps={{
+        ...rest.slotProps,
+        input: { ...rest.slotProps?.input, ...inputSlotProps },
+        htmlInput: { ...rest.slotProps?.htmlInput, ...htmlInputSlotProps },
+        inputLabel: { ...rest.slotProps?.inputLabel, className: classes.label, ...InputLabelProps }
       }}
     />
   )
