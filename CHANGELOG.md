@@ -28,6 +28,9 @@ MUI X v9 dropped the `V3` suffix from the date-fns adapter. If your application 
 #### `DeprecatedAutocomplete` — component removed
 The `DeprecatedAutocomplete` component has been removed from the library. Migrate to the `Autocomplete` component instead.
 
+#### `DeprecatedChart` / `DeprecatedStatsChart` — components removed
+Both `DeprecatedChart` and `DeprecatedStatsChart` have been removed from the library. Migrate to the `Chart` / `StatsChart` components instead.
+
 #### `Autocomplete` — `renderTags` prop removed
 MUI v9 removed the `renderTags` prop in favor of `renderValue`. If you were passing `renderTags` through to the underlying MUI component via rest props, it will no longer have any effect. Use `renderValue` instead.
 

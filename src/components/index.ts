@@ -15,12 +15,6 @@ export * from './buttons/UploadButton'
 export { default as StatsChart } from './dataDisplay/StatsChart'
 export * from './dataDisplay/StatsChart'
 
-export { default as DeprecatedStatsChart } from './charts/DeprecatedStatsChart'
-export * from './charts/DeprecatedStatsChart'
-
-export { default as DeprecatedChart } from './charts/DeprecatedChart'
-export * from './charts/DeprecatedChart'
-
 export { default as Typography } from './dataDisplay/Typography'
 export * from './dataDisplay/Typography'
 
