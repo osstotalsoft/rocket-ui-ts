@@ -25,6 +25,9 @@ MUI X v9 dropped the `V3` suffix from the date-fns adapter. If your application 
 + import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 ```
 
+#### `DeprecatedAutocomplete` — component removed
+The `DeprecatedAutocomplete` component has been removed from the library. Migrate to the `Autocomplete` component instead.
+
 #### `Autocomplete` — `renderTags` prop removed
 MUI v9 removed the `renderTags` prop in favor of `renderValue`. If you were passing `renderTags` through to the underlying MUI component via rest props, it will no longer have any effect. Use `renderValue` instead.
 
@@ -53,11 +56,6 @@ The module augmentation path for custom typography variants has moved. Update an
 #### `Autocomplete`
 - Internal chip rendering migrated from `renderTags` / `AutocompleteRenderGetTagProps` to `renderValue` / `AutocompleteRenderValueGetItemProps` (MUI v9 API).
 - Slot props forwarding from Autocomplete params updated to use `params.slotProps` instead of `params.inputProps`.
-
-#### `DeprecatedAutocomplete`
-- Same `renderTags` → `renderValue` internal migration as `Autocomplete`.
-- Fixed an edge case in the initial `loadOptions` call when `defaultOptions` is an array and `simpleValue` is false: the component now correctly calls `loadOptions` with the initial value's label on mount (MUI v9 no longer triggers `onInputChange` at mount when a value is set).
-- Internal params access updated to use `params.slotProps.*` instead of `params.inputProps` / `params.InputProps` / `params.InputLabelProps`.
 
 #### `Tags` (`TagsInput`)
 - `startAdornment` (the tag chips) is now passed as a direct prop instead of through `slotProps.input.startAdornment`. The `textFieldProps` prop behaviour is unchanged.
