@@ -166,7 +166,7 @@ export const scatterData = [
 
 export const lineChartOptions = {
   xAxis: [{ data: [1, 2, 3, 5, 8, 10] }],
-  series: [{ data: [2, 5.5, 2, 8.5, 1.5, 5] }],
+  series: [{ data: [2, 5.5, 2, 8.5, 1.5, 5], color: '#26C6DA', showMark: true }],
   width: 450,
   height: 300
 } satisfies LineChartProps
