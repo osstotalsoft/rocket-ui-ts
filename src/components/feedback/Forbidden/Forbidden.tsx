@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Grid from '@mui/material/Grid2'
+import Grid from '@mui/material/Grid'
 import forbidden from '../../assets/img/forbidden.png'
 import Typography from '../../dataDisplay/Typography'
 import Button from '../../buttons/Button'
@@ -15,7 +15,7 @@ const Forbidden: React.FC<ForbiddenProps> = ({
   forbiddenButtonText = 'Go to main page'
 }) => {
   return (
-    <Grid container direction="column" justifyContent="center" alignItems="center" spacing={2}>
+    <Grid container sx={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: 2 }}>
       <Grid>
         <img src={forbidden} alt="ForbiddenImage" />
       </Grid>

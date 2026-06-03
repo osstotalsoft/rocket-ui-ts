@@ -1,10 +1,10 @@
 // Copyright (c) TotalSoft.
 // This source code is licensed under the MIT license.
 import React, { useEffect, useRef } from 'react'
-import { Subheading } from '@storybook/blocks'
+import { Subheading } from '@storybook/addon-docs/blocks'
 import { makeStyles } from 'tss-react/mui'
-import { addons } from '@storybook/manager-api'
-import { NAVIGATE_URL } from '@storybook/core-events'
+import { addons } from 'storybook/manager-api'
+import { NAVIGATE_URL } from 'storybook/internal/core-events'
 
 export const nameToHash = (id: string): string => id.toLowerCase().replace(/[^a-z0-9]/gi, '-')
 

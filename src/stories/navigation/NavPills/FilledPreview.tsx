@@ -1,5 +1,5 @@
 import React from 'react'
-import Grid from '@mui/material/Grid2'
+import Grid from '@mui/material/Grid'
 import { tabs } from './_options'
 import { NavPills } from 'components'
 import SyntaxHighlighter from 'react-syntax-highlighter'
@@ -7,7 +7,7 @@ import { github } from 'react-syntax-highlighter/dist/esm/styles/hljs'
 
 const FilledPreview = () => {
   return (
-    <Grid container columnSpacing={4} justifyContent="center" direction="column">
+    <Grid container columnSpacing={4} sx={{ justifyContent: 'center', flexDirection: 'column' }}>
       <Grid>
         <SyntaxHighlighter language="javascript" wrapLongLines style={github}>
           {'<NavPills color="rose" .../>'}

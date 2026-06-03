@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react'
-import Grid from '@mui/material/Grid2'
+import Grid from '@mui/material/Grid'
 import { Accordion, Autocomplete, IconButton, Typography } from 'components'
 import { mockedAccordionContent } from './_mocks'
 import { options } from 'stories/inputs/Autocomplete/_mocks'
@@ -20,7 +20,7 @@ const ActionsPreview = () => {
   return (
     <Accordion
       title={
-        <Grid container spacing={2} alignItems={'center'}>
+        <Grid container spacing={2} sx={{ alignItems: 'center' }}>
           <Grid size={{ lg: 4 }}>
             <Typography variant="subtitle1" emphasis="bold" color="primary">
               {'Accordion Title'}

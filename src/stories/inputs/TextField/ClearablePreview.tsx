@@ -3,7 +3,7 @@
 
 import React, { useState } from 'react'
 import { IconButton, TextField, Typography } from 'components'
-import Grid from '@mui/material/Grid2'
+import Grid from '@mui/material/Grid'
 import AssignmentIcon from '@mui/icons-material/Assignment'
 import SaveIcon from '@mui/icons-material/Save'
 
@@ -15,7 +15,7 @@ const ClearablePreview = () => {
   }
 
   return (
-    <Grid container spacing={4} justifyItems={'flex-start'}>
+    <Grid container spacing={4} sx={{ justifyItems: 'flex-start' }}>
       <Grid size={12}>
         <Typography>Variants:</Typography>
       </Grid>

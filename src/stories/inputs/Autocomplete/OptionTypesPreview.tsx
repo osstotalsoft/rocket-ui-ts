@@ -1,5 +1,5 @@
 import React from 'react'
-import Grid from '@mui/material/Grid2'
+import Grid from '@mui/material/Grid'
 import FormattedJson from './components/FormattedJson'
 import ColumnHeader from './components/ColumnHeader'
 import { Autocomplete } from 'components'
@@ -28,7 +28,7 @@ export const OptionTypesPreview = () => {
         <Grid size={3}>
           <Autocomplete label="Autocomplete" value={value} onChange={setValue} isClearable={true} options={options} />
         </Grid>
-        <Grid container alignContent={'flex-start'} size={3}>
+        <Grid container size={3} sx={{ alignContent: 'flex-start' }}>
           <Typography variant={'body1'}>{'Object: { id: number, name: string }'}</Typography>
         </Grid>
         <Grid size={3}>

@@ -100,18 +100,14 @@ ClearButton.propTypes = {
 }
 
 const AddButton: React.FC<AddButtonProps> = ({ onAdd }) => (
-  <InputAdornment position="end">
-    <StepButton onClick={onAdd}>+</StepButton>
-  </InputAdornment>
+  <StepButton onClick={onAdd}>+</StepButton>
 )
 AddButton.propTypes = {
   onAdd: PropTypes.func
 }
 
 const SubtractButton: React.FC<SubtractButtonProps> = ({ onSubtract }) => (
-  <InputAdornment position="start">
-    <StepButton onClick={onSubtract}>-</StepButton>
-  </InputAdornment>
+  <StepButton onClick={onSubtract}>-</StepButton>
 )
 SubtractButton.propTypes = {
   onSubtract: PropTypes.func
@@ -196,9 +192,14 @@ const TextField: React.FC<TextFieldProps> = ({
     )
   }, [disabled, endAdornment, handleAdd, handleClearInput, isClearable, isStepper])
 
-  const muiInputProps = {
+  const { inputComponent: legacyInputComponent, ...restInputProps } = (InputProps || {}) as any
+
+  const effectiveInputComponent = isNumeric ? NumberTextField : legacyInputComponent || undefined
+
+  const inputSlotProps = {
     className: `${isStepper && !fullWidth ? classes.stepperFixedWidth : ''}`,
-    ...InputProps,
+    ...restInputProps,
+    ...(effectiveInputComponent && { inputComponent: effectiveInputComponent }),
     startAdornment: internalStartAdornment,
     endAdornment: internalEndAdornment,
     style: InputProps?.style
@@ -216,16 +217,7 @@ const TextField: React.FC<TextFieldProps> = ({
     maxValue
   }
 
-  // props applied to the Input element
-  const customMuiInputProps = isNumeric
-    ? {
-        ...muiInputProps,
-        inputComponent: NumberTextField
-      }
-    : muiInputProps
-
-  // attributes applied to the input element
-  const customReactInputProps = {
+  const htmlInputSlotProps = {
     ...(isNumeric && numericProps),
     ...inputProps,
     className: `${classes.input} ${inputProps?.className ? inputProps.className : ''}`
@@ -254,11 +246,11 @@ const TextField: React.FC<TextFieldProps> = ({
       disabled={disabled}
       variant={variant}
       {...rest}
-      InputProps={customMuiInputProps}
-      inputProps={customReactInputProps}
-      InputLabelProps={{
-        className: classes.label,
-        ...InputLabelProps
+slotProps={{
+        ...rest.slotProps,
+        input: { ...rest.slotProps?.input, ...inputSlotProps },
+        htmlInput: { ...rest.slotProps?.htmlInput, ...htmlInputSlotProps },
+        inputLabel: { ...rest.slotProps?.inputLabel, className: classes.label, ...InputLabelProps }
       }}
     />
   )

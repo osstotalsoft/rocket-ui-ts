@@ -2,7 +2,7 @@
 // This source code is licensed under the MIT license.
 
 import React, { useState } from 'react'
-import { Grid2 as Grid, Switch, SwitchProps, Stack } from '@mui/material'
+import { Grid, Switch, SwitchProps, Stack } from '@mui/material'
 import { Autocomplete, DynamicField, Typography, ControlType } from 'components'
 import { controlTypes } from './_mocks'
 import { options } from '../Autocomplete/_mocks'
@@ -10,14 +10,14 @@ import { useContainerSizing, useDynamicProps } from './_hooks'
 import { InfoLink } from './ControlPreview'
 
 const DynamicControlPreview = () => {
-  const [value, setValue] = useState<unknown>()
+  const [value, setValue] = useState<unknown>(null)
   const [type, setType] = useState<ControlType>(ControlType.Text)
 
   const { controlValues, props, currentControlData, handlePropsChange } = useDynamicProps(type)
   const width = useContainerSizing()
 
   return (
-    <Grid container alignItems={'center'} spacing={2} minWidth={width}>
+    <Grid container spacing={2} sx={{ alignItems: 'center', minWidth: width }}>
       <Grid size={{ xs: 12, sm: 6 }}>
         <DynamicField<SwitchProps>
           controlType={type}
@@ -35,15 +35,14 @@ const DynamicControlPreview = () => {
         />
       </Grid>
       <Grid size={{ xs: 12, sm: 6 }}>
-        <Stack gap={2}>
+        <Stack sx={{ gap: 2 }}>
           <Autocomplete
             options={controlTypes}
-            simpleValue
             value={type}
             label="Control type"
             onChange={value => {
               setValue(null)
-              setType(value)
+              setType(value as ControlType)
             }}
           />
           {currentControlData.props.length > 0 && (

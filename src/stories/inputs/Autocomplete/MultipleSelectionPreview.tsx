@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react'
-import Grid from '@mui/material/Grid2'
+import Grid from '@mui/material/Grid'
 import FormattedJson from './components/FormattedJson'
 import ColumnHeader from './components/ColumnHeader'
 import { options, primitiveStringOptions, primitiveNumericOptions } from './_mocks'

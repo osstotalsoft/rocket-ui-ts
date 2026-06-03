@@ -15,7 +15,7 @@ const TabPanel: React.FC<TabPanelProps> = ({ children, active, index, ...other }
       hidden={active !== index}
       id={`full-width-tabpanel-${index}`}
       aria-labelledby={`full-width-tab-${index}`}
-      padding={3}
+      sx={{ p: 3 }}
       {...other}
     >
       {children}
@@ -35,7 +35,7 @@ const OrientationWrapper: React.FC<OrientationWrapperProps> = ({ children, actio
       {actions && (
         <Box sx={{ flexGrow: 1, borderLeft: 1, borderColor: 'divider', p: 1, maxWidth: 'fit-content' }}>
           {actions?.map((action: ReactNode, index: number) => (
-            <Box key={index} role="action" m="4px">
+            <Box key={index} role="action" sx={{ m: '4px' }}>
               {action}
             </Box>
           ))}
@@ -77,7 +77,7 @@ const TabsWrapper: React.FC<TabsWrapperProps> = ({
       </Tabs>
       {actions &&
         actions?.map((action, index) => (
-          <Box key={index} role="action" m="4px" mt="auto" mb="auto">
+          <Box key={index} role="action" sx={{ m: '4px', mt: 'auto', mb: 'auto' }}>
             {action}
           </Box>
         ))}

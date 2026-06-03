@@ -11,16 +11,16 @@ import {
   PaletteColorOptions,
   ThemeOptions
 } from '@mui/material'
-import { TypographyOptions } from '@mui/material/styles/createTypography'
+import { TypographyVariantsOptions as TypographyOptions } from '@mui/material/styles'
 import { CSSProperties } from 'react'
 
-declare module '@mui/material/styles/createTypography' {
-  export interface TypographyOptions {
+declare module '@mui/material/styles' {
+  export interface TypographyVariantsOptions {
     defaultFont: CSSProperties
     useNextVariants: boolean
     body: CSSProperties
   }
-  export interface Typography {
+  export interface TypographyVariants {
     defaultFont: CSSProperties
     useNextVariants: boolean
     body: CSSProperties

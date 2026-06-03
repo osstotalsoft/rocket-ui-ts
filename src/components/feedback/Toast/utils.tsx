@@ -65,7 +65,7 @@ const Toast = (props: any) => {
 
   return (
     <>
-      <Stack direction="row" justifyContent="space-between" alignItems="center" sx={toastStyle}>
+      <Stack direction="row" sx={{ justifyContent: 'space-between', alignItems: 'center', ...toastStyle }}>
         <Icon myVariant={variant} />
         <Typography sx={{ maxHeight: '450px' }}>{message}</Typography>
         <IconButton

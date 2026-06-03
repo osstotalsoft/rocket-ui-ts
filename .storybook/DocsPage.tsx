@@ -1,7 +1,7 @@
 // Copyright (c) TotalSoft.
 // This source code is licensed under the MIT license.
 import * as React from 'react'
-import { Controls, Description, DocsContext, Primary, Stories, Subtitle, Title } from '@storybook/blocks'
+import { Controls, Description, DocsContext, Primary, Stories, Subtitle, Title } from '@storybook/addon-docs/blocks'
 import { makeStyles } from 'tss-react/mui'
 import { TableOfContent } from './TableOfContent'
 

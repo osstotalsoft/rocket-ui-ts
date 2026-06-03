@@ -2,14 +2,14 @@
 // This source code is licensed under the MIT license.
 
 import React from 'react'
-import Grid from '@mui/material/Grid2'
+import Grid from '@mui/material/Grid'
 import { Button, useToast } from 'components'
 
 const TransitionsPreview = (args: any) => {
   const addToast = useToast()
 
   return (
-    <Grid container spacing={2} justifyContent={'space-evenly'}>
+    <Grid container spacing={2} sx={{ justifyContent: 'space-evenly' }}>
       <Grid>
         <Button
           size={'small'}

@@ -14,7 +14,7 @@ export const LoadingPreview: React.FunctionComponent = () => {
         label="Loading"
         sx={{ mb: '15px' }}
       />
-      <Box columnGap="15px" display="flex">
+      <Box sx={{ columnGap: '15px', display: 'flex' }}>
         <IconButton tooltip="secondary" loading={loading} size="medium">
           <RocketIcon />
         </IconButton>

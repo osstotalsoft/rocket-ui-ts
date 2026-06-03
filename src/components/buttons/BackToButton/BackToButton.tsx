@@ -13,7 +13,6 @@ import IconButton from '../IconButton'
 const BackToButton: React.FC<BackToButtonProps> = ({
   path,
   options,
-  fontSize = 'small',
   iconProps = {},
   size = 'medium',
   ...rest
@@ -24,7 +23,7 @@ const BackToButton: React.FC<BackToButtonProps> = ({
 
   return (
     <IconButton aria-label="back" onClick={onBackTo} size={size} {...rest}>
-      <ArrowBackIcon fontSize={fontSize as any} {...(iconProps as any)} />
+      <ArrowBackIcon fontSize='small' {...(iconProps as any)} />
     </IconButton>
   )
 }
@@ -35,12 +34,6 @@ BackToButton.propTypes = {
    * Size of the button
    */
   size: PropTypes.oneOf(['tiny', 'small', 'medium', 'large']),
-  /**
-   * @deprecated Use `iconProps` instead
-   * @default 'small'
-   * Size of the icon.
-   */
-  fontSize: PropTypes.oneOf(['inherit', 'small', 'medium', 'large']),
   /**
    * The properties of the icon.
    */

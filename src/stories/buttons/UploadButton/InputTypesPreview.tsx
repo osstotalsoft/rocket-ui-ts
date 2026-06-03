@@ -9,7 +9,7 @@ export const InputTypesPreview: React.FC = () => {
 
   return (
     <>
-      <Box gap="15px" display="flex">
+      <Box sx={{ gap: '15px', display: 'flex' }}>
         <UploadButton onFilesChanged={handleChoice} tooltip="All files (default)" />
         <UploadButton accept="image/*" onError={handleError} onFilesChanged={handleChoice} tooltip="Images" />
         <UploadButton accept="audio/*" onError={handleError} onFilesChanged={handleChoice} tooltip="Audios" />

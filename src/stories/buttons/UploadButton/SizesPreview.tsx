@@ -10,7 +10,7 @@ export const SizesPreview = () => {
 
   return (
     <>
-      <Box gap="15px" display="flex">
+      <Box sx={{ gap: '15px', display: 'flex' }}>
         <UploadButton onFilesChanged={handleChoice} tooltip="All files (default)" />
         <UploadButton
           multiple

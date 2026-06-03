@@ -1,4 +1,4 @@
-import Grid from '@mui/material/Grid2'
+import Grid from '@mui/material/Grid'
 import { LinearProgress, Typography } from 'components'
 import React, { useEffect, useRef, useState } from 'react'
 
@@ -34,23 +34,23 @@ const VariantsPreview = () => {
   return (
     <Grid container rowSpacing={2} columnSpacing={2}>
       <Grid size={{ sm: 6 }}>
-        <Typography textAlign={'center'}>{'determinate '}</Typography>
+        <Typography sx={{ textAlign: 'center' }}>{'determinate '}</Typography>
         <LinearProgress variant={'determinate'} value={progress} />
       </Grid>
       <Grid size={{ sm: 6 }}>
-        <Typography textAlign={'center'}>{'buffer '}</Typography>
+        <Typography sx={{ textAlign: 'center' }}>{'buffer '}</Typography>
         <LinearProgress variant="buffer" value={progress} valueBuffer={buffer} />
       </Grid>
       <Grid size={{ sm: 6 }}>
-        <Typography textAlign={'center'}>{'indeterminate'}</Typography>
+        <Typography sx={{ textAlign: 'center' }}>{'indeterminate'}</Typography>
         <LinearProgress />
       </Grid>
       <Grid size={{ sm: 6 }}>
-        <Typography textAlign={'center'}>{'determinate with label'}</Typography>
+        <Typography sx={{ textAlign: 'center' }}>{'determinate with label'}</Typography>
         <LinearProgress variant={'determinate'} value={progress} showLabel />
       </Grid>
       <Grid size={{ sm: 6 }}>
-        <Typography textAlign={'center'}>{'buffer with label'}</Typography>
+        <Typography sx={{ textAlign: 'center' }}>{'buffer with label'}</Typography>
         <LinearProgress variant="buffer" value={progress} valueBuffer={buffer} showLabel />
       </Grid>
     </Grid>

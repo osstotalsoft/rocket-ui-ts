@@ -13,7 +13,6 @@ import { FilesValidator, UploadButtonProps } from './types'
  * Props of the [Material-UI Button](https://mui.com/material-ui/api/button/#props) component are also available.
  */
 const UploadButton: React.FC<UploadButtonProps> = ({
-  fontSize = 'small',
   Icon = BackupIcon,
   iconProps = {},
   accept,
@@ -61,7 +60,7 @@ const UploadButton: React.FC<UploadButtonProps> = ({
         onClick={handleClick}
         onAbort={handleFileSelected}
       />
-      <Icon fontSize={fontSize} {...(iconProps as any)} />
+      <Icon fontSize='small' {...(iconProps as any)} />
     </IconButton>
   )
 }
@@ -74,12 +73,6 @@ UploadButton.propTypes = {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   Icon: PropTypes.object,
-  /**
-   * @deprecated Use `iconProps` instead
-   * @default 'small'
-   * Size of the icon.
-   */
-  fontSize: PropTypes.oneOf(['inherit', 'small', 'medium', 'large']),
   /**
    * The properties of the icon.
    */

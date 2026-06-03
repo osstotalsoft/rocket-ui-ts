@@ -1,6 +1,6 @@
 import React from 'react'
 import { Title } from './AboutStyles'
-import Grid from '@mui/material/Grid2'
+import Grid from '@mui/material/Grid'
 import { orbits, homeData } from '../constants/orbits'
 import { Typography } from 'components'
 

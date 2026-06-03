@@ -15,8 +15,10 @@ export default function Card(theme: Theme): CustomComponents {
     },
     MuiCardHeader: {
       defaultProps: {
-        titleTypographyProps: { variant: 'h6' },
-        subheaderTypographyProps: { variant: 'body2' }
+        slotProps: {
+          title: { variant: 'h6' },
+          subheader: { variant: 'body2' }
+        }
       },
       styleOverrides: {
         root: {

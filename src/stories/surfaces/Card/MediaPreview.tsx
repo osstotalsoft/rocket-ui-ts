@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid2 as Grid, Link } from '@mui/material'
+import { Grid, Link } from '@mui/material'
 import { Typography, Card } from 'components'
 import natureSound from '../../assets/audio/rain-ambient.mp3'
 

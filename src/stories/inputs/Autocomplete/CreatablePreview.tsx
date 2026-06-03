@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Grid from '@mui/material/Grid2'
+import Grid from '@mui/material/Grid'
 import FormattedJson from './components/FormattedJson'
 import ColumnHeader from './components/ColumnHeader'
 import { options, primitiveStringOptions, primitiveNumericOptions, numericOptions } from './_mocks'
@@ -35,7 +35,7 @@ export const CreatablePreview = () => {
             options={options}
           />
         </Grid>
-        <Grid container alignContent={'flex-start'} size={3}>
+        <Grid container size={3} sx={{ alignContent: 'flex-start' }}>
           <Typography variant={'body1'}>{'Object: { id: number, name: string }'}</Typography>
         </Grid>
         <Grid size={3}>

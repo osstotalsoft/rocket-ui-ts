@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react'
-import Grid from '@mui/material/Grid2'
+import Grid from '@mui/material/Grid'
 import { Button, Typography, Card, Pagination } from 'components'
 import robot from '../../assets/img/robot.png'
 import spaceship from '../../assets/img/spaceship.png'
@@ -26,10 +26,10 @@ const BasicCardsPreview = () => {
   }, [])
 
   return (
-    <Grid container spacing={2} justifyContent="center">
+    <Grid container spacing={2} sx={{ justifyContent: 'center' }}>
       <Grid size={10}>
         <Card footer={<LearnMoreButton />}>
-          <Grid container direction="column" justifyContent="center" alignItems="center">
+          <Grid container sx={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
             <Grid>
               <img src={robot} id="img1" alt="robot" />
             </Grid>

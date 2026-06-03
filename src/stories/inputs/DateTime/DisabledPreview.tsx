@@ -1,23 +1,23 @@
 // Copyright (c) TotalSoft.
 // This source code is licensed under the MIT license.
 
-import React from 'react'
-import Grid from '@mui/material/Grid2'
+import React, { useState } from 'react'
+import Grid from '@mui/material/Grid'
 import { DateTime } from 'components'
 
-const value = new Date()
-
 const DisabledPreview = () => {
+  const [value, setValue] = useState<Date | null>(new Date())
+
   return (
-    <Grid container spacing={4} justifyItems={'flex-start'}>
+    <Grid container spacing={4} sx={{ justifyItems: 'flex-start' }}>
       <Grid size={4}>
-        <DateTime showPicker="date" label="Date Picker" value={value} disabled={true} />
+        <DateTime showPicker="date" label="Date Picker" value={value} onChange={setValue} disabled={true} />
       </Grid>
       <Grid size={4}>
-        <DateTime showPicker="dateTime" label="Date Time Picker" value={value} disabled={true} />
+        <DateTime showPicker="dateTime" label="Date Time Picker" value={value} onChange={setValue} disabled={true} />
       </Grid>
       <Grid size={4}>
-        <DateTime showPicker="time" label="Time Picker" value={value} disabled={true} />
+        <DateTime showPicker="time" label="Time Picker" value={value} onChange={setValue} disabled={true} />
       </Grid>
     </Grid>
   )

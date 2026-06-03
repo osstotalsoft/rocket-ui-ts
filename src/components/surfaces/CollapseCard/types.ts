@@ -20,11 +20,6 @@ export interface CollapseCardProps extends Omit<CardProps, 'content' | 'onToggle
    */
   expanded?: boolean
   /**
-   * If true, the card can be expanded.
-   * @deprecated Use `Card` component instead
-   */
-  canExpand?: boolean
-  /**
    * Callback fired on toggle.
    */
   onToggle?: (event: React.SyntheticEvent, expanded: boolean) => void

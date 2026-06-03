@@ -21,7 +21,7 @@ export const MultipleSelectionPreview = () => {
 
   return (
     <>
-      <Box mb="15px">
+      <Box sx={{ mb: '15px' }}>
         <UploadButton onFilesChanged={handleFileSelected} tooltip="Select one file (default)" />
         <Typography variant="body1">{file}</Typography>
       </Box>

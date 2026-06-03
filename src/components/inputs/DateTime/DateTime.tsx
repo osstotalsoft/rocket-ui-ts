@@ -15,7 +15,7 @@ import {
   TimePickerSlotProps,
   TimePickerSlots
 } from '@mui/x-date-pickers'
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3'
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 import { de, enUS, fr, ro } from 'date-fns/locale'
 import { DateTimeProps } from './types'
 import { cond, equals } from 'ramda'
@@ -60,12 +60,12 @@ const DateTime: React.FC<DateTimeProps<Date, string>> = ({
             <DatePicker
               value={getValidDate(value)}
               onChange={onChange}
-              slotProps={commonSlotProps as DatePickerSlotProps<Date, false>}
-              slots={slots as DatePickerSlots<Date>}
+              slotProps={commonSlotProps as DatePickerSlotProps}
+              slots={slots as DatePickerSlots}
               timezone={timezone}
               minDate={getValidDate(minDate)}
               maxDate={getValidDate(maxDate)}
-              {...(rest as DatePickerProps<Date>)}
+              {...(rest as DatePickerProps)}
             />
           )
         ],
@@ -75,12 +75,12 @@ const DateTime: React.FC<DateTimeProps<Date, string>> = ({
             <DateTimePicker
               value={getValidDate(value)}
               onChange={onChange}
-              slotProps={commonSlotProps as DateTimePickerSlotProps<Date, false>}
-              slots={slots as DateTimePickerSlots<Date>}
+              slotProps={commonSlotProps as DateTimePickerSlotProps}
+              slots={slots as DateTimePickerSlots}
               timezone={timezone}
               minDate={getValidDate(minDate)}
               maxDate={getValidDate(maxDate)}
-              {...(rest as DateTimePickerProps<Date>)}
+              {...(rest as DateTimePickerProps)}
             />
           )
         ],
@@ -90,10 +90,10 @@ const DateTime: React.FC<DateTimeProps<Date, string>> = ({
             <TimePicker
               value={getValidDate(value)}
               onChange={onChange}
-              slotProps={commonSlotProps as TimePickerSlotProps<Date, false>}
-              slots={slots as TimePickerSlots<Date>}
+              slotProps={commonSlotProps as TimePickerSlotProps}
+              slots={slots as TimePickerSlots}
               timezone={timezone}
-              {...(rest as TimePickerProps<Date>)}
+              {...(rest as TimePickerProps)}
             />
           )
         ]

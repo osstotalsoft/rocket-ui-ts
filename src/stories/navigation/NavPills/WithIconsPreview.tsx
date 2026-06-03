@@ -1,11 +1,11 @@
 import React from 'react'
-import Grid from '@mui/material/Grid2'
+import Grid from '@mui/material/Grid'
 import { tabs } from './_options'
 import { NavPills } from 'components'
 
 const WithIconsPreview = () => {
   return (
-    <Grid container columnSpacing={4} justifyContent="center" direction="column">
+    <Grid container columnSpacing={4} sx={{ justifyContent: 'center', flexDirection: 'column' }}>
       <Grid>
         <NavPills tabs={tabs(true, true)} />
       </Grid>

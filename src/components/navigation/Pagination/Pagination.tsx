@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react'
 import PropTypes from 'prop-types'
 import TablePagination from '@mui/material/TablePagination'
-import Grid from '@mui/material/Grid2'
+import Grid from '@mui/material/Grid'
 import { RefreshButtonContainer } from './PaginationStyles'
 import RefreshIcon from '@mui/icons-material/Refresh'
 import { PaginationProps, DisplayedRows } from './types'
@@ -64,7 +64,7 @@ const Pagination: React.FC<PaginationProps> = ({
   const previousButton = isNil(hasPreviousPage) ? {} : { previousButton: { disabled: !hasPreviousPage } }
 
   return (
-    <Grid container alignItems="center" justifyContent={contentAlignment(align)}>
+    <Grid container sx={{ alignItems: 'center', justifyContent: contentAlignment(align) }}>
       {!loading && (
         <TablePagination
           component="div"

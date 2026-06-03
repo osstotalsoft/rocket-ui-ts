@@ -1,6 +1,6 @@
 import './doc-root.css'
 import React from 'react'
-import type { Preview } from '@storybook/react'
+import type { Preview } from '@storybook/react-webpack5'
 import { ThemeProvider } from '@mui/material/styles'
 import { ToastContainer } from '../src/components/feedback/Toast'
 import getTheme from '../src/components/themes/index'

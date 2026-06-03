@@ -2,7 +2,7 @@
 // This source code is licensed under the MIT license.
 
 import React from 'react'
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-webpack5'
 import { StatsCard as StatsCardComponent, Typography } from 'components'
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney'
 import People from '@mui/icons-material/People'

@@ -121,7 +121,7 @@ describe('Actions toast', () => {
     const { result } = renderHook(() => useToast())
 
     const CustomMessageWithActions = () => (
-      <Stack direction="row" alignItems="flex-end" justifyContent="flex-end" gap={1}>
+      <Stack direction="row" sx={{ alignItems: 'flex-end', justifyContent: 'flex-end', gap: 1 }}>
         <Button size={'small'} onClick={emptyFunction} variant="text" capitalize={false}>
           <Typography>{'Button 1'}</Typography>
         </Button>
