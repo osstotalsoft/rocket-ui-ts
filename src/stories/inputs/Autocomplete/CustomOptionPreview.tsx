@@ -15,7 +15,8 @@ type OptionType = {
 }
 
 export const CustomOptionPreview = (props: any) => {
-  const [value, setValue] = useState<unknown>()
+  const [value, setValue] = useState<unknown>(null)
+  const [paginatedValue, setPaginatedValue] = useState<unknown>(null)
   const { label, options, loadOptions } = props as AutocompleteProps<unknown>
 
   return (
@@ -41,7 +42,7 @@ export const CustomOptionPreview = (props: any) => {
             const option = unknownOption as OptionType
             return (
               <li {...props}>
-                <Box component={option.icon} sx={{ width: 25, height: 25, marginRight: '15px' }}/>
+                <Box component={option.icon} sx={{ width: 25, height: 25, marginRight: '15px' }} />
                 <Box>
                   <Typography variant="body1">{option.name}</Typography>
                   <Typography variant="body2" color="error">
@@ -58,13 +59,13 @@ export const CustomOptionPreview = (props: any) => {
           label={label}
           loadOptions={loadOptions}
           isPaginated
-          value={value}
-          onChange={(v: unknown) => setValue(v)}
+          value={paginatedValue}
+          onChange={(v: unknown) => setPaginatedValue(v)}
           renderOption={(props: React.HTMLAttributes<HTMLLIElement> & { key: any }, unknownOption: unknown) => {
             const option = unknownOption as OptionType
             return (
               <li {...props}>
-                <Box component={CheckIcon} sx={{ width: 25, height: 25, marginRight: '15px' }}/>
+                <Box component={CheckIcon} sx={{ width: 25, height: 25, marginRight: '15px' }} />
                 <Box>
                   <Typography variant="body1">{option.name}</Typography>
                   <Typography variant="body2" color="error">

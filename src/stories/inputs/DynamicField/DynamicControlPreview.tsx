@@ -10,7 +10,7 @@ import { useContainerSizing, useDynamicProps } from './_hooks'
 import { InfoLink } from './ControlPreview'
 
 const DynamicControlPreview = () => {
-  const [value, setValue] = useState<unknown>()
+  const [value, setValue] = useState<unknown>(null)
   const [type, setType] = useState<ControlType>(ControlType.Text)
 
   const { controlValues, props, currentControlData, handlePropsChange } = useDynamicProps(type)

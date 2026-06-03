@@ -15,7 +15,7 @@ type ControlPreviewProps = {
 }
 
 const ControlPreview = ({ controlType, ...rest }: ControlPreviewProps) => {
-  const [value, setValue] = useState<unknown>()
+  const [value, setValue] = useState<unknown>(null)
 
   const { controlValues, props, currentControlData, handlePropsChange } = useDynamicProps(controlType)
   const width = useContainerSizing()
@@ -49,7 +49,7 @@ const ControlPreview = ({ controlType, ...rest }: ControlPreviewProps) => {
                 onChange={value => handlePropsChange(name, value)}
                 label={label}
                 options={options}
-                value={controlValues[name]}
+                value={controlValues[name] || null}
               />
             ))}
           </Stack>

@@ -13,7 +13,7 @@ import { IconButtonProps, IconTypeKey, iconType } from './types'
 const IconButton: React.FC<IconButtonProps> = ({
   children,
   type,
-  fontSize = 'small',
+  iconProps,
   loading,
   size = 'medium',
   color = 'secondary',
@@ -30,7 +30,7 @@ const IconButton: React.FC<IconButtonProps> = ({
       {loading ? (
         <CircularProgress color="inherit" size={24} />
       ) : type ? (
-        <CustomIcon fontSize={fontSize as any} />
+        <CustomIcon fontSize='small' {...(iconProps as any)} />
       ) : (
         children
       )}
@@ -62,6 +62,10 @@ IconButton.propTypes = {
    */
   size: PropTypes.oneOf(['tiny', 'small', 'medium', 'large']),
   /**
+   * The properties of the icon.
+   */
+  iconProps: PropTypes.object,
+  /**
    * Override or extend the styles applied to the component
    */
   className: PropTypes.string,
@@ -89,11 +93,6 @@ IconButton.propTypes = {
    * Custom icon to be displayed
    */
   type: PropTypes.oneOf(['add', 'cancel', 'delete', 'download', 'downward', 'edit', 'view', 'save', 'upward', 'expandLess', 'expandMore']),
-  /**
-   * @default 'small'
-   * Size of the icon.
-   */
-  fontSize: PropTypes.oneOf(['inherit', 'small', 'medium', 'large'])
 }
 
 export default IconButton

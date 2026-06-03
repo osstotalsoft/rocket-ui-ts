@@ -4,6 +4,25 @@
 
 ### Breaking Changes
 
+#### `IconButton`, `BackToButton`, `UploadButton` — `fontSize` prop removed
+The `fontSize` prop (previously deprecated in favour of `iconProps`) has been removed from `IconButton`, `BackToButton`, and `UploadButton`. Pass the icon size via `iconProps` instead:
+
+```diff
+- <IconButton type="add" fontSize="medium" />
++ <IconButton type="add" iconProps={{ fontSize: 'medium' }} />
+
+- <BackToButton path="/" fontSize="large" />
++ <BackToButton path="/" iconProps={{ fontSize: 'large' }} />
+
+- <UploadButton fontSize="small" />
++ <UploadButton iconProps={{ fontSize: 'small' }} />
+```
+
+#### `CollapseCard` — `canExpand` prop removed
+The `canExpand` prop (previously deprecated in favour of the `Card` component) has been removed from `CollapseCard`. If you need a non-collapsible card, use the `Card` component directly.
+
+---
+
 #### Peer dependency: MUI v6 → v9
 All `@mui/*` packages have been upgraded from v6 to v9. Consumers must upgrade their own peer dependencies accordingly:
 

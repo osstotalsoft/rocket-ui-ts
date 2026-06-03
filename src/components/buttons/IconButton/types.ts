@@ -15,8 +15,6 @@ import ExpandLessIcon from '@mui/icons-material/ExpandLess'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import { IconProps } from '@mui/material'
 
-export type FontSize = 'inherit' | 'small' | 'medium' | 'large'
-
 export type ButtonType =
   | 'add'
   | 'cancel'
@@ -48,10 +46,6 @@ export type IconTypeKey = keyof typeof iconType
 
 export interface IconButtonProps extends Omit<ButtonProps, 'type'> {
   type?: ButtonType
-  /**
-   * @deprecated Use the `iconProps` prop instead.
-   */
-  fontSize?: FontSize
   iconProps?: IconProps
   loading?: boolean
 }
