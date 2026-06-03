@@ -17,6 +17,15 @@ All `@mui/*` packages have been upgraded from v6 to v9. Consumers must upgrade t
 | `@mui/x-charts` | `^7.24.0` | `^9.3.0` |
 | `@mui/x-date-pickers` | `^7.24.0` | `^9.3.0` |
 
+#### `DateTime` — uncontrolled mode no longer supported
+MUI X v9 removed support for uncontrolled date pickers. The `DateTime` component must now always be used in controlled mode by providing both `value` and `onChange` props:
+
+```diff
+- <DateTime label="Date Picker" />
++ const [value, setValue] = useState<Date | null>(null)
++ <DateTime label="Date Picker" value={value} onChange={setValue} />
+```
+
 #### `DateTime` — date adapter import path changed
 MUI X v9 dropped the `V3` suffix from the date-fns adapter. If your application directly imports the adapter:
 

@@ -1,7 +1,7 @@
 // Copyright (c) TotalSoft.
 // This source code is licensed under the MIT license.
 
-import React from 'react'
+import React, { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react-webpack5'
 import { DateTime } from 'components'
 import FormatPreview from './FormatPreview'
@@ -24,7 +24,11 @@ type Story = StoryObj<typeof meta>
  * The default DateTime component.
  */
 export const Default: Story = {
-  args: { label: 'Default Picker' }
+  args: { label: 'Default Picker' },
+  render: args => {
+    const [value, setValue] = useState<Date | null>(null)
+    return <DateTime {...args} value={value} onChange={setValue} />
+  }
 }
 
 /**
@@ -43,6 +47,10 @@ export const Customized: Story = {
   args: {
     label: 'Customized Picker',
     slots: { openPickerIcon: HeartBroken, leftArrowIcon: SwipeLeftAlt, rightArrowIcon: SwipeRightAlt }
+  },
+  render: args => {
+    const [value, setValue] = useState<Date | null>(null)
+    return <DateTime {...args} value={value} onChange={setValue} />
   }
 }
 
@@ -50,7 +58,11 @@ export const Customized: Story = {
  * Date picker selection can be limited using the `minDate` and `maxDate` properties.
  */
 export const LimitOptions: Story = {
-  args: { label: 'Default Picker', minDate: new Date() }
+  args: { label: 'Default Picker', minDate: new Date() },
+  render: args => {
+    const [value, setValue] = useState<Date | null>(null)
+    return <DateTime {...args} value={value} onChange={setValue} />
+  }
 }
 
 /**

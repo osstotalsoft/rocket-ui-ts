@@ -9,6 +9,9 @@ const formatMap = ['fr', 'en-US', 'ro', 'de']
 
 const FormatPreview = () => {
   const [format, setFormat] = useState<DateTimeProps<Date, string>['localeFormat']>('en-US')
+  const [dateValue, setDateValue] = useState<Date | null>(null)
+  const [dateTimeValue, setDateTimeValue] = useState<Date | null>(null)
+  const [timeValue, setTimeValue] = useState<Date | null>(null)
 
   const handleClick = useCallback((e: any) => {
     setFormat(e.target.value)
@@ -26,13 +29,13 @@ const FormatPreview = () => {
         </ToggleButtonGroup>
       </Grid>
       <Grid size={4}>
-        <DateTime showPicker="date" label="Date Picker" localeFormat={format} value={undefined as unknown as Date} />
+        <DateTime showPicker="date" label="Date Picker" localeFormat={format} value={dateValue} onChange={setDateValue} />
       </Grid>
       <Grid size={4}>
-        <DateTime showPicker="dateTime" label="Date Time Picker" localeFormat={format} value={undefined as unknown as Date} />
+        <DateTime showPicker="dateTime" label="Date Time Picker" localeFormat={format} value={dateTimeValue} onChange={setDateTimeValue} />
       </Grid>
       <Grid size={4}>
-        <DateTime showPicker="time" label="Time Picker" localeFormat={format} value={undefined as unknown as Date} />
+        <DateTime showPicker="time" label="Time Picker" localeFormat={format} value={timeValue} onChange={setTimeValue} />
       </Grid>
     </Grid>
   )
