@@ -18,12 +18,8 @@ const secondaryDark    = '#c7b500'
 const secondaryDarker  = '#928300'
 
 const white = '#ffffff'
-
-const iconButtonOverride = {
-  backgroundColor: primaryMain,
-  color: white,
-  '&:hover': { backgroundColor: primaryDarker },
-}
+const disabledBg = '#E0E0E0'
+const disabledText = '#9E9E9E'
 
 const palette = generatePalette({
   primary: {
@@ -72,49 +68,96 @@ const yellowTheme: Theme = createTheme({
 // Apply base rocket-ui component overrides first
 yellowTheme.components = componentsOverride(yellowTheme)
 
+const containedPrimaryStyle = {
+  backgroundColor: primaryDark,
+  color: white,
+  '&:hover': {
+    backgroundColor: primaryDarker,
+  },
+  '&.Mui-disabled': {
+    backgroundColor: disabledBg,
+    color: disabledText,
+    opacity: 1,
+  },
+}
+
+const outlinedPrimaryStyle = {
+  borderColor: primaryDark,
+  color: secondaryMain,
+  '& .MuiSvgIcon-root': {
+    color: primaryMain, 
+  },
+  '&:hover': {
+    borderColor: primaryDarker,
+    backgroundColor: 'rgba(44, 45, 52, 0.08)',
+  },
+  '&.Mui-disabled': {
+    borderColor: disabledBg,
+    color: disabledText,
+    opacity: 1,
+  },
+}
+
+const textPrimaryStyle = {
+  color: secondaryMain,
+  '& .MuiSvgIcon-root': {
+    color: primaryMain, 
+  },  
+  '&:hover': {
+    backgroundColor: 'rgba(44, 45, 52, 0.08)',
+  },
+  '&.Mui-disabled': {
+    color: disabledText,
+    opacity: 1,
+  },
+}
+
 // Then apply yellow-specific overrides on top
 yellowTheme.components = {
   ...yellowTheme.components,
-  MuiButton: {
-    ...yellowTheme.components?.MuiButton,
-    styleOverrides: {
-      containedPrimary: {
-        backgroundColor: secondaryMain,
-        color:           primaryDark,
-        '&:hover': { backgroundColor: secondaryDarker },
-        '&[aria-label="iconButton"]': iconButtonOverride,
-      },
-      containedSecondary: {
+MuiButton: {
+  ...yellowTheme.components?.MuiButton,
+  styleOverrides: {
+    ...yellowTheme.components?.MuiButton?.styleOverrides,
+
+    containedPrimary: containedPrimaryStyle,
+    containedSecondary: containedPrimaryStyle,
+
+    outlinedPrimary: outlinedPrimaryStyle,
+    outlinedSecondary: outlinedPrimaryStyle,
+
+    textPrimary: textPrimaryStyle,
+    textSecondary: textPrimaryStyle
+  },
+
+  variants: [
+    ...(yellowTheme.components?.MuiButton?.variants || []),
+    {
+      props: { variant: 'selectedActive' },
+      style: {
         backgroundColor: primaryDark,
-        color:           secondaryMain,
         '&:hover': { backgroundColor: primaryDarker },
-        '&[aria-label="iconButton"]': iconButtonOverride,
-      },
-      textPrimary: {
-        color: primaryMain,
-        '&:hover': { backgroundColor: 'rgba(44, 45, 52, 0.08)' },
-        '&[aria-label="iconButton"]': { color: primaryMain },
+        '&.Mui-disabled': {
+          backgroundColor: primaryDark,
+          color: white,
+          opacity: 0.7,
+        },
       },
     },
-    variants: [
-      {
-        props: { variant: 'selectedActive' },
-        style: {
-          backgroundColor: primaryDark,          
-          '&:hover': { backgroundColor: primaryDarker },
-          '&.Mui-disabled': { backgroundColor: primaryDark, color: white, opacity: 0.7 },
+    {
+      props: { variant: 'selectedDefault' },
+      style: {
+        backgroundColor: secondaryMain,
+        '&:hover': { backgroundColor: secondaryDarker },
+        '&.Mui-disabled': {
+          backgroundColor: secondaryMain,
+          color: primaryDark,
+          opacity: 0.7,
         },
       },
-      {
-        props: { variant: 'selectedDefault' },
-        style: {
-          backgroundColor: secondaryMain,          
-          '&:hover': { backgroundColor: secondaryDarker },
-          '&.Mui-disabled': { backgroundColor: secondaryMain, color: primaryDark, opacity: 0.7 },
-        },
-      },
-    ],
-  },
+    },
+  ],
+},
   MuiCardHeader: {
     styleOverrides: {
       avatar: {
