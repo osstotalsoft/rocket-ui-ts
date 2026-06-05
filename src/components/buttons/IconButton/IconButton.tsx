@@ -22,7 +22,8 @@ const IconButton: React.FC<IconButtonProps> = ({
   const CustomIcon = useMemo(() => iconType[type as IconTypeKey], [type])
 
   const iconButtonProps = {
-    ['aria-label']: type || 'iconButton'
+    ['aria-label']: type || 'iconButton',
+    ['data-icon-button']: type ? 'true' : undefined
   }
 
   return (
