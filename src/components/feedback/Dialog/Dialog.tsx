@@ -78,7 +78,7 @@ const Dialog: React.FC<DialogProps> = ({
       open={open}
       {...rest}
     >
-      <Stack direction="row" sx={{ alignItems: 'center', p: '16px 24px', justifyContent: 'space-between'}}>
+      <Stack direction="row" sx={{ p: '16px 24px', position: 'relative' }}>
         <DialogTitle id={dialogTitleId} {...titleProps}>
           {title}
         </DialogTitle>
@@ -89,6 +89,7 @@ const Dialog: React.FC<DialogProps> = ({
             size="small"
             aria-label="Close"
             onClick={handleClose as MouseEventHandler}
+            sx={{ position: 'absolute', right: '14px', top: '50%', transform: 'translateY(-50%)' }}
             {...closeButtonProps}
           >
             <CloseIcon />
