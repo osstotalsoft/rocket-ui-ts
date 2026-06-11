@@ -6,6 +6,7 @@
     "**/src/stories/*",
     "**/.storybook/*",
     "**/src/setupTests.ts",
-    "**/src/testingUtils/*"
+    "**/src/testingUtils/*",
+    "**/.claude/*"
   ]
 }
