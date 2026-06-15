@@ -33,7 +33,7 @@ const CollapseCard: React.FC<CollapseCardProps> = ({
   )
 
   const iconButton = (
-    <IconButton size="small" variant="text" color="primary" onClick={toggleCard}>
+    <IconButton size="small" variant="text" color="primary" onClick={toggleCard} data-testid="collapse-card-toggle-button">
       {exp ? <ExpandLessIcon /> : <ExpandMoreIcon />}
     </IconButton>
   )
