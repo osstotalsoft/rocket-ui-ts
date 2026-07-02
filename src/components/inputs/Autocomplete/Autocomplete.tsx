@@ -359,6 +359,7 @@ const Autocomplete: React.FC<AutocompleteProps<any, any, any, any>> = ({
       filterSelectedOptions={simpleValue && isMultiSelection && !withCheckboxes}
       filterOptions={filterOptions(labelKey, valueKey, creatable)}
       getOptionLabel={handleOptionLabel}
+      getOptionKey={(option: any) => option?.[valueKey] ?? handleOptionLabel(option)}
       isOptionEqualToValue={isOptionEqualToValue}
       getOptionDisabled={getOptionDisabled}
       value={localValue}
