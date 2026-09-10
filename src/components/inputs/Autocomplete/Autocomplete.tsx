@@ -50,6 +50,7 @@ const Autocomplete: React.FC<
   debouncedBy = 500,
   renderOption,
   isPaginated,
+  disableOptionTooltipInteractive = false,
   // ---------------- input field props ----------------
   label,
   placeholder,
@@ -231,6 +232,7 @@ const Autocomplete: React.FC<
               selected={false}
               withCheckboxes={false}
               option={option}
+              disableTooltipInteractive={disableOptionTooltipInteractive}
             />
           )
         }
@@ -251,12 +253,13 @@ const Autocomplete: React.FC<
               selected={state.selected}
               withCheckboxes={withCheckboxes}
               option={option}
+              disableTooltipInteractive={disableOptionTooltipInteractive}
             />
           )
         }
         return renderOption(liProps, option, state, ownerState)
       },
-      [getValue, handleGetOptionLabel, loadingText, ref, renderOption, withCheckboxes]
+      [disableOptionTooltipInteractive, getValue, handleGetOptionLabel, loadingText, ref, renderOption, withCheckboxes]
     )
 
     const handleFilterOptions = useCallback(
@@ -443,6 +446,7 @@ Autocomplete.propTypes = {
   debouncedBy: PropTypes.number,
   renderOption: PropTypes.func,
   isPaginated: PropTypes.bool,
+  disableOptionTooltipInteractive: PropTypes.bool,
   // ---------------- input field props ----------------
   label: PropTypes.string,
   placeholder: PropTypes.string,

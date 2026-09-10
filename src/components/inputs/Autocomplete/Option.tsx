@@ -12,11 +12,11 @@ const Option = forwardRef<HTMLLIElement, OptionProps>(function Option(props, ref
     setIsOverflow(optionRef?.current?.scrollWidth > optionRef?.current?.clientWidth)
   }, [])
 
-  const { label, liProps, selected, withCheckboxes, option } = props
+  const { label, liProps, selected, withCheckboxes, option, disableTooltipInteractive } = props
   const { key, ...rest } = liProps // Warning: key must be passed directly to a JSX element and not by a spread operator
 
   return (
-    <Tooltip title={label} disableHoverListener={!isOverflow} placement="right">
+    <Tooltip title={label} disableHoverListener={!isOverflow} placement="right" disableInteractive={disableTooltipInteractive}>
       <li key={key} {...rest} aria-disabled={option?.isDisabled} ref={ref}>
         <div ref={optionRef}>
           {withCheckboxes && (
@@ -39,7 +39,8 @@ Option.propTypes = {
   liProps: PropTypes.object.isRequired as PropTypes.Validator<React.HTMLAttributes<HTMLLIElement> & { key: any }>,
   selected: PropTypes.bool,
   withCheckboxes: PropTypes.bool,
-  option: PropTypes.any.isRequired
+  option: PropTypes.any.isRequired,
+  disableTooltipInteractive: PropTypes.bool
 }
 
 export default Option
