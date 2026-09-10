@@ -71,6 +71,7 @@ const Autocomplete: React.FC<AutocompleteProps<any, any, any, any>> = ({
   ListboxProps,
   stopEventPropagation = false,
   renderGroup,
+  disableOptionTooltipInteractive = false,
   ...other
 }) => {
   const [options, setOptions] = useState(receivedOptions ?? [])
@@ -208,11 +209,12 @@ const Autocomplete: React.FC<AutocompleteProps<any, any, any, any>> = ({
           selected={selected}
           withCheckboxes={withCheckboxes}
           option={option}
+          disableTooltipInteractive={disableOptionTooltipInteractive}
           {...props}
         />
       )
     },
-    [handleOptionLabel, createdLabel, withCheckboxes]
+    [handleOptionLabel, createdLabel, withCheckboxes, disableOptionTooltipInteractive]
   )
 
   const renderTags = useCallback(
@@ -548,7 +550,14 @@ Autocomplete.propTypes = {
    * @param {AutocompleteRenderGroupParams} params The group to render.
    * @returns {ReactNode}
    */
-  renderGroup: PropTypes.func
+  renderGroup: PropTypes.func,
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won't capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive: PropTypes.bool
 }
 
 export default Autocomplete
