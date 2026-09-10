@@ -25,6 +25,12 @@ export interface OptionProps extends React.HTMLAttributes<HTMLLIElement> {
    * Item option.
    */
   option?: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won't capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginated = (
@@ -190,4 +196,11 @@ export interface AutocompleteProps<
    * @returns {ReactNode}
    */
   renderGroup?: (params: AutocompleteRenderGroupParams) => React.ReactNode
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won't capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
 }

@@ -8,7 +8,15 @@ import { Option as BaseOption } from './AutocompleteStyles'
 import Typography from '../../dataDisplay/Typography'
 import { OptionProps } from './types'
 
-const Option = ({ optionLabel, createdLabel, selected, withCheckboxes, option, ...rest }: OptionProps) => {
+const Option = ({
+  optionLabel,
+  createdLabel,
+  selected,
+  withCheckboxes,
+  option,
+  disableTooltipInteractive,
+  ...rest
+}: OptionProps) => {
   const optionRef = useRef(null)
   const [isOverflow, setIsOverflow] = useState(false)
 
@@ -29,7 +37,7 @@ const Option = ({ optionLabel, createdLabel, selected, withCheckboxes, option, .
       {optionLabel}
     </li>
   ) : (
-    <Tooltip title={optionLabel} disableHoverListener={!isOverflow}>
+    <Tooltip title={optionLabel} disableHoverListener={!isOverflow} disableInteractive={disableTooltipInteractive}>
       <li {...rest} aria-disabled={is(String, option) ? false : option?.isDisabled}>
         <BaseOption ref={optionRef}>
           <Typography>{label}</Typography>
@@ -44,7 +52,8 @@ Option.propTypes = {
   selected: PropTypes.bool,
   withCheckboxes: PropTypes.bool,
   createdLabel: PropTypes.string,
-  option: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
+  option: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+  disableTooltipInteractive: PropTypes.bool
 }
 
 export default Option
