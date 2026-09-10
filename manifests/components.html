@@ -594,7 +594,7 @@
 <main>
   <div class="wrap">
     <div class="note info" style="margin-bottom: 16px;">
-            <strong>Tip:</strong> You are using <code>react-docgen</code> (the default). Generation took <strong>0.6s</strong>. For higher quality prop types, consider switching to <code>react-docgen-typescript</code> in your <code>main.ts</code>:
+            <strong>Tip:</strong> You are using <code>react-docgen</code> (the default). Generation took <strong>0.4s</strong>. For higher quality prop types, consider switching to <code>react-docgen-typescript</code> in your <code>main.ts</code>:
             <pre><code>typescript: {
   reactDocgen: 'react-docgen-typescript',
 }</code></pre>
@@ -2145,6 +2145,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -2294,6 +2300,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -2425,6 +2438,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -2574,6 +2593,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -8988,6 +9014,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -9137,6 +9169,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -9268,6 +9307,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -9417,6 +9462,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -15914,6 +15966,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -16063,6 +16121,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -16194,6 +16259,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -16343,6 +16414,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -22748,6 +22826,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -22897,6 +22981,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -23028,6 +23119,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -23177,6 +23274,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -29613,6 +29717,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -29762,6 +29872,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -29893,6 +30010,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -30042,6 +30165,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -36447,6 +36577,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -36596,6 +36732,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -36727,6 +36870,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -36876,6 +37025,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -43319,6 +43475,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -43468,6 +43630,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -43599,6 +43768,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -43748,6 +43923,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -50198,6 +50380,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -50347,6 +50535,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -50478,6 +50673,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -50627,6 +50828,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -57039,6 +57247,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -57188,6 +57402,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -57319,6 +57540,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -57468,6 +57695,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -64392,6 +64626,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -64541,6 +64781,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -64672,6 +64919,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -64821,6 +65074,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -71198,6 +71458,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -71347,6 +71613,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -71478,6 +71751,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -71627,6 +71906,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -78012,6 +78298,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -78161,6 +78453,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -78292,6 +78591,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -78441,6 +78746,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -84808,6 +85120,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -84957,6 +85275,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -85088,6 +85413,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -85237,6 +85568,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -91962,6 +92300,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -92111,6 +92455,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -92242,6 +92593,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -92391,6 +92748,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -98788,6 +99152,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -98937,6 +99307,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -99068,6 +99445,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -99217,6 +99600,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -105636,6 +106026,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -105785,6 +106181,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -105916,6 +106319,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -106065,6 +106474,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -112636,6 +113052,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -112785,6 +113207,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -112916,6 +113345,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -113065,6 +113500,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -119595,6 +120037,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -119744,6 +120192,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -119875,6 +120330,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -120024,6 +120485,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -126526,6 +126994,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -126675,6 +127149,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -126806,6 +127287,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -126955,6 +127442,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -133352,6 +133846,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -133501,6 +134001,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -133632,6 +134139,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -133781,6 +134294,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -140238,6 +140758,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -140387,6 +140913,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -140518,6 +141051,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -140667,6 +141206,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -147096,6 +147642,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -147245,6 +147797,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -147376,6 +147935,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -147525,6 +148090,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -153935,6 +154507,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -154084,6 +154662,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -154215,6 +154800,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -154364,6 +154955,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -160763,6 +161361,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -160912,6 +161516,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -161043,6 +161654,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -161192,6 +161809,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -167631,6 +168255,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -167780,6 +168410,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -167911,6 +168548,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -168060,6 +168703,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -174474,6 +175124,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -174623,6 +175279,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -174754,6 +175417,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -174903,6 +175572,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -181400,6 +182076,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -181549,6 +182231,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -181680,6 +182369,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -181829,6 +182524,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -188234,6 +188936,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -188383,6 +189091,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -188514,6 +189229,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -188663,6 +189384,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -195099,6 +195827,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -195248,6 +195982,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -195379,6 +196120,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -195528,6 +196275,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -201933,6 +202687,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -202082,6 +202842,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -202213,6 +202980,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -202362,6 +203135,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -208805,6 +209585,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -208954,6 +209740,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -209085,6 +209878,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -209234,6 +210033,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -215684,6 +216490,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -215833,6 +216645,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -215964,6 +216783,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -216113,6 +216938,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -222525,6 +223357,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -222674,6 +223512,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -222805,6 +223650,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -222954,6 +223805,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -229356,6 +230214,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -229505,6 +230369,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -229636,6 +230507,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -229785,6 +230662,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -236162,6 +237046,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -236311,6 +237201,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -236442,6 +237339,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -236591,6 +237494,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -242976,6 +243886,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -243125,6 +244041,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -243256,6 +244179,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -243405,6 +244334,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -249772,6 +250708,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -249921,6 +250863,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -250052,6 +251001,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -250201,6 +251156,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -256799,6 +257761,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -256948,6 +257916,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -257079,6 +258054,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -257228,6 +258209,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -263625,6 +264613,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -263774,6 +264768,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -263905,6 +264906,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -264054,6 +265061,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -270473,6 +271487,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -270622,6 +271642,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -270753,6 +271780,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -270902,6 +271935,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -277473,6 +278513,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -277622,6 +278668,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -277753,6 +278806,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -277902,6 +278961,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -284432,6 +285498,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -284581,6 +285653,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -284712,6 +285791,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -284861,6 +285946,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -291363,6 +292455,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -291512,6 +292610,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -291643,6 +292748,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -291792,6 +292903,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -298189,6 +299307,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -298338,6 +299462,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -298469,6 +299600,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -298618,6 +299755,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -305075,6 +306219,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -305224,6 +306374,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -305355,6 +306512,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -305504,6 +306667,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -311933,6 +313103,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -312082,6 +313258,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -312213,6 +313396,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -312362,6 +313551,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -318772,6 +319968,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -318921,6 +320123,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -319052,6 +320261,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -319201,6 +320416,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -325600,6 +326822,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -325749,6 +326977,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
@@ -325880,6 +327115,12 @@ export interface OptionProps {
    * Item option.
    */
   option: any
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   */
+  disableTooltipInteractive?: boolean
 }
 
 export type LoadOptionsPaginatedResult&lt;T&gt; = { loadedOptions: ReadonlyArray&lt;T&gt;; more: boolean; additional: unknown }
@@ -326029,6 +327270,13 @@ export interface AutocompleteProps&lt;
    * @default false
    */
   isPaginated?: boolean
+  /**
+   * @default false
+   * If true, the tooltip shown for a truncated option label won&#39;t capture pointer events,
+   * so clicks on it (or on nearby options) reach the element underneath instead of the tooltip.
+   * Useful when the Autocomplete itself is rendered inside another Tooltip.
+   */
+  disableOptionTooltipInteractive?: boolean
   /**
    * Render the input.
    *
