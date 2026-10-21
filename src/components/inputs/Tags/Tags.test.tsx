@@ -1,6 +1,7 @@
 // Copyright (c) TotalSoft.
 // This source code is licensed under the MIT license.
 
+import { jest } from '@jest/globals'
 import React from 'react'
 import { fireEvent, render, screen } from '../../../testingUtils'
 import { DisplayTags, TagsInput } from '../../index'
@@ -42,7 +43,7 @@ describe('TagsInput', () => {
   it('renders the tags correctly', () => {
     const tags = ['Tag1', 'Tag2', 'Tag3']
 
-    render(<TagsInput value={tags} onChange={jest.fn} />)
+    render(<TagsInput value={tags} onChange={jest.fn()} />)
 
     tags.forEach(tag => {
       expect(screen.getByText(tag)).toBeInTheDocument()
@@ -52,7 +53,7 @@ describe('TagsInput', () => {
   it('renders the avatar correctly', () => {
     const tags = ['Tag1', 'Tag2', 'Tag3']
 
-    render(<TagsInput avatar={<span data-testid="avatar">A</span>} value={tags} onChange={jest.fn} />)
+    render(<TagsInput avatar={<span data-testid="avatar">A</span>} value={tags} onChange={jest.fn()} />)
 
     tags.forEach(tag => {
       expect(screen.getByText(tag)).toBeInTheDocument()
@@ -63,7 +64,7 @@ describe('TagsInput', () => {
   it('renders the icon correctly', () => {
     const tags = ['Tag1', 'Tag2', 'Tag3']
 
-    render(<TagsInput icon={<span data-testid="icon">I</span>} value={tags} onChange={jest.fn} />)
+    render(<TagsInput icon={<span data-testid="icon">I</span>} value={tags} onChange={jest.fn()} />)
 
     tags.forEach(tag => {
       expect(screen.getByText(tag)).toBeInTheDocument()

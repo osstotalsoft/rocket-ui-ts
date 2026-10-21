@@ -1,3 +1,4 @@
+import { jest } from '@jest/globals'
 import React from 'react'
 import Slider from './Slider'
 import { render, screen, fireEvent, waitFor } from 'testingUtils'

@@ -25,7 +25,7 @@
     "linter": "eslint . --fix --ext .ts,.tsx",
     "publish": "yarn npm publish",
     "storybook": "storybook dev -p 6006",
-    "test": "jest --collectCoverage --passWithNoTests--silent=false --runInBand",
+    "test": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js --collectCoverage --passWithNoTests --silent=false --runInBand",
     "version": "yarn version -i $(git describe --abbrev=0 --tags)"
   },
   "browserslist": {
@@ -49,12 +49,24 @@
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/src/__mocks__/fileMock.js",
       "\\.(css|less)$": "identity-obj-proxy"
     },
-    "preset": "ts-jest",
+    "preset": "ts-jest/presets/default-esm",
     "setupFilesAfterEnv": [
       "<rootDir>/src/setupTests.ts"
     ],
     "testEnvironment": "jsdom",
-    "verbose": true
+    "verbose": true,
+    "extensionsToTreatAsEsm": [
+      ".ts",
+      ".tsx"
+    ],
+    "transform": {
+      "^.+\\.[tj]sx?$": [
+        "ts-jest",
+        {
+          "useESM": true
+        }
+      ]
+    }
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -74,7 +86,7 @@
     "ramda": "^0.30.1",
     "react-intersection-observer-hook": "^4.0.2",
     "react-number-format": "^5.4.3",
-    "react-router": "^7.1.3",
+    "react-router": "^8.5.0",
     "react-toastify": "^11.1.0",
     "ts-toolbelt": "^9.6.0",
     "uuid": "^11.0.5"
@@ -89,6 +101,7 @@
     "@eslint/compat": "^1.2.5",
     "@eslint/eslintrc": "^3.3.7",
     "@eslint/js": "^9.18.0",
+    "@jest/globals": "^29.7.0",
     "@storybook/addon-docs": "10.6.3",
     "@storybook/addon-links": "10.6.3",
     "@storybook/addon-mcp": "^10.6.3",

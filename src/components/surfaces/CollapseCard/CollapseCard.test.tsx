@@ -1,3 +1,4 @@
+import { jest } from '@jest/globals'
 import React from 'react'
 import { act, render, screen, userClick, waitFor } from 'testingUtils'
 import { Button, CollapseCard } from '../../index'

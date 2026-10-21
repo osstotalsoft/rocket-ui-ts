@@ -1,3 +1,4 @@
+import { jest } from '@jest/globals'
 import React from 'react'
 import { render, screen, userClick } from 'testingUtils'
 import { Dialog, getTheme } from '../../index'
