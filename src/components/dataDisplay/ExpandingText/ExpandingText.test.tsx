@@ -49,7 +49,7 @@ describe('ExpandingText', () => {
     const color = 'red'
     render(<ExpandingText text={text} minLength={250} showMoreText={showMoreText} sx={{ color }} />)
 
-    expect(screen.getByText(showMoreText)).toHaveStyle(`color: ${color}`)
+    expect(screen.getByText(showMoreText)).toHaveStyle('color: rgb(255, 0, 0)')
   })
 
   test('typography wrapping the text is customizable', () => {

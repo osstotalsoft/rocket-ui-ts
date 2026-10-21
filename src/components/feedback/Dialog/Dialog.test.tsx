@@ -49,7 +49,7 @@ describe('DialogDisplay', () => {
     render(<Dialog id="dialog" open={true} content={text} transparentBackdrop={true} />)
     const backdrop = screen.getByRole('dialog').parentElement.parentElement.childNodes[0]
 
-    expect(backdrop).toHaveStyle('background-color: transparent')
+    expect(backdrop).toHaveStyle('background-color: rgba(0, 0, 0, 0)')
   })
 
   test('calls onClose function when clicking the X button', () => {
@@ -61,7 +61,7 @@ describe('DialogDisplay', () => {
     expect(mockOnClose).toHaveBeenCalled()
   })
 
-  test('doesn\'t close on backdrop click when disableBackdropClick = true', () => {
+  test("doesn't close on backdrop click when disableBackdropClick = true", () => {
     const mockOnClose = jest.fn(() => {})
 
     render(<Dialog id="dialog" open={true} content={text} onClose={mockOnClose} disableBackdropClick={true} />)
@@ -77,17 +77,17 @@ describe('DialogDisplay', () => {
 
   test('DialogTitle can be overridden through the titleProps', () => {
     render(<Dialog id="dialog" open={true} title={title} content={text} titleProps={{ sx: { backgroundColor: 'red' } }} />)
-    expect(screen.getByText(title)).toHaveStyle('background-color: red')
+    expect(screen.getByText(title)).toHaveStyle('background-color: rgb(255, 0, 0)')
   })
 
   test('DialogContent can be overridden through the contentProps', () => {
     render(<Dialog id="dialog" open={true} content={text} contentProps={{ sx: { backgroundColor: 'red' } }} />)
-    expect(screen.getByText(text)).toHaveStyle('background-color: red')
+    expect(screen.getByText(text)).toHaveStyle('background-color: rgb(255, 0, 0)')
   })
 
   test('DialogContentText can be overridden through the textContentProps', () => {
     render(<Dialog id="dialog" open={true} textContent={text} textContentProps={{ sx: { backgroundColor: 'red' } }} />)
-    expect(screen.getByText(text)).toHaveStyle('background-color: red')
+    expect(screen.getByText(text)).toHaveStyle('background-color: rgb(255, 0, 0)')
   })
 
   test('DialogActions can be overridden through the actionsProps', () => {
@@ -101,11 +101,11 @@ describe('DialogDisplay', () => {
         actionsProps={{ sx: { backgroundColor: 'red' } }}
       />
     )
-    expect(screen.getByText(buttonText).parentElement).toHaveStyle('background-color: red')
+    expect(screen.getByText(buttonText).parentElement).toHaveStyle('background-color: rgb(255, 0, 0)')
   })
 
   test('Close button can be overridden through the closeButtonProps', () => {
     render(<Dialog id="dialog" open={true} content={text} closeButtonProps={{ sx: { backgroundColor: 'red' } }} />)
-    expect(screen.getByLabelText('Close')).toHaveStyle('background-color: red')
+    expect(screen.getByLabelText('Close')).toHaveStyle('background-color: rgb(255, 0, 0)')
   })
 })
