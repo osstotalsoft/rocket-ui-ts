@@ -28,6 +28,8 @@ const getThemeColor = ({ palette: { gradients, white, primary } }: Theme, color?
       return { background: gradients.warning }
     case 'info':
       return { background: gradients.info }
+    case 'secondary':
+      return { background: gradients.secondary }
     default:
       return { color: primary.main }
   }
