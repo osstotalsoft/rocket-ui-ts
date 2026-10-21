@@ -356,7 +356,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.18.3, @babel/runtime@npm:^7.23.2, @babel/runtime@npm:^7.29.2, @babel/runtime@npm:^7.29.7, @babel/runtime@npm:^7.3.1, @babel/runtime@npm:^7.5.5, @babel/runtime@npm:^7.8.7":
+"@babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.18.3, @babel/runtime@npm:^7.23.2, @babel/runtime@npm:^7.29.2, @babel/runtime@npm:^7.3.1, @babel/runtime@npm:^7.5.5, @babel/runtime@npm:^7.8.7":
   version: 7.29.10
   resolution: "@babel/runtime@npm:7.29.10"
   checksum: 10c0/32f975da8e9c2cae6b33e1a477f8fe8bbff6722c982b5ce35f99affaf3a7a1b612c8272b43afa0e51d3000928d6f3ba38f9296301115db5640264907c027b0cd
@@ -403,25 +403,6 @@ __metadata:
     "@babel/helper-string-parser": "npm:^7.29.7"
     "@babel/helper-validator-identifier": "npm:^7.29.7"
   checksum: 10c0/be7c279f0abf2a086c633e21b49c7ca80275d05283cc5a268b67a708c9914bd0c944f1422b3eb3cb37682a2af5d560abf520ccf9b01b53ecbfe6b71fbc3fdde6
-  languageName: node
-  linkType: hard
-
-"@base-ui/utils@npm:^0.4.0":
-  version: 0.4.0
-  resolution: "@base-ui/utils@npm:0.4.0"
-  dependencies:
-    "@babel/runtime": "npm:^7.29.7"
-    "@floating-ui/utils": "npm:^0.2.12"
-    reselect: "npm:^5.2.0"
-    use-sync-external-store: "npm:^1.6.0"
-  peerDependencies:
-    "@types/react": ^17 || ^18 || ^19
-    react: ^17 || ^18 || ^19
-    react-dom: ^17 || ^18 || ^19
-  peerDependenciesMeta:
-    "@types/react":
-      optional: true
-  checksum: 10c0/dd32220d13d42ed2cf0d0ae18e02bf9ece5c54d6a26e49c9449514d66d38b1fee51c875f7d9d21484a326b7a8a2c33c95be620e8a5976b7b6f3bfa27572b6baf
   languageName: node
   linkType: hard
 
@@ -1537,7 +1518,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mui/utils@npm:^9.0.1, @mui/utils@npm:^9.4.0, @mui/utils@npm:^9.5.0":
+"@mui/utils@npm:^9.0.1, @mui/utils@npm:^9.5.0":
   version: 9.5.0
   resolution: "@mui/utils@npm:9.5.0"
   dependencies:
@@ -1557,7 +1538,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mui/x-charts-vendor@npm:^9.15.0":
+"@mui/x-charts-vendor@npm:9.15.0":
   version: 9.15.0
   resolution: "@mui/x-charts-vendor@npm:9.15.0"
   dependencies:
@@ -1591,16 +1572,16 @@ __metadata:
   linkType: hard
 
 "@mui/x-charts@npm:^9.15.0":
-  version: 9.15.0
-  resolution: "@mui/x-charts@npm:9.15.0"
+  version: 9.16.0
+  resolution: "@mui/x-charts@npm:9.16.0"
   dependencies:
     "@babel/runtime": "npm:^7.29.7 || ^8.0.0"
-    "@base-ui/utils": "npm:^0.4.0"
-    "@mui/utils": "npm:^9.4.0"
-    "@mui/x-charts-vendor": "npm:^9.15.0"
-    "@mui/x-internal-gestures": "npm:^9.15.0"
-    "@mui/x-internals": "npm:^9.15.0"
-    bezier-easing: "npm:^3.1.0"
+    "@base-ui/utils": "npm:^0.5.0"
+    "@mui/utils": "npm:^9.5.0"
+    "@mui/x-charts-vendor": "npm:9.15.0"
+    "@mui/x-internal-gestures": "npm:9.16.0"
+    "@mui/x-internals": "npm:9.16.0"
+    bezier-easing: "npm:^3.2.0"
     clsx: "npm:^2.1.1"
     prop-types: "npm:^15.8.1"
     reselect: "npm:^5.3.0"
@@ -1617,7 +1598,7 @@ __metadata:
       optional: true
     "@emotion/styled":
       optional: true
-  checksum: 10c0/28471c7d0648101cbf98b4b973e678b886a82f2808dc47fab997102f8d5122d2129749afad5eeb63ac369f4baba97d57dc8e035e941f4190249e2e5c946d87a4
+  checksum: 10c0/1706684b6c05cfe01cf9cff0195302623e373ebfeb59a8c89e53ba923b08063982ce8b8398113c1df74210c5dc9ee186a7eb08ea66172279498411e763eedfc3
   languageName: node
   linkType: hard
 
@@ -1669,7 +1650,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mui/x-internal-gestures@npm:^9.15.0":
+"@mui/x-internal-gestures@npm:9.16.0":
   version: 9.16.0
   resolution: "@mui/x-internal-gestures@npm:9.16.0"
   dependencies:
@@ -1682,7 +1663,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mui/x-internals@npm:9.16.0, @mui/x-internals@npm:^9.15.0":
+"@mui/x-internals@npm:9.16.0":
   version: 9.16.0
   resolution: "@mui/x-internals@npm:9.16.0"
   dependencies:
@@ -2581,7 +2562,7 @@ __metadata:
     "@types/react-syntax-highlighter": "npm:^15.5.13"
     "@typescript-eslint/eslint-plugin": "npm:^8.72.0"
     "@typescript-eslint/parser": "npm:^8.72.0"
-    attr-accept: "npm:^2.2.5"
+    attr-accept: "npm:^4.0.1"
     classnames: "npm:^2.5.1"
     copyfiles: "npm:^2.4.1"
     date-fns: "npm:^4.4.0"
@@ -3703,10 +3684,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"attr-accept@npm:^2.2.5":
-  version: 2.2.5
-  resolution: "attr-accept@npm:2.2.5"
-  checksum: 10c0/9b4cb82213925cab2d568f71b3f1c7a7778f9192829aac39a281e5418cd00c04a88f873eb89f187e0bf786fa34f8d52936f178e62cbefb9254d57ecd88ada99b
+"attr-accept@npm:^4.0.1":
+  version: 4.0.1
+  resolution: "attr-accept@npm:4.0.1"
+  checksum: 10c0/a97d7a188a461edaf4584322c33103d8cbdfde6b1465f92e0a7a93fe354fde9764e9e491720dbd4bacc0e7bcc6ec21c6b93eac5d7b9982fb57a922c15256e62a
   languageName: node
   linkType: hard
 
@@ -3823,7 +3804,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bezier-easing@npm:^3.1.0":
+"bezier-easing@npm:^3.2.0":
   version: 3.2.0
   resolution: "bezier-easing@npm:3.2.0"
   checksum: 10c0/cbfd8c4c7bcae14eec5829735ac63adcb6179766c150e4acddd7bf0b946ebf9712ac79890c110b18c452670023686d1aad9b18c7debbf76e524de0fd02fb3ce1
@@ -4763,9 +4744,9 @@ __metadata:
   linkType: hard
 
 "electron-to-chromium@npm:^1.5.459":
-  version: 1.5.461
-  resolution: "electron-to-chromium@npm:1.5.461"
-  checksum: 10c0/121558467a4eea6d36a2b7afaaa1096b34d447b8ba24b4d9483cec64d450278b298a929492d478c0b8286033216fb89ffea367d2b239964daab1b824cbae64a3
+  version: 1.5.463
+  resolution: "electron-to-chromium@npm:1.5.463"
+  checksum: 10c0/03b594525895a1a93eb399d632b7193c6f9780c10e35331d23896f5f97b584d6a6983b401ad26db75334c55c912f2b63c82c8ac50747787298263ee84bcec506
   languageName: node
   linkType: hard
 
@@ -8332,7 +8313,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"reselect@npm:^5.2.0, reselect@npm:^5.3.0":
+"reselect@npm:^5.3.0":
   version: 5.3.0
   resolution: "reselect@npm:5.3.0"
   checksum: 10c0/c79728e4f315152bfb2d82456d35075b705392d9e72c485d7d9b1061bd80af628416216d80f02a42f24dbb24d738aec7fec45806930aaa1d17c32e9875fa1bd6
@@ -9359,7 +9340,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"use-sync-external-store@npm:^1.5.0, use-sync-external-store@npm:^1.6.0, use-sync-external-store@npm:^1.7.0":
+"use-sync-external-store@npm:^1.5.0, use-sync-external-store@npm:^1.7.0":
   version: 1.7.0
   resolution: "use-sync-external-store@npm:1.7.0"
   peerDependencies:
