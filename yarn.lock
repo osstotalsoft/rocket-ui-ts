@@ -2582,7 +2582,7 @@ __metadata:
     ramda: "npm:^0.30.1"
     react: "npm:19.3.1"
     react-dom: "npm:19.3.1"
-    react-intersection-observer-hook: "npm:^3.0.1"
+    react-intersection-observer-hook: "npm:^4.0.2"
     react-number-format: "npm:^5.4.3"
     react-router: "npm:^7.1.3"
     react-syntax-highlighter: "npm:^15.6.1"
@@ -8090,13 +8090,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-intersection-observer-hook@npm:^3.0.1":
-  version: 3.0.1
-  resolution: "react-intersection-observer-hook@npm:3.0.1"
+"react-intersection-observer-hook@npm:^4.0.2":
+  version: 4.0.2
+  resolution: "react-intersection-observer-hook@npm:4.0.2"
   peerDependencies:
-    react: ">=16.8.0"
-    react-dom: ">=16.8.0"
-  checksum: 10c0/fbb90405d62c4e345057f62f55a603e361f3ecc7ba095a5abefd2e8eb3242444c92012ed6e803bf795b29c678be4ac585726989c4ee478141e27003d58fe36ec
+    react: ">=19"
+    react-dom: ">=19"
+  checksum: 10c0/b05ddcfdeaf4be5e6b3eb983b33f6acddde5ff53073506e108c325277633b2aac9a13c57f3ffa21d983ac30becaab7068cbfc29ef54e86c45464f12e67ce447c
   languageName: node
   linkType: hard
 
