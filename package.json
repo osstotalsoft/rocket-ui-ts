@@ -69,7 +69,7 @@
     "attr-accept": "^4.0.1",
     "classnames": "^2.5.1",
     "date-fns": "^4.4.0",
-    "i18next": "^23.16.5",
+    "i18next": "^26.5.3",
     "lodash": "^4.18.1",
     "ramda": "^0.30.1",
     "react-intersection-observer-hook": "^4.0.2",
