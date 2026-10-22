@@ -139,7 +139,7 @@
     "ts-jest": "^29.4.15",
     "tsconfig-paths-webpack-plugin": "^4.2.0",
     "tss-react": "^4.9.21",
-    "typescript": "5.6.3"
+    "typescript": "6.0.3"
   },
   "packageManager": "yarn@4.5.1",
   "engines": {
