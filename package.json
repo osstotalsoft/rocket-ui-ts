@@ -75,7 +75,6 @@
     "@mui/lab": "9.0.0-beta.3",
     "@mui/material": "^9.5.0",
     "@mui/system": "^9.5.0",
-    "@mui/types": "^9.5.0",
     "@mui/x-charts": "^9.15.0",
     "@mui/x-date-pickers": "^9.16.0",
     "attr-accept": "^4.0.1",
@@ -88,8 +87,7 @@
     "react-number-format": "^5.4.3",
     "react-router": "^8.5.0",
     "react-toastify": "^11.1.0",
-    "ts-toolbelt": "^9.6.0",
-    "uuid": "^11.0.5"
+    "ts-toolbelt": "^9.6.0"
   },
   "peerDependencies": {
     "react": "^18.0.0 || ^19.0.0",
@@ -111,10 +109,8 @@
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^7.0.1",
     "@testing-library/react": "^16.3.3",
-    "@testing-library/user-event": "^14.6.0",
     "@types/babel__core": "^7.20.5",
     "@types/copyfiles": "^2.4.4",
-    "@types/dedent": "^0.7.2",
     "@types/eslint": "^9.6.1",
     "@types/jest": "^30.0.0",
     "@types/lodash": "^4.17.14",
@@ -135,7 +131,6 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^30.5.2",
     "jest-environment-jsdom": "^30.5.2",
-    "jest-runner-vscode": "^3.0.1",
     "prettier": "^3.9.10",
     "prop-types": "15.8.1",
     "react": "19.3.1",
@@ -144,7 +139,6 @@
     "rimraf": "^6.1.3",
     "storybook": "10.6.3",
     "ts-jest": "^29.4.15",
-    "ts-node": "^10.9.2",
     "tsconfig-paths-webpack-plugin": "^4.2.0",
     "tss-react": "^4.9.14",
     "typescript": "5.6.3"
