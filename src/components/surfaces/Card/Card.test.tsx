@@ -26,7 +26,7 @@ describe('Card', () => {
     expect(screen.getByRole('button')).toBeInTheDocument()
   })
 
-  it('doesn\'t render card header if none of its props is received', () => {
+  it("doesn't render card header if none of its props is received", () => {
     render(<Card data-testid="card">{text}</Card>)
     const card = screen.getByTestId('card')
     expect(card.childNodes.length).toBe(1)
@@ -77,7 +77,7 @@ describe('Card', () => {
     }
   ])('applies the correct gradient background for $color color', ({ color, background }) => {
     render(<Card color={color as CardColor}>{text}</Card>)
-    expect(screen.getByText(text)).toHaveStyle(`background: ${background}`)
+    expect(screen.getByText(text).closest('.MuiCard-root')).toHaveStyle(`background: ${background}`)
   })
 
   it('renders a photo', () => {

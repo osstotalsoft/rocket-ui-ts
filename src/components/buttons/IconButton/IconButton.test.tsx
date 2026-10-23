@@ -1,5 +1,6 @@
 // Copyright (c) TotalSoft.
 // This source code is licensed under the MIT license.
+import { jest } from '@jest/globals'
 import React from 'react'
 import { render, screen, userClick, waitFor, fireEvent } from '../../../testingUtils'
 import IconButton from './IconButton'

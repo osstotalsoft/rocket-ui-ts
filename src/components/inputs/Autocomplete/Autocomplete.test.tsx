@@ -1,3 +1,4 @@
+import { jest } from '@jest/globals'
 import React from 'react'
 import { render, screen, userClick, fireEvent, waitFor } from '../../../testingUtils'
 import { autocompleteClasses as classes } from '@mui/material/Autocomplete'
@@ -274,7 +275,7 @@ describe('Multi-value Autocomplete', () => {
 
   // Open issue: https://github.com/mui/material-ui/issues/44603
   it.skip('does not clear disabled selections when "Clear" button is clicked', async () => {
-    const mockGetOptionDisabled = jest.fn(option => option.isDisabled)
+    const mockGetOptionDisabled = jest.fn((option: any) => option.isDisabled)
     const mockOnChange = jest.fn()
     render(
       <Autocomplete
@@ -424,7 +425,7 @@ describe('Async Autocomplete', () => {
 
     test('aborts previous request when a new one is triggered by input change', async () => {
       // Mock loadOptions to capture the signal and allow controlled resolution
-      const mockLoadOptions = jest.fn()
+      const mockLoadOptions = jest.fn<(...args: any[]) => any>()
       mockLoadOptions.mockImplementationOnce((_inputValue, _options, _nextPageData, signal) => {
         return new Promise((resolve, reject) => {
           setTimeout(() => {
@@ -473,17 +474,19 @@ describe('Async Autocomplete', () => {
 
     test('aborts pending requests when component is unmounted', async () => {
       // Mock loadOptions to capture the signal and verify it's aborted on unmount
-      const mockLoadOptions = jest.fn().mockImplementation((_inputValue, _options, _nextPageData, signal) => {
-        // Capture the abort handler
-        return new Promise<unknown[]>((resolve, reject) => {
-          setTimeout(() => {
-            if (signal?.aborted) {
-              reject(new Error('Request aborted'))
-            }
-            resolve(basicOptions)
-          }, 150)
+      const mockLoadOptions = jest
+        .fn<(...args: any[]) => any>()
+        .mockImplementation((_inputValue, _options, _nextPageData, signal) => {
+          // Capture the abort handler
+          return new Promise<unknown[]>((resolve, reject) => {
+            setTimeout(() => {
+              if (signal?.aborted) {
+                reject(new Error('Request aborted'))
+              }
+              resolve(basicOptions)
+            }, 150)
+          })
         })
-      })
       jest.useFakeTimers()
       const wrapper = render(<Autocomplete loadOptions={mockLoadOptions} onChange={jest.fn()} debouncedBy={100} />)
 

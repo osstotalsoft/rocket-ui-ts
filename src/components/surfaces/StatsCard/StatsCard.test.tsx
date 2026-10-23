@@ -23,7 +23,7 @@ describe('StatsCard', () => {
 
   it('when `icon` is received, applies a background of `iconColor`', () => {
     const iconColor = 'warning'
-    render(<StatsCard icon={AttachMoneyIcon} />)
+    render(<StatsCard icon={AttachMoneyIcon} iconColor={iconColor} />)
     expect(screen.getByTestId('AttachMoneyIcon').parentElement).toHaveStyle(
       `background: linear-gradient(195deg, ${theme.palette[iconColor].light}, ${theme.palette[iconColor].main})`
     )

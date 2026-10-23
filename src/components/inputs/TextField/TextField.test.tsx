@@ -1,6 +1,7 @@
 // Copyright (c) TotalSoft.
 // This source code is licensed under the MIT license.
 
+import { jest } from '@jest/globals'
 import React from 'react'
 import { render, userClick, waitFor, screen, fireEvent } from '../../../testingUtils'
 import { TextField, getTheme } from '../../index'
