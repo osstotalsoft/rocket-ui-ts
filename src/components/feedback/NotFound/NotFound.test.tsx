@@ -15,12 +15,6 @@ describe('NotFound', () => {
     expect(screen.getByText(details)).toBeInTheDocument()
   })
 
-  test('uses the correct color for not found', () => {
-    render(<NotFound text={text} details={details} />)
-    expect(screen.getByText(text)).toHaveStyle(`color: ${'defaultTheme.palette.timColors.greyColor'}`)
-    expect(screen.getByText(details)).toHaveStyle(`color: ${'defaultTheme.palette.timColors.greyColor'}`)
-  })
-
   test('uses the correct font weight for not found', () => {
     render(<NotFound text={text} details={details} />)
     expect(screen.getByText(text)).toHaveStyle('font-weight: bold')

@@ -6,7 +6,6 @@ tsconfig.build.json
 .github
 __tests__
 __mocks__
-.babelrc
 eslint.config.mjs
 .gitignore
 .yarn

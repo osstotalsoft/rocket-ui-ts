@@ -64,8 +64,10 @@ describe('Toast', () => {
       )
       await act(async () => fireEvent.click(screen.getByRole('button')))
 
-      await waitFor(() => expect(screen.getByRole('alert').parentNode).toHaveClass(expectedVariant, expectedTransition))
-      await waitFor(() => expect(screen.getByRole('alert').parentNode.parentNode).toHaveClass(expectedPosition))
+      await waitFor(() => expect(screen.getByRole('alert')).toHaveClass(expectedVariant, expectedTransition))
+      await waitFor(() =>
+        expect(screen.getByRole('alert').closest('.Toastify__toast-container')).toHaveClass(expectedPosition)
+      )
     }
   )
 
@@ -109,8 +111,8 @@ describe('Promise toast', () => {
     await act(async () => fireEvent.click(screen.getByRole('button')))
 
     await waitFor(() => expect(screen.getByRole('alert')).toBeInTheDocument())
-    await waitFor(() => expect(screen.getByRole('alert').parentNode).toHaveClass('Toastify__toast--default'))
-    await waitFor(() => expect(screen.getByRole('alert').parentNode).toHaveClass('Toastify__toast--error'), {
+    await waitFor(() => expect(screen.getByRole('alert')).toHaveClass('Toastify__toast--default'))
+    await waitFor(() => expect(screen.getByRole('alert')).toHaveClass('Toastify__toast--error'), {
       timeout: 4000
     })
   })
