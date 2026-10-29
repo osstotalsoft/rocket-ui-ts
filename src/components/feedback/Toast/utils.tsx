@@ -1,6 +1,6 @@
 import React from 'react'
 import { TypeOptions } from 'react-toastify'
-import { IconButton, Stack } from '@mui/material'
+import { Box, IconButton, Stack } from '@mui/material'
 import CheckCircleIcon from '@mui/icons-material/CheckCircle'
 import InfoIcon from '@mui/icons-material/Info'
 import WarningIcon from '@mui/icons-material/Warning'
@@ -64,7 +64,8 @@ const Toast = (props: any) => {
   const { message, closeToast, variant, actions } = props
 
   return (
-    <>
+    // react-toastify 11 no longer wraps the content in .Toastify__toast-body, so it must fill the toast itself
+    <Box sx={{ flex: 1, minWidth: 0 }}>
       <Stack direction="row" sx={{ justifyContent: 'space-between', alignItems: 'center', ...toastStyle }}>
         <Icon myVariant={variant} />
         <Typography sx={{ maxHeight: '450px' }}>{message}</Typography>
@@ -85,7 +86,7 @@ const Toast = (props: any) => {
           {actions}
         </AppBar>
       ) : null}
-    </>
+    </Box>
   )
 }
 
